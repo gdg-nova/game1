@@ -24,6 +24,8 @@ public class gameControl : MonoBehaviour {
 				}
 
 		if (Input.GetMouseButton(1)) {
+			Debug.Log ("z");
+
 			rightclickObject();
 		}
 	}
@@ -53,6 +55,7 @@ public class gameControl : MonoBehaviour {
 
 	void rightclickObject() {
 		//send raycast to get hit
+		/*
 		Ray r = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit r_hit;
 		
@@ -63,7 +66,13 @@ public class gameControl : MonoBehaviour {
 				createWerewolf(r_hit.collider.gameObject.transform.position);
 				Destroy(r_hit.collider.gameObject);
 			}
-		}
+		}*/
+
+		GameObject[] zombies = GameObject.FindGameObjectsWithTag ("Zombie");
+
+		foreach (GameObject z in zombies) {
+			z.SendMessage("setDestination", Camera.main.ScreenToWorldPoint(Input.mousePosition));
+				}
 	}
 
 	//Create humans per HumanCount

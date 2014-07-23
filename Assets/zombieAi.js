@@ -9,6 +9,7 @@
 
 	//public var infectChance:float;
 	
+	public var attackDamage:float;
 	public var navAgent:NavMeshAgent ;
 	private var currentTarget:GameObject;
 	
@@ -20,12 +21,17 @@ function Start () {
 		navAgent = GetComponent(NavMeshAgent);
 		
 		//Pick a random target from the designated objects
-		currentTarget = getRandomNavTarget ("Finish");
+		var g : GameObject = getRandomNavTarget ("SafeZone");		
+		if (g == null) {g = getRandomNavTarget("Finish");}
+		
+		setTarget(g);
 		
 		//Go to new target
-		navAgent.SetDestination(currentTarget.transform.position);
+		//navAgent.SetDestination(currentTarget.transform.position);
 
 		Destroy(gameObject, lifeSpan);
+		
+		castFear();
 }
 
 function Update () {
@@ -47,21 +53,41 @@ function Update () {
 			timeSinceFear = 0;
 		}
 		
-		//If close to nav destination, pick new random destination to keep moving
-		if (navAgent.remainingDistance < 5) {
-			currentTarget = getRandomNavTarget ("Finish");
-			navAgent.SetDestination (currentTarget.transform.position);
+		//If close to nav destination, send damage and die
+		if (navAgent.remainingDistance < 5 && currentTarget != null) {
+			currentTarget.SendMessage("takeDamage", attackDamage);
+			
+			Destroy(gameObject);
+			//currentTarget = getRandomNavTarget ("SafeZone");
+			//navAgent.SetDestination (currentTarget.transform.position);
 		}
 }
 
+
 function getRandomNavTarget (tagName:String) {
-		var targets:GameObject[]  = GameObject.FindGameObjectsWithTag (tagName);
+		var c : gameControl   = Camera.main.GetComponent(gameControl);
+		if (c.currentZombieTarget != null) {
+			return c.currentZombieTarget;
+		}	else {	
 
-		var  x:int = Random.Range (0, targets.Length);
+			var targets: GameObject[]  = GameObject.FindGameObjectsWithTag (tagName);
 
-		return targets [x];
+			if (targets.Length > 0 ) {
+				var x:int = Random.Range (0, targets.Length);
+		
+				return targets [x];		
+			}
+		
+		}
+		
+		return null;
 	}
 	
+function setTarget (g:GameObject) {
+	currentTarget = g;
+	navAgent.SetDestination(currentTarget.transform.position);
+
+	}	
 	
 function attack() {
 						
@@ -99,5 +125,11 @@ function castFear() {
 		}
 	}
 
+function goingtoSafe() {
+	if (currentTarget.tag == "SafeZone") 
+		{return true;}
+	else 
+		{return false;}
+}
 
 
