@@ -36,6 +36,7 @@ function Start () {
 
 function Update () {
 	timeSinceAttack += Time.deltaTime;
+	timeSinceFear += Time.deltaTime;
 
 		//check if time to attack again
 		if (timeSinceAttack > attackInterval) {
@@ -45,22 +46,21 @@ function Update () {
 
 			//castFeat to scare other nearby humans
 			//castFear();
-		}
+		} else
 
-		timeSinceFear += Time.deltaTime;
 		if (timeSinceFear > fearInterval) {
 			castFear ();
 			timeSinceFear = 0;
 		}
 		
 		//If close to nav destination, send damage and die
-		if (navAgent.remainingDistance < 5 && currentTarget != null) {
-			currentTarget.SendMessage("takeDamage", attackDamage);
+//		if (navAgent.remainingDistance < 5 && currentTarget.tag == "SafeZone") {
+		//	currentTarget.SendMessage("takeDamage", attackDamage);
 			
-			Destroy(gameObject);
+		//	Destroy(gameObject);
 			//currentTarget = getRandomNavTarget ("SafeZone");
 			//navAgent.SetDestination (currentTarget.transform.position);
-		}
+//		}
 }
 
 
@@ -93,18 +93,26 @@ function attack() {
 						
 		var r:RaycastHit;
 
-		//sphere cast in front of werewolf
+		//sphere cast in front of zombie
 		if (Physics.SphereCast (new Ray (transform.position, transform.forward), attackSize,  r, 3)) {		
 				
-				//check if hits are uhman
+				//check if hits are human
 				if (r.collider.gameObject.tag == "Human") {		
-
+					//Destroy human
+					r.collider.gameObject.SendMessage("die");
 					//if (Random.Range(0f, 1f) <= infectChance) {
 					Camera.main.SendMessage("createZombie", r.collider.transform.position);
 				//}
-					//Destroy human
-					r.collider.gameObject.SendMessage("die");
+					
+				} else if (r.collider.gameObject.tag == "Guard") {		
+					Destroy(gameObject);
 				}
+				else if (r.collider.gameObject.tag == "SafeZone") {
+					r.collider.gameObject.SendMessage("takeDamage", attackDamage);
+					
+				}
+				
+
 		}
 	}
 

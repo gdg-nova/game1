@@ -103,6 +103,7 @@ function die() {
 		
 //Sprint to random safe zone
 function Afraid() {
+	isAfraid = true;
 
 	//navAgent.Stop ();
 	navAgent.speed = runSpeed;
@@ -114,9 +115,8 @@ function Afraid() {
 	var g : GameObject = getRandomNavTarget ("SafeZone");		
 	if (g == null) {g = getRandomNavTarget("Finish");}
 		
-	setTarget(g);
+	if (navAgent != null)  setTarget(g);
 		
-	isAfraid = true;
 	
 	
 }
