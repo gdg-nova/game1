@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{0578206E-1E3F-D879-1FF1-6AC81431429D}</ProjectGuid>
+	<ProjectGuid>{ACC9F4D1-C36F-77FC-CE14-289BADE7F8FB}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -19,7 +19,7 @@
 	<DebugType>full</DebugType>
 	<Optimize>false</Optimize>
 	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_4_5_1;UNITY_4_5;UNITY_STANDALONE_OSX;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_GAMECENTER;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX</DefineConstants>
+	<DefineConstants>DEBUG;TRACE;UNITY_4_6_0;UNITY_4_6;UNITY_STANDALONE_WIN;ENABLE_MICROPHONE;ENABLE_TEXTUREID_MAP;ENABLE_UNITYEVENTS;ENABLE_NEW_HIERARCHY ;ENABLE_AUDIO_FMOD;UNITY_STANDALONE;ENABLE_MONO;ENABLE_TERRAIN;ENABLE_SUBSTANCE;ENABLE_GENERICS;INCLUDE_WP8SUPPORT;ENABLE_MOVIES;ENABLE_WWW;ENABLE_IMAGEEFFECTS;ENABLE_4_6_FEATURES;INCLUDE_WP_BLUE_SUPPORT;ENABLE_WEBCAM;INCLUDE_METROSUPPORT;RENDER_SOFTWARE_CURSOR;ENABLE_NETWORK;ENABLE_PHYSICS;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_2D_PHYSICS;ENABLE_SHADOWS;ENABLE_AUDIO;ENABLE_NAVMESH_CARVING;ENABLE_DUCK_TYPING;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_OSX</DefineConstants>
 	<ErrorReport>prompt</ErrorReport>
 	<WarningLevel>4</WarningLevel>
 	<NoWarn>0169</NoWarn>
@@ -46,28 +46,234 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Common\AttributeManipulatingTrigger.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Common\AttributeMask.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Common\AttributePropertyAttribute.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Common\AttributeSensitiveTrigger.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Common\AttributedComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Common\DefaultEntityAttributesEnum.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Common\EntityAttributesEnumAttribute.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Common\IHaveAttributes.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\CommonExtensions.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\DataStructures\BinaryHeap.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\DataStructures\BinaryHeapBase.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\DataStructures\DynamicArray.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\DataStructures\IIndexable.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\DataStructures\Matrix.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\DataStructures\MatrixBounds.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\DataStructures\PolygonXZ.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\DataStructures\PriorityQueue.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\DataStructures\PriorityQueueFifo.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\DataStructures\PriorityQueueLifo.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\DataStructures\QueueOnce.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\DataStructures\QueueType.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\DataStructures\RectangleXZ.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\DataStructures\StackWithLookAhead.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\DataStructures\VectorXZ.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Debugging\GridVisualizer.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Debugging\LoadBalancerPerformanceVisualizer.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Debugging\PathVisualizer.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Debugging\SteeringMonitor.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Debugging\Visualizer.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\ExtendedMonoBehaviour.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\GameState\GameStateManagerSelection.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\GameState\Selections.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\IGameObjectComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Input\InputController.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Input\InputReceiverAttribute.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Input\InputReceiverBasic.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Input\SelectionRectangleComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\LoadBalancing\ILoadBalanced.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\LoadBalancing\ILoadBalancer.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\LoadBalancing\LoadBalancedQueue.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\LoadBalancing\LoadBalancer.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\LoadBalancing\LoadBalancerComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\LoadBalancing\LoadBalancerConfig.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\LoadBalancing\LongRunningAction.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\LoadBalancing\NavLoadBalancer.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\LoadBalancing\OneTimeAction.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\LoadBalancing\RepetableAction.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Messages\UnitDeathMessage.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Messages\UnitNavigationEventMessage.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\BasicPathRequest.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\DecayingPathRequest.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\DirectPathResult.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\DirectPather.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\IDirectPather.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\IMoveCostFactory.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\INeedPath.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\IPathNode.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\IPathRequest.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\IPathService.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\IPathSmootherFactory.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\IPathingEngine.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\IPortalNode.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\ISmoothPaths.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\ManualPath.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\MoveCost\CardinalDistance.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\MoveCost\DiagonalDistance.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\MoveCost\DiagonalDistanceUniform.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\MoveCost\EuclideanDistance.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\MoveCost\IMoveCost.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\MoveCost\ManhattanDistance.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\MoveCost\MoveCostBase.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\MoveCost\MoveCostDiagonalBase.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\PathNodeComparer.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\PathResult.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\PathService.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\PathServiceComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\PathSmoother.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\PathingAStar.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\PathingEngineBase.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\PathingEngineType.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\PathingJumpPointSearch.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\PathingStatus.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\Position.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\PathFinding\RequestType.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\QuickStarts\GameWorldQuickStart.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\QuickStarts\NavigationQuickStart.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\QuickStarts\NavigationWithPatrolQuickStart.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\QuickStarts\NavigationWithSelectionQuickStart.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\QuickStarts\NavigationWithWanderQuickStart.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\QuickStarts\PatrolRouteQuickStart.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\QuickStarts\PortalQuickStart.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\QuickStarts\QuickStartBase.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\QuickStarts\SteeringBasicAvoidanceQuickStart.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Services\AdvancedMessageBus.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Services\AdvancedMessageBusFactoryComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Services\BasicMessageBus.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Services\GameServices.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Services\GameServicesInitializerComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Services\IHandleMessage.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Services\IMessageBus.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Services\IMessageBusFactory.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Services\UnityServices.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Services\UnityWrappers.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\SingleInstanceComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\BasicScanner.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\Behaviours\PatrolBehaviour.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\Behaviours\ReplanWhenBlockedBehaviour.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\Behaviours\WanderBehaviour.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\Components\FleeObstacleComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\Components\HumanoidSpeedComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\Components\IProcessPathResults.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\Components\SteerForBasicAvoidanceComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\Components\SteerForPathComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\Components\SteerForPathReplanWhenBlocked.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\Components\SteerForPathReplanWhenNoRoute.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\Components\SteerForPathResultProcessorComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\FacingOrientation.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\IAdjustUpdateInterval.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\IControlFacingOrientation.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\IDefineSpeed.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\IMovable.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\IMoveUnits.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\IMoveUnitsFactory.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\IMovingObject.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\IProvideFacingOrientation.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\ISteerable.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\ITurnUnits.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\ITurnUnitsFactory.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\Props\PatrolPoint.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\Props\PatrolRoute.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\SteerableUnitComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\SteeringComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Steering\TurnableUnitComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Units\ISelectable.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Units\IUnit.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Units\SelectableUnitComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Units\UnitComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\UnityExtensions.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Utilities\Ensure.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Utilities\IThreadFactory.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Utilities\MaxCheckAttribute.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Utilities\MinCheckAttribute.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\Utilities\ThreadFactory.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\Axis.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\Cell.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\CellMatrix.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\CellMatrixData.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\DynamicObstacle.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\Geometry.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\GeometryExtensions.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\Grid.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\GridAwareComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\GridBuilder.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\GridComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\GridManager.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\GridPortal.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\GridPortalComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\GridSection.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\HeightMapManager.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\ICellMatrixConfiguration.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\IDynamicObstacle.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\IGrid.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\IGridCell.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\IGridManager.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\IGridSource.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\IHeightMap.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\IPortalAction.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\IPortalActionFactory.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\IPositioned.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\InvalidDestinationComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\LayerMappingComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\Layers.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\MatrixDirection.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\NeighbourPosition.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\Perimeter.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\PortalActionNoneComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\PortalActionTeleportComponent.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\PortalCell.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\PortalType.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\TerrainHeightMap.cs" />
+     <Compile Include="Assets\Apex Path\Apex\Scripts\WorldGeometry\ZeroHeightMap.cs" />
+     <Compile Include="Assets\Little HEROES &amp; VILLAINS\Free Look Camera\Cameras\Scripts\AbstractTargetFollower.cs" />
+     <Compile Include="Assets\Little HEROES &amp; VILLAINS\Free Look Camera\Cameras\Scripts\AutoCam.cs" />
+     <Compile Include="Assets\Little HEROES &amp; VILLAINS\Free Look Camera\Cameras\Scripts\FreeLookCam.cs" />
+     <Compile Include="Assets\Little HEROES &amp; VILLAINS\Free Look Camera\Cameras\Scripts\HandHeldCam.cs" />
+     <Compile Include="Assets\Little HEROES &amp; VILLAINS\Free Look Camera\Cameras\Scripts\LookatTarget.cs" />
+     <Compile Include="Assets\Little HEROES &amp; VILLAINS\Free Look Camera\Cameras\Scripts\PivotBasedCameraRig.cs" />
+     <Compile Include="Assets\Little HEROES &amp; VILLAINS\Free Look Camera\Cameras\Scripts\ProtectCameraFromWallClip.cs" />
+     <Compile Include="Assets\Little HEROES &amp; VILLAINS\Free Look Camera\Cameras\Scripts\TargetFieldOfView.cs" />
+     <Compile Include="Assets\Little HEROES &amp; VILLAINS\Free Look Camera\Cameras\ThirdPersonCamera.cs" />
+     <Compile Include="Assets\Little HEROES &amp; VILLAINS\Free Look Camera\Cross Platform Input\Scripts\CrossPlatformInput.cs" />
+     <Compile Include="Assets\Little HEROES &amp; VILLAINS\Free Look Camera\Cross Platform Input\Scripts\PlatformSpecific\StandaloneInput.cs" />
+     <Compile Include="Assets\Little HEROES &amp; VILLAINS\Free Look Camera\Cross Platform Input\Scripts\VirtualInput.cs" />
      <Compile Include="Assets\Refactored scripts\gameControl.cs" />
      <Compile Include="Assets\Refactored scripts\humanAi.cs" />
      <Compile Include="Assets\Refactored scripts\werewolfAi.cs" />
      <Compile Include="Assets\Refactored scripts\zombieAi.cs" />
+     <None Include="Assets\Little HEROES &amp; VILLAINS\Shaders\Toony-BasicOutline.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Background.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Vertex Colored Shaders\Mobile Transparent Vertex Color.shader" />
+     <None Include="Assets\Little HEROES &amp; VILLAINS\Shaders\Toony-Basic.shader" />
+     <None Include="Assets\Apex Path\Apex\ChangeLog.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Detail.shader" />
+     <None Include="Assets\Apex Path\Apex Path Examples and Documentation\Examples and Tutorials Project Setup.txt" />
      <None Include="Assets\VillageHouse\Shader\TwoSided.shader" />
      <None Include="Assets\Standard Assets\Water (Basic)\Sources\Shaders\FX-Water Simple.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap Reflective.shader" />
+     <None Include="Assets\Apex Path\Apex\Getting Started.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Particles Additive Culled.shader" />
+     <None Include="Assets\Little HEROES &amp; VILLAINS\ThirdParty\MotionController\ReadMe.txt" />
+     <None Include="Assets\Little HEROES &amp; VILLAINS\Shaders\Outline basic.shader" />
+     <None Include="Assets\Little HEROES &amp; VILLAINS\Shaders\UnlitShadows.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Vertex Colored Shaders\Mobile Vertex Colored.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap Only.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Lightmap Shaders (Legacy)\Mobile Lightmap AlphaTest.shader" />
+     <None Include="Assets\Little HEROES &amp; VILLAINS\Animations\LittleHeroes_Animation_frames.txt" />
+     <None Include="Assets\Little HEROES &amp; VILLAINS\Shaders\Outline Diffuse.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>/Users/mwbullen/VampiresWerewolvesZombies/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>/Users/mwbullen/Documents/game1-master/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.UI">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
-      <Project>{91E216EB-C7B1-0808-A96C-160DE3FC51C5}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
+      <Project>{F9C2815E-EF4B-DF09-CD2B-45090C4ED7DD}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

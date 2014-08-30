@@ -16,6 +16,8 @@
 	public var stayInSafe:boolean ;
 	private var isAfraid : boolean = false;
 	
+	private var currentAnimation;
+	
 	
 function Start () {
 	//set Random rotation for visual interest
@@ -38,9 +40,25 @@ function Start () {
 		if (g == null) {g = getRandomNavTarget("Finish");}
 		
 		setTarget(g);
+		
+		
 }
 
-function Update () {
+function PlayAnimation(animationName) {
+			var a : Animation = GetComponent("Animation");
+			a.wrapMode = WrapMode.Loop;
+		
+			a.Play(animationName.ToString());
+			currentAnimation = animationName;
+
+}
+
+function FixedUpdate () {
+	if (navAgent.velocity.magnitude >0 && currentAnimation != "walk") {
+			PlayAnimation("walk");
+			
+		}	
+	
 	//check if target destination has been destroyed
 	if (currentTarget == null) {	
 			var t : GameObject = getRandomNavTarget ("SafeZone");
@@ -70,6 +88,8 @@ function Update () {
 		}
 }
 
+
+
 function getRandomRotation() {
 		var y:int = Random.Range (0, 360);		
 		var q:Quaternion = Quaternion.Euler (0, y, 0);		
@@ -81,7 +101,7 @@ function getRandomRotation() {
 function setTarget (g:GameObject) {
 	currentTarget = g;
 	navAgent.SetDestination(currentTarget.transform.position);
-
+	
 	}	
 	
 	
