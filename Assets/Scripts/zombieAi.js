@@ -13,7 +13,8 @@
 	public var navAgent:NavMeshAgent ;
 	private var currentTarget:GameObject;
 	
-	
+	private var currentAnimation;
+
 	
 	//public var lifeSpan:float;
 function Start () {
@@ -34,9 +35,28 @@ function Start () {
 		//navAgent.SetDestination(currentTarget.transform.position);
 
 		castFear();
+		
+		PlayAnimation("LM_walk");
+
 }
 
-function Update () {
+function PlayAnimation(animationName) {
+			var a : Animation = GetComponent("Animation");
+			a.wrapMode = WrapMode.Loop;
+		
+			a.Play(animationName.ToString());
+			currentAnimation = animationName;
+					
+			
+}
+
+
+function FixedUpdate () {
+//	if (navAgent.velocity.magnitude >0 && currentAnimation != "walk") {
+//			PlayAnimation("LM_walk");
+//			
+//		}
+
 	timeSinceAttack += Time.deltaTime;
 	timeSinceFear += Time.deltaTime;
 
@@ -99,8 +119,11 @@ function setTarget (g:GameObject) {
 	
 //Destroy zombie object
 function die() {
-		Destroy (gameObject);
-		}	
+	PlayAnimation("LM_die");
+	//yield WaitForSeconds (animation["LM_die"].length);
+		
+	Destroy (gameObject);
+}	
 	
 //function attack() {
 //						
@@ -131,7 +154,10 @@ function die() {
 
 function attack() {
 		//Debug.Log("Guard attacking!");
-
+		
+		
+				
+				
 		var colliders : Collider[] = Physics.OverlapSphere(gameObject.transform.position, attackSize);
 										
 		for (var hit : Collider in colliders) {
@@ -144,7 +170,17 @@ function attack() {
 				//hit.collider.gameObject.SendMessage("takeDamage", damage);
 				hit.gameObject.SendMessage("die");
 					//if (Random.Range(0f, 1f) <= infectChance) {
+					
+				
 				Camera.main.SendMessage("createZombie", hit.transform.position);
+				
+				PlayAnimation("LM_R2L_swipe");
+				
+				var a : Animation = GetComponent("Animation");
+				a.wrapMode = WrapMode.Loop;
+		
+				a.PlayQueued("LM_walk");
+				
 				
 				return;
 			} else if (hit.gameObject.tag == "SafeZone") {

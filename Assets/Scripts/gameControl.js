@@ -63,6 +63,8 @@ function clickObject() {
 	if (Physics.Raycast (r,  r_hit, Mathf.Infinity)) {
 		//Check if human
 		
+		Debug.Log(r_hit.collider.gameObject.tag);
+		
 		var g : GameObject = r_hit.collider.gameObject;
 		
 		if (g.tag == "Human") {

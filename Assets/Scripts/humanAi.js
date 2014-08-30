@@ -130,7 +130,7 @@ function Afraid() {
 	//navAgent.SetDestination (new Vector3 (0, 0, 0));
 	//goingtoSafe = true;
 	
-	gameObject.renderer.material = fearMaterial;
+	//gameObject.renderer.material = fearMaterial;
 	
 	var g : GameObject = getRandomNavTarget ("SafeZone");		
 	if (g == null) {g = getRandomNavTarget("Finish");}
