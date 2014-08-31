@@ -1,6 +1,6 @@
 ﻿#pragma strict
 	public var attackInterval:float;
-	private var timeSinceAttack:float;
+	private var timeSinceAttack:float = 0;
 	public var attackSize:float;
 
 	public var fearInterval:float;
@@ -13,16 +13,20 @@
 	public var navAgent:NavMeshAgent ;
 	private var currentTarget:GameObject;
 	
-	private var currentAnimation;
+	//private var currentAnimation;
 
+	private var animComponent : Animation;
 	
-	//public var lifeSpan:float;
+	public var lifeSpan:float;
+	private var timeAlive : float =  0;
+	
 function Start () {
 	//load NavAgent
 		
 		//Destroy(gameObject, lifeSpan);
 		
 		navAgent = GetComponent(NavMeshAgent);
+		animComponent = GetComponent(Animation);
 		
 		//Pick a random target from the designated objects
 		var g : GameObject = getRandomNavTarget ("SafeZone");		
@@ -36,19 +40,18 @@ function Start () {
 
 		castFear();
 		
-		PlayAnimation("LM_walk");
-
-}
-
-function PlayAnimation(animationName) {
-			var a : Animation = GetComponent("Animation");
-			a.wrapMode = WrapMode.Loop;
+		animComponent.wrapMode = WrapMode.Loop;
+		animComponent.Play("walk");
 		
-			a.Play(animationName.ToString());
-			currentAnimation = animationName;
-					
-			
 }
+
+//function PlayAnimation(animationName) {			
+//			a.wrapMode = WrapMode.Loop;
+//		
+//			a.Play(animationName.ToString());
+//			currentAnimation = animationName;
+//							
+//}
 
 
 function FixedUpdate () {
@@ -56,26 +59,30 @@ function FixedUpdate () {
 //			PlayAnimation("LM_walk");
 //			
 //		}
-
+	timeAlive += Time.deltaTime;
+	
 	timeSinceAttack += Time.deltaTime;
 	timeSinceFear += Time.deltaTime;
 
+	if (timeAlive >= lifeSpan) {
+	die();
+	}
 		//check if time to attack again
-		if (timeSinceAttack > attackInterval) {
-			
-			attack();
-			timeSinceAttack = 0;
-
-			//castFeat to scare other nearby humans
-			//castFear();
-		} else
-
-		if (timeSinceFear > fearInterval) {
-			castFear ();
-			timeSinceFear = 0;
-		}
-
+	if (timeSinceAttack > attackInterval) {
 		
+		attack();
+		timeSinceAttack = 0;
+
+		//castFeat to scare other nearby humans
+		//castFear();
+	} else
+
+	if (timeSinceFear > fearInterval) {
+		castFear ();
+		timeSinceFear = 0;
+	}
+
+	
 						
 		//If close to nav destination, send damage and die
 //		if (navAgent.remainingDistance < 5 && currentTarget.tag == "SafeZone") {
@@ -119,8 +126,15 @@ function setTarget (g:GameObject) {
 	
 //Destroy zombie object
 function die() {
-	PlayAnimation("LM_die");
-	//yield WaitForSeconds (animation["LM_die"].length);
+	//PlayAnimation("LM_die");
+	
+	navAgent.Stop();
+	
+	animComponent.wrapMode = WrapMode.Once;
+	
+	animComponent.Play("die");
+	
+	yield WaitForSeconds (animation["die"].length);
 		
 	Destroy (gameObject);
 }	
@@ -174,12 +188,10 @@ function attack() {
 				
 				Camera.main.SendMessage("createZombie", hit.transform.position);
 				
-				PlayAnimation("LM_R2L_swipe");
-				
-				var a : Animation = GetComponent("Animation");
-				a.wrapMode = WrapMode.Loop;
-		
-				a.PlayQueued("LM_walk");
+				animComponent.wrapMode = WrapMode.Once;
+				animComponent.Play("L2R_swipe");
+						
+				animComponent.PlayQueued("walk");
 				
 				
 				return;
@@ -189,7 +201,8 @@ function attack() {
 					hit.gameObject.SendMessage("takeDamage", damage);
 					}		
 		}
-	}
+		
+}
 
 function stop() {
 	navAgent.Stop();

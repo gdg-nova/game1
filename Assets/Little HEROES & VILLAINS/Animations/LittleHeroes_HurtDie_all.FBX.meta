@@ -80,6 +80,7 @@ ModelImporter:
     7400000: hurt
     7400002: die
     9500000: //RootNode
+    11100000: //RootNode
     13700000: LittleHero_mesh
     13700002: LittleKnight_mesh
     13700004: Box007
@@ -93,7 +94,7 @@ ModelImporter:
     bakeSimulation: 0
     optimizeGameObjects: 0
     motionNodeName: 
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5
@@ -199,7 +200,7 @@ ModelImporter:
     - serializedVersion: 16
       name: die
       takeName: Take 001
-      firstFrame: 60
+      firstFrame: 15
       lastFrame: 85
       wrapMode: 0
       orientationOffsetY: 0
@@ -654,8 +655,7 @@ ModelImporter:
     legStretch: .0500000007
     feetSpacing: 0
     rootMotionBoneName: 
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 3821c02bb3838254fa3538d7535d2b53,
-    type: 3}
-  animationType: 3
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
   additionalBone: 0
   userData: 

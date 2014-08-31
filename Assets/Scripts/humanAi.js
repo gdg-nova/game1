@@ -1,4 +1,4 @@
-﻿#pragma strict
+﻿
 	public var navAgent: NavMeshAgent ;
 	private var currentTarget:GameObject ;
 
@@ -44,7 +44,7 @@ function Start () {
 		
 }
 
-function PlayAnimation(animationName) {
+function PlayAnimation(animationName) {	
 			var a : Animation = GetComponent("Animation");
 			a.wrapMode = WrapMode.Loop;
 		
@@ -54,7 +54,7 @@ function PlayAnimation(animationName) {
 }
 
 function FixedUpdate () {
-	if (navAgent.velocity.magnitude >0 && currentAnimation != "walk") {
+	if (navAgent.velocity.magnitude >0 && currentAnimation != "walk" && !isAfraid) {
 			PlayAnimation("walk");
 			
 		}	
@@ -125,10 +125,20 @@ function die() {
 function Afraid() {
 	isAfraid = true;
 
+	//var childMesh = gameObject.
+	
+	
+	GetComponent("Halo").enabled = true;
+	
+	
+	
+
 	//navAgent.Stop ();
 	navAgent.speed = runSpeed;
 	//navAgent.SetDestination (new Vector3 (0, 0, 0));
 	//goingtoSafe = true;
+	
+	PlayAnimation("sprint");
 	
 	//gameObject.renderer.material = fearMaterial;
 	
