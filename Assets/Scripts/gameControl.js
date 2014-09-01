@@ -37,6 +37,8 @@ function Update () {
 		if (elapsedTime >= timeLimit) {
 			gameOver();			
 		}
+		
+		checkForWin();
 }
 
 function gameOver() {

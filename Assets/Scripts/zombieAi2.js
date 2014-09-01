@@ -193,7 +193,7 @@ function attack() {
 						
 				animComponent.PlayQueued("walk");
 				
-				animComponent.wrapMode = WrapMode.Loop;
+				//animComponent.wrapMode = WrapMode.Loop;
 				
 				health -= healthCostperAttack;
 				return;
