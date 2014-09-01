@@ -130,7 +130,7 @@ function loadHumans() {
 
 function getRandomSpawn() {
 	var spawns : GameObject[] = GameObject.FindGameObjectsWithTag ("Respawn");
-
+	
 	return spawns [Random.Range (0, spawns.Length)];
 }
 
@@ -162,5 +162,11 @@ function getHumansAliveCount() {
 	}
 	
 	return baseCount;
+}
+
+function checkForWin() {
+	if (getHumansAliveCount() == 0 ) {
+		gameOver();
+	}
 }
 

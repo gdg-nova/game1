@@ -5,6 +5,9 @@
 	public var runSpeed:float ;
 	public var speedVariation:float = .2;
 	
+	public var navCheckInterval : float = 3;
+	private var timeSinceNavCheck : float;
+	
 	
 	public var fearMaterial:Material;
 	
@@ -15,6 +18,8 @@
 
 	public var stayInSafe:boolean ;
 	private var isAfraid : boolean = false;
+	
+	private var isDestroying : boolean = false;
 	
 	private var currentAnimation;
 	
@@ -53,7 +58,11 @@ function PlayAnimation(animationName) {
 
 }
 
-function FixedUpdate () {
+function Update () {
+	timeSinceNavCheck += Time.deltaTime;
+	
+	
+
 	if (navAgent.velocity.magnitude >0 && currentAnimation != "walk" && !isAfraid) {
 			PlayAnimation("walk");
 			
@@ -70,21 +79,23 @@ function FixedUpdate () {
 			//navAgent.SetDestination (currentTarget.transform.position);	
 	} else {
 
-		if (navAgent.remainingDistance < 5) {
-					if (goingtoSafe() && isAfraid && currentTarget != null) {
-						Debug.Log(goingtoSafe);
-						enterSafeZone();
-					}else {
-					
-					navAgent.speed = baseSpeed;
-					
-					var g : GameObject = getRandomNavTarget ("SafeZone");		
-					if (g == null) {g = getRandomNavTarget("Finish");}
-		
-					setTarget(g);
-				}
+		if (timeSinceNavCheck > navCheckInterval) {
+			if (navAgent.remainingDistance < 5 ) {
+						if (goingtoSafe() && isAfraid && currentTarget != null) {
+							Debug.Log(goingtoSafe);
+							enterSafeZone();
+						}else {
+						
+						navAgent.speed = baseSpeed;
+						
+						var g : GameObject = getRandomNavTarget ("SafeZone");		
+						if (g == null) {g = getRandomNavTarget("Finish");}
 			
-			}		
+						setTarget(g);
+					}
+				
+				}		
+			}
 		}
 }
 
@@ -118,11 +129,14 @@ function getRandomNavTarget(tagName:String ) {
 
 //Destroy human object
 function die() {
+		isDestroying = true;
 		Destroy (gameObject);
 		}
 		
 //Sprint to random safe zone
 function Afraid() {
+	if (isDestroying) return;
+
 	isAfraid = true;
 
 	//var childMesh = gameObject.
