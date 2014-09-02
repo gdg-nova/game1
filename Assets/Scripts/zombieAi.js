@@ -1,6 +1,6 @@
 ﻿#pragma strict
 	public var attackInterval:float;
-	private var timeSinceAttack:float;
+	private var timeSinceAttack:float = 0;
 	public var attackSize:float;
 
 	public var fearInterval:float;
@@ -13,15 +13,20 @@
 	public var navAgent:NavMeshAgent ;
 	private var currentTarget:GameObject;
 	
+	//private var currentAnimation;
+
+	private var animComponent : Animation;
 	
+	public var lifeSpan:float;
+	private var timeAlive : float =  0;
 	
-	//public var lifeSpan:float;
 function Start () {
 	//load NavAgent
 		
 		//Destroy(gameObject, lifeSpan);
 		
 		navAgent = GetComponent(NavMeshAgent);
+		animComponent = GetComponent(Animation);
 		
 		//Pick a random target from the designated objects
 		var g : GameObject = getRandomNavTarget ("SafeZone");		
@@ -34,28 +39,50 @@ function Start () {
 		//navAgent.SetDestination(currentTarget.transform.position);
 
 		castFear();
+		
+		animComponent.wrapMode = WrapMode.Loop;
+		animComponent.Play("walk");
+		
 }
 
-function Update () {
+//function PlayAnimation(animationName) {			
+//			a.wrapMode = WrapMode.Loop;
+//		
+//			a.Play(animationName.ToString());
+//			currentAnimation = animationName;
+//							
+//}
+
+
+function FixedUpdate () {
+//	if (navAgent.velocity.magnitude >0 && currentAnimation != "walk") {
+//			PlayAnimation("LM_walk");
+//			
+//		}
+	timeAlive += Time.deltaTime;
+	
 	timeSinceAttack += Time.deltaTime;
 	timeSinceFear += Time.deltaTime;
 
+	if (timeAlive >= lifeSpan) {
+	die();
+	}
 		//check if time to attack again
-		if (timeSinceAttack > attackInterval) {
-			
-			attack();
-			timeSinceAttack = 0;
-
-			//castFeat to scare other nearby humans
-			//castFear();
-		} else
-
-		if (timeSinceFear > fearInterval) {
-			castFear ();
-			timeSinceFear = 0;
-		}
-
+	if (timeSinceAttack > attackInterval) {
 		
+		attack();
+		timeSinceAttack = 0;
+
+		//castFeat to scare other nearby humans
+		//castFear();
+	} else
+
+	if (timeSinceFear > fearInterval) {
+		castFear ();
+		timeSinceFear = 0;
+	}
+
+	
 						
 		//If close to nav destination, send damage and die
 //		if (navAgent.remainingDistance < 5 && currentTarget.tag == "SafeZone") {
@@ -99,8 +126,18 @@ function setTarget (g:GameObject) {
 	
 //Destroy zombie object
 function die() {
-		Destroy (gameObject);
-		}	
+	//PlayAnimation("LM_die");
+	
+	navAgent.Stop();
+	
+	animComponent.wrapMode = WrapMode.Once;
+	
+	animComponent.Play("die");
+	
+	yield WaitForSeconds (animation["die"].length);
+		
+	Destroy (gameObject);
+}	
 	
 //function attack() {
 //						
@@ -131,7 +168,10 @@ function die() {
 
 function attack() {
 		//Debug.Log("Guard attacking!");
-
+		
+		
+				
+				
 		var colliders : Collider[] = Physics.OverlapSphere(gameObject.transform.position, attackSize);
 										
 		for (var hit : Collider in colliders) {
@@ -144,7 +184,15 @@ function attack() {
 				//hit.collider.gameObject.SendMessage("takeDamage", damage);
 				hit.gameObject.SendMessage("die");
 					//if (Random.Range(0f, 1f) <= infectChance) {
+					
+				
 				Camera.main.SendMessage("createZombie", hit.transform.position);
+				
+				animComponent.wrapMode = WrapMode.Once;
+				animComponent.Play("L2R_swipe");
+						
+				animComponent.PlayQueued("walk");
+				
 				
 				return;
 			} else if (hit.gameObject.tag == "SafeZone") {
@@ -153,7 +201,8 @@ function attack() {
 					hit.gameObject.SendMessage("takeDamage", damage);
 					}		
 		}
-	}
+		
+}
 
 function stop() {
 	navAgent.Stop();

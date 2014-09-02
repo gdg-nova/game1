@@ -37,6 +37,8 @@ function Update () {
 		if (elapsedTime >= timeLimit) {
 			gameOver();			
 		}
+		
+		checkForWin();
 }
 
 function gameOver() {
@@ -62,6 +64,8 @@ function clickObject() {
 
 	if (Physics.Raycast (r,  r_hit, Mathf.Infinity)) {
 		//Check if human
+		
+		Debug.Log(r_hit.collider.gameObject.tag);
 		
 		var g : GameObject = r_hit.collider.gameObject;
 		
@@ -128,7 +132,7 @@ function loadHumans() {
 
 function getRandomSpawn() {
 	var spawns : GameObject[] = GameObject.FindGameObjectsWithTag ("Respawn");
-
+	
 	return spawns [Random.Range (0, spawns.Length)];
 }
 
@@ -160,5 +164,11 @@ function getHumansAliveCount() {
 	}
 	
 	return baseCount;
+}
+
+function checkForWin() {
+	if (getHumansAliveCount() == 0 ) {
+		gameOver();
+	}
 }
 

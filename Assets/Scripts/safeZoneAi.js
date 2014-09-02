@@ -1,5 +1,4 @@
-﻿#pragma strict
-
+﻿
 public var Health:float = 100f;
 public var Capacity:int = 50;
 public var humanCount:int =0;
@@ -15,6 +14,9 @@ private var timeSinceLastEntry : float = 0;
 public var targetMaterial : Material;
 		
 private var defaultMaterial:Material;
+
+public var spawnArea : GameObject;
+
 	
 function Start () {
 	defaultMaterial = this.renderer.material;
@@ -49,23 +51,32 @@ function takeDamage(damage:int) {
 }
 
 function breakOpen() {
-	var x :float= Random.Range(renderer.bounds.min.x, renderer.bounds.max.x);
-	var z:float= Random.Range(renderer.bounds.min.z, renderer.bounds.max.z);
-
+	
 	for (var i:int = 0; i < humanCount; i++) {
+		var x :float= Random.Range(spawnArea.renderer.bounds.min.x, spawnArea.renderer.bounds.max.x);
+		var z:float= Random.Range(spawnArea.renderer.bounds.min.z, spawnArea.renderer.bounds.max.z);
 			//Camera.main.SendMessage("createHuman", transform.position);
-			Camera.main.SendMessage("createHuman", new Vector3(x, 1, z));
-		
+			Camera.main.SendMessage("createZombie", new Vector3(x, 1, z));
+			
 	}
 	humanCount = 0;
 		
 }
 
+function infected() {
+	Debug.Log("House infected");
+	
+
+	breakOpen();
+	Destroy (gameObject);
+
+}
+
 function makeZombieTarget() {
 	//targetTime = time;
-	renderer.material = targetMaterial;
+	GetComponent("Halo").enabled = true;
 }
 
 function removeZombieTarget() {
-	renderer.material = defaultMaterial;
+	GetComponent("Halo").enabled = false;
 }
