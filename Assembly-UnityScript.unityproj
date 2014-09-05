@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{B62A2764-1478-DA60-19E0-C01E9B020331}</ProjectGuid>
+	<ProjectGuid>{6D769005-B82C-57C4-A499-C9E89DE2E068}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -46,13 +46,13 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Refactored scripts\baseAi.js" />
-     <Compile Include="Assets\Refactored scripts\monsterAi.js" />
+     <Compile Include="Assets\Scripts\baseAi.js" />
      <Compile Include="Assets\Scripts\baseUnitControl.js" />
      <Compile Include="Assets\Scripts\drawGUI.js" />
      <Compile Include="Assets\Scripts\gameControl.js" />
      <Compile Include="Assets\Scripts\guardAi.js" />
      <Compile Include="Assets\Scripts\humanAi.js" />
+     <Compile Include="Assets\Scripts\monsterAi.js" />
      <Compile Include="Assets\Scripts\safeZoneAi.js" />
      <Compile Include="Assets\Scripts\werewolfAi.js" />
      <Compile Include="Assets\Scripts\zombieAi.js" />
@@ -96,9 +96,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{4D9162BD-85B7-EFA4-FD64-14EA9A84971A}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{672124EC-4DC8-A14A-9F1D-3CB930625F59}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
-      <Project>{06EC3AE7-F501-F91A-164F-3A59E3CCC013}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
+      <Project>{D15C16B3-05AF-D8D5-C16A-73A1F82ACA08}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

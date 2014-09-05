@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{B62A2764-1478-DA60-19E0-C01E9B020331}</ProjectGuid>
+	<ProjectGuid>{6D769005-B82C-57C4-A499-C9E89DE2E068}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -46,13 +46,13 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Refactored scripts\baseAi.js" />
-     <Compile Include="Assets\Refactored scripts\monsterAi.js" />
+     <Compile Include="Assets\Scripts\baseAi.js" />
      <Compile Include="Assets\Scripts\baseUnitControl.js" />
      <Compile Include="Assets\Scripts\drawGUI.js" />
      <Compile Include="Assets\Scripts\gameControl.js" />
      <Compile Include="Assets\Scripts\guardAi.js" />
      <Compile Include="Assets\Scripts\humanAi.js" />
+     <Compile Include="Assets\Scripts\monsterAi.js" />
      <Compile Include="Assets\Scripts\safeZoneAi.js" />
      <Compile Include="Assets\Scripts\werewolfAi.js" />
      <Compile Include="Assets\Scripts\zombieAi.js" />
@@ -91,7 +91,7 @@
      <None Include="Assets\Little HEROES &amp; VILLAINS\Animations\LittleHeroes_Animation_frames.txt" />
      <None Include="Assets\Little HEROES &amp; VILLAINS\Shaders\Outline Diffuse.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>/Users/mwbullen/game1/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>/Users/Home/Desktop/Zombie/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
@@ -99,7 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
-      <Project>{4D9162BD-85B7-EFA4-FD64-14EA9A84971A}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
+      <Project>{672124EC-4DC8-A14A-9F1D-3CB930625F59}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

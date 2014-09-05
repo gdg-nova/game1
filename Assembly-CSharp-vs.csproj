@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{60D5BADD-3DEE-C92E-117D-08F26EDF9314}</ProjectGuid>
+	<ProjectGuid>{A9C6A3E7-F7E6-C880-8FFA-B82E571A36B9}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -239,10 +239,11 @@
      <Compile Include="Assets\Little HEROES &amp; VILLAINS\Free Look Camera\Cross Platform Input\Scripts\CrossPlatformInput.cs" />
      <Compile Include="Assets\Little HEROES &amp; VILLAINS\Free Look Camera\Cross Platform Input\Scripts\PlatformSpecific\StandaloneInput.cs" />
      <Compile Include="Assets\Little HEROES &amp; VILLAINS\Free Look Camera\Cross Platform Input\Scripts\VirtualInput.cs" />
-     <Compile Include="Assets\Refactored scripts\gameControl.cs" />
-     <Compile Include="Assets\Refactored scripts\humanAi.cs" />
-     <Compile Include="Assets\Refactored scripts\werewolfAi.cs" />
-     <Compile Include="Assets\Refactored scripts\zombieAi.cs" />
+     <Compile Include="Assets\Scripts\gameControl.cs" />
+     <Compile Include="Assets\Scripts\humanAi.cs" />
+     <Compile Include="Assets\Scripts\werewolfAi.cs" />
+     <Compile Include="Assets\Scripts\zombieAi.cs" />
+     <Compile Include="Assets\small_town_scene\MenuScript.cs" />
      <None Include="Assets\Little HEROES &amp; VILLAINS\Shaders\Toony-BasicOutline.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Background.shader" />
@@ -265,7 +266,7 @@
      <None Include="Assets\Little HEROES &amp; VILLAINS\Animations\LittleHeroes_Animation_frames.txt" />
      <None Include="Assets\Little HEROES &amp; VILLAINS\Shaders\Outline Diffuse.shader" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>/Users/mwbullen/game1/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>/Users/Home/Desktop/Zombie/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
@@ -273,7 +274,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
-      <Project>{4D9162BD-85B7-EFA4-FD64-14EA9A84971A}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
+      <Project>{672124EC-4DC8-A14A-9F1D-3CB930625F59}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{60D5BADD-3DEE-C92E-117D-08F26EDF9314}</ProjectGuid>
+	<ProjectGuid>{A9C6A3E7-F7E6-C880-8FFA-B82E571A36B9}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -239,10 +239,11 @@
      <Compile Include="Assets\Little HEROES &amp; VILLAINS\Free Look Camera\Cross Platform Input\Scripts\CrossPlatformInput.cs" />
      <Compile Include="Assets\Little HEROES &amp; VILLAINS\Free Look Camera\Cross Platform Input\Scripts\PlatformSpecific\StandaloneInput.cs" />
      <Compile Include="Assets\Little HEROES &amp; VILLAINS\Free Look Camera\Cross Platform Input\Scripts\VirtualInput.cs" />
-     <Compile Include="Assets\Refactored scripts\gameControl.cs" />
-     <Compile Include="Assets\Refactored scripts\humanAi.cs" />
-     <Compile Include="Assets\Refactored scripts\werewolfAi.cs" />
-     <Compile Include="Assets\Refactored scripts\zombieAi.cs" />
+     <Compile Include="Assets\Scripts\gameControl.cs" />
+     <Compile Include="Assets\Scripts\humanAi.cs" />
+     <Compile Include="Assets\Scripts\werewolfAi.cs" />
+     <Compile Include="Assets\Scripts\zombieAi.cs" />
+     <Compile Include="Assets\small_town_scene\MenuScript.cs" />
      <None Include="Assets\Little HEROES &amp; VILLAINS\Shaders\Toony-BasicOutline.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Miscellaneous Shaders\Mobile Background.shader" />
@@ -270,9 +271,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{4D9162BD-85B7-EFA4-FD64-14EA9A84971A}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{672124EC-4DC8-A14A-9F1D-3CB930625F59}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
-      <Project>{06EC3AE7-F501-F91A-164F-3A59E3CCC013}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
+      <Project>{D15C16B3-05AF-D8D5-C16A-73A1F82ACA08}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
