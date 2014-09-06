@@ -1,0 +1,27 @@
+v1.24 ()
+-- updated to PUN v1.24
+-- updated PhotonNetworkingJoinRoom to include 'CreateIfNotExists' Flag
+-- added PhotonViewGetIsSceneView action
+-- added Authentication failure debug message and flag to PlayMakerPhotonProxy
+-- added authentication failue property reset on PhotonNetworkConnectUsingSettings and PhotonNetworkConnectManually actions
+-- added custom authentifaction access and message callback ( needs more testing)
+-- fixed unsupported best server connection flag in various platforms in PhotonNetworkConnectUsingSettings
+-- removed ArrayList depedencies for windows metro compliance, uses List<> instead.
+-- spread usage of exitgames hashtable type version.
+
+v1.23 ()
+-- updated to PUN v1.23
+-- fixed Color streaming
+-- added connectToBestServer option in action "connectUsingSettings";
+-- added pun+ check for mobile pro requirement warning
+
+
+v1.21 ()
+-- updated to PUN v1.21
+-- added vector2, rect, color and quaternion variable synch ability
+-- added an advanced room creation to set custom propreties and make them listed in the lobby
+-- new action to Destroy gameobjects and players
+-- new action to iterate through each rooms properties
+-- new action to get the last cause of disconnection
+-- fixed bool synch
+-- fixed custom player property action
