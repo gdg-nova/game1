@@ -74,9 +74,9 @@ function infected() {
 
 function makeZombieTarget() {
 	//targetTime = time;
-	GetComponent("Halo").enabled = true;
+	GetComponent("Halo").active = true;
 }
 
 function removeZombieTarget() {
-	GetComponent("Halo").enabled = false;
+	GetComponent("Halo").active = false;
 }
