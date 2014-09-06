@@ -142,7 +142,7 @@ function Afraid() {
 	//var childMesh = gameObject.
 	
 	
-	GetComponent("Halo").enabled = true;
+	GetComponent("Halo").active = true;
 	
 	
 	
