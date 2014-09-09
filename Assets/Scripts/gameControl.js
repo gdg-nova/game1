@@ -85,7 +85,10 @@ function clickObject() {
 			for (var z : GameObject in	GameObject.FindGameObjectsWithTag("Zombie")) {
 				z.SendMessage("setTarget", g);
 			}
+		} else if (g.tag == "Graveyard") {
+			g.SendMessage("CreateZombie");
 		}
+		
 	}
 
 }
@@ -170,5 +173,13 @@ function checkForWin() {
 	if (getHumansAliveCount() == 0 ) {
 		gameOver();
 	}
+}
+
+function getRandomLocationinBounds(target : GameObject) {
+		var x :float= Random.Range(target.renderer.bounds.min.x, target.renderer.bounds.max.x);
+		var z:float= Random.Range(target.renderer.bounds.min.z, target.renderer.bounds.max.z);
+		
+		return new Vector3(x, target.transform.position.y, z);
+		
 }
 

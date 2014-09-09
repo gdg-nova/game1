@@ -20,6 +20,7 @@
 	public var health:float = 100;
 	public var healthCostperAttack :float = 20;
 	
+		
 	//private var timeAlive : float =  0;
 	
 function Start () {
@@ -44,6 +45,25 @@ function Start () {
 		
 		//animComponent.wrapMode = WrapMode.Loop;
 		//animComponent.Play("walk");
+		
+		
+		//Check if mainCamera has currentZombie target
+		var currentZombieTarget : GameObject  =getCurrentAssignedZombieTarget();
+		
+		if (currentZombieTarget != null) {
+			setTarget(currentZombieTarget);
+		} else {
+			var playableArea : GameObject =  GameObject.FindGameObjectWithTag("Playable");
+			
+			var randomPoint : Vector3 = getRandomLocationinBounds(playableArea);
+			
+			Debug.Log("Zombie starting random point:" + randomPoint);
+			
+			setTargetVector(randomPoint);
+			
+		}
+		
+		//If not, pick a destination, walk slowly towards it
 		
 }
 
@@ -81,29 +101,21 @@ function FixedUpdate () {
 	if (timeSinceFear > fearInterval) {
 		castFear ();
 		timeSinceFear = 0;
+		}
 	}
 }
-	
-						
-		//If close to nav destination, send damage and die
-//		if (navAgent.remainingDistance < 5 && currentTarget.tag == "SafeZone") {
-		//	currentTarget.SendMessage("takeDamage", attackDamage);
-			
-		//	Destroy(gameObject);
-			//currentTarget = getRandomNavTarget ("SafeZone");
-			//navAgent.SetDestination (currentTarget.transform.position);
-//		}
 
-
+function getCurrentAssignedZombieTarget() {
+	var c : gameControl   = Camera.main.GetComponent(gameControl);
+		return c.currentZombieTarget;
+		
 }
 
-
-
-
 function getRandomNavTarget (tagName:String) {
-		var c : gameControl   = Camera.main.GetComponent(gameControl);
-		if (c.currentZombieTarget != null) {
-			return c.currentZombieTarget;
+		//var c : gameControl   = Camera.main.GetComponent(gameControl);
+		
+		if (getCurrentAssignedZombieTarget != null) {
+			return getCurrentAssignedZombieTarget;
 		}	else {	
 
 			var targets: GameObject[]  = GameObject.FindGameObjectsWithTag (tagName);
@@ -121,11 +133,25 @@ function getRandomNavTarget (tagName:String) {
 	
 function setTarget (g:GameObject) {
 	currentTarget = g;
-	navAgent.SetDestination(currentTarget.transform.position);
-
-			animComponent.wrapMode = WrapMode.Loop;
-			animComponent.Play("walk");
+		
+	setTargetVector(currentTarget.transform.position);
+	
+	
+	animComponent["walk"].speed = 1;	
+	navAgent.speed = 3.5;
 	}	
+	
+function setTargetVector(target : Vector3) {
+
+	navAgent.SetDestination(target);
+	
+	navAgent.speed = 1;
+	
+	animComponent["walk"].speed = .4;	
+	
+	animComponent.wrapMode = WrapMode.Loop;
+	animComponent.Play("walk");
+}
 	
 //Destroy zombie object
 function die() {
@@ -238,4 +264,11 @@ function goingtoSafe() {
 		{return false;}
 }
 
+function getRandomLocationinBounds(target : GameObject) {
+		var x :float= Random.Range(target.renderer.bounds.min.x, target.renderer.bounds.max.x);
+		var z:float= Random.Range(target.renderer.bounds.min.z, target.renderer.bounds.max.z);
+		
+		return new Vector3(x, target.transform.position.y, z);
+		
+}
 
