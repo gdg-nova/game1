@@ -23,8 +23,10 @@ function Start () {
 
 		animComponent.wrapMode = WrapMode.Loop;
 		
+				
 		animComponent.Play("idle");
 		if (!stationary) {
+			
 		//Pick a random target from the designated objects
 		var g : GameObject = getRandomNavTarget ("SafeZone");		
 		if (g == null) {g = getRandomNavTarget("Finish");}
@@ -57,7 +59,15 @@ function Update () {
 			//navAgent.SetDestination (currentTarget.transform.position);
 		}
 		
-		
+		if (animComponent.isPlaying == false) {
+			animComponent.wrapMode = WrapMode.Loop;
+			
+			if (stationary) {
+				animComponent.Play("idle");
+			}else {
+				animComponent.Play("walk");
+			}
+		}	
 }
 
 
@@ -130,7 +140,7 @@ function attack() {
 					animComponent.wrapMode = WrapMode.Once;
 					animComponent.Play("R2L_swipe");
 						
-					animComponent.PlayQueued("walk");
+					//animComponent.PlayQueued("walk");
 					playedSwipeAnim = true;
 				}
 				//hit.collider.gameObject.SendMessage("die");
