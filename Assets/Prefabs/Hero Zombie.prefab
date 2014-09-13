@@ -389,6 +389,7 @@ GameObject:
   - 111: {fileID: 11100000}
   - 195: {fileID: 19500000}
   - 114: {fileID: 11400000}
+  - 136: {fileID: 13600000}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Zombie
@@ -755,7 +756,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100052}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
-  m_LocalPosition: {x: 61.6109772, y: 0, z: 56.9728699}
+  m_LocalPosition: {x: 93.8069992, y: .0729610026, z: 51.1870003}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 400050}
@@ -813,7 +814,7 @@ MonoBehaviour:
   damage: 10
   navAgent: {fileID: 0}
   health: 100
-  healthCostperAttack: 20
+  healthDrainRate: 0
 --- !u!122 &12200000
 Halo:
   m_ObjectHideFlags: 1
@@ -825,6 +826,19 @@ Halo:
     serializedVersion: 2
     rgba: 4278190320
   m_Size: 1.5
+--- !u!136 &13600000
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100050}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: .5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

@@ -17,9 +17,9 @@
 
 	private var animComponent : Animation;
 	
-	public var health:float = 100;
-	public var healthCostperAttack :float = 20;
-	
+	public var health : float = 100;
+	public var healthDrainRate : float = 20;
+
 		
 	//private var timeAlive : float =  0;
 	
@@ -57,7 +57,7 @@ function Start () {
 			
 			var randomPoint : Vector3 = getRandomLocationinBounds(playableArea);
 			
-			Debug.Log("Zombie starting random point:" + randomPoint);
+			//Debug.Log("Zombie starting random point:" + randomPoint);
 			
 			setTargetVector(randomPoint);
 			
@@ -85,9 +85,9 @@ function FixedUpdate () {
 	timeSinceAttack += Time.deltaTime;
 	timeSinceFear += Time.deltaTime;
 	
-	if (health <= 0) {
-	die();
-	}
+//	if (health <= 0) {
+//	die();
+//	}
 		//check if time to attack again
 	if (timeSinceAttack > attackInterval) {
 		
@@ -158,12 +158,13 @@ function die() {
 	//PlayAnimation("LM_die");
 	
 	if (navAgent != null)  navAgent.Stop();
+	gameObject.GetComponent(CapsuleCollider).enabled = false;
 	
 	animComponent.wrapMode = WrapMode.Once;
 	
 	animComponent.Play("die");
 	
-	yield WaitForSeconds (animation["die"].length);
+	yield WaitForSeconds (animation["die"].length *2);
 		
 	Destroy (gameObject);
 }	
@@ -221,7 +222,7 @@ function attack() {
 				
 				//animComponent.wrapMode = WrapMode.Loop;
 				
-				health -= healthCostperAttack;
+				//health -= healthCostperAttack;
 				return;
 			} else if (hit.gameObject.tag == "SafeZone") {
 			
@@ -270,5 +271,13 @@ function getRandomLocationinBounds(target : GameObject) {
 		
 		return new Vector3(x, target.transform.position.y, z);
 		
+}
+
+function takeDamage(damage:int) {
+	health -= damage;
+	
+	if (health <= 0 ) {
+		die();
+	}
 }
 

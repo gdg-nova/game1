@@ -10,12 +10,20 @@
 	private var currentTarget:GameObject;
 	
 	
+	
 	public var damage:float;
 	public var lifeSpan:float;
+	
+	private var animComponent : Animation;
+
 function Start () {
 	//load NavAgent
 		navAgent = GetComponent(NavMeshAgent);
+		animComponent = GetComponent(Animation);
+
+		animComponent.wrapMode = WrapMode.Loop;
 		
+		animComponent.Play("idle");
 		if (!stationary) {
 		//Pick a random target from the designated objects
 		var g : GameObject = getRandomNavTarget ("SafeZone");		
@@ -48,7 +56,10 @@ function Update () {
 									//currentTarget = getRandomNavTarget ("SafeZone");
 			//navAgent.SetDestination (currentTarget.transform.position);
 		}
+		
+		
 }
+
 
 
 function getRandomNavTarget (tagName:String) {
@@ -72,20 +83,56 @@ function getRandomNavTarget (tagName:String) {
 	
 function setTarget (g:GameObject) {
 	currentTarget = g;
-	navAgent.SetDestination(currentTarget.transform.position);
-
+		
+	setTargetVector(currentTarget.transform.position);
+	
+	
+	animComponent["walk"].speed = 1;	
+	navAgent.speed = 3.5;
 	}	
+	
+function setTargetVector(target : Vector3) {
+
+	navAgent.SetDestination(target);
+	
+	navAgent.speed = 1;
+	
+	animComponent["walk"].speed = .4;	
+	
+	animComponent.wrapMode = WrapMode.Loop;
+	animComponent.Play("walk");
+}
 	
 function attack() {
 		//Debug.Log("Guard attacking!");
 
 		var colliders : Collider[] = Physics.OverlapSphere(gameObject.transform.position, attackSize);
-										
+
+		//only swipe if Zombie hit
+		if (colliders.Length >0 ) {
+				
+				//animComponent.wrapMode = WrapMode.Loop;
+		}										
+					
+		var playedSwipeAnim : boolean = false;
+		
+		var hitZombies : ArrayList = new ArrayList();
+																																																											
+																																																																																																																																																																							
 		for (var hit : Collider in colliders) {
 			Debug.Log(hit.collider.gameObject);
-			
-			if (hit.gameObject.tag == "Zombie") {
+						
+			if (hit.gameObject.tag == "Zombie" && (hitZombies.Contains(hit.gameObject) == false)) {			
 				Debug.Log("Guard hit zombie!");
+				hitZombies.Add(hit.gameObject);
+				
+				if (!playedSwipeAnim ) {
+					animComponent.wrapMode = WrapMode.Once;
+					animComponent.Play("R2L_swipe");
+						
+					animComponent.PlayQueued("walk");
+					playedSwipeAnim = true;
+				}
 				//hit.collider.gameObject.SendMessage("die");
 				engageTarget(hit.gameObject);
 				
@@ -96,11 +143,12 @@ function attack() {
 
 function engageTarget(target  : GameObject) {
 	target.SendMessage("stop");
-	navAgent.SetDestination(target.transform.position);
+	//navAgent.SetDestination(target.transform.position);
+	
+	transform.LookAt(target.transform);
 	target.SendMessage("takeDamage", damage);
 	//transform.position  = Vector3.Slerp(transform.position, g.transform.position, 10f ); 
-	
-	
+		
 	
 }
 
