@@ -12,7 +12,9 @@
 	
 	
 	public var damage:float;
-	public var lifeSpan:float;
+	public var health : float = 100;
+
+	private var isDying: boolean;
 	
 	private var animComponent : Animation;
 
@@ -43,7 +45,7 @@ function Update () {
 	timeSinceAttack += Time.deltaTime;
 		//Debug.Log(timeSinceAttack);
 		//check if time to attack again
-		if (timeSinceAttack > attackInterval) {
+		if (timeSinceAttack > attackInterval && !isDying) {
 			
 			attack();
 			timeSinceAttack = 0;
@@ -59,7 +61,7 @@ function Update () {
 			//navAgent.SetDestination (currentTarget.transform.position);
 		}
 		
-		if (animComponent.isPlaying == false) {
+		if (animComponent.isPlaying == false && !isDying) {
 			animComponent.wrapMode = WrapMode.Loop;
 			
 			if (stationary) {
@@ -158,9 +160,38 @@ function engageTarget(target  : GameObject) {
 	transform.LookAt(target.transform);
 	target.SendMessage("takeDamage", damage);
 	//transform.position  = Vector3.Slerp(transform.position, g.transform.position, 10f ); 
-		
 	
 }
+
+function die() {
+	//PlayAnimation("LM_die");
+	
+	if (navAgent != null)  navAgent.Stop();
+	gameObject.GetComponent(CapsuleCollider).enabled = false;
+	
+	animComponent.wrapMode = WrapMode.Once;
+	
+	animComponent.Play("die");
+	
+	isDying = true;
+	yield WaitForSeconds (animation["die"].length *2);
+	
+			
+	Destroy (gameObject);
+}	
+	
+	
+function takeDamage(damage:int) {
+	health -= damage;
+	
+	animComponent.wrapMode = WrapMode.Once;
+	animComponent.Play("hurt");
+						
+	if (health <= 0 ) {
+		die();
+	}
+}
+
 
 
 

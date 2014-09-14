@@ -20,7 +20,8 @@
 	public var health : float = 100;
 	public var healthDrainRate : float = 20;
 
-		
+			private var isDying: boolean;
+
 	//private var timeAlive : float =  0;
 	
 function Start () {
@@ -89,7 +90,7 @@ function FixedUpdate () {
 //	die();
 //	}
 		//check if time to attack again
-	if (timeSinceAttack > attackInterval) {
+	if (timeSinceAttack > attackInterval && !isDying) {
 		
 		attack();
 		timeSinceAttack = 0;
@@ -153,7 +154,6 @@ function setTargetVector(target : Vector3) {
 	animComponent.Play("walk");
 }
 	
-//Destroy zombie object
 function die() {
 	//PlayAnimation("LM_die");
 	
@@ -164,10 +164,12 @@ function die() {
 	
 	animComponent.Play("die");
 	
+	isDying = true;
 	yield WaitForSeconds (animation["die"].length *2);
-		
+	
+			
 	Destroy (gameObject);
-}	
+}		
 	
 //function attack() {
 //						
@@ -205,24 +207,16 @@ function attack() {
 			Debug.Log(hit.collider.gameObject);
 			
 			if (hit.gameObject.tag == "Human") {
-				//Debug.Log("Zombie hit Human!");
-				//hit.collider.gameObject.SendMessage("die");
-				//engageTarget(hit.gameObject);
-				//hit.collider.gameObject.SendMessage("takeDamage", damage);
+				
 				hit.gameObject.SendMessage("die");
-					//if (Random.Range(0f, 1f) <= infectChance) {
-					
 				
 				Camera.main.SendMessage("createZombie", hit.transform.position);
 				
 				animComponent.wrapMode = WrapMode.Once;
 				animComponent.Play("L2R_swipe");
 						
-				animComponent.PlayQueued("walk");
+				animComponent.PlayQueued("walk");				
 				
-				//animComponent.wrapMode = WrapMode.Loop;
-				
-				//health -= healthCostperAttack;
 				return;
 			} else if (hit.gameObject.tag == "SafeZone") {
 			
@@ -231,6 +225,11 @@ function attack() {
 					hit.gameObject.SendMessage("infected", damage);
 					
 			} else if (hit.gameObject.tag == "Guard") {
+					animComponent.wrapMode = WrapMode.Once;
+					animComponent.Play("L2R_swipe");
+				
+					Debug.Log("Zombie hit guard!");
+					
 					hit.gameObject.SendMessage("takeDamage", damage);
 					}		
 		}

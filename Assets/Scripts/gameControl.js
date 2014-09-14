@@ -2,7 +2,7 @@
 	public var Human:GameObject;
 	public var Zombie:GameObject;
 	public var Werewolf:GameObject;
-	
+		
 	public var humanCount:int;
 	
 	public var timeLimit : float = 30;
@@ -11,8 +11,12 @@
 	private var q :Quaternion= Quaternion.Euler (0,0,0);
 
 	public var currentZombieTarget : GameObject;
+	public var zombieTargetPrefab : GameObject;
+	
 	
 	public var gameEnded:boolean;
+
+	
 
 	//public var zombieUIStyle : GUIStyle;
 	
@@ -69,29 +73,58 @@ function clickObject() {
 		
 		var g : GameObject = r_hit.collider.gameObject;
 		
+//		switch(g.tag) {
+//			case "Human" :
+//			break;
+//			
+//			case "SafeZone" :
+//			break;
+//		
+//		}
+		//Handle click based on clicked object tag:
+		
 		if (g.tag == "Human") {
 			//Destroy human, create zombie
 			createZombie(g.transform.position);
 			Destroy(g);
 		} else if (g.tag == "SafeZone") {
 		
-			if (currentZombieTarget != null) {
+			if (currentZombieTarget != null &&  currentZombieTarget.tag == "SafeZone") {
 				currentZombieTarget.SendMessage("removeZombieTarget");
 				
 			}
+			
 			g.SendMessage("makeZombieTarget");
 			currentZombieTarget = g;
 			
-			for (var z : GameObject in	GameObject.FindGameObjectsWithTag("Zombie")) {
-				z.SendMessage("setTarget", g);
-			}
+			assignCurrentZombieTarget();		
+			
 		} else if (g.tag == "Graveyard") {
 			g.SendMessage("CreateZombie");
+		} else {
+			//Move CurrentZombieTarget to location
+			
+			createZombieTargetFlag(r_hit.point);
+					
 		}
-		
+		 
 	}
 
 }
+
+function createZombieTargetFlag (targetPoint : Vector3) {
+	if (currentZombieTarget == null) {
+				currentZombieTarget = Instantiate(zombieTargetPrefab, targetPoint, Quaternion.Euler(0,0,0));
+			} 
+			else {			
+				if (currentZombieTarget.tag == "SafeZone") {
+					currentZombieTarget.SendMessage("removeZombieTarget");
+				} else {
+					currentZombieTarget.transform.position = targetPoint;
+				}
+			}
+	assignCurrentZombieTarget();		
+	}
 
 function rightclickObject() {
 
@@ -179,7 +212,17 @@ function getRandomLocationinBounds(target : GameObject) {
 		var x :float= Random.Range(target.renderer.bounds.min.x, target.renderer.bounds.max.x);
 		var z:float= Random.Range(target.renderer.bounds.min.z, target.renderer.bounds.max.z);
 		
-		return new Vector3(x, target.transform.position.y, z);
+		return new Vector3(x, target.transform.position.y, z);		
+}
+
+function assignCurrentZombieTarget() {
+	if (currentZombieTarget != null) {
+		var zombies = GameObject.FindGameObjectsWithTag ("Zombie");
 		
+		for (var zombie : GameObject in zombies) {
+			zombie.SendMessage("setTarget", currentZombieTarget);
+			
+		}
+	}
 }
 

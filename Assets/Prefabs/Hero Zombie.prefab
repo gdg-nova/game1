@@ -756,7 +756,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100052}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
-  m_LocalPosition: {x: 93.8069992, y: .0729610026, z: 51.1870003}
+  m_LocalPosition: {x: 84.0859985, y: .0729610026, z: 30.8110008}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 400050}
@@ -807,11 +807,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79d007224e4994a69bbea5874afa4790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackInterval: 3
-  attackSize: 1
+  attackInterval: 1
+  attackSize: 3
   fearInterval: 3
   fearSize: 3
-  damage: 10
+  damage: 20
   navAgent: {fileID: 0}
   health: 100
   healthDrainRate: 0

@@ -287,7 +287,7 @@ GameObject:
   - 114: {fileID: 11400022}
   - 195: {fileID: 19500010}
   - 122: {fileID: 12200010}
-  - 114: {fileID: 11400020}
+  - 136: {fileID: 13600000}
   m_Layer: 0
   m_Name: LittleKnight2_solo
   m_TagString: Guard
@@ -455,7 +455,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 3.72524411e-09, y: .8936373, z: 2.04018069e-09, w: -.448790044}
-  m_LocalPosition: {x: 97.4800034, y: 0, z: 41.6209984}
+  m_LocalPosition: {x: 102.400002, y: 0, z: 35.4939995}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 400316}
@@ -689,7 +689,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100316}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.95739985, y: -5.34230011e-08, z: -5.83599997}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400332}
@@ -926,23 +926,11 @@ Animation:
   - {fileID: 7400002, guid: 69b16e49a643f24488b3e464d46cef79, type: 3}
   - {fileID: 7400006, guid: 9fed2f9dd2b98d24ca06ed78ccc11aca, type: 3}
   - {fileID: 7400000, guid: 9fed2f9dd2b98d24ca06ed78ccc11aca, type: 3}
+  - {fileID: 7400000, guid: 69b16e49a643f24488b3e464d46cef79, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &11400020
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c278712a0a526465ebe140cd7ad85f41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  healthDrainRate: 0
 --- !u!114 &11400022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -959,7 +947,7 @@ MonoBehaviour:
   stationary: 1
   navAgent: {fileID: 0}
   damage: 100
-  lifeSpan: 0
+  health: 100
 --- !u!122 &12200010
 Halo:
   m_ObjectHideFlags: 1
@@ -971,6 +959,19 @@ Halo:
     serializedVersion: 2
     rgba: 4279816727
   m_Size: 1.5
+--- !u!136 &13600000
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100316}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: .5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!137 &13700010
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
