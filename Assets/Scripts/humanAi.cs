@@ -1,92 +1,95 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-public class humanAi : MonoBehaviour {
-	//Vector3 direction;
-
-	public NavMeshAgent navAgent;
-	GameObject currentTarget;
-
-	public float runSpeed;
-	float baseSpeed;
-
-	bool goingtoSafe = false;
-
+public class humanAI : commonAI, ICanBeScared
+{
+	// few more publics specific to humans...
+	public Material fearMaterial;
 	public bool stayInSafe;
+	private bool isAfraid = false;
 
 	// Use this for initialization
-	void Start () {
+	public override void Start () 
+	{
+		// do baseline start actions first...
+		base.Start();
 
-		//set Random rotation for visual interest
-		transform.rotation = getRandomRotation ();
+		// set Random rotation for visual interest
+		// use global static object to utilize smaller memory
+		// footprint vs per instance of class
+		transform.rotation = gs.getRandomRotation();
 
-		//load NavAgent
-		navAgent = (NavMeshAgent)GetComponent("NavMeshAgent");
+		// human navigation targets... look for safe-zones first, then finish zones
+		defaultNavTargets.Clear();
+		defaultNavTargets.Add(eNavTargets.SafeZone);
+		defaultNavTargets.Add(eNavTargets.Finish);
 
-		//Pick a random target from the designated objects
-		currentTarget = getRandomNavTarget ("Finish");
-
-		//store base navagent speed in variable
-		baseSpeed = navAgent.speed;
-
-		//Go to new target
-		navAgent.SetDestination(currentTarget.transform.position);
+		// get initial target for human...
+		moveToNewTarget();
 	}
-
-
-	Quaternion getRandomRotation() {
-		int y = Random.Range (0, 360);		
-		Quaternion q = Quaternion.Euler (0, y, 0);		
-		return q;
-		
-	}
-
-	//return randomly selected nav target
-	GameObject getRandomNavTarget(string tagName) {
-		GameObject[] targets = GameObject.FindGameObjectsWithTag (tagName);
-
-		int x = Random.Range (0, targets.Length);
-
-		return targets [x];
-	}
-
 
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
+		// if no target, get one now regardless of requiring 
+		// "SafeZone" vs "Finish"
+		if( currentTarget == null )
+			moveToNewTarget();
 
-		if (navAgent.remainingDistance < 5) {
-			if (goingtoSafe && stayInSafe) {
-				}else {
-				currentTarget = getRandomNavTarget ("Finish");
-				navAgent.speed = baseSpeed;
-				navAgent.SetDestination (currentTarget.transform.position);
+		// if player is moving, but not walking and they are not in "afraid" mode,
+		// then set their animation to a simple walk mode
+		if (	navAgent.velocity.magnitude > 0 
+			&& ! CurrentAnimation().Equals ( "walk" ) 
+			&& ! isAfraid ) 
+		{
+			navAgent.speed = baseSpeed;
+			PlayAnimation("walk");
+		}
+	
+		// if time passed the interval check, 
+		// what do we need to do now?
+		if( reachedTarget())
+		{
+			// if the human is afraid and already running to a safe-zone
+			// destination, enter them into said safe zone since they are
+			// within the range of the stop distance vs remaining distance
+			if (isAfraid && currentTarget.tag == eNavTargets.SafeZone.ToString())
+			{
+				// Tell the target to add a new human represented by THIS
+				// one just about to enter, then KILL this instance from
+				// the visual screen
+				currentTarget.SendMessage("addHuman");
+				die();
 			}
+			else
+				moveToNewTarget();
 		}
+		else 
+			// in addition, check for being stagnant (clarification in commonAI.cs)
+			IsMovementStagnant();
 
-		//If close to nav destination, pick new random destination to keep moving
-		/*
-		if (navAgent.remainingDistance < 5 && !goingtoSafe) {
-				currentTarget = getRandomNavTarget ("Finish");
-				navAgent.speed = baseSpeed;
-				navAgent.SetDestination (currentTarget.transform.position);
-				}
-		*/
-		}
-
-
-	//Destroy human object
-	void die() {
-		Destroy (gameObject);
-		}
-
-	//Sprint to "safe" location (0,0,0 is test)
-	void Afraid() {
-
-		navAgent.Stop ();
-		navAgent.speed = runSpeed;
-		//navAgent.SetDestination (new Vector3 (0, 0, 0));
-		goingtoSafe = true;
-		navAgent.SetDestination (getRandomNavTarget ("SafeZone").transform.position);
 	}
 
+	
+	// Sprint to "safe" location (0,0,0 is test)
+	public void Afraid() 
+	{
+		// if being destroyed, get out, dont do anything else
+		if (isDestroying)
+			return;
+
+		// set flag that human is afraid, and then set the halo effect
+		// which is a coloring under them when running to give visual effect
+		// of movement state...
+		isAfraid = true;
+		GetComponent("Halo").active = true;
+
+		moveToNewTarget();
+
+		// RUN when afraid after new target destination established
+		// the HumanHero with child object LittleHero_Solo has
+		// animations of walk, idle, sprint
+		navAgent.speed = runSpeed;
+		PlayAnimation("sprint");
+	}
 }

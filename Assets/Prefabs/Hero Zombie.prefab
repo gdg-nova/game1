@@ -388,8 +388,10 @@ GameObject:
   - 95: {fileID: 9500000}
   - 111: {fileID: 11100000}
   - 195: {fileID: 19500000}
-  - 114: {fileID: 11400000}
   - 136: {fileID: 13600000}
+  - 114: {fileID: 11400000}
+  - 114: {fileID: 11400002}
+  - 114: {fileID: 11400004}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Zombie
@@ -755,8 +757,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100052}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
-  m_LocalPosition: {x: 84.0859985, y: .0729610026, z: 30.8110008}
+  m_LocalRotation: {x: 0, y: .981123865, z: 0, w: .193380639}
+  m_LocalPosition: {x: 96.3460007, y: .0729610026, z: 30.1739998}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 400050}
@@ -804,17 +806,52 @@ MonoBehaviour:
   m_GameObject: {fileID: 100050}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79d007224e4994a69bbea5874afa4790, type: 3}
+  m_Script: {fileID: 11500000, guid: 88484aea272594134b0e56f757e7db72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackInterval: 1
-  attackSize: 3
-  fearInterval: 3
-  fearSize: 3
-  damage: 20
-  navAgent: {fileID: 0}
+  speedVariation: .200000003
+  baseSpeed: 1
+  runSpeed: 1.5
   health: 100
-  healthDrainRate: 0
+  navCheckInterval: 3
+  navStopDistance: 5
+  moveAfterCombat: 1
+  lifeSpan: 0
+  Attack: {fileID: 0}
+  CastFear: {fileID: 0}
+  attackInterval: 0
+  attackRadius: 0
+  attackDamage: 0
+  healthDrainRate: 20
+  fearInterval: 0
+  fearRadius: 0
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136d37ad842a22e4b88d049fd274b5f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  attackInterval: 2
+  attackRadius: 3
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34d4ca1757558c241a50fabe397c23aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fearInterval: 2
+  fearRadius: 9
 --- !u!122 &12200000
 Halo:
   m_ObjectHideFlags: 1

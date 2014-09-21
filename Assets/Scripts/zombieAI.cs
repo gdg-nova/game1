@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -8,30 +8,37 @@ public class zombieAI : commonAI
 	// self-die after given amount of time.
 	public float lifeSpan;
 	private float timeAlive = 0.0f;
-
-	// Zombies can attack...
-	// these scripts will also be added to the zombie at interface
-	// time and we can adjust attack and cast fear properties there.
-	private attackAI Attack;
-	private castFearAI CastFear;
 	
-	public float healthDrainRate = 20.0f;
+	// Zombies can attack...
+	attackAI Attack;
+
+	// publicly expose some properties so we can pass them to the Attack object class
+	public float attackInterval;
+	public float attackRadius;
+	public float attackDamage;
+
+
+	// similar for casting fear into a human
+	public float fearInterval;
+	// what sphere range from the zombie radius 
+	// to allow impact to casting fear.
+	public float fearSize;
+	// internal to track how frequent time checks
+	private float timeSinceFear;
+
 
 	public override void Start()
 	{
-		lifeSpan = 5000f;
 		// do baseline start actions first...
 		// also grabs default animation component too.
 		base.Start();
 
 		// upon first creation, create the common "attackAI" instance
-		// Attack = this.gameObject.AddComponent<attackAI>();
-		Attack = this.gameObject.GetComponent<attackAI>();
-
-		// Now, for scaring humans (or whatever else may be scared away.
-		// CastFear = this.gameObject.AddComponent<castFearAI>();
-		CastFear = this.gameObject.GetComponent<castFearAI>();
-
+		Attack = new attackAI();
+		Attack.attackInterval = attackInterval;
+		Attack.attackRadius = attackRadius;
+		Attack.damage = attackDamage;
+		
 		// What can a Zombie attack... Guards and Humans
 		// and don't forget about the SafeZone houses too!
 		Attack.AddAttackTarget(eNavTargets.Human);
@@ -48,14 +55,12 @@ public class zombieAI : commonAI
 		// L2R_swipe, walk, die, idle_lookaround, hurt
 		Attack.AssignAnimation( gameObject, animComponent, "L2R_swipe" );
 
-
 		// Zombies have same default targets of SafeZone and Finish
 		// only directly target zombies to safe or finish zones.
 		// however, why dont the zombies try to target humans and guards too
 		// maybe later
-		defaultNavTargets.Clear();
-		defaultNavTargets.Add(eNavTargets.SafeZone);
-		defaultNavTargets.Add(eNavTargets.Finish);
+		defaultNavTagets.Add(eNavTargets.SafeZone);
+		defaultNavTagets.Add(eNavTargets.Finish);
 
 		// pick a new target from either safe vs finish possibilities
 		moveToNewTarget();
@@ -65,17 +70,6 @@ public class zombieAI : commonAI
 		animComponent.Play("walk");
 	}
 	
-	public void setTarget( GameObject newTarget)
-	{
-		// In case object is being destroyed, don't allow set
-		if( isDestroying )
-			return;
-
-		// in case issue with human-zombie conversion and navAgent lost
-		if( navAgent != null )
-			navAgent.SetDestination(newTarget.transform.position); 
-	}
-
 	// What is difference between Update and FixedUpdate???
 	void FixedUpdate() 
 	{
@@ -88,12 +82,10 @@ public class zombieAI : commonAI
 		Attack.CheckAttack();
 
 		// check if zombie cast fear in human object
-		CastFear.CheckScare();
+		checkCastFear();
 
 		// check if target was reached, if so, get new target
-		if( ! reachedTarget())
-			// in addition, check for being stagnant (clarification in commonAI.cs)
-			IsMovementStagnant();
+		reachedTarget();
 	}
 
 	// see if the zombie is time to die and self-destruct
@@ -117,5 +109,25 @@ public class zombieAI : commonAI
 		// ONLY if the object is a human do we create a newly spawned zombie.
 		if (hit.gameObject.tag.Equals("Human"))
 			Camera.main.SendMessage("createZombie", hit.transform.position);
+	}
+
+	private void checkCastFear()
+	{
+		// update time since, and if not time, get out
+		timeSinceFear += Time.deltaTime;
+		if (timeSinceFear < fearInterval)
+			return;
+
+		// yup, time interval reached, try to cast fear.
+		// reset timer variable
+		timeSinceFear = 0;
+
+		//get all objects that are hit within the range
+		foreach (RaycastHit r in Physics.SphereCastAll(new Ray(transform.position, transform.forward), fearSize, fearSize))
+		{
+			// Only if hits a human, if so, invoke it's "Afraid" method via SendMessage
+			if (r.collider.gameObject.tag == "Human")
+				r.collider.gameObject.SendMessage("Afraid");
+		}
 	}
 }

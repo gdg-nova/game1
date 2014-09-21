@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &100002
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,9 +42,9 @@ GameObject:
   - 4: {fileID: 400004}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300002}
-  - 114: {fileID: 11400000}
   - 65: {fileID: 6500000}
   - 122: {fileID: 12200000}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: Env_house1_prefab
   m_TagString: SafeZone
@@ -88,9 +88,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_LocalRotation: {x: -.707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 85.7949982, y: .15253, z: 47.762001}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -.402356863, y: -.581471264, z: -.581471384, w: .402357042}
+  m_LocalPosition: {x: 55.137001, y: .140220001, z: 63.2820015}
+  m_LocalScale: {x: .899999976, y: .899999976, z: .899999976}
   m_Children:
   - {fileID: 400004}
   - {fileID: 400000}
@@ -249,13 +249,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 694b957c8794143aaac2fde540a29395, type: 3}
+  m_Script: {fileID: 11500000, guid: c2d9dc859d55e774d831f7fd4021e634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
   Capacity: 50
   humanCount: 10
-  humanCountText: {fileID: 100000}
+  humanCountText: {fileID: 0}
   coolDownSec: 30
   targetMaterial: {fileID: 0}
   spawnArea: {fileID: 100006}
