@@ -238,25 +238,26 @@ public class commonAI : MonoBehaviour
 	{
 		// based on the list of navTargets an entity has, 
 		currentTarget = gs.getRandomNavTarget(defaultNavTargets);
-
-		if( currentTarget == null )
+		moveToSpecificGameObj( currentTarget );
+	}
+	
+	public void moveToSpecificGameObj( GameObject NewTarget )
+	{
+		if( NewTarget == null )
 			return;
-
+		
 		// preserve where we are with the new position
 		timeSinceStagnant = 0.0f;
-		lastStagnant = currentTarget.transform.position;
+		lastStagnant = NewTarget.transform.position;
 		
 		if( speedVariation == 0.0f )
 			speedVariation = 1.0f;
-
-		float speedVar = navAgent.speed * speedVariation;
-		navAgent.speed = Random.Range(navAgent.speed - speedVar, navAgent.speed + speedVar);
-
-		//store base navagent speed in variable
-		baseSpeed = navAgent.speed;
-
+		
+		// allow speed randomly ranged between 40% and its full base speed
+		navAgent.speed = Random.Range(baseSpeed * .4f, baseSpeed);
+		
 		//Go to new target
-		navAgent.SetDestination(currentTarget.transform.position);
+		navAgent.SetDestination(NewTarget.transform.position);
 	}
 
 	public void takeDamage(float damageTaken)

@@ -33,8 +33,7 @@ public class castFearAI : MonoBehaviour
 		
 		//sphere cast in front of attacking game object.  
 		Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, fearRadius);
-		bool anythingWasHit = false;
-		
+
 		GameObject scareObj;
 		foreach (Collider hit in colliders)
 		{

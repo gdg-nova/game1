@@ -943,11 +943,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedVariation: .200000003
-  baseSpeed: 1
-  runSpeed: 1.5
+  baseSpeed: 3
+  runSpeed: 8
   health: 100
-  navStopDistance: 5
   navCheckInterval: 3
+  navStopDistance: 5
+  moveAfterCombat: 1
   Attack: {fileID: 0}
   attackInterval: 1
   attackRadius: 3

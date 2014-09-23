@@ -140,12 +140,16 @@ public class attackAI : MonoBehaviour
 
 				commonAI o = hitObj.GetComponent<commonAI>();
 				if( o == null )
-					// a safe-zone or finish never is of a commonAI and 
-					// never moves at the end of combat.
-					hitObj.SendMessage("takeDamage", damage);
-
+				{
+					object o2 = hitObj.GetComponent<safeZoneAI>();
+					if( o2 is safeZoneAI )
+						// a safe-zone or finish never is of a commonAI and 
+						// never moves at the end of combat.
+						((safeZoneAI)o2).takeDamage( damage );
+				}
 				else
 				{
+					Debug.Log ( "Attacking object" );
 					// just to track engaged in attack/combat
 					o.EngagedInCombat = true;
 

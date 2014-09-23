@@ -137,7 +137,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 702473}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -105.18, y: 0, z: -138.880005}
+  m_LocalPosition: {x: -110.150002, y: 0, z: -120.970001}
   m_LocalScale: {x: 111, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -355,18 +355,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 27147576}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4063effd4b3416788ce6b9d33aafbd, type: 3}
+  m_Script: {fileID: 11500000, guid: 87995146c8c92a54cbc2f050711e3ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speedVariation: .200000003
   baseSpeed: 3
-  runSpeed: 15
+  runSpeed: 8.5
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
   moveAfterCombat: 1
   fearMaterial: {fileID: 0}
   stayInSafe: 0
+  AfraidRadius: 3
 --- !u!95 &27147583
 Animator:
   serializedVersion: 3
@@ -940,6 +941,7 @@ MonoBehaviour:
   coolDownSec: 30
   targetMaterial: {fileID: 0}
   spawnArea: {fileID: 893908925}
+  BreakOutPctZombies: 3
 --- !u!23 &81447146
 Renderer:
   m_ObjectHideFlags: 0
@@ -2727,11 +2729,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 20
       objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+    - target: {fileID: 0}
       propertyPath: fearRadius
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+    - target: {fileID: 0}
       propertyPath: attackInterval
       value: 2
       objectReference: {fileID: 0}
@@ -3004,7 +3006,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedVariation: .200000003
-  baseSpeed: 1
+  baseSpeed: 3
   runSpeed: 1
   health: 100
   navCheckInterval: 3
@@ -8823,8 +8825,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedVariation: .200000003
-  baseSpeed: 1
-  runSpeed: 1.5
+  baseSpeed: 3
+  runSpeed: 8
   health: 100
   navCheckInterval: 3
   navStopDistance: 5
@@ -13788,8 +13790,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedVariation: .200000003
-  baseSpeed: 1
-  runSpeed: 1.5
+  baseSpeed: 3
+  runSpeed: 8
   health: 100
   navCheckInterval: 3
   navStopDistance: 5
@@ -14875,8 +14877,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedVariation: .200000003
-  baseSpeed: 1
-  runSpeed: 1.5
+  baseSpeed: 3
+  runSpeed: 8
   health: 100
   navCheckInterval: 3
   navStopDistance: 5
@@ -23346,18 +23348,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1183168170}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4063effd4b3416788ce6b9d33aafbd, type: 3}
+  m_Script: {fileID: 11500000, guid: 87995146c8c92a54cbc2f050711e3ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speedVariation: .200000003
   baseSpeed: 3
-  runSpeed: 15
+  runSpeed: 8.5
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
   moveAfterCombat: 1
   fearMaterial: {fileID: 0}
   stayInSafe: 0
+  AfraidRadius: 3
 --- !u!95 &1183168177
 Animator:
   serializedVersion: 3
@@ -23749,6 +23752,7 @@ MonoBehaviour:
   coolDownSec: 30
   targetMaterial: {fileID: 0}
   spawnArea: {fileID: 773701420}
+  BreakOutPctZombies: 3
 --- !u!23 &1230734105
 Renderer:
   m_ObjectHideFlags: 0
@@ -30825,9 +30829,9 @@ GameObject:
   - 111: {fileID: 1512911632}
   - 195: {fileID: 1512911631}
   - 136: {fileID: 1512911629}
-  - 114: {fileID: 1512911630}
   - 114: {fileID: 1512911635}
   - 114: {fileID: 1512911634}
+  - 114: {fileID: 1512911630}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Zombie
@@ -30872,17 +30876,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1512911627}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88484aea272594134b0e56f757e7db72, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ca2da6211000034a952ac78a97acc00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speedVariation: .200000003
-  baseSpeed: 1
-  runSpeed: 1.5
-  health: 100
+  baseSpeed: 2
+  runSpeed: 4
+  health: 1
   navCheckInterval: 3
   navStopDistance: 5
   moveAfterCombat: 1
-  lifeSpan: 0
+  lifeSpan: 1
   healthDrainRate: 20
 --- !u!195 &1512911631
 NavMeshAgent:
@@ -31328,8 +31332,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedVariation: .200000003
-  baseSpeed: 1
-  runSpeed: 1.5
+  baseSpeed: 3
+  runSpeed: 8
   health: 100
   navCheckInterval: 3
   navStopDistance: 5
@@ -31778,18 +31782,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1591524286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4063effd4b3416788ce6b9d33aafbd, type: 3}
+  m_Script: {fileID: 11500000, guid: 87995146c8c92a54cbc2f050711e3ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speedVariation: .200000003
   baseSpeed: 3
-  runSpeed: 15
+  runSpeed: 8.5
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
   moveAfterCombat: 1
   fearMaterial: {fileID: 0}
   stayInSafe: 0
+  AfraidRadius: 3
 --- !u!95 &1591524293
 Animator:
   serializedVersion: 3
@@ -36205,6 +36210,7 @@ MonoBehaviour:
   coolDownSec: 30
   targetMaterial: {fileID: 0}
   spawnArea: {fileID: 1907140945}
+  BreakOutPctZombies: 3
 --- !u!65 &1926713175
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36857,8 +36863,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedVariation: .200000003
-  baseSpeed: 1
-  runSpeed: 1.5
+  baseSpeed: 3
+  runSpeed: 8
   health: 100
   navCheckInterval: 3
   navStopDistance: 5

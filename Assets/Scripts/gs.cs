@@ -48,6 +48,36 @@ public static class gs
 		// return what, if any, was found
 		return gObj;
 	}
+
+
+	public static bool anyTagsInRange(Vector3 fromHere, float withinRadius, eNavTargets anyOfThese )
+	{ return anyTagsInRange( fromHere, withinRadius, anyOfThese, true ).Count > 0;	}
+	
+	public static List<GameObject> anyTagsInRange(Vector3 fromHere, float withinRadius, eNavTargets anyOfThese, bool getList )
+	{
+		string thisTag = anyOfThese.ToString();
+		
+		List<GameObject> goList = new List<GameObject>();
+		
+		foreach( Collider c in Physics.OverlapSphere(fromHere, withinRadius))
+		{
+			if( c.tag == thisTag )
+				goList.Add(c.gameObject);
+		}
+		
+		// nope, went through entire list of possible colliders, 
+		// and nothing was what was looked for.
+		return goList;
+	}
+
+
+	public static Vector3 RandomVectorInBounds(GameObject target) 
+	{
+		float x = Random.Range(target.renderer.bounds.min.x, target.renderer.bounds.max.x);
+		float z = Random.Range(target.renderer.bounds.min.z, target.renderer.bounds.max.z);
+		return new Vector3(x, target.transform.position.y, z);		
+	}
+
 }
 
 

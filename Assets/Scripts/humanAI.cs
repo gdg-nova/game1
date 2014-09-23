@@ -7,6 +7,7 @@ public class humanAI : commonAI, ICanBeScared
 	public Material fearMaterial;
 	public bool stayInSafe;
 	private bool isAfraid = false;
+	public float AfraidRadius = 3.0f;
 
 	// Use this for initialization
 	public override void Start () 
@@ -35,6 +36,9 @@ public class humanAI : commonAI, ICanBeScared
 		// "SafeZone" vs "Finish"
 		if( currentTarget == null )
 			moveToNewTarget();
+
+		// check if user MAY still be afraid or not.
+		checkIfStillAfraid();
 
 		// if player is moving, but not walking and they are not in "afraid" mode,
 		// then set their animation to a simple walk mode
@@ -67,10 +71,8 @@ public class humanAI : commonAI, ICanBeScared
 		else 
 			// in addition, check for being stagnant (clarification in commonAI.cs)
 			IsMovementStagnant();
-
 	}
 
-	
 	// Sprint to "safe" location (0,0,0 is test)
 	public void Afraid() 
 	{
@@ -82,14 +84,51 @@ public class humanAI : commonAI, ICanBeScared
 		// which is a coloring under them when running to give visual effect
 		// of movement state...
 		isAfraid = true;
-		GetComponent("Halo").active = true;
+		// found this since depricated component.active.  We must call the BEHAVIOR of the component.
+		// http://forum.unity3d.com/threads/component-active-is-obsolete-but-no-enabled-property.30105/
+		((Behaviour)GetComponent("Halo")).enabled = true;
 
 		moveToNewTarget();
 
 		// RUN when afraid after new target destination established
 		// the HumanHero with child object LittleHero_Solo has
 		// animations of walk, idle, sprint
-		navAgent.speed = runSpeed;
-		PlayAnimation("sprint");
+		if( navAgent != null )
+		{
+			navAgent.speed = runSpeed;
+			PlayAnimation("sprint");
+		}
+	}
+
+	// when a human is running away afraid, see after a certain amount of time
+	// if there are any zombies STILL within a given proximity, if not, walk.
+	private float lastAfraidCheck = 0.0f;
+
+	private void checkIfStillAfraid()
+	{	
+		// if NOT afraid, nothing to do, get out.
+		if( ! isAfraid )
+			return;
+
+		lastAfraidCheck += Time.deltaTime;
+		// if not 3 seconds since last check, don't bother and over cycle objects checking
+		if( lastAfraidCheck < 3.0f )
+			return;
+
+		// we are within the time interval, reset counter for next time around
+		// and then see IF there are any zombies left in the zone
+		lastAfraidCheck = 0.0f;
+
+		// if NO more zombies within 10 radius range, turn off the afraid flag
+		if( ! gs.anyTagsInRange( transform.position, AfraidRadius, eNavTargets.Zombie ))
+		{
+			isAfraid = false;
+			// turn OFF the halo effect when not afraid anymore.
+			((Behaviour)GetComponent("Halo")).enabled = false;
+
+			// back to walking mode
+			navAgent.speed = baseSpeed;
+			animComponent.Play("walk");
+		}
 	}
 }

@@ -802,18 +802,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 100050}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb4063effd4b3416788ce6b9d33aafbd, type: 3}
+  m_Script: {fileID: 11500000, guid: 87995146c8c92a54cbc2f050711e3ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speedVariation: .200000003
   baseSpeed: 3
-  runSpeed: 15
+  runSpeed: 8.5
   health: 1
-  navStopDistance: 5
   navCheckInterval: 3
-  timeSinceNavCheck: 0
+  navStopDistance: 5
+  moveAfterCombat: 1
   fearMaterial: {fileID: 0}
   stayInSafe: 0
+  AfraidRadius: 3
 --- !u!122 &12200000
 Halo:
   m_ObjectHideFlags: 1

@@ -56,6 +56,7 @@ public class gameControl : MonoBehaviour
 	}
 
 	//mouse click handler
+	//mouse click handler
 	void clickObject() 
 	{
 		//send raycast to get hit
@@ -66,32 +67,25 @@ public class gameControl : MonoBehaviour
 		if (Physics.Raycast (r,  out r_hit, Mathf.Infinity)) 
 		{
 			g = r_hit.collider.gameObject;
-
+			
 			//Handle click based on clicked object tag:
 			if (g.tag == "Human") 
 			{
 				//Destroy human, create zombie
 				createZombie(g.transform.position);
 				Destroy(g);
-			} 
-			else if (g.tag == "SafeZone") 
-			{
-				if (   currentZombieTarget != null 
-				    && currentZombieTarget.tag == "SafeZone") 
-					currentZombieTarget.SendMessage("removeZombieTarget");
-
-				g.SendMessage("makeZombieTarget");
-				currentZombieTarget = g;
-				
-				assignCurrentZombieTarget();		
-				
-			} 
+			}
+			// if graveyard, create new zombie directly there.
 			else if (g.tag == "Graveyard")
 				g.SendMessage("CreateZombie");
+		}
+		else
+		{
+			// if it did NOT hit any target, then set a target position
+			// for any zombies NEAR this position click.
+			if (   currentZombieTarget != null )
+				currentZombieTarget.SendMessage("removeZombieTarget");
 
-			else
-				//Move CurrentZombieTarget to location
-				createZombieTargetFlag(r_hit.point);
 		}
 	}
 
@@ -100,13 +94,15 @@ public class gameControl : MonoBehaviour
 		if (currentZombieTarget == null)
 			currentZombieTarget = (GameObject)Instantiate(zombieTargetPrefab, targetPoint, Quaternion.Euler(0,0,0));
 		else 
+			currentZombieTarget.transform.position = targetPoint;
+		
+		// get only zombies within a radius of this point, not ALL zombies...
+		List<GameObject>zombies = gs.anyTagsInRange( targetPoint, 4.0f, eNavTargets.Zombie, true );
+		foreach( object z in zombies)
 		{
-			if (currentZombieTarget.tag == "SafeZone")
-				currentZombieTarget.SendMessage("removeZombieTarget");
-			else
-				currentZombieTarget.transform.position = targetPoint;
+			if( z is zombieAI )
+				((zombieAI)z).moveToSpecificGameObj( currentZombieTarget );
 		}
-		assignCurrentZombieTarget();		
 	}
 
 	void rightclickObject() 
@@ -135,12 +131,9 @@ public class gameControl : MonoBehaviour
 			// if no such object found randomly, get out of loop
 			if( spawn == null )
 				break;
-			
+
 			//Find random position within Spawn plane
-			float x = Random.Range(spawn.renderer.bounds.min.x, spawn.renderer.bounds.max.x);
-			float z = Random.Range(spawn.renderer.bounds.min.z, spawn.renderer.bounds.max.z);
-			
-			Instantiate(Human, new Vector3(x, .5f, z), q);
+			createHuman( gs.RandomVectorInBounds( spawn )); 
 		}
 	}
 
@@ -154,16 +147,19 @@ public class gameControl : MonoBehaviour
 	}
 
 	//Create zombie at position
-	void createZombie( Vector3 position) 
+	public void createZombie( Vector3 position) 
 	{ Instantiate (Zombie, position, q); }
-
+	
 	void createWerewolf( Vector3 position) 
 	{ Instantiate (Werewolf, position, q); }
-
-	void createHuman( Vector3 position) 
-	{ Instantiate (Human, position, q); }
-
-	int getHumansAliveCount() 
+	
+	public humanAI createHuman( Vector3 position) 
+	{
+		GameObject go = (GameObject)Instantiate (Human, position, q); 
+		return (humanAI)go.GetComponent<humanAI>();
+	}
+	
+	public int getHumansAliveCount() 
 	{
 		int baseCount = GameObject.FindGameObjectsWithTag ("Human").Length;
 		GameObject[] safeZone  = GameObject.FindGameObjectsWithTag("SafeZone");
@@ -181,19 +177,5 @@ public class gameControl : MonoBehaviour
 			gameOver();
 	}
 
-	Vector3 getRandomLocationinBounds(GameObject target) 
-	{
-		float x = Random.Range(target.renderer.bounds.min.x, target.renderer.bounds.max.x);
-		float z = Random.Range(target.renderer.bounds.min.z, target.renderer.bounds.max.z);
-		return new Vector3(x, target.transform.position.y, z);		
-	}
 
-	void assignCurrentZombieTarget() 
-	{
-		if (currentZombieTarget != null) 
-		{
-			foreach( GameObject zombie in GameObject.FindGameObjectsWithTag ("Zombie") )
-				zombie.SendMessage("setTarget", currentZombieTarget);
-		}
-	}
 }
