@@ -64,28 +64,28 @@ public class gameControl : MonoBehaviour
 		Ray r = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit r_hit;
 		
-		if (Physics.Raycast (r,  out r_hit, Mathf.Infinity)) 
-		{
+		if (Physics.Raycast (r, out r_hit, Mathf.Infinity)) {
 			g = r_hit.collider.gameObject;
-			
+
 			//Handle click based on clicked object tag:
-			if (g.tag == "Human") 
-			{
-				//Destroy human, create zombie
-				createZombie(g.transform.position);
-				Destroy(g);
+			if (g.tag == "Human") {
+					//Destroy human, create zombie
+					createZombie (g.transform.position);
+					Destroy (g);
 			}
 			// if graveyard, create new zombie directly there.
 			else if (g.tag == "Graveyard")
-				g.SendMessage("CreateZombie");
-		}
-		else
-		{
-			// if it did NOT hit any target, then set a target position
-			// for any zombies NEAR this position click.
-			if (   currentZombieTarget != null )
-				currentZombieTarget.SendMessage("removeZombieTarget");
-
+					g.SendMessage ("CreateZombie");
+			else {
+					// if it did NOT hit any target, then set a target position
+					// for any zombies NEAR this position click.
+//				if (currentZombieTarget != null)
+//				{	
+//					currentZombieTarget.SendMessage ("removeZombieTarget");
+//				}
+					
+				createZombieTargetFlag(r_hit.point);
+			}				
 		}
 	}
 
@@ -97,12 +97,19 @@ public class gameControl : MonoBehaviour
 			currentZombieTarget.transform.position = targetPoint;
 		
 		// get only zombies within a radius of this point, not ALL zombies...
-		List<GameObject>zombies = gs.anyTagsInRange( targetPoint, 4.0f, eNavTargets.Zombie, true );
-		foreach( object z in zombies)
+		List<GameObject>zombies = gs.anyTagsInRange( targetPoint, 20.0f, eNavTargets.Zombie, true );
+
+		Debug.Log ("Found zombie:" + zombies.Count);
+
+		foreach( GameObject z in zombies)
 		{
-			if( z is zombieAI )
-				((zombieAI)z).moveToSpecificGameObj( currentZombieTarget );
+			//Debug.Log ("Zombie is:" + z);
+			zombieAI zAi = z.GetComponent<zombieAI>();
+
+			zAi.moveToSpecificGameObj( currentZombieTarget );
 		}
+
+		Debug.Log ("current zombie target:" + currentZombieTarget);
 	}
 
 	void rightclickObject() 

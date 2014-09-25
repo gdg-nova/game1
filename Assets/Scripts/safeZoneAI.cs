@@ -31,11 +31,11 @@ public class safeZoneAI : MonoBehaviour
 	
 	void Update() 
 	{
-		timeSinceLastEntry += Time.deltaTime;
+		//timeSinceLastEntry += Time.deltaTime;
 //		humanCountText.GetComponent(TextMesh).text = humanCount.ToString();
 		
-		if (timeSinceLastEntry >= coolDownSec && humanCount > 0)
-			breakOpen();
+		//if (timeSinceLastEntry >= coolDownSec && humanCount > 0)
+			//breakOpen();
 	}
 	
 	void addHuman() 

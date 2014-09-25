@@ -245,7 +245,7 @@ public class commonAI : MonoBehaviour
 	{
 		if( NewTarget == null )
 			return;
-		
+		Debug.Log ("moving to target" + NewTarget);
 		// preserve where we are with the new position
 		timeSinceStagnant = 0.0f;
 		lastStagnant = NewTarget.transform.position;
