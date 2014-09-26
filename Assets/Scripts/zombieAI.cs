@@ -57,12 +57,22 @@ public class zombieAI : commonAI
 		defaultNavTargets.Add(eNavTargets.SafeZone);
 		defaultNavTargets.Add(eNavTargets.Finish);
 		
-		// pick a new target from either safe vs finish possibilities
-		moveToNewTarget();
-		
+
+		float animSpeed = -.5f;
+
+		animComponent.animation ["die"].speed = animSpeed;
+
+		float animTime = Mathf.Abs ( animComponent.animation ["die"].length * (1 / animSpeed));
+		Debug.Log ("animtime :" + animTime);
+
+		animComponent.animation ["die"].time = animComponent.animation ["die"].length;
+		animComponent.Play ("die");
+
+		Invoke ("completeInit",animTime);
+
 		// Initiate the zombie to walking animation
-		animComponent.wrapMode = WrapMode.Loop;
-		animComponent.Play("walk");
+
+		//animComponent.PlayQueued("walk");
 	}
 	
 	public void setTarget( GameObject newTarget)
@@ -75,10 +85,22 @@ public class zombieAI : commonAI
 		if( navAgent != null )
 			navAgent.SetDestination(newTarget.transform.position); 
 	}
-	
+
+	public void completeInit() {
+		animComponent.animation ["die"].speed = 1f;
+		animComponent.animation ["die"].time = 0f;
+		animComponent.Play ("walk");
+		animComponent.wrapMode = WrapMode.Loop;
+
+		// pick a new target from either safe vs finish possibilities
+		moveToNewTarget();
+
+	}
+
 	// What is difference between Update and FixedUpdate???
 	void FixedUpdate() 
 	{
+
 		// if time to die, get out, nothing more to do
 		// zombies have a self-destruct time interval...
 		if (timeToDie())
@@ -115,7 +137,7 @@ public class zombieAI : commonAI
 	private void HandleSpecificHitTarget(Collider hit)
 	{
 		// ONLY if the object is a human do we create a newly spawned zombie.
-		if (hit.gameObject.tag.Equals("Human"))
-			Camera.main.SendMessage("createZombie", hit.transform.position);
+//		if (hit.gameObject.tag.Equals("Human"))
+//			Camera.main.SendMessage("createZombie", hit.transform.position);
 	}
 }

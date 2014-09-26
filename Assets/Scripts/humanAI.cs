@@ -44,7 +44,8 @@ public class humanAI : commonAI, ICanBeScared
 		// then set their animation to a simple walk mode
 		if (	navAgent.velocity.magnitude > 0 
 			&& ! CurrentAnimation().Equals ( "walk" ) 
-			&& ! isAfraid ) 
+			&& ! isAfraid 
+		    && ! isDestroying) 
 		{
 			navAgent.speed = baseSpeed;
 			PlayAnimation("walk");

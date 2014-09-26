@@ -184,16 +184,33 @@ public class commonAI : MonoBehaviour
 			// if this is NOT a human (ie: Guard, Zombie)
 			// then we CAN play the die animation as both of them
 			// have it
-			if( gameObject.tag != "Human" )
-			{
-				animComponent.wrapMode = WrapMode.Once;
-				animComponent.Play("die");
-				PauseGame( animation["die"].length * 2 );
-			}
-		}
+//			if( gameObject.tag != "Human" )
+//			{
+			animComponent.wrapMode = WrapMode.Once;
+			animComponent.Play("die");
 
-		Destroy (gameObject); 
+			//Destroy (gameObject, animation["die"].length * 2 ); 
+
+			//PauseGame( animation["die"].length * 2 );
+
+			if (gameObject.tag == "Human") {
+				Invoke ("requestZombieCreation", animation["die"].length * 2 );
+			}
+
+			Destroy(gameObject,animation["die"].length * 2 );
+			//PauseGame( 3f );
+//			}
+		}
 	}
+
+	protected void requestZombieCreation() {
+		gameControl gc = Camera.main.GetComponent<gameControl> ();
+
+		gc.createZombie(gameObject.transform.position, gameObject.transform.rotation);
+
+//		Camera.main.SendMessage ("createZombie", gameObject.transform.position, gameObject.transform.rotation);
+
+		}
 
 	protected IEnumerator PauseGame(float duration)
 	{

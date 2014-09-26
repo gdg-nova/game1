@@ -89,7 +89,7 @@ public class scaryMonsterAI : commonAI
 	private void HandleSpecificHitTarget(Collider hit)
 	{
 		// ONLY if the object is a human do we create a newly spawned zombie.
-		if (hit.gameObject.tag.Equals("Human"))
-			Camera.main.SendMessage("createZombie", hit.transform.position);
+		//if (hit.gameObject.tag.Equals("Human"))
+		//	Camera.main.SendMessage("createZombie", hit.transform.position);
 	}
 }
