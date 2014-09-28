@@ -117,5 +117,9 @@ public class zombieAI : commonAI
 		// ONLY if the object is a human do we create a newly spawned zombie.
 		if (hit.gameObject.tag.Equals("Human"))
 			Camera.main.SendMessage("createZombie", hit.transform.position);
+		//Get points for every time you attack
+		GameObject go = GameObject.Find("Main Camera");
+		gameControl addScore = (gameControl) go.GetComponent(typeof(gameControl));
+		addScore.scorePoints();
 	}
 }
