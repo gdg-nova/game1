@@ -38,8 +38,26 @@ public class drawGUI : MonoBehaviour
 		
 		int UItop = (Screen.height /2) - (UIheight/2);
 		int UIleft = (Screen.width /2) - (UIwidth/2);
-		
-		GUI.Box( new Rect(UIleft, UItop, UIwidth, UIheight), "Game Over!");
+		int conversions = gameControlInstance.score / 100;
+
+				GUI.Box (new Rect (UIleft, UItop, UIwidth, UIheight), 
+		        "\nStarting number of humans: " + gameControlInstance.humanCount
+			    + "\nNumber of humans remaining: " + (gameControlInstance.humanCount - conversions)
+			    + "\nNumber of zombies converted: " + conversions
+				+ "\nYour final score is: " + gameControlInstance.score
+						);
+			GUI.enabled = false;
+
+/*		GUI.Box( new Rect(UIleft,UItop, UIwidth, UIheight), 
+		        "\nStarting number of humans: " + gameControlInstance.humanCount
+		        + "\nNumber of humans remaining: "// + humansAlive
+		        + "\nNumber of werewolfs remaining: " + 1
+		        + "\nNumber of vampires remaining: " + 1
+		        + "\nNumber of zombies remaining: "// + zombiesAlive
+		        + "\nYour final score is: "// + score
+		        );
+*/		
+		//GUI.Box( new Rect(UIleft, UItop, UIwidth, UIheight), "Game Over!");
 	}
 	
 	void drawStatusBar() 

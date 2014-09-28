@@ -16,7 +16,7 @@ public class zombieAI : commonAI
 	private castFearAI CastFear;
 	
 	public float healthDrainRate = 20.0f;
-	
+
 	public override void Start()
 	{
 		lifeSpan = 5000f;
@@ -63,6 +63,7 @@ public class zombieAI : commonAI
 		// Initiate the zombie to walking animation
 		animComponent.wrapMode = WrapMode.Loop;
 		animComponent.Play("walk");
+
 	}
 	
 	public void setTarget( GameObject newTarget)
@@ -114,8 +115,14 @@ public class zombieAI : commonAI
 	// When anything is attacked by a zombie, this method will be called.
 	private void HandleSpecificHitTarget(Collider hit)
 	{
-		// ONLY if the object is a human do we create a newly spawned zombie.
-		if (hit.gameObject.tag.Equals("Human"))
-			Camera.main.SendMessage("createZombie", hit.transform.position);
-	}
+				// ONLY if the object is a human do we create a newly spawned zombie.
+				if (hit.gameObject.tag.Equals ("Human")) {
+						Camera.main.SendMessage ("createZombie", hit.transform.position);
+
+			//Get points for every time you attack
+			GameObject go = GameObject.Find("Main Camera");
+			gameControl addScore = (gameControl) go.GetComponent(typeof(gameControl));
+			addScore.scorePoints();
+				}
+		}
 }

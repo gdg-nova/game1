@@ -18,9 +18,20 @@ public class gameControl : MonoBehaviour
 
 	public bool gameEnded;
 
+	public GUIText scoreGT;
+
+	public int score;
+
 	void Start() 
 	{
 		loadHumans();
+	
+		//Get a reference to the ScoreCounter
+		GameObject scoreGO = GameObject.Find ("ScoreCounter");
+		//Get a reference to the GUIText of ScoreCounter
+		scoreGT = scoreGO.GetComponent<GUIText> ();
+		//Initiate the score to 0
+		scoreGT.text = "0";
 	}
 
 	void Update() 
@@ -42,7 +53,7 @@ public class gameControl : MonoBehaviour
 
 	void gameOver() 
 	{
-		print("GameOver!");
+ //		print("GameOver!");
 		
 		Time.timeScale = 0;
 		gameEnded = true;
@@ -71,7 +82,9 @@ public class gameControl : MonoBehaviour
 			if (g.tag == "Human") {
 					//Destroy human, create zombie
 					createZombie (g.transform.position);
+			
 					Destroy (g);
+
 			}
 			// if graveyard, create new zombie directly there.
 			else if (g.tag == "Graveyard")
@@ -88,7 +101,16 @@ public class gameControl : MonoBehaviour
 			}				
 		}
 	}
-
+	//Call this function from other scripts that want to add to the score
+	public void scorePoints()
+	{
+		//Convert text of score into an int
+		score = int.Parse(scoreGT.text);
+		//Add the value for converting a human to a zombie
+		score += 100;
+		//Convert back to string
+		scoreGT.text = score.ToString();
+	}
 	void createZombieTargetFlag (Vector3 targetPoint)
 	{
 		if (currentZombieTarget == null)
@@ -99,7 +121,7 @@ public class gameControl : MonoBehaviour
 		// get only zombies within a radius of this point, not ALL zombies...
 		List<GameObject>zombies = gs.anyTagsInRange( targetPoint, 20.0f, eNavTargets.Zombie, true );
 
-		Debug.Log ("Found zombie:" + zombies.Count);
+//		Debug.Log ("Found zombie:" + zombies.Count);
 
 		foreach( GameObject z in zombies)
 		{
@@ -109,7 +131,7 @@ public class gameControl : MonoBehaviour
 			zAi.moveToSpecificGameObj( currentZombieTarget );
 		}
 
-		Debug.Log ("current zombie target:" + currentZombieTarget);
+//		Debug.Log ("current zombie target:" + currentZombieTarget);
 	}
 
 	void rightclickObject() 
