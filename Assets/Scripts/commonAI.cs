@@ -184,11 +184,11 @@ public class commonAI : MonoBehaviour
 			// if this is NOT a human (ie: Guard, Zombie)
 			// then we CAN play the die animation as both of them
 			// have it
-//			if( gameObject.tag != "Human" )
-//			{
-			animComponent.wrapMode = WrapMode.Once;
-			animComponent.Play("die");
-
+			if( gameObject.tag != "Human" )
+			{
+				animComponent.wrapMode = WrapMode.Once;
+				animComponent.Play("die");
+			}
 			//Destroy (gameObject, animation["die"].length * 2 ); 
 
 			//PauseGame( animation["die"].length * 2 );

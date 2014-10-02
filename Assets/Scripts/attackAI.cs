@@ -149,7 +149,7 @@ public class attackAI : MonoBehaviour
 				}
 				else
 				{
-					Debug.Log ( "Attacking object" );
+					// Debug.Log ( "Attacking object" );
 					// just to track engaged in attack/combat
 					o.EngagedInCombat = true;
 

@@ -21,7 +21,6 @@ public class gameControl : MonoBehaviour
 	public GUIText scoreGT;
 
 	public int score;
-
 	void Start() 
 	{
 		loadHumans();
@@ -32,7 +31,7 @@ public class gameControl : MonoBehaviour
 		scoreGT = scoreGO.GetComponent<GUIText> ();
 		//Initiate the score to 0
 		scoreGT.text = "0";
-		}
+	}
 
 	void Update() 
 	{
@@ -81,8 +80,11 @@ public class gameControl : MonoBehaviour
 			//Handle click based on clicked object tag:
 			if (g.tag == "Human") {
 					//Destroy human, create zombie
-					createZombie (g.transform.position);
-					Destroy (g);
+				//	createZombie (g.transform.position);
+				//	Destroy (g);
+
+				g.SendMessage("die");
+
 			}
 			// if graveyard, create new zombie directly there.
 			else if (g.tag == "Graveyard")
@@ -110,7 +112,6 @@ public class gameControl : MonoBehaviour
 		//Convert back to string
 		scoreGT.text = score.ToString();
 	}
-
 	void createZombieTargetFlag (Vector3 targetPoint)
 	{
 		if (currentZombieTarget == null)
@@ -177,8 +178,21 @@ public class gameControl : MonoBehaviour
 
 	//Create zombie at position
 	public void createZombie( Vector3 position) 
-	{ Instantiate (Zombie, position, q); }
-	
+
+	{ 
+		Debug.Log ("Createzombie");
+		Instantiate (Zombie, position, q); 
+	}
+
+
+	//Create zombie at position & rotation
+	public void createZombie( Vector3 position, Quaternion rot) 
+		
+	{ 
+		Debug.Log ("Createzombie");
+		Instantiate (Zombie, position, rot); 
+	}
+
 	void createWerewolf( Vector3 position) 
 	{ Instantiate (Werewolf, position, q); }
 	
