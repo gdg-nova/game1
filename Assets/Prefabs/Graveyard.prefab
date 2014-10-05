@@ -161,9 +161,11 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400018}
+  - 65: {fileID: 6500000}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: Graveyard
-  m_TagString: Untagged
+  m_TagString: Graveyard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -571,8 +573,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100018}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 112.5, y: -3.55559993, z: 45.0839996}
+  m_LocalRotation: {x: 0, y: -.193380788, z: 0, w: .981123805}
+  m_LocalPosition: {x: 97.1839981, y: -3.55559993, z: 35.3230019}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400026}
@@ -1509,6 +1511,30 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100052}
   m_Mesh: {fileID: 4300016, guid: cbfb40cccfb7b0f43b85faed9199f758, type: 3}
+--- !u!65 &6500000
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100018}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 4.78000021, z: 9.98999977}
+  m_Center: {x: -2.97000003, y: 4.19999981, z: -4.98000002}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e39ea80cdfa2e094d9c0b5e5cb0f95ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zombieSpawnInterval: 5
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

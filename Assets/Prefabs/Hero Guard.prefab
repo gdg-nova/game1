@@ -284,10 +284,10 @@ GameObject:
   - 4: {fileID: 400316}
   - 95: {fileID: 9500022}
   - 111: {fileID: 11100010}
-  - 114: {fileID: 11400022}
   - 195: {fileID: 19500010}
   - 122: {fileID: 12200010}
   - 136: {fileID: 13600000}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: LittleKnight2_solo
   m_TagString: Guard
@@ -454,8 +454,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
-  m_LocalRotation: {x: 3.72524411e-09, y: .8936373, z: 2.04018069e-09, w: -.448790044}
-  m_LocalPosition: {x: 102.400002, y: 0, z: 35.4939995}
+  m_LocalRotation: {x: 4.16669943e-09, y: .987303376, z: 8.23650315e-10, w: -.158846051}
+  m_LocalPosition: {x: 79.4019775, y: 7.15255737e-07, z: 59.821209}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 400316}
@@ -931,7 +931,7 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &11400022
+--- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -939,15 +939,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 100316}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f5866bba87a64903beec81ed638b7c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 795f72ef6af1c4442b57c6a2329a8fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackInterval: 1
-  attackSize: 3
-  stationary: 1
-  navAgent: {fileID: 0}
-  damage: 100
+  speedVariation: .200000003
+  baseSpeed: 3
+  runSpeed: 8
   health: 100
+  navCheckInterval: 3
+  navStopDistance: 5
+  moveAfterCombat: 1
+  Attack: {fileID: 0}
+  attackInterval: 1
+  attackRadius: 3
+  attackDamage: 100
+  stationary: 1
 --- !u!122 &12200010
 Halo:
   m_ObjectHideFlags: 1

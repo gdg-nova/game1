@@ -29,13 +29,6 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _ReflectionTex
-        second:
-          m_Texture: {fileID: 8400000, guid: 21bb33409d118354d000dcabe39e7c39, type: 2}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
           name: _ColorControlCube
         second:
           m_Texture: {fileID: 8900000, guid: 006a5f739d1105f6a000538a2aef8c59, type: 3}
@@ -46,6 +39,13 @@ Material:
           name: _ColorControl
         second:
           m_Texture: {fileID: 2800000, guid: 8403d3349d112ba4d000be1be39e7c39, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _ReflectionTex
+        second:
+          m_Texture: {fileID: 8400000, guid: 21bb33409d118354d000dcabe39e7c39, type: 2}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
@@ -77,7 +77,7 @@ Material:
       data:
         first:
           name: _WaveScale
-        second: .0702830181
+        second: .0199999996
       data:
         first:
           name: _Highlight
@@ -121,16 +121,8 @@ Material:
         second: {r: 0, g: 0, b: 0, a: .400000006}
       data:
         first:
-          name: _BumpMap_ST
-        second: {r: 1, g: 1, b: 0, a: 0}
-      data:
-        first:
-          name: WaveSpeed
-        second: {r: 9.68770027, g: 4.81898165, b: -7.91322803, a: 2.87029743}
-      data:
-        first:
           name: _horizonColor
-        second: {r: .148485541, g: .282429248, b: .379949659, a: 0}
+        second: {r: 0, g: 0, b: 0, a: 0}
       data:
         first:
           name: _ColorControl_ST
@@ -139,6 +131,14 @@ Material:
         first:
           name: _ColorControlCube_ST
         second: {r: 1, g: 1, b: 0, a: 0}
+      data:
+        first:
+          name: _BumpMap_ST
+        second: {r: 1, g: 1, b: 0, a: 0}
+      data:
+        first:
+          name: WaveSpeed
+        second: {r: 9.68770027, g: 4.81898165, b: -7.91322803, a: 2.87029743}
       data:
         first:
           name: BumpParm

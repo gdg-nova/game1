@@ -490,8 +490,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 400064}
   - 195: {fileID: 19500000}
-  - 114: {fileID: 11400000}
   - 111: {fileID: 11100000}
+  - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: Zombie_Hero
   m_TagString: Zombie
@@ -815,7 +815,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100036}
-  m_LocalRotation: {x: -.676473498, y: -.000270355726, z: .736467004, w: -.000292279612}
+  m_LocalRotation: {x: -.676473439, y: -.000270355697, z: .736466944, w: -.000292279583}
   m_LocalPosition: {x: -.400724322, y: .0824848339, z: .205812156}
   m_LocalScale: {x: .99999994, y: 1.00000012, z: 1.00000012}
   m_Children:
@@ -944,7 +944,7 @@ Animation:
   - {fileID: 7400006, guid: 665b784eb1f3c094c82ba0b8225974bd, type: 3}
   - {fileID: 7400002, guid: 62d910e97009b9b43933e7675d5c751f, type: 3}
   m_WrapMode: 0
-  m_PlayAutomatically: 0
+  m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!114 &11400000
@@ -955,16 +955,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 100064}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06a4872870b8a44c8b8de387f643d5f4, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ca2da6211000034a952ac78a97acc00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackInterval: 1
-  attackSize: 3
-  fearInterval: 3
-  fearSize: 6
-  damage: 10
-  navAgent: {fileID: 0}
-  lifeSpan: 5
+  speedVariation: .200000003
+  baseSpeed: 2
+  runSpeed: 4
+  health: 1
+  navCheckInterval: 3
+  navStopDistance: 5
+  moveAfterCombat: 1
+  lifeSpan: 1
+  healthDrainRate: 20
 --- !u!137 &13700000
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
