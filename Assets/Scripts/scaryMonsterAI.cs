@@ -80,9 +80,10 @@ public class scaryMonsterAI : commonAI
 		CastFear.CheckScare();
 		
 		// check if target was reached, if so, get new target
-		if( ! reachedTarget())
-			// in addition, check for being stagnant (clarification in commonAI.cs)
-			IsMovementStagnant();
+		reachedTarget();
+
+		// in addition, check for being stagnant (clarification in commonAI.cs)
+		IsMovementStagnant();
 	}
 
 	// When anything is attacked by a zombie, this method will be called.

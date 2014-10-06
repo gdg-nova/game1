@@ -31,12 +31,7 @@ public class attackAI : MonoBehaviour
 
 	// each attack object can have an animation
 	private Animation animComponent;
-
-	// not all controls HAVE animators..
-	// have boolean to handle these to not throw errors.
-	private bool hasAnimator;
-
-
+	
 	private GameObject associatedWith;
 	// expose so using game objects holding this object can
 	// set the swipe/attack direction.
@@ -54,7 +49,6 @@ public class attackAI : MonoBehaviour
 	{
 		// instantiate list regardless of the "Start" method
 		canAttackThese = new List<string>();
-		hasAnimator = false;
 	}
 
 	// expose to pass in the same animation object from the commonAI
@@ -65,14 +59,9 @@ public class attackAI : MonoBehaviour
 	{ 
 		// passed in the actual game object this class is connected to.
 		associatedWith = gameobj;
-
 		animComponent = (fromCommonAI); 
-		// set flag based on we have something or not.
-		hasAnimator = animComponent != null;
-
 		attackAnimation = animName;
 	}
-
 
 	// don't allow the "commonAI" to update this attack object list directly
 	public void AddAttackTarget(eNavTargets newTarget)
@@ -105,7 +94,7 @@ public class attackAI : MonoBehaviour
 		// reset timer to allow for next attack check
 		timeSinceAttack = 0;
 
-		//sphere cast in front of attacking game object.  
+		// sphere cast around the attacking game object.
 		Collider[] colliders = Physics.OverlapSphere(associatedWith.transform.position, attackRadius);
 		bool anythingWasHit = false;
 
@@ -123,14 +112,12 @@ public class attackAI : MonoBehaviour
 				// mark this as being engaged in combat attack mode
 				thisAttacker.EngagedInCombat = true;
 
-				// change animation of current object to swipe at the target
-				animComponent.wrapMode = WrapMode.Once;
-
 				// turn our game object in the direction of what is being attacked
 				transform.LookAt(hitObj.transform);
 
 				// based on the initial animation, what is their respective
 				// attack animation name string
+				animComponent.wrapMode = WrapMode.Once;
 				animComponent.Play(attackAnimation);
 
 				// if there was a subscription to this event, pass the
@@ -149,7 +136,6 @@ public class attackAI : MonoBehaviour
 				}
 				else
 				{
-					// Debug.Log ( "Attacking object" );
 					// just to track engaged in attack/combat
 					o.EngagedInCombat = true;
 

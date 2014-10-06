@@ -4,10 +4,7 @@ using System.Collections;
 public class humanAI : commonAI, ICanBeScared
 {
 	// few more publics specific to humans...
-	public Material fearMaterial;
-	public bool stayInSafe;
-	private bool isAfraid = false;
-	public float AfraidRadius = 3.0f;
+	public float AfraidRadius = 2.5f;
 
 	// Use this for initialization
 	public override void Start () 
@@ -25,6 +22,13 @@ public class humanAI : commonAI, ICanBeScared
 		defaultNavTargets.Add(eNavTargets.SafeZone);
 		defaultNavTargets.Add(eNavTargets.Finish);
 
+		// humans also have SPRINT mode animation which is always loop mode
+		AnimationClip ac = animComponent.GetClip ("sprint");
+		ac.wrapMode = WrapMode.Loop;
+
+		// ensure we have "die" animation or not
+		hasDieAnimation = animComponent["die"] != null;
+
 		// get initial target for human...
 		moveToNewTarget();
 	}
@@ -37,7 +41,16 @@ public class humanAI : commonAI, ICanBeScared
 		if( currentTarget == null )
 			moveToNewTarget();
 
-		// check if user MAY still be afraid or not.
+		// if no target due to object being destroyed (such as safe-zone house), 
+		// get out and try again next cycle
+		if( currentTarget == null )
+			return;
+
+		// in case a game object gets destroyed mid-stream, 
+		// preserve just the TAG element as a string so we can still work with it here
+		bool atSafeZone = ( currentTarget.tag == eNavTargets.SafeZone.ToString());
+
+		// check if human MAY still be afraid or not.
 		checkIfStillAfraid();
 
 		// if player is moving, but not walking and they are not in "afraid" mode,
@@ -48,7 +61,7 @@ public class humanAI : commonAI, ICanBeScared
 		    && ! isDestroying) 
 		{
 			navAgent.speed = baseSpeed;
-			PlayAnimation("walk");
+			animComponent.Play ("walk");
 		}
 	
 		// if time passed the interval check, 
@@ -58,13 +71,16 @@ public class humanAI : commonAI, ICanBeScared
 			// if the human is afraid and already running to a safe-zone
 			// destination, enter them into said safe zone since they are
 			// within the range of the stop distance vs remaining distance
-			if (isAfraid && currentTarget.tag == eNavTargets.SafeZone.ToString())
+			// if (isAfraid && atSafeZone && currentTarget != null)
+			// humans only have one target destination, 
+			// so at safe-zone, regardless of afraid or not, get into building
+			if (atSafeZone)
 			{
 				// Tell the target to add a new human represented by THIS
 				// one just about to enter, then KILL this instance from
 				// the visual screen
 				currentTarget.SendMessage("addHuman");
-				die();
+				DestroyImmediate(gameObject);
 			}
 			else
 				moveToNewTarget();
@@ -81,25 +97,39 @@ public class humanAI : commonAI, ICanBeScared
 		if (isDestroying)
 			return;
 
+		// get new target which defaults walk mode
+		moveToNewTarget();
+
+		// now, turn afraid to make human RUN
+		makeAfraid(true);
+	}
+
+	private void makeAfraid(bool isNowAfraid )
+	{
 		// set flag that human is afraid, and then set the halo effect
 		// which is a coloring under them when running to give visual effect
 		// of movement state...
-		isAfraid = true;
+		isAfraid = isNowAfraid;
 		// found this since depricated component.active.  We must call the BEHAVIOR of the component.
 		// http://forum.unity3d.com/threads/component-active-is-obsolete-but-no-enabled-property.30105/
-		((Behaviour)GetComponent("Halo")).enabled = true;
+		((Behaviour)GetComponent("Halo")).enabled = isAfraid;
 
-		moveToNewTarget();
-
-		// RUN when afraid after new target destination established
-		// the HumanHero with child object LittleHero_Solo has
-		// animations of walk, idle, sprint
-		if( navAgent != null )
+		if( animComponent != null )
 		{
-			navAgent.speed = runSpeed;
-			PlayAnimation("sprint");
+			animComponent.Stop();
+			if( isAfraid )
+			{
+				navAgent.speed = runSpeed;
+				animComponent.Play("sprint");
+			}
+			else
+			{
+				navAgent.speed = baseSpeed;
+				animComponent.Play("walk");
+			}
 		}
 	}
+
 
 	// when a human is running away afraid, see after a certain amount of time
 	// if there are any zombies STILL within a given proximity, if not, walk.
@@ -108,12 +138,12 @@ public class humanAI : commonAI, ICanBeScared
 	private void checkIfStillAfraid()
 	{	
 		// if NOT afraid, nothing to do, get out.
-		if( ! isAfraid )
+		if( ! isAfraid  )
 			return;
 
 		lastAfraidCheck += Time.deltaTime;
 		// if not 3 seconds since last check, don't bother and over cycle objects checking
-		if( lastAfraidCheck < 3.0f )
+		if( lastAfraidCheck < 1.5f )
 			return;
 
 		// we are within the time interval, reset counter for next time around
@@ -122,14 +152,6 @@ public class humanAI : commonAI, ICanBeScared
 
 		// if NO more zombies within 10 radius range, turn off the afraid flag
 		if( ! gs.anyTagsInRange( transform.position, AfraidRadius, eNavTargets.Zombie ))
-		{
-			isAfraid = false;
-			// turn OFF the halo effect when not afraid anymore.
-			((Behaviour)GetComponent("Halo")).enabled = false;
-
-			// back to walking mode
-			navAgent.speed = baseSpeed;
-			animComponent.Play("walk");
-		}
+			makeAfraid(false);
 	}
 }

@@ -7,10 +7,9 @@ public class commonAI : MonoBehaviour
 	// each game object (human, zombie, guard, etc) will have some
 	// speed movement basis.  These will be configurable from within
 	// the Unity Properties window, so make these public
-	public float speedVariation = .2f;
 	public float baseSpeed = 1.0f;
 	public float runSpeed = 2.5f;
-
+	
 	// different objects have different health levels.
 	// a human has 1 as default... so once attacked, such as from
 	// a zombie, it dies immediately.  Guards and Safe Zones have 
@@ -41,17 +40,21 @@ public class commonAI : MonoBehaviour
 	// Zombies (walk, idle_lookaround, hurt, die, L2R_swipe)
 	protected Animation animComponent;
 
-	// not all controls HAVE animators..
-	// have boolean to handle these to not throw errors.
-	private bool hasAnimator;
+	// special flags for hurt and die animations
+	protected bool hasHurtAnimation = false;
+	protected bool hasDieAnimation = false;
+
+	// only applicable now to humans, but if afraid and reaching 
+	// a non safe-zone destination, we need to leave the person
+	// in a running scared mode
+	protected bool isAfraid = false;
 
 	// Each object will by default need SOME nav taget to move towards.
 	protected List<eNavTargets> defaultNavTargets;
 
 	public bool isDestroying
 	{ get; protected set; }
-
-
+	
 	// by default, allow moving after combat...
 	// ie: move to next destination.  However, if it is a stationary
 	// guard, don't move... retain your position.  Default ok to move
@@ -63,7 +66,7 @@ public class commonAI : MonoBehaviour
 		get { return engagedInCombat; }
 		set {	// during the setter, if we WERE engaged in a combat cycle,
 			 	// and now coming off of it, force ourselves to look for new target.
-				if( engagedInCombat && !value )
+				if( moveAfterCombat && engagedInCombat && !value )
 					moveToNewTarget();
 
 				engagedInCombat = value;
@@ -78,7 +81,9 @@ public class commonAI : MonoBehaviour
 	// preserve destination.  When timer hits and game player is STILL
 	// within some finite distance, force the entity to find another target.
 	private float timeSinceStagnant;
-	private Vector3 lastStagnant;
+	private float lastStagnantDistance = 100f;
+	private Vector3 lastStagnantVector;
+
 
 	// Use this for initialization
 	public virtual void Start () 
@@ -98,8 +103,25 @@ public class commonAI : MonoBehaviour
 		// pre-load animation component that is used on most elements
 		animComponent = (Animation)GetComponent("Animation");
 
-		// flag... do we ACTUALLY have an animator object?
-		hasAnimator = animComponent != null ;
+		// First time in for any animated element, don't allow the to have
+		// the same exact speed.  100 humans can all have slightly different
+		// speeds within their base range.  Don't change every time they are
+		// moving between objects.  Why sometimes slow, then fast.  The speed
+		// is the speed for the duration of the human's life (same with running)
+		baseSpeed = Random.Range(baseSpeed * .6f, baseSpeed); 	// sample, 60% to 100% speed
+		runSpeed = Random.Range(runSpeed * .85f, runSpeed);	// sample, 85% to 100% run speed 
+
+		if( baseSpeed < .5f)
+			baseSpeed = .5f;
+
+		if( runSpeed < 1.75f )
+			runSpeed = 1.75f;
+
+
+		// animation modes are independent per specific clip.
+		// walk is ALWAYS a looping
+		AnimationClip ac = animComponent.GetClip ("walk");
+		ac.wrapMode = WrapMode.Loop;
 
 		// Initiate first target and set destination to it
 		moveToNewTarget();
@@ -123,7 +145,18 @@ public class commonAI : MonoBehaviour
 	// it's OWN "to do" for the update method
 	protected bool reachedTarget()
 	{
-		// if no taget, alway false
+		if( isDestroying )
+			return false;
+
+		float remDist = Mathf.Abs( navAgent.remainingDistance );
+
+		if( navAgent.remainingDistance == Mathf.Infinity)
+		{
+			moveToNewTarget();
+			return false;
+		}
+
+		// if no taget, alway false, let the character move to another target
 		if( currentTarget == null )
 			return false;
 
@@ -138,7 +171,7 @@ public class commonAI : MonoBehaviour
 		timeSinceNavCheck = 0;
 
 		// are we within distance of target
-		return ( navAgent.remainingDistance < navStopDistance );
+		return ( remDist < navStopDistance );
 	}
 
 	protected void IsMovementStagnant()
@@ -150,24 +183,35 @@ public class commonAI : MonoBehaviour
 			return;
 
 		timeSinceStagnant += Time.deltaTime;
-		// fixed limit for now... look every 2.5 seconds of game time...
-		if (timeSinceStagnant < 2.5f)
+		// fixed limit for now... look every 2.0 seconds of game time...
+		if (timeSinceStagnant < 4.0f)
 			return;
 
 		// what was distance from when we started
-		float distance = Vector3.Distance(lastStagnant, currentTarget.transform.position);
+		// distance will always be a positive number
+		float distance = Vector3.Distance(lastStagnantVector, currentTarget.transform.position);
+//		Debug.Log ( "LastDistance: " + lastStagnantDistance + "   Distance Now: " + distance
+//		           + "   Net Distance: " + Mathf.Abs( lastStagnantDistance - distance ) );
 
 		// reset time and position before next compare
-		timeSinceStagnant = 0.0f;
-		lastStagnant = currentTarget.transform.position;
+		// time, randomize so not all things are timing out for
+		// a new same movement
+		timeSinceStagnant = Random.Range( 0.0f, .7f );
+		lastStagnantVector = currentTarget.transform.position;
 
+		// Known combinations that stagnant movement.
+		float netDist = Mathf.Abs( lastStagnantDistance - distance );
+		
 		// not sure of distance measurement with respect to world coordinates
 		// but if not moving, force to a new target.
-		if( distance < 1.0f )
+		if( distance < .05
+		   || netDist < .3f 
+		   || ( lastStagnantDistance == 0.0f ) && distance - netDist < .05)
 			moveToNewTarget();
+
+		lastStagnantDistance = distance;
 	}
-
-
+	
 	// Whatever "instance" of this object is, it is referred to as
 	// gameObject... destroy itself.
 	protected void die()
@@ -179,38 +223,34 @@ public class commonAI : MonoBehaviour
 		isDestroying = true;
 
 		navAgent.Stop();
-		if( hasAnimator )
+		if( animComponent != null )
 		{
-			// if this is NOT a human (ie: Guard, Zombie)
-			// then we CAN play the die animation as both of them
-			// have it
-			//if( gameObject.tag != "Human" )
-			//{
+			// if this is NOT a human (ie: Guard, Zombie) then we CAN play
+			// the die animation as both of them have it
+			if( animComponent["die"] != null )
+			{
 				animComponent.wrapMode = WrapMode.Once;
 				animComponent.Play("die");
-			//}
-			//Destroy (gameObject, animation["die"].length * 2 ); 
-
-			//PauseGame( animation["die"].length * 2 );
-
-			if (gameObject.tag == "Human") {
-				Invoke ("requestZombieCreation", animation["die"].length * 2 );
 			}
 
-			Destroy(gameObject,animation["die"].length * 2 );
-			//PauseGame( 3f );
-//			}
+			if (gameObject.tag == "Human")
+				Invoke ("requestZombieCreation", animation["walk"].length * 2 );
+
+			if( animComponent["die"] != null )
+				Destroy(gameObject,animation["die"].length * 2 );
 		}
+
+		// original human has no die animation, kill object right-away
+		if( animComponent["die"] == null )
+			Destroy (gameObject);
+
 	}
-
-	protected void requestZombieCreation() {
+	
+	protected void requestZombieCreation() 
+	{
 		gameControl gc = Camera.main.GetComponent<gameControl> ();
-
 		gc.createZombie(gameObject.transform.position, gameObject.transform.rotation);
-
-//		Camera.main.SendMessage ("createZombie", gameObject.transform.position, gameObject.transform.rotation);
-
-		}
+	}
 
 	protected IEnumerator PauseGame(float duration)
 	{
@@ -220,7 +260,7 @@ public class commonAI : MonoBehaviour
 	public string CurrentAnimation()
 	{
 		// if no animator, empty string...
-		if( ! hasAnimator )
+		if( animComponent == null )
 			return "";
 
 		// if it DOES have an animator, see which is ACTUALLY running
@@ -234,23 +274,7 @@ public class commonAI : MonoBehaviour
 
 		return curStates;
 	}
-
-	protected void PlayAnimation(string animationName)
-	{
-		if( ! hasAnimator )
-			return;
-
-		foreach( AnimationState aState in animComponent )
-		{
-			if( aState.name == animationName )
-			{
-				animComponent.wrapMode = WrapMode.Loop;
-				animComponent.Play(animationName);
-				break;
-			}
-		}
-	}
-
+	
 	protected void moveToNewTarget()
 	{
 		// based on the list of navTargets an entity has, 
@@ -260,37 +284,42 @@ public class commonAI : MonoBehaviour
 	
 	public void moveToSpecificGameObj( GameObject NewTarget )
 	{
-		if( NewTarget == null )
+		if( isDestroying || NewTarget == null )
 			return;
-		Debug.Log ("moving to target" + NewTarget);
+
 		// preserve where we are with the new position
 		timeSinceStagnant = 0.0f;
-		lastStagnant = NewTarget.transform.position;
-		
-		if( speedVariation == 0.0f )
-			speedVariation = 1.0f;
-		
-		// allow speed randomly ranged between 40% and its full base speed
-		navAgent.speed = Random.Range(baseSpeed * .4f, baseSpeed);
-		
-		//Go to new target
-		navAgent.SetDestination(NewTarget.transform.position);
+		lastStagnantVector = NewTarget.transform.position;
+		lastStagnantDistance = 100f;
+
+		// always start animation walking to target...
+		// if human and in "Afraid" mode, it will change the the sprint animation
+		if( navAgent != null )
+		{
+			if( !isAfraid )
+			{
+				animComponent.Play("walk");
+
+				//Go to new target
+				// see notation during start to compute one-time randomly adjusted
+				// base speed for duration of the object instance.
+				navAgent.speed = baseSpeed;
+			}
+			navAgent.SetDestination(NewTarget.transform.position);
+		}
 	}
 
 	public void takeDamage(float damageTaken)
 	{
+		if( isDestroying )
+			return;
+
 		health -= damageTaken;
 		if (health < 0.0f)
 			die();
-		else
-		{
-			// Only partially hit... animate a "hurt" stage
-			if( hasAnimator )
-			{
-				animComponent.wrapMode = WrapMode.Once;
-				animComponent.Play("hurt");
-			}
-		}
+
+		else if( hasHurtAnimation )
+			animComponent.Play("hurt");
 	}
 }
 

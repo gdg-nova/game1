@@ -14,9 +14,7 @@ public class zombieAI : commonAI
 	// time and we can adjust attack and cast fear properties there.
 	private attackAI Attack;
 	private castFearAI CastFear;
-	
-	public float healthDrainRate = 20.0f;
-	
+
 	public override void Start()
 	{
 		lifeSpan = 5000f;
@@ -27,11 +25,18 @@ public class zombieAI : commonAI
 		// upon first creation, create the common "attackAI" instance
 		// Attack = this.gameObject.AddComponent<attackAI>();
 		Attack = this.gameObject.GetComponent<attackAI>();
-		
+
 		// Now, for scaring humans (or whatever else may be scared away.
 		// CastFear = this.gameObject.AddComponent<castFearAI>();
 		CastFear = this.gameObject.GetComponent<castFearAI>();
-		
+
+		// make sure that the castFear interval is not less than the attack,
+		// otherwise every human would be cast "afraid" before a zombie could
+		// attack them and turn human into a zombie.
+		if( CastFear.fearInterval < Attack.attackInterval )
+			// for grins add 1/100 second to delay
+			CastFear.fearInterval = Attack.attackInterval + .01f;
+
 		// What can a Zombie attack... Guards and Humans
 		// and don't forget about the SafeZone houses too!
 		Attack.AddAttackTarget(eNavTargets.Human);
@@ -42,12 +47,11 @@ public class zombieAI : commonAI
 		// very specific if attacking a human (change them into a zombie)
 		// attach to the public exposed event handler created
 		Attack.OnWasAttacked += HandleSpecificHitTarget;
-		
+
 		// via the "Hero Zombie" prefab, it has a child element
 		// of "LittleHero_solo" which has animations of
 		// L2R_swipe, walk, die, idle_lookaround, hurt
-		Attack.AssignAnimation( gameObject, animComponent, "L2R_swipe" );
-		
+		Attack.AssignAnimation( gameObject, animComponent, "L2R_swipe" );		
 		
 		// Zombies have same default targets of SafeZone and Finish
 		// only directly target zombies to safe or finish zones.
@@ -58,21 +62,30 @@ public class zombieAI : commonAI
 		defaultNavTargets.Add(eNavTargets.Finish);
 		
 
+		// Zombies (walk, idle_lookaround, hurt, die, L2R_swipe)
+		AnimationClip ac = animComponent.GetClip ("idle_lookaround");
+		ac.wrapMode = WrapMode.Loop;
+		ac = animComponent.GetClip ("hurt");
+		ac.wrapMode = WrapMode.Once;
+		ac = animComponent.GetClip ("die");
+		ac.wrapMode = WrapMode.Once;
+		ac = animComponent.GetClip ("L2R_swipe");
+		ac.wrapMode = WrapMode.Once;
+
+		// for commonAI during "takeDamage" from attacking 
+		hasDieAnimation = true;
+		hasHurtAnimation = true;
+
 		float animSpeed = -.5f;
 
 		animComponent.animation ["die"].speed = animSpeed;
 
 		float animTime = Mathf.Abs ( animComponent.animation ["die"].length * (1 / animSpeed));
-		Debug.Log ("animtime :" + animTime);
 
 		animComponent.animation ["die"].time = animComponent.animation ["die"].length;
 		animComponent.Play ("die");
 
 		Invoke ("completeInit",animTime);
-
-		// Initiate the zombie to walking animation
-
-		//animComponent.PlayQueued("walk");
 	}
 	
 	public void setTarget( GameObject newTarget)
@@ -86,7 +99,8 @@ public class zombieAI : commonAI
 			navAgent.SetDestination(newTarget.transform.position); 
 	}
 
-	public void completeInit() {
+	public void completeInit() 
+	{
 		animComponent.animation ["die"].speed = 1f;
 		animComponent.animation ["die"].time = 0f;
 		animComponent.Play ("walk");
@@ -94,13 +108,11 @@ public class zombieAI : commonAI
 
 		// pick a new target from either safe vs finish possibilities
 		moveToNewTarget();
-
 	}
 
 	// What is difference between Update and FixedUpdate???
 	void FixedUpdate() 
 	{
-
 		// if time to die, get out, nothing more to do
 		// zombies have a self-destruct time interval...
 		if (timeToDie())
@@ -113,9 +125,10 @@ public class zombieAI : commonAI
 		CastFear.CheckScare();
 		
 		// check if target was reached, if so, get new target
-		if( ! reachedTarget())
-			// in addition, check for being stagnant (clarification in commonAI.cs)
-			IsMovementStagnant();
+		reachedTarget();
+
+		// in addition, check for being stagnant (clarification in commonAI.cs)
+		IsMovementStagnant();
 	}
 	
 	// see if the zombie is time to die and self-destruct
@@ -137,8 +150,6 @@ public class zombieAI : commonAI
 	private void HandleSpecificHitTarget(Collider hit)
 	{
 		// ONLY if the object is a human do we create a newly spawned zombie.
-//		if (hit.gameObject.tag.Equals("Human"))
-//			Camera.main.SendMessage("createZombie", hit.transform.position);
 		//Get points for every time you attack
 		GameObject go = GameObject.Find("Main Camera");
 		gameControl addScore = (gameControl) go.GetComponent(typeof(gameControl));

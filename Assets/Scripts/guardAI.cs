@@ -51,27 +51,39 @@ public class guardAI : commonAI
 		defaultNavTargets.Add(eNavTargets.SafeZone);
 		defaultNavTargets.Add(eNavTargets.Finish);
 
+		// special animation flags uses in commonAI when attacked and dying
+		// so as to not duplicate code at this or zombie levels.
+		hasHurtAnimation = true;
+		hasDieAnimation = true;
+
+		// Guards (walk, idle, idle_lookaround, hurt, die, R2L_swipe)
+		AnimationClip ac = animComponent.GetClip ("idle");
+		ac.wrapMode = WrapMode.Loop;
+		ac = animComponent.GetClip ("idle_lookaround");
+		ac.wrapMode = WrapMode.Loop;
+		ac = animComponent.GetClip ("hurt");
+		ac.wrapMode = WrapMode.Once;
+		ac = animComponent.GetClip ("die");
+		ac.wrapMode = WrapMode.Once;
+		ac = animComponent.GetClip ("R2L_swipe");
+		ac.wrapMode = WrapMode.Once;
+
 		if (stationary)
 		{
 			// if ever in combat, retain your post if marked as stationary.
 			moveAfterCombat = false;
 
 			// default animation is to be idle...
-			animComponent.wrapMode = WrapMode.Loop;
 			animComponent.Play("idle");
 		}
 		else
 		{
-			// When moving, a guard has a base speed of 3.5
-			baseSpeed = 3.5f;
-			animComponent.Play("walk");
-			// animation speed for walking
-			animComponent["walk"].speed = .4f;
+			// moving to new target will always initiate walking mode.
 			moveToNewTarget();
 		}
 	}
 
-	void Update()
+	public void Update()
 	{
 		// if being destroyed, don't do anything else
 		if (isDestroying)
@@ -79,7 +91,12 @@ public class guardAI : commonAI
 
 		// check to see if not stationary, and reached its target,
 		// to check/move to another target
-		if (!stationary)
+		if (stationary)
+		{
+			if( animComponent["walk"].enabled )
+				animComponent.Play ( "idle" );
+		}
+		else
 		{
 			// if not stationary, the default animation is always walk,
 			// no need to reset it from walk back to walk again...

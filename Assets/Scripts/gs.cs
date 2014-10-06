@@ -78,6 +78,27 @@ public static class gs
 		return new Vector3(x, target.transform.position.y, z);		
 	}
 
+	public static IEnumerable<T> GetItemsAsT<T>(this object[] objects) 
+		where T:UnityEngine.Component
+	{
+		object tryObj;
+		GameObject gObj;
+		foreach(var obj in objects)
+		{
+			if( obj is GameObject )
+			{
+				gObj = (GameObject)obj;
+				tryObj = (object)gObj.GetComponent<T>();
+				
+				if( tryObj is T )
+				{
+					Debug.Log ( "Found via IEnumerable" );
+					yield return (T)tryObj;
+				}
+			}
+		}
+		yield break;
+	}
 }
 
 

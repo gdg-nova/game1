@@ -52,20 +52,10 @@ public class gameControl : MonoBehaviour
 
 	void gameOver() 
 	{
-	//	print("GameOver!");
-		
 		Time.timeScale = 0;
 		gameEnded = true;
 	}
-
-	//update human/zombie counter
-	void FixedUpdate() 
-	{
-		//Debug.Log ("Humans: " + GameObject.FindGameObjectsWithTag ("Human").Length);
-		//Debug.Log ("Zombies: " + GameObject.FindGameObjectsWithTag ("Zombie").Length);
-	}
-
-	//mouse click handler
+	
 	//mouse click handler
 	void clickObject() 
 	{
@@ -74,31 +64,19 @@ public class gameControl : MonoBehaviour
 		Ray r = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit r_hit;
 		
-		if (Physics.Raycast (r, out r_hit, Mathf.Infinity)) {
+		if (Physics.Raycast (r, out r_hit, Mathf.Infinity)) 
+		{
 			g = r_hit.collider.gameObject;
 
 			//Handle click based on clicked object tag:
-			if (g.tag == "Human") {
-					//Destroy human, create zombie
-				//	createZombie (g.transform.position);
-				//	Destroy (g);
-
+			if (g.tag == "Human") 
 				g.SendMessage("die");
 
-			}
 			// if graveyard, create new zombie directly there.
 			else if (g.tag == "Graveyard")
-					g.SendMessage ("CreateZombie");
-			else {
-					// if it did NOT hit any target, then set a target position
-					// for any zombies NEAR this position click.
-//				if (currentZombieTarget != null)
-//				{	
-//					currentZombieTarget.SendMessage ("removeZombieTarget");
-//				}
-					
+				g.SendMessage ("CreateZombie");
+			else
 				createZombieTargetFlag(r_hit.point);
-			}				
 		}
 	}
 
@@ -122,8 +100,6 @@ public class gameControl : MonoBehaviour
 		// get only zombies within a radius of this point, not ALL zombies...
 		List<GameObject>zombies = gs.anyTagsInRange( targetPoint, 20.0f, eNavTargets.Zombie, true );
 
-	//	Debug.Log ("Found zombie:" + zombies.Count);
-
 		foreach( GameObject z in zombies)
 		{
 			//Debug.Log ("Zombie is:" + z);
@@ -131,8 +107,6 @@ public class gameControl : MonoBehaviour
 
 			zAi.moveToSpecificGameObj( currentZombieTarget );
 		}
-
-	//	Debug.Log ("current zombie target:" + currentZombieTarget);
 	}
 
 	void rightclickObject() 
@@ -178,20 +152,12 @@ public class gameControl : MonoBehaviour
 
 	//Create zombie at position
 	public void createZombie( Vector3 position) 
-
-	{ 
-		Debug.Log ("Createzombie");
-		Instantiate (Zombie, position, q); 
-	}
+	{ Instantiate (Zombie, position, q); }
 
 
 	//Create zombie at position & rotation
 	public void createZombie( Vector3 position, Quaternion rot) 
-		
-	{ 
-		Debug.Log ("Createzombie");
-		Instantiate (Zombie, position, rot); 
-	}
+	{ Instantiate (Zombie, position, rot); }
 
 	void createWerewolf( Vector3 position) 
 	{ Instantiate (Werewolf, position, q); }
@@ -219,6 +185,4 @@ public class gameControl : MonoBehaviour
 		if (getHumansAliveCount() == 0 ) 
 			gameOver();
 	}
-
-
 }
