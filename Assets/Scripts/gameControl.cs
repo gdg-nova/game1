@@ -36,11 +36,9 @@ public class gameControl : MonoBehaviour
 	void Update() 
 	{
 		//check for mouse input
-		if (Input.GetMouseButton(0))
-			clickObject();
+		CheckForLeftClick();
 
-		if (Input.GetMouseButton(1)) 
-			rightclickObject();
+		CheckForRightMouse();
 
 		elapsedTime += Time.deltaTime;
 		
@@ -56,30 +54,6 @@ public class gameControl : MonoBehaviour
 		gameEnded = true;
 	}
 	
-	//mouse click handler
-	void clickObject() 
-	{
-		//send raycast to get hit
-		GameObject g;
-		Ray r = Camera.main.ScreenPointToRay (Input.mousePosition);
-		RaycastHit r_hit;
-		
-		if (Physics.Raycast (r, out r_hit, Mathf.Infinity)) 
-		{
-			g = r_hit.collider.gameObject;
-
-			//Handle click based on clicked object tag:
-			if (g.tag == "Human") 
-				g.SendMessage("die");
-
-			// if graveyard, create new zombie directly there.
-			else if (g.tag == "Graveyard")
-				g.SendMessage ("CreateZombie");
-			else
-				createZombieTargetFlag(r_hit.point);
-		}
-	}
-
 	//Call this function from other scripts that want to add to the score
 	public void scorePoints()
 	{
@@ -90,15 +64,21 @@ public class gameControl : MonoBehaviour
 		//Convert back to string
 		scoreGT.text = score.ToString();
 	}
-	void createZombieTargetFlag (Vector3 targetPoint)
+
+	void createZombieTargetFlag (Transform zRange)
 	{
+		// DVR, when using mouse click to expand a range to attract zombies,
+		// use the transform as basis of new central point location and also
+		// it's radius (x and z are same value) as range to include for zombies
+		// to be attracted
 		if (currentZombieTarget == null)
-			currentZombieTarget = (GameObject)Instantiate(zombieTargetPrefab, targetPoint, Quaternion.Euler(0,0,0));
+			currentZombieTarget = (GameObject)Instantiate(zombieTargetPrefab, zRange.position, Quaternion.Euler(0,0,0));
 		else 
-			currentZombieTarget.transform.position = targetPoint;
+			currentZombieTarget.transform.position = zRange.position;
 		
 		// get only zombies within a radius of this point, not ALL zombies...
-		List<GameObject>zombies = gs.anyTagsInRange( targetPoint, 20.0f, eNavTargets.Zombie, true );
+		// Since the scale is a diameter, we want radius which is 1/2, so divide by 2.
+		List<GameObject>zombies = gs.anyTagsInRange( zRange.position, zRange.localScale.x / 2.0f, eNavTargets.Zombie, true );
 
 		foreach( GameObject z in zombies)
 		{
@@ -109,8 +89,76 @@ public class gameControl : MonoBehaviour
 		}
 	}
 
-	void rightclickObject() 
+	private bool expandingZombieRange;
+	private float expandingZombieTime;
+	public GameObject ZombieRangePrefab;
+	private GameObject zombieRange;
+
+	//mouse click handler
+	void CheckForLeftClick() 
 	{
+
+		// if we are already IN a left-click zombie range implementation,
+		// check for the mouse UP event...
+		if( expandingZombieRange )
+		{
+			expandingZombieTime += Time.deltaTime;
+
+			zombieRange.transform.localScale = new Vector3( expandingZombieTime * 20.0f, .2f, expandingZombieTime * 20.0f );
+			
+			if( Input.GetMouseButtonUp(0))
+			{
+				// turn off mouse-down mode when mouse comes up...
+				expandingZombieRange = false;
+				// now create the particle system in the center of where 
+				// the range object was created.
+				createZombieTargetFlag( zombieRange.transform );
+				// now, kill off the zombieRange item
+				DestroyImmediate( zombieRange );
+			}
+		}
+		else
+		{
+			// no mouse down yet... check for it now.
+			// if no left-click, get out
+			if (! Input.GetMouseButton(0))
+				return;
+			
+			//send raycast to get hit
+			GameObject g;
+			Ray r = Camera.main.ScreenPointToRay (Input.mousePosition);
+			RaycastHit r_hit;
+			
+			if (Physics.Raycast (r, out r_hit, Mathf.Infinity)) 
+			{
+				g = r_hit.collider.gameObject;
+				
+				//Handle click based on clicked object tag:
+				if (g.tag == "Human") 
+					g.SendMessage("die");
+				
+				// if graveyard, create new zombie directly there.
+				else if (g.tag == "Graveyard")
+					g.SendMessage ("CreateZombie");
+				else
+				{
+					// we are trying to create a new target location for zombies.
+					// don't create the flag yet, but instead, turn on the expanding mode
+					// and create a zombieRange object (simple cylinder) that expands based
+					// on the duration of the mouse down until let up.
+					expandingZombieRange = true;
+					expandingZombieTime = 0.0f;
+					zombieRange = (GameObject)Instantiate( ZombieRangePrefab, r_hit.point, q );
+				}
+			}
+		}
+	}
+	
+	void CheckForRightMouse() 
+	{
+		if (! Input.GetMouseButton(1)) 
+			return;
+
 		//send raycast to get hit
 		Ray r = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit r_hit;

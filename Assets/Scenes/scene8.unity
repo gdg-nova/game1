@@ -129,7 +129,6 @@ MonoBehaviour:
   m_LightmapIndex: 0
   m_LightmapSize: 1024
   m_DrawTreesAndFoliage: 1
-  m_CollectDetailPatches: 1
   m_MaterialTemplate: {fileID: 0}
 --- !u!4 &702476
 Transform:
@@ -142,7 +141,7 @@ Transform:
   m_LocalScale: {x: 111, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 14
 --- !u!1 &1469615
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,7 +217,7 @@ Transform:
   - {fileID: 1673934542}
   - {fileID: 429551708}
   m_Father: {fileID: 1338265586}
-  m_RootOrder: 3
+  m_RootOrder: 6
 --- !u!1 &26174600
 GameObject:
   m_ObjectHideFlags: 0
@@ -322,6 +321,7 @@ Animation:
   - {fileID: 7400000, guid: 001a715514d25254d9b40074ebbde0ce, type: 3}
   - {fileID: 7400000, guid: 9fed2f9dd2b98d24ca06ed78ccc11aca, type: 3}
   - {fileID: 7400004, guid: 001a715514d25254d9b40074ebbde0ce, type: 3}
+  - {fileID: 7400002, guid: 69b16e49a643f24488b3e464d46cef79, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -359,15 +359,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87995146c8c92a54cbc2f050711e3ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVariation: .200000003
   baseSpeed: 3
   runSpeed: 8.5
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
   moveAfterCombat: 1
-  fearMaterial: {fileID: 0}
-  stayInSafe: 0
   AfraidRadius: 3
 --- !u!95 &27147583
 Animator:
@@ -580,7 +577,7 @@ Transform:
   m_Children:
   - {fileID: 27147577}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 8
 --- !u!1 &51015003
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,7 +874,7 @@ Transform:
   m_Children:
   - {fileID: 1544423371}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 20
 --- !u!1 &81447142
 GameObject:
   m_ObjectHideFlags: 0
@@ -3006,7 +3003,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795f72ef6af1c4442b57c6a2329a8fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVariation: .200000003
   baseSpeed: 3
   runSpeed: 1
   health: 100
@@ -3507,7 +3503,7 @@ Transform:
   m_GameObject: {fileID: 213488344}
   m_LocalRotation: {x: 4.16669943e-09, y: .987303376, z: 8.23650315e-10, w: -.158846051}
   m_LocalPosition: {x: 79.4019775, y: 7.15255737e-07, z: 59.821209}
-  m_LocalScale: {x: 2, y: 2, z: 1.99999988}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 787343560}
   m_Father: {fileID: 0}
@@ -7532,7 +7528,7 @@ Transform:
   m_Children:
   - {fileID: 1183168171}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 11
 --- !u!1 &468198024
 GameObject:
   m_ObjectHideFlags: 0
@@ -8825,7 +8821,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795f72ef6af1c4442b57c6a2329a8fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVariation: .200000003
   baseSpeed: 3
   runSpeed: 8
   health: 100
@@ -11925,7 +11920,7 @@ Transform:
   - {fileID: 1296998470}
   - {fileID: 172901060}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 10
 --- !u!65 &608090656
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13790,7 +13785,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795f72ef6af1c4442b57c6a2329a8fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVariation: .200000003
   baseSpeed: 3
   runSpeed: 8
   health: 100
@@ -14586,6 +14580,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: e8f5752a1fbee495db086bb3b6e11b09, type: 2}
+      propertyPath: ZombieRangePrefab
+      value: 
+      objectReference: {fileID: 100000, guid: 52c5bd8c4fcfb2d4da718d96bcf331f5, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e8f5752a1fbee495db086bb3b6e11b09, type: 2}
   m_RootGameObject: {fileID: 834501391}
@@ -14877,7 +14875,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795f72ef6af1c4442b57c6a2329a8fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVariation: .200000003
   baseSpeed: 3
   runSpeed: 8
   health: 100
@@ -16620,10 +16617,10 @@ Transform:
   m_GameObject: {fileID: 834501391}
   m_LocalRotation: {x: -.207021505, y: .206544593, z: -.0169526357, w: -.956134975}
   m_LocalPosition: {x: 93.0589981, y: 20.948, z: -9.24629974}
-  m_LocalScale: {x: .99999994, y: .99999994, z: .99999994}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
 --- !u!114 &834501397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16837,6 +16834,7 @@ MonoBehaviour:
   gameEnded: 0
   scoreGT: {fileID: 0}
   score: 0
+  ZombieRangePrefab: {fileID: 100000, guid: 52c5bd8c4fcfb2d4da718d96bcf331f5, type: 2}
 --- !u!82 &834501399
 AudioSource:
   m_ObjectHideFlags: 0
@@ -16848,7 +16846,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: af1a6f068bc1c564b8f45952fe408891, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .800000012
+  m_Volume: .5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -16907,7 +16905,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: af9a9ce4fa3e5af41be1496283373f07, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .129999995
+  m_Volume: .150000006
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -16962,11 +16960,11 @@ AudioSource:
     type: 2}
   m_PrefabInternal: {fileID: 762623506}
   m_GameObject: {fileID: 834501391}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 2285b62fe0e90d045976e2f3248a5016, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .300000012
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -17240,7 +17238,7 @@ Transform:
   m_LocalScale: {x: 3, y: 1, z: .75}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 24
 --- !u!1 &853260854
 GameObject:
   m_ObjectHideFlags: 0
@@ -17727,7 +17725,7 @@ Transform:
   m_Children:
   - {fileID: 1591524287}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 7
 --- !u!1 &888771313
 GameObject:
   m_ObjectHideFlags: 0
@@ -17755,7 +17753,7 @@ Transform:
   m_Children:
   - {fileID: 1512911628}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 17
 --- !u!1 &891966074
 GameObject:
   m_ObjectHideFlags: 0
@@ -17956,7 +17954,7 @@ Transform:
   m_Children:
   - {fileID: 171582551}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 23
 --- !u!1 &909160042
 GameObject:
   m_ObjectHideFlags: 0
@@ -18387,7 +18385,7 @@ Transform:
   - {fileID: 1907140949}
   - {fileID: 815687252}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 9
 --- !u!1 &988834862
 GameObject:
   m_ObjectHideFlags: 0
@@ -18624,7 +18622,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 22
 --- !u!1 &1016781843
 GameObject:
   m_ObjectHideFlags: 0
@@ -18698,7 +18696,7 @@ Transform:
   m_LocalScale: {x: 16.3524513, y: 7.72732544, z: 126.129829}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 19
 --- !u!1 &1020277267
 GameObject:
   m_ObjectHideFlags: 0
@@ -23208,7 +23206,7 @@ Transform:
   m_Children:
   - {fileID: 671260415}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 13
 --- !u!1 &1177278025
 GameObject:
   m_ObjectHideFlags: 0
@@ -23368,6 +23366,7 @@ Animation:
   - {fileID: 7400000, guid: 001a715514d25254d9b40074ebbde0ce, type: 3}
   - {fileID: 7400000, guid: 9fed2f9dd2b98d24ca06ed78ccc11aca, type: 3}
   - {fileID: 7400004, guid: 001a715514d25254d9b40074ebbde0ce, type: 3}
+  - {fileID: 7400002, guid: 69b16e49a643f24488b3e464d46cef79, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -23405,15 +23404,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87995146c8c92a54cbc2f050711e3ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVariation: .200000003
   baseSpeed: 3
   runSpeed: 8.5
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
   moveAfterCombat: 1
-  fearMaterial: {fileID: 0}
-  stayInSafe: 0
   AfraidRadius: 3
 --- !u!95 &1183168177
 Animator:
@@ -24014,7 +24010,7 @@ Transform:
   m_Children:
   - {fileID: 482873395}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 15
 --- !u!1 &1252030924
 GameObject:
   m_ObjectHideFlags: 0
@@ -24743,7 +24739,7 @@ Transform:
   m_LocalScale: {x: 11.9200001, y: .219999999, z: 7.78999996}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 18
 --- !u!1 &1310374206
 GameObject:
   m_ObjectHideFlags: 0
@@ -25130,8 +25126,8 @@ Transform:
   m_Children:
   - {fileID: 1362616089}
   - {fileID: 386097311}
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 1338265586}
+  m_RootOrder: 5
 --- !u!111 &1323597266
 Animation:
   m_ObjectHideFlags: 0
@@ -25237,7 +25233,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 4
 --- !u!1 &1333339761
 GameObject:
   m_ObjectHideFlags: 0
@@ -25394,7 +25390,7 @@ Transform:
   - {fileID: 1911555343}
   - {fileID: 1317998287}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 6
 --- !u!1 &1340638159
 GameObject:
   m_ObjectHideFlags: 0
@@ -28388,7 +28384,7 @@ Transform:
   m_Children:
   - {fileID: 1999499272}
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 21
 --- !u!1 &1453254525
 GameObject:
   m_ObjectHideFlags: 0
@@ -30936,7 +30932,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca2da6211000034a952ac78a97acc00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVariation: .200000003
   baseSpeed: 2
   runSpeed: 4
   health: 1
@@ -30944,7 +30939,6 @@ MonoBehaviour:
   navStopDistance: 5
   moveAfterCombat: 1
   lifeSpan: 1
-  healthDrainRate: 20
 --- !u!195 &1512911631
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -31388,7 +31382,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795f72ef6af1c4442b57c6a2329a8fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVariation: .200000003
   baseSpeed: 3
   runSpeed: 8
   health: 100
@@ -31805,6 +31798,7 @@ Animation:
   - {fileID: 7400000, guid: 001a715514d25254d9b40074ebbde0ce, type: 3}
   - {fileID: 7400000, guid: 9fed2f9dd2b98d24ca06ed78ccc11aca, type: 3}
   - {fileID: 7400004, guid: 001a715514d25254d9b40074ebbde0ce, type: 3}
+  - {fileID: 7400002, guid: 69b16e49a643f24488b3e464d46cef79, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -31842,15 +31836,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87995146c8c92a54cbc2f050711e3ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVariation: .200000003
   baseSpeed: 3
   runSpeed: 8.5
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
   moveAfterCombat: 1
-  fearMaterial: {fileID: 0}
-  stayInSafe: 0
   AfraidRadius: 3
 --- !u!95 &1591524293
 Animator:
@@ -32624,7 +32615,7 @@ Transform:
   - {fileID: 666422034}
   - {fileID: 893908926}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 16
 --- !u!1 &1718757563
 GameObject:
   m_ObjectHideFlags: 0
@@ -34593,7 +34584,7 @@ Transform:
   - {fileID: 1362143305}
   - {fileID: 859974130}
   m_Father: {fileID: 1338265586}
-  m_RootOrder: 4
+  m_RootOrder: 2
 --- !u!114 &1902266428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35073,7 +35064,7 @@ Transform:
   - {fileID: 885203114}
   - {fileID: 773701421}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 12
 --- !u!1 &1917082388
 GameObject:
   m_ObjectHideFlags: 0
@@ -36919,7 +36910,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795f72ef6af1c4442b57c6a2329a8fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVariation: .200000003
   baseSpeed: 3
   runSpeed: 8
   health: 100
