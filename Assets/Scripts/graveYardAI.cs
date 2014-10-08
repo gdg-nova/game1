@@ -7,7 +7,15 @@ public class graveYardAI : MonoBehaviour
 	// wait 1 second before allowing automatic zombie spawning...
 	public float zombieSpawnInterval = 1.0f;
 	private float timeSinceLastSpawn;
-	
+
+	gameControl gameController = null;
+
+	void Start()
+	{
+		GameObject controller = GameObject.FindWithTag("GameController");
+		gameController = controller.GetComponent<gameControl>();
+	}
+
 	void Update() 
 	{
 		CreateZombie();
@@ -28,7 +36,7 @@ public class graveYardAI : MonoBehaviour
 		float x = Random.Range(gameObject.collider.bounds.min.x, gameObject.collider.bounds.max.x);
 		float z = Random.Range(gameObject.collider.bounds.min.z, gameObject.collider.bounds.max.z);
 
-		Camera.main.SendMessage("createZombie",  (new Vector3(x, transform.position.y, z)));	
+		gameController.createZombie(new Vector3(x, transform.position.y, z));	
 			
 		timeSinceLastSpawn = 0;
 	}

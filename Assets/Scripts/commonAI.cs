@@ -248,7 +248,8 @@ public class commonAI : MonoBehaviour
 	
 	protected void requestZombieCreation() 
 	{
-		gameControl gc = Camera.main.GetComponent<gameControl> ();
+		GameObject go = GameObject.FindWithTag ("GameController");
+		gameControl gc = go.GetComponent<gameControl> ();
 		gc.createZombie(gameObject.transform.position, gameObject.transform.rotation);
 	}
 

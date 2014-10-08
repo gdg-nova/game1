@@ -61,7 +61,8 @@ public class safeZoneAI : MonoBehaviour
 		float x, z;
 		
 		// get gamecontrol object from main camera
-		gameControl gc = (gameControl)Camera.main.GetComponent<gameControl>();
+		GameObject go = GameObject.FindWithTag("GameController"); 
+		gameControl gc = go.GetComponent<gameControl>();
 		// if not actually found, get out
 		if( gc == null )
 			return;

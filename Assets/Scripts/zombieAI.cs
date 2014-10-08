@@ -8,6 +8,8 @@ public class zombieAI : commonAI
 	// self-die after given amount of time.
 	public float lifeSpan = 1;
 	private float timeAlive = 0.0f;
+
+	gameControl gameController = null;
 	
 	// Zombies can attack...
 	// these scripts will also be added to the zombie at interface
@@ -17,6 +19,9 @@ public class zombieAI : commonAI
 
 	public override void Start()
 	{
+		GameObject go = GameObject.FindWithTag("GameController");
+		gameController = go.GetComponent<gameControl>();
+
 		lifeSpan = 5000f;
 		// do baseline start actions first...
 		// also grabs default animation component too.
@@ -151,8 +156,6 @@ public class zombieAI : commonAI
 	{
 		// ONLY if the object is a human do we create a newly spawned zombie.
 		//Get points for every time you attack
-		GameObject go = GameObject.Find("Main Camera");
-		gameControl addScore = (gameControl) go.GetComponent(typeof(gameControl));
-		addScore.scorePoints();
+		gameController.scorePoints();
 	}
 }

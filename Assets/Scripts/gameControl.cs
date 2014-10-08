@@ -16,6 +16,8 @@ public class gameControl : MonoBehaviour
 	public GameObject currentZombieTarget;
 	public GameObject zombieTargetPrefab;
 
+	public touchController touchController = null;
+
 	public bool gameEnded;
 
 	public GUIText scoreGT;
@@ -24,6 +26,11 @@ public class gameControl : MonoBehaviour
 	void Start() 
 	{
 		loadHumans();
+
+		if (touchController == null)
+		{
+			this.touchController = GetComponent<touchController>();
+		}
 
 		//Get a reference to the ScoreCounter
 		GameObject scoreGO = GameObject.Find ("ScoreCounter");
@@ -102,6 +109,13 @@ public class gameControl : MonoBehaviour
 		// check for the mouse UP event...
 		if( expandingZombieRange )
 		{
+			// If we detect 2 touches, then we're in a pinch to zoon scenario, cancel the expanding range
+			if (touchController && touchController.hasDonePinchToZoom)
+			{
+				expandingZombieRange = false;
+				DestroyImmediate( zombieRange );
+			}
+
 			expandingZombieTime += Time.deltaTime;
 
 			zombieRange.transform.localScale = new Vector3( expandingZombieTime * 20.0f, .2f, expandingZombieTime * 20.0f );
@@ -122,6 +136,10 @@ public class gameControl : MonoBehaviour
 			// no mouse down yet... check for it now.
 			// if no left-click, get out
 			if (! Input.GetMouseButton(0))
+				return;
+
+			// Don't do anything for multi-touch scenario
+			if (touchController && touchController.hasDonePinchToZoom)
 				return;
 			
 			//send raycast to get hit
