@@ -9,7 +9,7 @@ public class gameControl : MonoBehaviour
 	public GameObject Werewolf;
 	
 	public int humanCount;
-	public float timeLimit = 30;
+	public float timeLimit = 40;
 	public float elapsedTime = 0; 
 
 	private Quaternion q = Quaternion.Euler (0,0,0);
@@ -28,9 +28,7 @@ public class gameControl : MonoBehaviour
 		loadHumans();
 
 		if (touchController == null)
-		{
 			this.touchController = GetComponent<touchController>();
-		}
 
 		//Get a reference to the ScoreCounter
 		GameObject scoreGO = GameObject.Find ("ScoreCounter");
@@ -118,7 +116,7 @@ public class gameControl : MonoBehaviour
 
 			expandingZombieTime += Time.deltaTime;
 
-			zombieRange.transform.localScale = new Vector3( expandingZombieTime * 20.0f, .2f, expandingZombieTime * 20.0f );
+			zombieRange.transform.localScale = new Vector3( expandingZombieTime * 75.0f, .2f, expandingZombieTime * 75.0f );
 			
 			if( Input.GetMouseButtonUp(0))
 			{
@@ -154,7 +152,7 @@ public class gameControl : MonoBehaviour
 				//Handle click based on clicked object tag:
 				if (g.tag == "Human") 
 					g.SendMessage("die");
-				
+
 				// if graveyard, create new zombie directly there.
 				else if (g.tag == "Graveyard")
 					g.SendMessage ("CreateZombie");
@@ -195,6 +193,7 @@ public class gameControl : MonoBehaviour
 	//Create humans per HumanCount
 	void loadHumans() 
 	{
+
 		for (int i = 0; i < humanCount; i++) 
 		{
 			GameObject spawn = getRandomSpawn();
@@ -222,16 +221,21 @@ public class gameControl : MonoBehaviour
 
 
 	//Create zombie at position & rotation
-	public void createZombie( Vector3 position, Quaternion rot) 
-	{ Instantiate (Zombie, position, rot); }
+	public zombieAI createZombie( Vector3 position, Quaternion rot) 
+	{
+		GameObject gobj = (GameObject)Instantiate (Zombie, position, rot); 
+		zombieAI zAI = gobj.GetComponentInChildren<zombieAI>();
+		return zAI;
+	}
 
 	void createWerewolf( Vector3 position) 
 	{ Instantiate (Werewolf, position, q); }
 	
 	public humanAI createHuman( Vector3 position) 
 	{
-		GameObject go = (GameObject)Instantiate (Human, position, q); 
-		return (humanAI)go.GetComponent<humanAI>();
+		GameObject gobj = (GameObject)Instantiate (Human, position, q); 
+		humanAI hAI = gobj.GetComponentInChildren<humanAI>();
+		return hAI;
 	}
 	
 	public int getHumansAliveCount() 

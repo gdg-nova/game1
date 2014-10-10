@@ -41,7 +41,6 @@ public class safeZoneAI : MonoBehaviour
 	void addHuman() 
 	{
 		humanCount++;
-		Debug.Log ("Added human to safe-zone");
 		timeSinceLastEntry = 0;
 	}
 	

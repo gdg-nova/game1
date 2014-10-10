@@ -9,6 +9,8 @@ public class zombieAI : commonAI
 	public float lifeSpan = 1;
 	private float timeAlive = 0.0f;
 
+	public float fastZombieSpeed = 7.0f;
+
 	gameControl gameController = null;
 	
 	// Zombies can attack...
@@ -47,7 +49,8 @@ public class zombieAI : commonAI
 		Attack.AddAttackTarget(eNavTargets.Human);
 		Attack.AddAttackTarget(eNavTargets.Guard);
 		Attack.AddAttackTarget(eNavTargets.SafeZone);
-		
+
+
 		// When an attack is successful, we need to do something
 		// very specific if attacking a human (change them into a zombie)
 		// attach to the public exposed event handler created
@@ -65,7 +68,9 @@ public class zombieAI : commonAI
 		defaultNavTargets.Clear();
 		defaultNavTargets.Add(eNavTargets.SafeZone);
 		defaultNavTargets.Add(eNavTargets.Finish);
-		
+		// if all else fails, find SOME place in the playable area of the board
+		defaultNavTargets.Add(eNavTargets.Playable);
+
 
 		// Zombies (walk, idle_lookaround, hurt, die, L2R_swipe)
 		AnimationClip ac = animComponent.GetClip ("idle_lookaround");
@@ -92,7 +97,19 @@ public class zombieAI : commonAI
 
 		Invoke ("completeInit",animTime);
 	}
-	
+
+	// when a zombie kills a running human, it comes back as a FAST zombie
+	private bool isFastZombie = false;
+	public void MakeFastZombie()
+	{
+		isFastZombie = true;
+		Start ();
+		// set speed AFTER the default start is called.
+		baseSpeed = fastZombieSpeed;
+		runSpeed = fastZombieSpeed;
+	}
+
+
 	public void setTarget( GameObject newTarget)
 	{
 		// In case object is being destroyed, don't allow set

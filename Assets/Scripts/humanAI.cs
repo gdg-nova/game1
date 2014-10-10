@@ -21,6 +21,8 @@ public class humanAI : commonAI, ICanBeScared
 		defaultNavTargets.Clear();
 		defaultNavTargets.Add(eNavTargets.SafeZone);
 		defaultNavTargets.Add(eNavTargets.Finish);
+		// if all else fails, find SOME place in the playable area of the board
+		defaultNavTargets.Add(eNavTargets.Playable);
 
 		// humans also have SPRINT mode animation which is always loop mode
 		AnimationClip ac = animComponent.GetClip ("sprint");
@@ -46,10 +48,6 @@ public class humanAI : commonAI, ICanBeScared
 		if( currentTarget == null )
 			return;
 
-		// in case a game object gets destroyed mid-stream, 
-		// preserve just the TAG element as a string so we can still work with it here
-		bool atSafeZone = ( currentTarget.tag == eNavTargets.SafeZone.ToString());
-
 		// check if human MAY still be afraid or not.
 		checkIfStillAfraid();
 
@@ -68,6 +66,10 @@ public class humanAI : commonAI, ICanBeScared
 		// what do we need to do now?
 		if( reachedTarget())
 		{
+			// in case a game object gets destroyed mid-stream, 
+			// preserve just the TAG element as a string so we can still work with it here
+			bool atSafeZone = ( currentTarget.tag == eNavTargets.SafeZone.ToString());
+
 			// if the human is afraid and already running to a safe-zone
 			// destination, enter them into said safe zone since they are
 			// within the range of the stop distance vs remaining distance
@@ -79,6 +81,13 @@ public class humanAI : commonAI, ICanBeScared
 				// Tell the target to add a new human represented by THIS
 				// one just about to enter, then KILL this instance from
 				// the visual screen
+//				float remDist = Mathf.Abs( navAgent.remainingDistance );
+//				string msg = "At safe zone: " +  gameObject.transform.parent.gameObject.name + "  "
+//					+ "human position: " + gameObject.transform.position + "\r\n"
+//					+ "target position: " + currentTarget.transform.position + "    "
+//					+ "remain dist: " + remDist ;	
+//				Debug.Log ( msg );
+
 				currentTarget.SendMessage("addHuman");
 				DestroyImmediate(gameObject);
 			}

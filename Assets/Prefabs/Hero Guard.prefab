@@ -454,8 +454,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
-  m_LocalRotation: {x: 4.16669943e-09, y: .987303376, z: 8.23650315e-10, w: -.158846051}
-  m_LocalPosition: {x: 79.4019775, y: 7.15255737e-07, z: 59.821209}
+  m_LocalRotation: {x: 4.19000257e-09, y: .991710722, z: 6.95471236e-10, w: -.12849094}
+  m_LocalPosition: {x: 82.336998, y: 0, z: 46.2290001}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 400316}
@@ -942,9 +942,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795f72ef6af1c4442b57c6a2329a8fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVariation: .200000003
-  baseSpeed: 3
-  runSpeed: 8
+  baseSpeed: 4
+  baseRandomPct: 65
+  runSpeed: 10
+  runRandomPct: 85
   health: 100
   navCheckInterval: 3
   navStopDistance: 5
@@ -963,7 +964,7 @@ Halo:
   m_Enabled: 1
   m_Color:
     serializedVersion: 2
-    rgba: 4279816727
+    rgba: 4278190320
   m_Size: 1.5
 --- !u!136 &13600000
 CapsuleCollider:

@@ -756,7 +756,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100052}
   m_LocalRotation: {x: 0, y: .977067649, z: 0, w: .212929219}
-  m_LocalPosition: {x: 55.3089981, y: 0, z: 55.605999}
+  m_LocalPosition: {x: 63.1040001, y: -4.34859991, z: 24.1399994}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 400050}
@@ -806,15 +806,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87995146c8c92a54cbc2f050711e3ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVariation: .200000003
-  baseSpeed: 3
-  runSpeed: 8.5
+  baseSpeed: 4.5
+  baseRandomPct: 30
+  runSpeed: 10
+  runRandomPct: 75
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
   moveAfterCombat: 1
-  fearMaterial: {fileID: 0}
-  stayInSafe: 0
   AfraidRadius: 3
 --- !u!122 &12200000
 Halo:
@@ -902,7 +901,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 100050}
   m_Enabled: 1
   m_Radius: .5
-  m_Speed: 3.5
+  m_Speed: 2.25
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

@@ -106,6 +106,7 @@ public static class gs
 // the commented ones are the ones not explicitly needed (yet)
 public enum eNavTargets
 {
+	Playable,
 	Finish,
 	Guard,
 	Human,

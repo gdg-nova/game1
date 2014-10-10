@@ -809,15 +809,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca2da6211000034a952ac78a97acc00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVariation: .200000003
-  baseSpeed: 2
-  runSpeed: 4
+  baseSpeed: 3
+  baseRandomPct: 40
+  runSpeed: 7
+  runRandomPct: 85
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
   moveAfterCombat: 1
   lifeSpan: 1
-  healthDrainRate: 20
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -831,7 +831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   attackInterval: 2
-  attackRadius: 3
+  attackRadius: 2
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -854,7 +854,7 @@ Halo:
   m_Enabled: 1
   m_Color:
     serializedVersion: 2
-    rgba: 4278190320
+    rgba: 4279816727
   m_Size: 1.5
 --- !u!136 &13600000
 CapsuleCollider:

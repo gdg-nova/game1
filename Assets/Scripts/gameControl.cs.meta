@@ -2,7 +2,15 @@ fileFormatVersion: 2
 guid: 7829469577d9d4a299d927d28de894a3
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - Human: {fileID: 100052, guid: c6783f49378f645fa81340aa301236b5, type: 2}
+  - Zombie: {fileID: 100052, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  - Werewolf: {instanceID: 0}
+  - currentZombieTarget: {instanceID: 0}
+  - zombieTargetPrefab: {instanceID: 0}
+  - touchController: {instanceID: 0}
+  - scoreGT: {instanceID: 0}
+  - ZombieRangePrefab: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

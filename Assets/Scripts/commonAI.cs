@@ -7,9 +7,14 @@ public class commonAI : MonoBehaviour
 	// each game object (human, zombie, guard, etc) will have some
 	// speed movement basis.  These will be configurable from within
 	// the Unity Properties window, so make these public
+	// randomized speed variation as percentage of max speeds avail
 	public float baseSpeed = 1.0f;
+	public float baseRandomPct = 50.0f;
+
 	public float runSpeed = 2.5f;
-	
+	public float runRandomPct = 85.0f;
+
+
 	// different objects have different health levels.
 	// a human has 1 as default... so once attacked, such as from
 	// a zombie, it dies immediately.  Guards and Safe Zones have 
@@ -84,10 +89,28 @@ public class commonAI : MonoBehaviour
 	private float lastStagnantDistance = 100f;
 	private Vector3 lastStagnantVector;
 
+	private string ParentObjectName;
+
+	private float origBaseSpeed;
+	private float origRunSpeed;
 
 	// Use this for initialization
 	public virtual void Start () 
 	{
+		GameObject gobj = gameObject;
+		ParentObjectName = gobj.name;
+		try
+		{
+			while( gobj.transform.parent.gameObject != null )
+			{
+				ParentObjectName = gobj.name;
+				gobj = gobj.transform.parent.gameObject;
+			}
+		}
+		catch{}
+
+
+
 		// always start NOT engaged in combat.
 		EngagedInCombat = false;
 
@@ -108,15 +131,12 @@ public class commonAI : MonoBehaviour
 		// speeds within their base range.  Don't change every time they are
 		// moving between objects.  Why sometimes slow, then fast.  The speed
 		// is the speed for the duration of the human's life (same with running)
-		baseSpeed = Random.Range(baseSpeed * .6f, baseSpeed); 	// sample, 60% to 100% speed
-		runSpeed = Random.Range(runSpeed * .85f, runSpeed);	// sample, 85% to 100% run speed 
-
-		if( baseSpeed < .5f)
-			baseSpeed = .5f;
-
-		if( runSpeed < 1.75f )
-			runSpeed = 1.75f;
-
+		if( !isFastZombie)
+		{
+			origBaseSpeed = baseSpeed;
+			origRunSpeed = runSpeed;
+			AdjustSpeeds();
+		}
 
 		// animation modes are independent per specific clip.
 		// walk is ALWAYS a looping
@@ -126,6 +146,20 @@ public class commonAI : MonoBehaviour
 		// Initiate first target and set destination to it
 		moveToNewTarget();
 	}
+	
+	private void AdjustSpeeds()
+	{
+		baseSpeed = Random.Range(origBaseSpeed * baseRandomPct / 100.0f, origBaseSpeed); 	// sample, 60% to 100% speed
+		runSpeed = Random.Range(origRunSpeed * runRandomPct / 100.0f, origRunSpeed);	// sample, 85% to 100% run speed 
+		
+		if( baseSpeed < .5f)
+			baseSpeed = .5f;
+		
+		if( runSpeed < 1.75f )
+			runSpeed = 1.75f;
+	}
+
+
 
 	// in case something is getting attacked and we need to STOP them from
 	// walk/run animation movement towards a given direction.
@@ -148,17 +182,15 @@ public class commonAI : MonoBehaviour
 		if( isDestroying )
 			return false;
 
-		float remDist = Mathf.Abs( navAgent.remainingDistance );
-
-		if( navAgent.remainingDistance == Mathf.Infinity)
-		{
-			moveToNewTarget();
-			return false;
-		}
-
 		// if no taget, alway false, let the character move to another target
 		if( currentTarget == null )
 			return false;
+
+//		if( navAgent.remainingDistance == Mathf.Infinity)
+//		{
+//			moveToNewTarget();
+//			return false;
+//		}
 
 		//update attack timer
 		timeSinceNavCheck += Time.deltaTime;
@@ -170,8 +202,13 @@ public class commonAI : MonoBehaviour
 		// reset timer to allow for next attack check
 		timeSinceNavCheck = 0;
 
-		// are we within distance of target
-		return ( remDist < navStopDistance );
+		float remDist = Mathf.Abs( navAgent.remainingDistance );
+		
+		// For SOME reason, the navAgent.remainingDistance is false on x/z basis.. may be ok with x/y though.
+		// since our game has x/z, we need to compute the x and z differential, then compute basis from that
+		float deltaX = Mathf.Abs( navAgent.destination.x - gameObject.transform.position.x );
+		float deltaZ = Mathf.Abs( navAgent.destination.z - gameObject.transform.position.z );
+		return ( deltaX < navStopDistance  && deltaZ < navStopDistance );
 	}
 
 	protected void IsMovementStagnant()
@@ -190,8 +227,8 @@ public class commonAI : MonoBehaviour
 		// what was distance from when we started
 		// distance will always be a positive number
 		float distance = Vector3.Distance(lastStagnantVector, currentTarget.transform.position);
-//		Debug.Log ( "LastDistance: " + lastStagnantDistance + "   Distance Now: " + distance
-//		           + "   Net Distance: " + Mathf.Abs( lastStagnantDistance - distance ) );
+		Debug.Log ( "LastDistance: " + lastStagnantDistance + "   Distance Now: " + distance
+		           + "   Net Distance: " + Mathf.Abs( lastStagnantDistance - distance ) );
 
 		// reset time and position before next compare
 		// time, randomize so not all things are timing out for
@@ -207,7 +244,10 @@ public class commonAI : MonoBehaviour
 		if( distance < .05
 		   || netDist < .3f 
 		   || ( lastStagnantDistance == 0.0f ) && distance - netDist < .05)
+		{
+			currentTarget = null;
 			moveToNewTarget();
+		}
 
 		lastStagnantDistance = distance;
 	}
@@ -222,7 +262,9 @@ public class commonAI : MonoBehaviour
 
 		isDestroying = true;
 
-		navAgent.Stop();
+		if( navAgent != null )
+			navAgent.Stop();
+
 		if( animComponent != null )
 		{
 			// if this is NOT a human (ie: Guard, Zombie) then we CAN play
@@ -234,16 +276,24 @@ public class commonAI : MonoBehaviour
 			}
 
 			if (gameObject.tag == "Human")
-				Invoke ("requestZombieCreation", animation["walk"].length * 2 );
+			{
+				// Detect if the human was running or not... if running, then
+				// make a FAST zombie, not a slow one...
+				humanAI hAI = gameObject.GetComponent<humanAI>();
+				if( hAI.isAfraid )
+					Invoke ("requestZombieCreationFast", animation["walk"].length * 2 );
+				else
+					Invoke ("requestZombieCreation", animation["walk"].length * 2 );
+			
+			}
 
 			if( animComponent["die"] != null )
 				Destroy(gameObject,animation["die"].length * 2 );
+
+			// original human has no die animation, kill object right-away
+			if( animComponent["die"] == null )
+				Destroy (gameObject);
 		}
-
-		// original human has no die animation, kill object right-away
-		if( animComponent["die"] == null )
-			Destroy (gameObject);
-
 	}
 	
 	protected void requestZombieCreation() 
@@ -251,6 +301,14 @@ public class commonAI : MonoBehaviour
 		GameObject go = GameObject.FindWithTag ("GameController");
 		gameControl gc = go.GetComponent<gameControl> ();
 		gc.createZombie(gameObject.transform.position, gameObject.transform.rotation);
+	}
+
+	protected void requestZombieCreationFast() 
+	{
+		GameObject go = GameObject.FindWithTag ("GameController");
+		gameControl gc = go.GetComponent<gameControl> ();
+		zombieAI zAI = gc.createZombie(gameObject.transform.position, gameObject.transform.rotation);
+		zAI.MakeFastZombie();
 	}
 
 	protected IEnumerator PauseGame(float duration)
@@ -285,12 +343,28 @@ public class commonAI : MonoBehaviour
 	
 	public void moveToSpecificGameObj( GameObject NewTarget )
 	{
-		if( isDestroying || NewTarget == null )
+		if( isDestroying )
 			return;
+
+		Vector3 targetVector ;
+		if( NewTarget != null )
+			targetVector = NewTarget.transform.position;
+		else
+		{
+			currentTarget = null;
+			// if null, force SOMETHING random +/- the current
+			// x and z coordinates of character
+			float x = Random.Range(gameObject.transform.position.x - 5.0f,
+			                       gameObject.transform.position.x + 5.0f );
+			float z = Random.Range(gameObject.transform.position.z - 5.0f,
+			                       gameObject.transform.position.z + 5.0f );
+			targetVector = new Vector3(x, gameObject.transform.position.y, z);
+		}
+		
 
 		// preserve where we are with the new position
 		timeSinceStagnant = 0.0f;
-		lastStagnantVector = NewTarget.transform.position;
+		lastStagnantVector = targetVector;
 		lastStagnantDistance = 100f;
 
 		// always start animation walking to target...
@@ -306,7 +380,7 @@ public class commonAI : MonoBehaviour
 				// base speed for duration of the object instance.
 				navAgent.speed = baseSpeed;
 			}
-			navAgent.SetDestination(NewTarget.transform.position);
+			navAgent.SetDestination(targetVector);
 		}
 	}
 

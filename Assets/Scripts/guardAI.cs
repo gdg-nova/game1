@@ -50,6 +50,8 @@ public class guardAI : commonAI
 		defaultNavTargets.Add(eNavTargets.Zombie);
 		defaultNavTargets.Add(eNavTargets.SafeZone);
 		defaultNavTargets.Add(eNavTargets.Finish);
+		// if all else fails, find SOME place in the playable area of the board
+		defaultNavTargets.Add(eNavTargets.Playable);
 
 		// special animation flags uses in commonAI when attacked and dying
 		// so as to not duplicate code at this or zombie levels.
