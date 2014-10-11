@@ -147,7 +147,8 @@ public class zombieAI : commonAI
 		CastFear.CheckScare();
 		
 		// check if target was reached, if so, get new target
-		reachedTarget();
+		if( reachedTarget())
+			moveToNewTarget();
 
 		// in addition, check for being stagnant (clarification in commonAI.cs)
 		IsMovementStagnant();

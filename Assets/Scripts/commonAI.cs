@@ -131,12 +131,9 @@ public class commonAI : MonoBehaviour
 		// speeds within their base range.  Don't change every time they are
 		// moving between objects.  Why sometimes slow, then fast.  The speed
 		// is the speed for the duration of the human's life (same with running)
-		if( !isFastZombie)
-		{
-			origBaseSpeed = baseSpeed;
-			origRunSpeed = runSpeed;
-			AdjustSpeeds();
-		}
+		origBaseSpeed = baseSpeed;
+		origRunSpeed = runSpeed;
+		AdjustSpeeds();
 
 		// animation modes are independent per specific clip.
 		// walk is ALWAYS a looping
