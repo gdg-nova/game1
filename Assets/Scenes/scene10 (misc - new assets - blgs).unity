@@ -492,6 +492,7 @@ Animation:
   - {fileID: 7400000, guid: 001a715514d25254d9b40074ebbde0ce, type: 3}
   - {fileID: 7400000, guid: 9fed2f9dd2b98d24ca06ed78ccc11aca, type: 3}
   - {fileID: 7400004, guid: 001a715514d25254d9b40074ebbde0ce, type: 3}
+  - {fileID: 7400002, guid: 69b16e49a643f24488b3e464d46cef79, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -505,7 +506,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 27147576}
   m_Enabled: 1
   m_Radius: .5
-  m_Speed: 3.5
+  m_Speed: 2.25
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -529,15 +530,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87995146c8c92a54cbc2f050711e3ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVariation: .200000003
-  baseSpeed: 3
-  runSpeed: 8.5
+  baseSpeed: 4.5
+  baseRandomPct: 30
+  runSpeed: 10
+  runRandomPct: 75
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
   moveAfterCombat: 1
-  fearMaterial: {fileID: 0}
-  stayInSafe: 0
   AfraidRadius: 3
 --- !u!95 &27147583
 Animator:
@@ -1978,7 +1978,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: c56f6d772794844f89b144475c879c4b, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: c56f6d772794844f89b144475c879c4b, type: 2}
       propertyPath: m_IsActive
@@ -2409,7 +2409,7 @@ Halo:
   m_Enabled: 1
   m_Color:
     serializedVersion: 2
-    rgba: 4279816727
+    rgba: 4278190320
   m_Size: 1.5
 --- !u!195 &171582554
 NavMeshAgent:
@@ -2444,9 +2444,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795f72ef6af1c4442b57c6a2329a8fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVariation: .200000003
-  baseSpeed: 3
-  runSpeed: 8
+  baseSpeed: 4
+  baseRandomPct: 65
+  runSpeed: 10
+  runRandomPct: 85
   health: 100
   navCheckInterval: 3
   navStopDistance: 5
@@ -5335,14 +5336,16 @@ MonoBehaviour:
   Human: {fileID: 100052, guid: c6783f49378f645fa81340aa301236b5, type: 2}
   Zombie: {fileID: 100052, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
   Werewolf: {fileID: 100000, guid: 0d4cc565122604ee884b29865f618621, type: 2}
-  humanCount: 10
+  humanCount: 20
   timeLimit: 120
   elapsedTime: 0
   currentZombieTarget: {fileID: 0}
   zombieTargetPrefab: {fileID: 100000, guid: 69a01d735064f4050b0c939ba3fbafb4, type: 2}
+  touchController: {fileID: 0}
   gameEnded: 0
   scoreGT: {fileID: 0}
   score: 0
+  ZombieRangePrefab: {fileID: 100000, guid: 52c5bd8c4fcfb2d4da718d96bcf331f5, type: 2}
 --- !u!114 &396108803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5360,13 +5363,6 @@ MonoBehaviour:
   speed: 65
   mainCamera: {fileID: 0}
   terrain: {fileID: 0}
-  minAngle: 0
-  lookAtPoint: {x: 0, y: 0, z: 0}
-  centerOfCameraArc: {x: 0, y: 0, z: 0}
-  axisOfRotation: {x: 0, y: 0, z: 0}
-  currentAngle: 0
-  originalCameraPosition: {x: 0, y: 0, z: 0}
-  originalUpVector: {x: 0, y: 0, z: 0}
 --- !u!114 &396108804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5381,11 +5377,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCameraController: {fileID: 0}
   enablePinchToZoom: 1
-  lastTouchCount: 0
-  touch0StartPosition: {x: 0, y: 0}
-  touch1StartPosition: {x: 0, y: 0}
-  originalPinchDistance: 0
-  <hasDonePinchToZoom>k__BackingField: 0
 --- !u!4 &396108805
 Transform:
   m_ObjectHideFlags: 0
@@ -5397,7 +5388,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 21
 --- !u!1 &396202414
 GameObject:
   m_ObjectHideFlags: 0
@@ -5644,7 +5635,7 @@ Transform:
   m_Children:
   - {fileID: 1291158911}
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 23
 --- !u!1 &413236211
 GameObject:
   m_ObjectHideFlags: 0
@@ -6427,7 +6418,7 @@ Halo:
   m_Enabled: 1
   m_Color:
     serializedVersion: 2
-    rgba: 4279816727
+    rgba: 4278190320
   m_Size: 1.5
 --- !u!195 &482873398
 NavMeshAgent:
@@ -6462,9 +6453,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795f72ef6af1c4442b57c6a2329a8fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVariation: .200000003
-  baseSpeed: 3
-  runSpeed: 8
+  baseSpeed: 4
+  baseRandomPct: 65
+  runSpeed: 10
+  runRandomPct: 85
   health: 100
   navCheckInterval: 3
   navStopDistance: 5
@@ -8829,7 +8821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &666422034
 Transform:
   m_ObjectHideFlags: 0
@@ -8971,7 +8963,7 @@ Halo:
   m_Enabled: 1
   m_Color:
     serializedVersion: 2
-    rgba: 4279816727
+    rgba: 4278190320
   m_Size: 1.5
 --- !u!195 &671260418
 NavMeshAgent:
@@ -9006,9 +8998,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795f72ef6af1c4442b57c6a2329a8fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVariation: .200000003
-  baseSpeed: 3
-  runSpeed: 8
+  baseSpeed: 4
+  baseRandomPct: 65
+  runSpeed: 10
+  runRandomPct: 85
   health: 100
   navCheckInterval: 3
   navStopDistance: 5
@@ -11686,7 +11679,7 @@ Halo:
   m_Enabled: 1
   m_Color:
     serializedVersion: 2
-    rgba: 4279816727
+    rgba: 4278190320
   m_Size: 1.5
 --- !u!195 &787343563
 NavMeshAgent:
@@ -11721,9 +11714,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795f72ef6af1c4442b57c6a2329a8fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVariation: .200000003
-  baseSpeed: 3
-  runSpeed: 8
+  baseSpeed: 4
+  baseRandomPct: 65
+  runSpeed: 10
+  runRandomPct: 85
   health: 100
   navCheckInterval: 3
   navStopDistance: 5
@@ -12501,9 +12495,6 @@ GameObject:
   - 82: {fileID: 834501399}
   - 82: {fileID: 834501402}
   - 82: {fileID: 834501401}
-  - 114: {fileID: 834501400}
-  - 114: {fileID: 834501398}
-  - 114: {fileID: 834501397}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -12580,219 +12571,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 64
---- !u!114 &834501397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: e8f5752a1fbee495db086bb3b6e11b09,
-    type: 2}
-  m_PrefabInternal: {fileID: 12207831}
-  m_GameObject: {fileID: 834501391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31c585b616e7fc9419d719eca3d211d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zombieUIStyle:
-    m_Name: 
-    m_Normal:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Hover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Active:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Focused:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnNormal:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnHover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnActive:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnFocused:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Border:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Margin:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Padding:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Overflow:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Font: {fileID: 0}
-    m_FontSize: 0
-    m_FontStyle: 0
-    m_Alignment: 0
-    m_WordWrap: 0
-    m_RichText: 1
-    m_TextClipping: 0
-    m_ImagePosition: 0
-    m_ContentOffset: {x: 0, y: 0}
-    m_FixedWidth: 0
-    m_FixedHeight: 0
-    m_StretchWidth: 1
-    m_StretchHeight: 0
-  humanUIStyle:
-    m_Name: 
-    m_Normal:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Hover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Active:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Focused:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnNormal:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnHover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnActive:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnFocused:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Border:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Margin:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Padding:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Overflow:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Font: {fileID: 0}
-    m_FontSize: 0
-    m_FontStyle: 0
-    m_Alignment: 0
-    m_WordWrap: 0
-    m_RichText: 1
-    m_TextClipping: 0
-    m_ImagePosition: 0
-    m_ContentOffset: {x: 0, y: 0}
-    m_FixedWidth: 0
-    m_FixedHeight: 0
-    m_StretchWidth: 1
-    m_StretchHeight: 0
-  barUIBackStyle:
-    m_Name: 
-    m_Normal:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Hover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Active:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Focused:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnNormal:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnHover:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnActive:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnFocused:
-      m_Background: {fileID: 0}
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Border:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Margin:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Padding:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Overflow:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Font: {fileID: 0}
-    m_FontSize: 0
-    m_FontStyle: 0
-    m_Alignment: 0
-    m_WordWrap: 0
-    m_RichText: 1
-    m_TextClipping: 0
-    m_ImagePosition: 0
-    m_ContentOffset: {x: 0, y: 0}
-    m_FixedWidth: 0
-    m_FixedHeight: 0
-    m_StretchWidth: 1
-    m_StretchHeight: 0
-  gameControlInstance: {fileID: 0}
---- !u!114 &834501398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400002, guid: e8f5752a1fbee495db086bb3b6e11b09,
-    type: 2}
-  m_PrefabInternal: {fileID: 12207831}
-  m_GameObject: {fileID: 834501391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7829469577d9d4a299d927d28de894a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Human: {fileID: 100052, guid: c6783f49378f645fa81340aa301236b5, type: 2}
-  Zombie: {fileID: 100052, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
-  Werewolf: {fileID: 100000, guid: 0d4cc565122604ee884b29865f618621, type: 2}
-  humanCount: 10
-  timeLimit: 120
-  elapsedTime: 0
-  currentZombieTarget: {fileID: 0}
-  zombieTargetPrefab: {fileID: 100000, guid: 69a01d735064f4050b0c939ba3fbafb4, type: 2}
-  gameEnded: 0
-  scoreGT: {fileID: 0}
-  score: 0
 --- !u!82 &834501399
 AudioSource:
   m_ObjectHideFlags: 0
@@ -12852,18 +12630,6 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!114 &834501400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400004, guid: e8f5752a1fbee495db086bb3b6e11b09,
-    type: 2}
-  m_PrefabInternal: {fileID: 12207831}
-  m_GameObject: {fileID: 834501391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 336873d05624e0e48bab0c607e1cdd98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &834501401
 AudioSource:
   m_ObjectHideFlags: 0
@@ -16664,7 +16430,7 @@ Transform:
   m_LocalScale: {x: .699999988, y: .699999988, z: .699999988}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
 --- !u!1 &1063875507
 GameObject:
   m_ObjectHideFlags: 0
@@ -18805,7 +18571,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 25
 --- !u!1 &1176375513
 GameObject:
   m_ObjectHideFlags: 0
@@ -19121,6 +18887,7 @@ Animation:
   - {fileID: 7400000, guid: 001a715514d25254d9b40074ebbde0ce, type: 3}
   - {fileID: 7400000, guid: 9fed2f9dd2b98d24ca06ed78ccc11aca, type: 3}
   - {fileID: 7400004, guid: 001a715514d25254d9b40074ebbde0ce, type: 3}
+  - {fileID: 7400002, guid: 69b16e49a643f24488b3e464d46cef79, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -19134,7 +18901,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1183168170}
   m_Enabled: 1
   m_Radius: .5
-  m_Speed: 3.5
+  m_Speed: 2.25
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -19158,15 +18925,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87995146c8c92a54cbc2f050711e3ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVariation: .200000003
-  baseSpeed: 3
-  runSpeed: 8.5
+  baseSpeed: 4.5
+  baseRandomPct: 30
+  runSpeed: 10
+  runRandomPct: 75
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
   moveAfterCombat: 1
-  fearMaterial: {fileID: 0}
-  stayInSafe: 0
   AfraidRadius: 3
 --- !u!95 &1183168177
 Animator:
@@ -20122,7 +19888,7 @@ Halo:
   m_Enabled: 1
   m_Color:
     serializedVersion: 2
-    rgba: 4278190320
+    rgba: 4279816727
   m_Size: 1.5
 --- !u!137 &1255707866
 SkinnedMeshRenderer:
@@ -23157,15 +22923,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca2da6211000034a952ac78a97acc00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVariation: .200000003
-  baseSpeed: 2
-  runSpeed: 4
+  baseSpeed: 3
+  baseRandomPct: 40
+  runSpeed: 7
+  runRandomPct: 85
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
   moveAfterCombat: 1
   lifeSpan: 1
-  healthDrainRate: 20
+  fastZombieSpeed: 7
 --- !u!195 &1512911631
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -23251,7 +23018,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   attackInterval: 2
-  attackRadius: 3
+  attackRadius: 2
 --- !u!1 &1518817119
 GameObject:
   m_ObjectHideFlags: 0
@@ -24609,7 +24376,7 @@ Halo:
   m_Enabled: 1
   m_Color:
     serializedVersion: 2
-    rgba: 4279816727
+    rgba: 4278190320
   m_Size: 1.5
 --- !u!195 &1544423374
 NavMeshAgent:
@@ -24644,9 +24411,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795f72ef6af1c4442b57c6a2329a8fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVariation: .200000003
-  baseSpeed: 3
-  runSpeed: 8
+  baseSpeed: 4
+  baseRandomPct: 65
+  runSpeed: 10
+  runRandomPct: 85
   health: 100
   navCheckInterval: 3
   navStopDistance: 5
@@ -26261,7 +26029,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1581483452
 Transform:
   m_ObjectHideFlags: 0
@@ -26420,6 +26188,7 @@ Animation:
   - {fileID: 7400000, guid: 001a715514d25254d9b40074ebbde0ce, type: 3}
   - {fileID: 7400000, guid: 9fed2f9dd2b98d24ca06ed78ccc11aca, type: 3}
   - {fileID: 7400004, guid: 001a715514d25254d9b40074ebbde0ce, type: 3}
+  - {fileID: 7400002, guid: 69b16e49a643f24488b3e464d46cef79, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -26433,7 +26202,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1591524286}
   m_Enabled: 1
   m_Radius: .5
-  m_Speed: 3.5
+  m_Speed: 2.25
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -26457,15 +26226,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87995146c8c92a54cbc2f050711e3ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVariation: .200000003
-  baseSpeed: 3
-  runSpeed: 8.5
+  baseSpeed: 4.5
+  baseRandomPct: 30
+  runSpeed: 10
+  runRandomPct: 75
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
   moveAfterCombat: 1
-  fearMaterial: {fileID: 0}
-  stayInSafe: 0
   AfraidRadius: 3
 --- !u!95 &1591524293
 Animator:
@@ -29762,7 +29530,7 @@ Transform:
   - {fileID: 591543967}
   - {fileID: 1027894946}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 24
 --- !u!1 &1883736015
 GameObject:
   m_ObjectHideFlags: 0
@@ -30299,7 +30067,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: c56f6d772794844f89b144475c879c4b, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c56f6d772794844f89b144475c879c4b, type: 2}
@@ -31162,7 +30930,7 @@ Halo:
   m_Enabled: 1
   m_Color:
     serializedVersion: 2
-    rgba: 4279816727
+    rgba: 4278190320
   m_Size: 1.5
 --- !u!195 &1999499275
 NavMeshAgent:
@@ -31197,9 +30965,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795f72ef6af1c4442b57c6a2329a8fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedVariation: .200000003
-  baseSpeed: 3
-  runSpeed: 8
+  baseSpeed: 4
+  baseRandomPct: 65
+  runSpeed: 10
+  runRandomPct: 85
   health: 100
   navCheckInterval: 3
   navStopDistance: 5
