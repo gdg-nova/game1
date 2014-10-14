@@ -22,9 +22,6 @@ public class graveYardAI : MonoBehaviour
 
 	void Update() 
 	{
-		timeSinceLastSpawn += Time.deltaTime;
-
-
 		if (ZombieSpawnMode == spawnMode.Automatic) CreateZombie();
 	}
 
@@ -38,7 +35,7 @@ public class graveYardAI : MonoBehaviour
 	void CreateZombie() 
 	{
 		Debug.Log ("Createzombie");
-
+		timeSinceLastSpawn += Time.deltaTime;
 
 		// if not enough time passed, don't generate a new one
 		if (timeSinceLastSpawn < zombieSpawnInterval )
@@ -50,7 +47,7 @@ public class graveYardAI : MonoBehaviour
 		float x = Random.Range(gameObject.collider.bounds.min.x, gameObject.collider.bounds.max.x);
 		float z = Random.Range(gameObject.collider.bounds.min.z, gameObject.collider.bounds.max.z);
 
-		gameController.createZombie(new Vector3(x, transform.position.y, z));	
+		gameController.requestBuyNewZombie(new Vector3(x, transform.position.y, z));	
 			
 		timeSinceLastSpawn = 0;
 	}

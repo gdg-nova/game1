@@ -1,13 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class gameControl : MonoBehaviour 
 {
 	public GameObject Human;
 	public GameObject Zombie;
 	public GameObject Werewolf;
-	
+
+
+	public float zombieCost = 1f;
+
 	public int humanCount;
 	public float timeLimit = 40;
 	public float elapsedTime = 0; 
@@ -15,6 +19,10 @@ public class gameControl : MonoBehaviour
 	private Quaternion q = Quaternion.Euler (0,0,0);
 	public GameObject currentZombieTarget;
 	public GameObject zombieTargetPrefab;
+
+	public float manaPool = 3f;
+	public GameObject manaDisplayUI;
+
 
 	public touchController touchController = null;
 
@@ -40,6 +48,7 @@ public class gameControl : MonoBehaviour
 
 	void Update() 
 	{
+		updateManaPoolDisplay ();
 		//check for mouse input
 		CheckForLeftClick();
 
@@ -62,12 +71,14 @@ public class gameControl : MonoBehaviour
 	//Call this function from other scripts that want to add to the score
 	public void scorePoints()
 	{
-		//Convert text of score into an int
-		score = int.Parse(scoreGT.text);
-		//Add the value for converting a human to a zombie
-		score += 100;
-		//Convert back to string
-		scoreGT.text = score.ToString();
+		if (scoreGT != null) {
+			//Convert text of score into an int
+			score = int.Parse (scoreGT.text);
+			//Add the value for converting a human to a zombie
+			score += 100;
+			//Convert back to string
+			scoreGT.text = score.ToString ();
+		}
 	}
 
 	void createZombieTargetFlag (Transform zRange)
@@ -215,9 +226,24 @@ public class gameControl : MonoBehaviour
 		return spawns [Random.Range (0, spawns.Length)];
 	}
 
+	public void requestBuyNewZombie(Vector3 position) {
+
+		if (zombieCost <= manaPool) {
+			createZombie(position);
+			manaPool -= zombieCost;
+		}
+	}
+
+	private void updateManaPoolDisplay() {
+		manaDisplayUI.GetComponent<Text>().text = manaPool.ToString();
+
+		}
+
 	//Create zombie at position
 	public void createZombie( Vector3 position) 
-	{ Instantiate (Zombie, position, q); }
+	{
+				Instantiate (Zombie, position, q); 
+	}
 
 
 	//Create zombie at position & rotation

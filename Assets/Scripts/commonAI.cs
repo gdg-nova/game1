@@ -14,6 +14,7 @@ public class commonAI : MonoBehaviour
 	public float runSpeed = 2.5f;
 	public float runRandomPct = 85.0f;
 
+	public float manaCost = 1f;
 
 	// different objects have different health levels.
 	// a human has 1 as default... so once attacked, such as from
@@ -333,6 +334,8 @@ public class commonAI : MonoBehaviour
 	
 	protected void moveToNewTarget()
 	{
+		if (gameObject.tag == "Zombie")
+						return;
 		// based on the list of navTargets an entity has, 
 		currentTarget = gs.getRandomNavTarget(defaultNavTargets);
 		moveToSpecificGameObj( currentTarget );

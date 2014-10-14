@@ -26,7 +26,7 @@ public class safeZoneAI : MonoBehaviour
 	
 	void Start() 
 	{ 
-		defaultMaterial = this.renderer.material; 
+	//	defaultMaterial = this.renderer.material; 
 	}
 	
 	void Update() 

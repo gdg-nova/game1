@@ -106,9 +106,12 @@ public class attackAI : MonoBehaviour
 		{
 			hitObj = hit.collider.gameObject;
 
+
 			// did we find an object we are allowed to attack
 			if( canAttack( hitObj.tag ))
 			{
+				//Debug.Log ("valid attack hit: " + hitObj);
+
 				// mark this as being engaged in combat attack mode
 				thisAttacker.EngagedInCombat = true;
 
@@ -126,6 +129,9 @@ public class attackAI : MonoBehaviour
 					OnWasAttacked(hit);
 
 				commonAI o = hitObj.GetComponent<commonAI>();
+
+				Debug.Log("common ai on hit: " + o);
+
 				if( o == null )
 				{
 					object o2 = hitObj.GetComponent<safeZoneAI>();

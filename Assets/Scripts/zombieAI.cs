@@ -11,6 +11,9 @@ public class zombieAI : commonAI
 
 	public float fastZombieSpeed = 7.0f;
 
+	public float zombieManaCost = 1f;
+	//public float manaGenerated
+
 	gameControl gameController = null;
 	
 	// Zombies can attack...
@@ -23,6 +26,8 @@ public class zombieAI : commonAI
 	{
 		GameObject go = GameObject.FindWithTag("GameController");
 		gameController = go.GetComponent<gameControl>();
+
+		manaCost = zombieManaCost;
 
 		lifeSpan = 5000f;
 		// do baseline start actions first...
@@ -120,6 +125,7 @@ public class zombieAI : commonAI
 		if( navAgent != null )
 			navAgent.SetDestination(newTarget.transform.position); 
 	}
+
 
 	public void completeInit() 
 	{
