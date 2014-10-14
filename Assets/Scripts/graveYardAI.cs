@@ -4,6 +4,10 @@ using System.Collections.Generic;
 
 public class graveYardAI : MonoBehaviour 
 {
+	public enum spawnMode  {Automatic, Onclick};
+
+	public spawnMode ZombieSpawnMode = spawnMode.Onclick;
+
 	// wait 1 second before allowing automatic zombie spawning...
 	public float zombieSpawnInterval = 1.0f;
 	private float timeSinceLastSpawn;
@@ -18,13 +22,23 @@ public class graveYardAI : MonoBehaviour
 
 	void Update() 
 	{
-		CreateZombie();
+		timeSinceLastSpawn += Time.deltaTime;
+
+
+		if (ZombieSpawnMode == spawnMode.Automatic) CreateZombie();
+	}
+
+	void Click() {
+		if (ZombieSpawnMode == spawnMode.Onclick) {
+			CreateZombie();
+				}
 	}
 
 	// this is public so can be invoked by click on the graveyard
 	void CreateZombie() 
 	{
-		timeSinceLastSpawn += Time.deltaTime;
+		Debug.Log ("Createzombie");
+
 
 		// if not enough time passed, don't generate a new one
 		if (timeSinceLastSpawn < zombieSpawnInterval )

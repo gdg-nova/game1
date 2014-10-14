@@ -155,7 +155,7 @@ public class gameControl : MonoBehaviour
 
 				// if graveyard, create new zombie directly there.
 				else if (g.tag == "Graveyard")
-					g.SendMessage ("CreateZombie");
+					g.SendMessage ("Click");
 				else
 				{
 					// we are trying to create a new target location for zombies.
