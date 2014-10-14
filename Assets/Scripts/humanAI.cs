@@ -73,10 +73,10 @@ public class humanAI : commonAI, ICanBeScared
 			// if the human is afraid and already running to a safe-zone
 			// destination, enter them into said safe zone since they are
 			// within the range of the stop distance vs remaining distance
-			// if (isAfraid && atSafeZone && currentTarget != null)
+			 if (isAfraid && atSafeZone && currentTarget != null)
 			// humans only have one target destination, 
 			// so at safe-zone, regardless of afraid or not, get into building
-			if (atSafeZone)
+			//if (atSafeZone)
 			{
 				// Tell the target to add a new human represented by THIS
 				// one just about to enter, then KILL this instance from

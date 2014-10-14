@@ -46,6 +46,8 @@ public class safeZoneAI : MonoBehaviour
 	
 	public void takeDamage( float damage) 
 	{
+		Debug.Log ("Safezone damage");
+
 		Health -= damage;
 		
 		if (Health <= 0 ) 
