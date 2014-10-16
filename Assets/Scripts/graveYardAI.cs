@@ -51,7 +51,13 @@ public class graveYardAI : MonoBehaviour
 		float x = Random.Range(gameObject.collider.bounds.min.x, gameObject.collider.bounds.max.x);
 		float z = Random.Range(gameObject.collider.bounds.min.z, gameObject.collider.bounds.max.z);
 
-		gameController.requestBuyNewZombie(new Vector3(x, transform.position.y, z));	
+		Quaternion lightningAngle = Quaternion.Euler (-90, 0, 0);
+
+		Vector3 spawnLocation = new Vector3 (x, transform.position.y, z);
+		if (gameController.requestBuyNewZombie (spawnLocation)) {
+			GameObject lightning = (GameObject) GameObject.Instantiate(summonZombieEffect, spawnLocation,lightningAngle);
+			Destroy(lightning, 2f);
+			}
 			
 		timeSinceLastSpawn = 0;
 	}

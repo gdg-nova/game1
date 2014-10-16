@@ -226,12 +226,15 @@ public class gameControl : MonoBehaviour
 		return spawns [Random.Range (0, spawns.Length)];
 	}
 
-	public void requestBuyNewZombie(Vector3 position) {
+	public bool requestBuyNewZombie(Vector3 position) {
 
 		if (zombieCost <= manaPool) {
 			createZombie(position);
 			manaPool -= zombieCost;
+			return true;
 		}
+
+		return false;
 	}
 
 	private void updateManaPoolDisplay() {

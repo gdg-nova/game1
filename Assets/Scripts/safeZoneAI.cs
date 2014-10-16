@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class safeZoneAI : MonoBehaviour 
 {
 	public float Health = 100f;
+
+	private float initialHealth;
+
 	public int Capacity  = 50;
 	public int humanCount = 0;
 	
@@ -33,6 +36,7 @@ public class safeZoneAI : MonoBehaviour
 	
 	void Start() 
 	{ 
+		initialHealth = Health;
 		HealthBarFullWidth = HealthBarUI.transform.localScale.x;
 
 	//	defaultMaterial = this.renderer.material; 
@@ -47,7 +51,7 @@ public class safeZoneAI : MonoBehaviour
 			//breakOpen();
 
 		HealthTextUI.GetComponent<Text> ().text = Health.ToString ();
-		HealthBarUI.transform.localScale = new Vector3 ((Health / 100) * HealthBarFullWidth, HealthBarUI.transform.localScale.y, HealthBarUI.transform.localScale.z);
+		HealthBarUI.transform.localScale = new Vector3 ((Health / initialHealth) * HealthBarFullWidth, HealthBarUI.transform.localScale.y, HealthBarUI.transform.localScale.z);
 
 	}
 	

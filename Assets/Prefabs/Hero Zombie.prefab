@@ -821,7 +821,9 @@ MonoBehaviour:
   moveAfterCombat: 1
   lifeSpan: 1
   fastZombieSpeed: 7
+  nearbyZombieRange: 3
   zombieManaCost: 1
+  updateSpeedInterval: .5
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -833,7 +835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 136d37ad842a22e4b88d049fd274b5f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 10
   attackInterval: .5
   attackRadius: 2
 --- !u!114 &11400004
