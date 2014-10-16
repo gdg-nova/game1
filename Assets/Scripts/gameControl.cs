@@ -161,11 +161,11 @@ public class gameControl : MonoBehaviour
 				g = r_hit.collider.gameObject;
 				
 				//Handle click based on clicked object tag:
-				if (g.tag == "Human") 
-					g.SendMessage("die");
+				//if (g.tag == "Human") 
+				//	g.SendMessage("die");
 
 				// if graveyard, create new zombie directly there.
-				else if (g.tag == "Graveyard")
+				if (g.tag == "Graveyard")
 					g.SendMessage ("Click");
 				else
 				{

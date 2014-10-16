@@ -58,8 +58,8 @@ public class commonAI : MonoBehaviour
 	// Each object will by default need SOME nav taget to move towards.
 	protected List<eNavTargets> defaultNavTargets;
 
-	public bool isDestroying
-	{ get; protected set; }
+	public bool isDestroying = false;
+	//{ get; protected set; }
 	
 	// by default, allow moving after combat...
 	// ie: move to next destination.  However, if it is a stationary
@@ -299,6 +299,7 @@ public class commonAI : MonoBehaviour
 		GameObject go = GameObject.FindWithTag ("GameController");
 		gameControl gc = go.GetComponent<gameControl> ();
 		gc.createZombie(gameObject.transform.position, gameObject.transform.rotation);
+		gc.manaPool += 1;
 	}
 
 	protected void requestZombieCreationFast() 
@@ -307,6 +308,7 @@ public class commonAI : MonoBehaviour
 		gameControl gc = go.GetComponent<gameControl> ();
 		zombieAI zAI = gc.createZombie(gameObject.transform.position, gameObject.transform.rotation);
 		zAI.MakeFastZombie();
+		gc.manaPool += 1;
 	}
 
 	protected IEnumerator PauseGame(float duration)

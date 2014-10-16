@@ -817,6 +817,7 @@ MonoBehaviour:
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
+  isDestroying: 0
   moveAfterCombat: 1
   lifeSpan: 1
   fastZombieSpeed: 7
@@ -832,8 +833,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 136d37ad842a22e4b88d049fd274b5f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
-  attackInterval: 2
+  damage: 1
+  attackInterval: .5
   attackRadius: 2
 --- !u!114 &11400004
 MonoBehaviour:
@@ -846,7 +847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d4ca1757558c241a50fabe397c23aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fearInterval: 2
+  fearInterval: 2000
   fearRadius: 9
 --- !u!122 &12200000
 Halo:

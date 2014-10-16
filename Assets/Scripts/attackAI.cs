@@ -110,6 +110,9 @@ public class attackAI : MonoBehaviour
 			// did we find an object we are allowed to attack
 			if( canAttack( hitObj.tag ))
 			{
+				commonAI o = hitObj.GetComponent<commonAI>();
+
+			//	if (!o.isDestroying) {
 				//Debug.Log ("valid attack hit: " + hitObj);
 
 				// mark this as being engaged in combat attack mode
@@ -128,7 +131,6 @@ public class attackAI : MonoBehaviour
 				if (OnWasAttacked != null)
 					OnWasAttacked(hit);
 
-				commonAI o = hitObj.GetComponent<commonAI>();
 
 				Debug.Log("common ai on hit: " + o);
 
@@ -168,6 +170,7 @@ public class attackAI : MonoBehaviour
 				// we can't attack more than one thing
 				anythingWasHit = true;
 				break;
+				//}
 			}
 
 			// if anything was hit, get out of the for-each of colliders.

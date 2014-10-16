@@ -6,6 +6,9 @@ public class humanAI : commonAI, ICanBeScared
 	// few more publics specific to humans...
 	public float AfraidRadius = 2.5f;
 
+	public bool stationary;
+
+
 	// Use this for initialization
 	public override void Start () 
 	{
@@ -32,7 +35,19 @@ public class humanAI : commonAI, ICanBeScared
 		hasDieAnimation = animComponent["die"] != null;
 
 		// get initial target for human...
-		moveToNewTarget();
+		if (stationary)
+		{
+			// if ever in combat, retain your post if marked as stationary.
+			moveAfterCombat = false;
+			
+			// default animation is to be idle...
+			animComponent.Play("idle");
+		}
+		else
+		{
+			// moving to new target will always initiate walking mode.
+			moveToNewTarget();
+		}
 	}
 
 	// Update is called once per frame
@@ -40,7 +55,7 @@ public class humanAI : commonAI, ICanBeScared
 	{
 		// if no target, get one now regardless of requiring 
 		// "SafeZone" vs "Finish"
-		if( currentTarget == null )
+		if( currentTarget == null && !stationary)
 			moveToNewTarget();
 
 		// if no target due to object being destroyed (such as safe-zone house), 
@@ -58,8 +73,16 @@ public class humanAI : commonAI, ICanBeScared
 			&& ! isAfraid 
 		    && ! isDestroying) 
 		{
+			if (stationary)
+			{
+				if( animComponent["walk"].enabled )
+					animComponent.Play ( "idle" );
+			}
+			else {
 			navAgent.speed = baseSpeed;
 			animComponent.Play ("walk");
+			}
+
 		}
 	
 		// if time passed the interval check, 
