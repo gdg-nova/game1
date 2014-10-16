@@ -14,6 +14,10 @@ public class graveYardAI : MonoBehaviour
 
 	gameControl gameController = null;
 
+	public GameObject summonZombieEffect;
+
+
+
 	void Start()
 	{
 		GameObject controller = GameObject.FindWithTag("GameController");

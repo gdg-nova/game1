@@ -134,7 +134,7 @@ public class commonAI : MonoBehaviour
 		// is the speed for the duration of the human's life (same with running)
 		origBaseSpeed = baseSpeed;
 		origRunSpeed = runSpeed;
-		AdjustSpeeds();
+		//AdjustSpeeds();
 
 		// animation modes are independent per specific clip.
 		// walk is ALWAYS a looping
@@ -380,7 +380,7 @@ public class commonAI : MonoBehaviour
 				//Go to new target
 				// see notation during start to compute one-time randomly adjusted
 				// base speed for duration of the object instance.
-				navAgent.speed = baseSpeed;
+				//navAgent.speed = baseSpeed;
 			}
 			navAgent.SetDestination(targetVector);
 		}

@@ -11,11 +11,16 @@ public class zombieAI : commonAI
 
 	public float fastZombieSpeed = 7.0f;
 
+	public float nearbyZombieRange = 3f;
 	public float zombieManaCost = 1f;
 	//public float manaGenerated
 
 	gameControl gameController = null;
-	
+
+	public float updateSpeedInterval = .5f;
+	private float timeSinceSpeedUpdate;
+
+
 	// Zombies can attack...
 	// these scripts will also be added to the zombie at interface
 	// time and we can adjust attack and cast fear properties there.
@@ -28,6 +33,10 @@ public class zombieAI : commonAI
 		gameController = go.GetComponent<gameControl>();
 
 		manaCost = zombieManaCost;
+
+		//StartCoroutine ("updateSpeedbyNearbyZombies");
+
+
 
 		lifeSpan = 5000f;
 		// do baseline start actions first...
@@ -100,7 +109,11 @@ public class zombieAI : commonAI
 		animComponent.animation ["die"].time = animComponent.animation ["die"].length;
 		animComponent.Play ("die");
 
+
+
 		Invoke ("completeInit",animTime);
+
+
 	}
 
 	// when a zombie kills a running human, it comes back as a FAST zombie
@@ -110,7 +123,7 @@ public class zombieAI : commonAI
 		isFastZombie = true;
 		Start ();
 		// set speed AFTER the default start is called.
-		baseSpeed = fastZombieSpeed;
+		//baseSpeed = fastZombieSpeed;
 		runSpeed = fastZombieSpeed;
 	}
 
@@ -134,6 +147,8 @@ public class zombieAI : commonAI
 		animComponent.Play ("walk");
 		animComponent.wrapMode = WrapMode.Loop;
 
+
+
 		// pick a new target from either safe vs finish possibilities
 		moveToNewTarget();
 	}
@@ -145,7 +160,13 @@ public class zombieAI : commonAI
 		// zombies have a self-destruct time interval...
 		if (timeToDie())
 			return;
-		
+
+		timeSinceSpeedUpdate += Time.deltaTime;
+		if (timeSinceSpeedUpdate >= updateSpeedInterval) {
+			updateSpeedbyNearbyZombies();
+				}
+
+
 		//check if time to attack again
 		Attack.CheckAttack();
 		
@@ -159,7 +180,39 @@ public class zombieAI : commonAI
 		// in addition, check for being stagnant (clarification in commonAI.cs)
 		IsMovementStagnant();
 	}
-	
+
+	void updateSpeedbyNearbyZombies() {
+
+
+		float newSpeed = baseSpeed + (getNearbyZombieCount() * baseSpeed);
+
+		Debug.Log ("basespeed:  " + baseSpeed);
+
+		Debug.Log ("updateSpeed: " + newSpeed);
+
+		navAgent.speed = newSpeed;
+
+		timeSinceSpeedUpdate = 0;
+
+
+	}
+
+	private float getNearbyZombieCount() {
+		float nearbyZombieCount = 0f;
+
+		Collider[] colliders = Physics.OverlapSphere(transform.position, nearbyZombieRange);
+		//bool anythingWasHit = false;
+
+		//GameObject hitObj;
+		foreach (Collider hit in colliders) {
+			if (hit.gameObject.tag == "Zombie") {
+				nearbyZombieCount += 1;
+			}
+		}
+
+		return nearbyZombieCount;
+	}
+
 	// see if the zombie is time to die and self-destruct
 	private bool timeToDie()
 	{
