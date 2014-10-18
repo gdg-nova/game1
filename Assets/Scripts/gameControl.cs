@@ -31,6 +31,7 @@ public class gameControl : MonoBehaviour
 	public GUIText scoreGT;
 
 	public int score;
+
 	void Start() 
 	{
 		loadHumans();
@@ -48,18 +49,26 @@ public class gameControl : MonoBehaviour
 
 	void Update() 
 	{
-		updateManaPoolDisplay ();
+		if (elapsedTime >= timeLimit)
+        {
+			gameOver();
+		}
+		
+        updateManaPoolDisplay ();
 		//check for mouse input
 		CheckForLeftClick();
 
 		CheckForRightMouse();
 
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			Application.Quit();
+		}
+		
 		elapsedTime += Time.deltaTime;
 		
-		if (elapsedTime >= timeLimit)
-			gameOver();			
-
 		checkForWin();
+
 	}
 
 	void gameOver() 
@@ -199,7 +208,7 @@ public class gameControl : MonoBehaviour
 				Destroy(r_hit.collider.gameObject);
 			}
 		}
-	}
+	}  
 
 	//Create humans per HumanCount
 	void loadHumans() 
