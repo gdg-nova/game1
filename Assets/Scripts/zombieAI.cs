@@ -144,8 +144,11 @@ public class zombieAI : commonAI
 	{
 		animComponent.animation ["die"].speed = 1f;
 		animComponent.animation ["die"].time = 0f;
-		animComponent.Play ("walk");
-		animComponent.wrapMode = WrapMode.Loop;
+
+		animComponent.Play ();
+
+		//animComponent.Play ("walk");
+		//animComponent.wrapMode = WrapMode.Loop;
 
 
 
@@ -179,6 +182,9 @@ public class zombieAI : commonAI
 
 		// in addition, check for being stagnant (clarification in commonAI.cs)
 		IsMovementStagnant();
+
+		checkAnimation ();
+
 	}
 
 	void updateSpeedbyNearbyZombies() {

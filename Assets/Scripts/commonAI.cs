@@ -45,6 +45,7 @@ public class commonAI : MonoBehaviour
 	// Guards (walk, idle, idle_lookaround, hurt, die, R2L_swipe)
 	// Zombies (walk, idle_lookaround, hurt, die, L2R_swipe)
 	protected Animation animComponent;
+	//protected Animation currentActivityAnim;
 
 	// special flags for hurt and die animations
 	protected bool hasHurtAnimation = false;
@@ -65,6 +66,8 @@ public class commonAI : MonoBehaviour
 	// ie: move to next destination.  However, if it is a stationary
 	// guard, don't move... retain your position.  Default ok to move
 	public bool moveAfterCombat = true;
+
+	private ArrayList loopedAnimations = new ArrayList();
 
 	private bool engagedInCombat;
 	public bool EngagedInCombat
@@ -98,6 +101,18 @@ public class commonAI : MonoBehaviour
 	// Use this for initialization
 	public virtual void Start () 
 	{
+		loopedAnimations.Add ("idle");
+		loopedAnimations.Add ("walk");
+
+		loopedAnimations.Add ("sprint");
+
+		loopedAnimations.Add ("run");
+
+		loopedAnimations.Add ("idle_settle");
+		loopedAnimations.Add ("idle_lookaround");
+
+
+
 		GameObject gobj = gameObject;
 		ParentObjectName = gobj.name;
 		try
@@ -138,8 +153,19 @@ public class commonAI : MonoBehaviour
 
 		// animation modes are independent per specific clip.
 		// walk is ALWAYS a looping
-		AnimationClip ac = animComponent.GetClip ("walk");
-		ac.wrapMode = WrapMode.Loop;
+
+
+		foreach (string loopAnim in loopedAnimations) {
+			AnimationClip ac = animComponent.GetClip(loopAnim);
+
+			if (ac != null)
+			ac.wrapMode = WrapMode.Loop;
+
+		}
+
+		//AnimationClip ac = animComponent.GetClip ("walk");
+		//ac.wrapMode = WrapMode.Loop;
+		animComponent.Play ();
 
 		// Initiate first target and set destination to it
 		moveToNewTarget();
@@ -157,6 +183,68 @@ public class commonAI : MonoBehaviour
 			runSpeed = 1.75f;
 	}
 
+	protected void checkAnimation() {
+		//if (currentTarget == null) {
+
+		//Debug.Log (gameObject.tag + "  " +   animComponent.clip.ToString ());
+
+		string animStr = getAnimNameforCurrentState ();
+
+		ArrayList playingAnims = CurrentAnimationList ();
+
+		//string playingAnim = animComponent.clip.ToString ();
+
+		//Debug.Log ("playing anim: " + playingAnim);
+
+		if (!playingAnims.Contains (animStr)) {
+			bool changeAnimation = false;
+
+			foreach (string a in playingAnims) {
+				if (loopedAnimations.Contains(a)) {
+                  animComponent.Stop(a);
+					changeAnimation = true;
+				}
+				if (changeAnimation) animComponent.Play (animStr);
+
+			}
+
+		}
+
+		if (playingAnims.Count == 0 && !isDestroying) {
+			animComponent.Play (animStr);
+		}
+		//if (playingAnims.ToUpper().Contains(animStr.ToUpper)
+//		if (animStr != playingAnim && loopedAnimations.Contains (playingAnim)) {
+//			Debug.Log ("playing string: " + playingAnim + ", switching to anim: " + animStr);
+//
+//			animComponent.clip = animComponent.GetClip(animStr);
+//			animComponent.Play (animStr);
+//
+//
+//		}
+//
+
+
+		//animComponent.clip = animComponent.GetClip(animStr);
+		//Debug.Log ("set anim to " + getAnimNameforCurrentState ());
+		//Debug.Log ("set animation clip: " + animComponent.clip.ToString());
+
+		//	animComponent.Play();
+
+		//}
+	}
+
+	string getAnimNameforCurrentState() {
+		if (!navAgent.hasPath) {
+				return "idle";
+		} else {
+			if (navAgent.speed > 0 && navAgent.speed <= 6) return "walk";
+					else if (navAgent.speed > 6 && navAgent.speed <= 12) return "run";
+					else if (navAgent.speed > 12) return "sprint";
+		}
+
+		return "idle";
+	}
 
 
 	// in case something is getting attacked and we need to STOP them from
@@ -171,6 +259,11 @@ public class commonAI : MonoBehaviour
 		// should never be, but just in case from human-zombie conversion
 		if( navAgent != null )
 			navAgent.Stop();
+	}
+
+	public void Update() {
+		//checkAnimation ();
+
 	}
 	
 	// no "Update" for the base level... each instance will have 
@@ -333,7 +426,18 @@ public class commonAI : MonoBehaviour
 
 		return curStates;
 	}
-	
+
+	public ArrayList CurrentAnimationList() {
+		ArrayList results = new ArrayList ();
+
+		foreach( AnimationState aState in animComponent )
+		{
+			if( animComponent.IsPlaying( aState.name ))
+				results.Add(aState.name);
+		}
+		return results;
+	}
+
 	protected void moveToNewTarget()
 	{
 		if (gameObject.tag == "Zombie")
@@ -375,7 +479,7 @@ public class commonAI : MonoBehaviour
 		{
 			if( !isAfraid )
 			{
-				animComponent.Play("walk");
+				//animComponent.Play("walk");
 
 				//Go to new target
 				// see notation during start to compute one-time randomly adjusted

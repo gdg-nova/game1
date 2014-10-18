@@ -66,8 +66,8 @@ public class scaryMonsterAI : commonAI
 		moveToNewTarget();
 		
 		// Initiate the zombie to walking animation
-		animComponent.wrapMode = WrapMode.Loop;
-		animComponent.Play("walk");
+		//animComponent.wrapMode = WrapMode.Loop;
+		//animComponent.Play("walk");
 	}
 	
 	// What is difference between Update and FixedUpdate???

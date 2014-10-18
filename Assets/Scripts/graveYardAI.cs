@@ -26,6 +26,8 @@ public class graveYardAI : MonoBehaviour
 
 	void Update() 
 	{
+		timeSinceLastSpawn += Time.deltaTime;
+
 		if (ZombieSpawnMode == spawnMode.Automatic) CreateZombie();
 	}
 
@@ -39,7 +41,6 @@ public class graveYardAI : MonoBehaviour
 	void CreateZombie() 
 	{
 		Debug.Log ("Createzombie");
-		timeSinceLastSpawn += Time.deltaTime;
 
 		// if not enough time passed, don't generate a new one
 		if (timeSinceLastSpawn < zombieSpawnInterval )

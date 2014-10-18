@@ -41,13 +41,15 @@ public class humanAI : commonAI, ICanBeScared
 			moveAfterCombat = false;
 			
 			// default animation is to be idle...
-			animComponent.Play("idle");
+			//animComponent.Play("idle");
 		}
 		else
 		{
 			// moving to new target will always initiate walking mode.
 			moveToNewTarget();
 		}
+
+		animComponent.Play ();
 	}
 
 	// Update is called once per frame
@@ -75,12 +77,12 @@ public class humanAI : commonAI, ICanBeScared
 		{
 			if (stationary)
 			{
-				if( animComponent["walk"].enabled )
-					animComponent.Play ( "idle" );
+			//	if( animComponent["walk"].enabled )
+		//			animComponent.Play ( "idle" );
 			}
 			else {
 			navAgent.speed = baseSpeed;
-			animComponent.Play ("walk");
+		//	animComponent.Play ("walk");
 			}
 
 		}
@@ -120,6 +122,8 @@ public class humanAI : commonAI, ICanBeScared
 		else 
 			// in addition, check for being stagnant (clarification in commonAI.cs)
 			IsMovementStagnant();
+
+		checkAnimation ();
 	}
 
 	// Sprint to "safe" location (0,0,0 is test)
@@ -152,12 +156,12 @@ public class humanAI : commonAI, ICanBeScared
 			if( isAfraid )
 			{
 				navAgent.speed = runSpeed;
-				animComponent.Play("sprint");
+				//animComponent.Play("sprint");
 			}
 			else
 			{
 				navAgent.speed = baseSpeed;
-				animComponent.Play("walk");
+				//animComponent.Play("walk");
 			}
 		}
 	}
