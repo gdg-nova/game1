@@ -758,7 +758,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100052}
   m_LocalRotation: {x: 0, y: .981123865, z: 0, w: .193380639}
-  m_LocalPosition: {x: 96.3460007, y: .0729610026, z: 30.1739998}
+  m_LocalPosition: {x: 242.080002, y: 0, z: 351.320007}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 400050}
@@ -794,6 +794,9 @@ Animation:
   - {fileID: 7400000, guid: 69b16e49a643f24488b3e464d46cef79, type: 3}
   - {fileID: 7400002, guid: 69b16e49a643f24488b3e464d46cef79, type: 3}
   - {fileID: 7400006, guid: 9fed2f9dd2b98d24ca06ed78ccc11aca, type: 3}
+  - {fileID: 7400002, guid: 001a715514d25254d9b40074ebbde0ce, type: 3}
+  - {fileID: 7400004, guid: 001a715514d25254d9b40074ebbde0ce, type: 3}
+  - {fileID: 7400000, guid: 9fed2f9dd2b98d24ca06ed78ccc11aca, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -813,11 +816,17 @@ MonoBehaviour:
   baseRandomPct: 40
   runSpeed: 7
   runRandomPct: 85
+  manaCost: 1
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
+  isDestroying: 0
   moveAfterCombat: 1
   lifeSpan: 1
+  fastZombieSpeed: 7
+  nearbyZombieRange: 3
+  zombieManaCost: 1
+  updateSpeedInterval: .5
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -829,8 +838,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 136d37ad842a22e4b88d049fd274b5f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
-  attackInterval: 2
+  damage: 10
+  attackInterval: .5
   attackRadius: 2
 --- !u!114 &11400004
 MonoBehaviour:
@@ -843,7 +852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d4ca1757558c241a50fabe397c23aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fearInterval: 2
+  fearInterval: 2000
   fearRadius: 9
 --- !u!122 &12200000
 Halo:

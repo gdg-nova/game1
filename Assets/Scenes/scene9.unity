@@ -451,7 +451,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 27147576}
   m_Enabled: 1
   m_Radius: .5
-  m_Speed: 3.5
+  m_Speed: 2.25
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -475,8 +475,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87995146c8c92a54cbc2f050711e3ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 3
-  runSpeed: 8.5
+  baseSpeed: 4.5
+  baseRandomPct: 30
+  runSpeed: 10
+  runRandomPct: 75
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
@@ -2988,7 +2990,7 @@ Halo:
   m_Enabled: 1
   m_Color:
     serializedVersion: 2
-    rgba: 4279816727
+    rgba: 4278190320
   m_Size: 1.5
 --- !u!195 &171582554
 NavMeshAgent:
@@ -3023,8 +3025,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795f72ef6af1c4442b57c6a2329a8fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 3
-  runSpeed: 8
+  baseSpeed: 4
+  baseRandomPct: 65
+  runSpeed: 10
+  runRandomPct: 85
   health: 100
   navCheckInterval: 3
   navStopDistance: 5
@@ -6167,7 +6171,7 @@ MonoBehaviour:
   Human: {fileID: 100052, guid: c6783f49378f645fa81340aa301236b5, type: 2}
   Zombie: {fileID: 100052, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
   Werewolf: {fileID: 100000, guid: 0d4cc565122604ee884b29865f618621, type: 2}
-  humanCount: 10
+  humanCount: 20
   timeLimit: 120
   elapsedTime: 0
   currentZombieTarget: {fileID: 0}
@@ -9377,7 +9381,7 @@ Halo:
   m_Enabled: 1
   m_Color:
     serializedVersion: 2
-    rgba: 4279816727
+    rgba: 4278190320
   m_Size: 1.5
 --- !u!195 &482873398
 NavMeshAgent:
@@ -9412,8 +9416,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795f72ef6af1c4442b57c6a2329a8fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 3
-  runSpeed: 8
+  baseSpeed: 4
+  baseRandomPct: 65
+  runSpeed: 10
+  runRandomPct: 85
   health: 100
   navCheckInterval: 3
   navStopDistance: 5
@@ -12628,6 +12634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e39ea80cdfa2e094d9c0b5e5cb0f95ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ZombieSpawnMode: 1
   zombieSpawnInterval: 5
 --- !u!65 &608090659
 BoxCollider:
@@ -14431,7 +14438,7 @@ Halo:
   m_Enabled: 1
   m_Color:
     serializedVersion: 2
-    rgba: 4279816727
+    rgba: 4278190320
   m_Size: 1.5
 --- !u!195 &671260418
 NavMeshAgent:
@@ -14466,8 +14473,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795f72ef6af1c4442b57c6a2329a8fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 3
-  runSpeed: 8
+  baseSpeed: 4
+  baseRandomPct: 65
+  runSpeed: 10
+  runRandomPct: 85
   health: 100
   navCheckInterval: 3
   navStopDistance: 5
@@ -15891,7 +15900,7 @@ Halo:
   m_Enabled: 1
   m_Color:
     serializedVersion: 2
-    rgba: 4279816727
+    rgba: 4278190320
   m_Size: 1.5
 --- !u!195 &787343563
 NavMeshAgent:
@@ -15926,8 +15935,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795f72ef6af1c4442b57c6a2329a8fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 3
-  runSpeed: 8
+  baseSpeed: 4
+  baseRandomPct: 65
+  runSpeed: 10
+  runRandomPct: 85
   health: 100
   navCheckInterval: 3
   navStopDistance: 5
@@ -24444,7 +24455,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1183168170}
   m_Enabled: 1
   m_Radius: .5
-  m_Speed: 3.5
+  m_Speed: 2.25
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -24468,8 +24479,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87995146c8c92a54cbc2f050711e3ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 3
-  runSpeed: 8.5
+  baseSpeed: 4.5
+  baseRandomPct: 30
+  runSpeed: 10
+  runRandomPct: 75
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
@@ -25432,7 +25445,7 @@ Halo:
   m_Enabled: 1
   m_Color:
     serializedVersion: 2
-    rgba: 4278190320
+    rgba: 4279816727
   m_Size: 1.5
 --- !u!137 &1255707866
 SkinnedMeshRenderer:
@@ -32204,13 +32217,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca2da6211000034a952ac78a97acc00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 2
-  runSpeed: 4
+  baseSpeed: 3
+  baseRandomPct: 40
+  runSpeed: 7
+  runRandomPct: 85
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
   moveAfterCombat: 1
   lifeSpan: 1
+  fastZombieSpeed: 7
 --- !u!195 &1512911631
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -32296,7 +32312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   attackInterval: 2
-  attackRadius: 3
+  attackRadius: 2
 --- !u!1 &1518817119
 GameObject:
   m_ObjectHideFlags: 0
@@ -32663,7 +32679,7 @@ Halo:
   m_Enabled: 1
   m_Color:
     serializedVersion: 2
-    rgba: 4279816727
+    rgba: 4278190320
   m_Size: 1.5
 --- !u!195 &1544423374
 NavMeshAgent:
@@ -32698,8 +32714,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795f72ef6af1c4442b57c6a2329a8fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 3
-  runSpeed: 8
+  baseSpeed: 4
+  baseRandomPct: 65
+  runSpeed: 10
+  runRandomPct: 85
   health: 100
   navCheckInterval: 3
   navStopDistance: 5
@@ -33128,7 +33146,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1591524286}
   m_Enabled: 1
   m_Radius: .5
-  m_Speed: 3.5
+  m_Speed: 2.25
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -33152,8 +33170,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87995146c8c92a54cbc2f050711e3ee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 3
-  runSpeed: 8.5
+  baseSpeed: 4.5
+  baseRandomPct: 30
+  runSpeed: 10
+  runRandomPct: 75
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
@@ -38237,7 +38257,7 @@ Halo:
   m_Enabled: 1
   m_Color:
     serializedVersion: 2
-    rgba: 4279816727
+    rgba: 4278190320
   m_Size: 1.5
 --- !u!195 &1999499275
 NavMeshAgent:
@@ -38272,8 +38292,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 795f72ef6af1c4442b57c6a2329a8fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 3
-  runSpeed: 8
+  baseSpeed: 4
+  baseRandomPct: 65
+  runSpeed: 10
+  runRandomPct: 85
   health: 100
   navCheckInterval: 3
   navStopDistance: 5

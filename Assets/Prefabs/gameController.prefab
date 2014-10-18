@@ -78,7 +78,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31c585b616e7fc9419d719eca3d211d2, type: 3}
   m_Name: 
@@ -275,11 +275,15 @@ MonoBehaviour:
   Human: {fileID: 100052, guid: c6783f49378f645fa81340aa301236b5, type: 2}
   Zombie: {fileID: 100052, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
   Werewolf: {fileID: 100000, guid: 0d4cc565122604ee884b29865f618621, type: 2}
+  zombieCost: 1
   humanCount: 20
   timeLimit: 120
   elapsedTime: 0
   currentZombieTarget: {fileID: 0}
   zombieTargetPrefab: {fileID: 100000, guid: 69a01d735064f4050b0c939ba3fbafb4, type: 2}
+  manaPool: 3
+  manaDisplayUI: {fileID: 0}
+  summonZombieEffect: {fileID: 0}
   touchController: {fileID: 0}
   gameEnded: 0
   scoreGT: {fileID: 0}

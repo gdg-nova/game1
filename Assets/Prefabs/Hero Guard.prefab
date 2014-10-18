@@ -454,8 +454,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
-  m_LocalRotation: {x: 4.19000257e-09, y: .991710722, z: 6.95471236e-10, w: -.12849094}
-  m_LocalPosition: {x: 82.336998, y: 0, z: 46.2290001}
+  m_LocalRotation: {x: 2.82666579e-09, y: .69168663, z: 3.17013615e-09, w: -.722197771}
+  m_LocalPosition: {x: 306.769989, y: 0, z: 332.23999}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 400316}
@@ -927,6 +927,8 @@ Animation:
   - {fileID: 7400006, guid: 9fed2f9dd2b98d24ca06ed78ccc11aca, type: 3}
   - {fileID: 7400000, guid: 9fed2f9dd2b98d24ca06ed78ccc11aca, type: 3}
   - {fileID: 7400000, guid: 69b16e49a643f24488b3e464d46cef79, type: 3}
+  - {fileID: 7400002, guid: 001a715514d25254d9b40074ebbde0ce, type: 3}
+  - {fileID: 7400004, guid: 001a715514d25254d9b40074ebbde0ce, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -946,13 +948,15 @@ MonoBehaviour:
   baseRandomPct: 65
   runSpeed: 10
   runRandomPct: 85
+  manaCost: 1
   health: 100
   navCheckInterval: 3
   navStopDistance: 5
+  isDestroying: 0
   moveAfterCombat: 1
   Attack: {fileID: 0}
   attackInterval: 1
-  attackRadius: 3
+  attackRadius: 8
   attackDamage: 100
   stationary: 1
 --- !u!122 &12200010

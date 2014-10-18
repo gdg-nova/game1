@@ -76,7 +76,7 @@ public class guardAI : commonAI
 			moveAfterCombat = false;
 
 			// default animation is to be idle...
-			animComponent.Play("idle");
+			//animComponent.Play("idle");
 		}
 		else
 		{
@@ -95,8 +95,8 @@ public class guardAI : commonAI
 		// to check/move to another target
 		if (stationary)
 		{
-			if( animComponent["walk"].enabled )
-				animComponent.Play ( "idle" );
+	//		if( animComponent["walk"].enabled )
+	//			animComponent.Play ( "idle" );
 		}
 		else
 		{
@@ -113,7 +113,7 @@ public class guardAI : commonAI
 
 		// try to begin walking again after any attack in case the
 		// enemy was destroyed, we have something to again move towards
-		if (!stationary)
-			animComponent.Play ("walk");
+		//if (!stationary)
+			//animComponent.Play ("walk");
 	}
 }

@@ -1,10 +1,14 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class safeZoneAI : MonoBehaviour 
 {
 	public float Health = 100f;
+
+	private float initialHealth;
+
 	public int Capacity  = 50;
 	public int humanCount = 0;
 	
@@ -16,7 +20,13 @@ public class safeZoneAI : MonoBehaviour
 	public Material targetMaterial ;
 	private Material defaultMaterial;
 	public GameObject spawnArea ;
-	
+
+	public GameObject HealthTextUI;
+	public GameObject HealthBarUI;
+
+
+	private float HealthBarFullWidth;
+
 	// when a building gets infected with zombies from attacking,
 	// break down the building and scatter the humans inside.
 	// SOME of the humans will be infected, so don't make EVERYONE
@@ -26,7 +36,10 @@ public class safeZoneAI : MonoBehaviour
 	
 	void Start() 
 	{ 
-		defaultMaterial = this.renderer.material; 
+		initialHealth = Health;
+		HealthBarFullWidth = HealthBarUI.transform.localScale.x;
+
+	//	defaultMaterial = this.renderer.material; 
 	}
 	
 	void Update() 
@@ -36,6 +49,10 @@ public class safeZoneAI : MonoBehaviour
 		
 		//if (timeSinceLastEntry >= coolDownSec && humanCount > 0)
 			//breakOpen();
+
+		HealthTextUI.GetComponent<Text> ().text = Health.ToString ();
+		HealthBarUI.transform.localScale = new Vector3 ((Health / initialHealth) * HealthBarFullWidth, HealthBarUI.transform.localScale.y, HealthBarUI.transform.localScale.z);
+
 	}
 	
 	void addHuman() 
@@ -46,6 +63,8 @@ public class safeZoneAI : MonoBehaviour
 	
 	public void takeDamage( float damage) 
 	{
+		Debug.Log ("Safezone damage");
+
 		Health -= damage;
 		
 		if (Health <= 0 ) 

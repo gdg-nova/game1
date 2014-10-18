@@ -6,6 +6,9 @@ public class humanAI : commonAI, ICanBeScared
 	// few more publics specific to humans...
 	public float AfraidRadius = 2.5f;
 
+	public bool stationary;
+
+
 	// Use this for initialization
 	public override void Start () 
 	{
@@ -32,7 +35,21 @@ public class humanAI : commonAI, ICanBeScared
 		hasDieAnimation = animComponent["die"] != null;
 
 		// get initial target for human...
-		moveToNewTarget();
+		if (stationary)
+		{
+			// if ever in combat, retain your post if marked as stationary.
+			moveAfterCombat = false;
+			
+			// default animation is to be idle...
+			//animComponent.Play("idle");
+		}
+		else
+		{
+			// moving to new target will always initiate walking mode.
+			moveToNewTarget();
+		}
+
+		animComponent.Play ();
 	}
 
 	// Update is called once per frame
@@ -40,7 +57,7 @@ public class humanAI : commonAI, ICanBeScared
 	{
 		// if no target, get one now regardless of requiring 
 		// "SafeZone" vs "Finish"
-		if( currentTarget == null )
+		if( currentTarget == null && !stationary)
 			moveToNewTarget();
 
 		// if no target due to object being destroyed (such as safe-zone house), 
@@ -58,8 +75,16 @@ public class humanAI : commonAI, ICanBeScared
 			&& ! isAfraid 
 		    && ! isDestroying) 
 		{
+			if (stationary)
+			{
+			//	if( animComponent["walk"].enabled )
+		//			animComponent.Play ( "idle" );
+			}
+			else {
 			navAgent.speed = baseSpeed;
-			animComponent.Play ("walk");
+		//	animComponent.Play ("walk");
+			}
+
 		}
 	
 		// if time passed the interval check, 
@@ -73,10 +98,10 @@ public class humanAI : commonAI, ICanBeScared
 			// if the human is afraid and already running to a safe-zone
 			// destination, enter them into said safe zone since they are
 			// within the range of the stop distance vs remaining distance
-			// if (isAfraid && atSafeZone && currentTarget != null)
+			 if (isAfraid && atSafeZone && currentTarget != null)
 			// humans only have one target destination, 
 			// so at safe-zone, regardless of afraid or not, get into building
-			if (atSafeZone)
+			//if (atSafeZone)
 			{
 				// Tell the target to add a new human represented by THIS
 				// one just about to enter, then KILL this instance from
@@ -97,6 +122,8 @@ public class humanAI : commonAI, ICanBeScared
 		else 
 			// in addition, check for being stagnant (clarification in commonAI.cs)
 			IsMovementStagnant();
+
+		checkAnimation ();
 	}
 
 	// Sprint to "safe" location (0,0,0 is test)
@@ -129,12 +156,12 @@ public class humanAI : commonAI, ICanBeScared
 			if( isAfraid )
 			{
 				navAgent.speed = runSpeed;
-				animComponent.Play("sprint");
+				//animComponent.Play("sprint");
 			}
 			else
 			{
 				navAgent.speed = baseSpeed;
-				animComponent.Play("walk");
+				//animComponent.Play("walk");
 			}
 		}
 	}
