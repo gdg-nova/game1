@@ -5,6 +5,7 @@ public class touchController : MonoBehaviour {
 
 	public cameraController mainCameraController = null;
 	public bool enablePinchToZoom = true;
+	public bool enableMultiTouchSwipe = true;
 
 	void Start () {
 		if (mainCameraController == null && enablePinchToZoom)
@@ -19,6 +20,7 @@ public class touchController : MonoBehaviour {
 		if (!Input.multiTouchEnabled)
 		{
 			enablePinchToZoom = false;
+			enableMultiTouchSwipe = false;
 		}
 	}
 
@@ -53,22 +55,55 @@ public class touchController : MonoBehaviour {
 
 			if (lastTouchCount >= 2)
 			{
-				// Check for pinch 
-				if (enablePinchToZoom)
-				{
+				if (enablePinchToZoom || enableMultiTouchSwipe)
 					hasDonePinchToZoom = true;
-					float currentDistance = Vector2.Distance(touches[0].position, touches[1].position);
-					if (currentDistance < originalPinchDistance)
+
+				// We need to arbitrate between pinching and swiping.
+				// In this case we will need to calculate the determining factors and see which one ones
+				float currentDistance = enablePinchToZoom?Vector2.Distance(touches[0].position, touches[1].position):0.0f;
+				float deltaDistance = currentDistance - originalPinchDistance;
+				float absDeltaDistance = Mathf.Abs(deltaDistance);
+				float horizontalSwipe = 0.0f;
+				float veriticalSwipe = 0.0f;
+				if (enableMultiTouchSwipe)
+				{
+					if ((touches[0].deltaPosition.x > 0 && touches[1].deltaPosition.x > 0) ||
+					    (touches[0].deltaPosition.x < 0 && touches[1].deltaPosition.x < 0))
 					{
-						mainCameraController.ZoomOut( (originalPinchDistance-currentDistance)*touches[0].deltaTime );
-						originalPinchDistance = currentDistance;
+						horizontalSwipe = (touches[0].deltaPosition.x + touches[1].deltaPosition.x)/2;
 					}
-					else if (currentDistance > originalPinchDistance)
+					if ((touches[0].deltaPosition.y > 0 && touches[1].deltaPosition.y > 0) ||
+					    (touches[0].deltaPosition.y < 0 && touches[1].deltaPosition.y < 0))
 					{
-						mainCameraController.ZoomIn( (currentDistance-originalPinchDistance)*touches[0].deltaTime );
-						originalPinchDistance = currentDistance;
+						veriticalSwipe = (touches[0].deltaPosition.y + touches[1].deltaPosition.y)/2;
 					}
 				}
+				// Rule is: If the horizontal or veritical swipe speed exceeds the rate at which the
+				// fingers come together, then it's a swipe otherwise it's a pinch to zoom
+				Debug.Log (string.Format("H: {0}, V: {1}, Dis: {2}", horizontalSwipe, veriticalSwipe, deltaDistance));
+				if (Mathf.Abs(horizontalSwipe) > absDeltaDistance * 1.5 || 
+				    Mathf.Abs(veriticalSwipe) > absDeltaDistance * 1.5)
+				{
+					deltaDistance = 0.0f;
+				}
+				else
+				{
+					horizontalSwipe = 0.0f;
+					veriticalSwipe = 0.0f;
+				}
+
+				if (deltaDistance < 0.0f)
+				{
+					mainCameraController.ZoomOut( -deltaDistance*touches[0].deltaTime );
+					originalPinchDistance = currentDistance;
+				}
+				else if (deltaDistance > 0.0f)
+				{
+					mainCameraController.ZoomIn( deltaDistance*touches[0].deltaTime );
+					originalPinchDistance = currentDistance;
+				}
+				mainCameraController.panLeft( horizontalSwipe*touches[0].deltaTime );
+				mainCameraController.panForward( veriticalSwipe*touches[0].deltaTime );
 			}
 		} 
 		else
