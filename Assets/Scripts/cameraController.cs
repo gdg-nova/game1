@@ -146,11 +146,23 @@ public class cameraController : MonoBehaviour {
 	}
 	
 	void Update () {
-		float vertical = Input.GetAxis("Vertical");
+		float zoom = Input.GetAxis("Zoom");
 
+		if (zoom != 0.0f)
+		{
+			UpdateCameraPosition( currentAngle + speed * zoom * Time.deltaTime );
+		}
+
+		float horizontal = Input.GetAxis ("Horizontal");
+		if (horizontal != 0.0f)
+		{
+			panLeft( -horizontal * Time.deltaTime );
+		}
+
+		float vertical = Input.GetAxis ("Vertical");
 		if (vertical != 0.0f)
 		{
-			UpdateCameraPosition( currentAngle + speed * vertical * Time.deltaTime );
+			panForward( -vertical * Time.deltaTime );
 		}
 	}
 }
