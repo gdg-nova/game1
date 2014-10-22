@@ -1558,6 +1558,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 705775734}
   - 114: {fileID: 705775735}
+  - 114: {fileID: 705775736}
   m_Layer: 0
   m_Name: input controller
   m_TagString: Untagged
@@ -1601,6 +1602,17 @@ MonoBehaviour:
   onlyOnMobiles: 0
   repeat: 1
   repeatInterval: .5
+--- !u!114 &705775736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 705775733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2f516fb812f41dc98199a53458e263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &750660570
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,8 +24,8 @@ public class RestartScript : MonoBehaviour
 			GUI.Button(
 			// Center in X, 2/3 of the height in Y
 			new Rect(
-			Screen.width / 10 - (buttonWidth / 2),
-			(2 * Screen.height / 14) - (buttonHeight / 2),
+			Screen.width / 26 - (buttonWidth / 2),
+			(2 * Screen.height / 30) - (buttonHeight / 2),
 			buttonWidth,
 			buttonHeight
 			),
@@ -35,7 +35,7 @@ public class RestartScript : MonoBehaviour
 		{
 			// On Click, load the first level.
 			// "Stage1" is the name of the first scene we created.
-			Application.LoadLevel("FreeLayoutExampleScene");
+			Application.LoadLevel("map_Scene");
 		}
 	}
 }
