@@ -37,7 +37,10 @@ public class safeZoneAI : MonoBehaviour
 	void Start() 
 	{ 
 		initialHealth = Health;
-		HealthBarFullWidth = HealthBarUI.transform.localScale.x;
+		if (HealthBarUI != null)
+		{
+			HealthBarFullWidth = HealthBarUI.transform.localScale.x;
+		}
 
 	//	defaultMaterial = this.renderer.material; 
 	}
@@ -50,9 +53,14 @@ public class safeZoneAI : MonoBehaviour
 		//if (timeSinceLastEntry >= coolDownSec && humanCount > 0)
 			//breakOpen();
 
-		HealthTextUI.GetComponent<Text> ().text = Health.ToString ();
-		HealthBarUI.transform.localScale = new Vector3 ((Health / initialHealth) * HealthBarFullWidth, HealthBarUI.transform.localScale.y, HealthBarUI.transform.localScale.z);
-
+		if (HealthTextUI != null)
+		{
+			HealthTextUI.GetComponent<Text> ().text = Health.ToString ();
+		}
+		if (HealthBarUI != null)
+		{
+			HealthBarUI.transform.localScale = new Vector3 ((Health / initialHealth) * HealthBarFullWidth, HealthBarUI.transform.localScale.y, HealthBarUI.transform.localScale.z);
+		}
 	}
 	
 	void addHuman() 
