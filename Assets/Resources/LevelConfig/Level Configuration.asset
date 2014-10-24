@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ca0aa9835c2f8f4a9b2b5ff51784391, type: 3}
+  m_Name: Level Configuration
+  m_EditorClassIdentifier: 
+  creationDate: 1414111794
+  _active: 1
+  levels:
+  - _sceneObject: {fileID: 102900000, guid: e902102b95d13b6429de18ed977f07cf, type: 3}
+    _scenePath: Assets/Scenes/Level Select Scene.unity
+    _sceneName: Level Select Scene
+    scene: 
+    parent: {fileID: 11400000}
+    order: 0
+    name: Level Select
+    type: 0
+    arguments: 
+    groupId: 0
+    extensionGUID: 
+    lockedByDefault: 1
+  - _sceneObject: {fileID: 102900000, guid: e41f570868e574899995da7ab536ee81, type: 3}
+    _scenePath: Assets/Scenes/Tutorial_Scene.unity
+    _sceneName: Tutorial_Scene
+    scene: 
+    parent: {fileID: 11400000}
+    order: 10
+    name: New Level
+    type: 1
+    arguments: 
+    groupId: 0
+    extensionGUID: 
+    lockedByDefault: 0
+  - _sceneObject: {fileID: 102900000, guid: dfb456d75ebe31c4b9caa6a4daa4fbd8, type: 3}
+    _scenePath: Assets/Scenes/scene1.unity
+    _sceneName: scene1
+    scene: 
+    parent: {fileID: 11400000}
+    order: 20
+    name: Tutorial_Scene (1)
+    type: 1
+    arguments: 
+    groupId: 0
+    extensionGUID: 
+    lockedByDefault: 0
+  - _sceneObject: {fileID: 102900000, guid: 0308b1ce6eaee2547bf699a005e8f882, type: 3}
+    _scenePath: Assets/Scenes/map_Scene.unity
+    _sceneName: map_Scene
+    scene: 
+    parent: {fileID: 11400000}
+    order: 30
+    name: Tutorial_Scene (2)
+    type: 1
+    arguments: 
+    groupId: 0
+    extensionGUID: 
+    lockedByDefault: 0
+  - _sceneObject: {fileID: 102900000, guid: 395fc4bd564504ec3bec093c87dbfe99, type: 3}
+    _scenePath: Assets/Scenes/scene1(old).unity
+    _sceneName: scene1(old)
+    scene: 
+    parent: {fileID: 11400000}
+    order: 40
+    name: Tutorial_Scene (3)
+    type: 1
+    arguments: 
+    groupId: 0
+    extensionGUID: 
+    lockedByDefault: 0
+  - _sceneObject: {fileID: 102900000, guid: f3ec87ce4b6385942933cd87a15d05fb, type: 3}
+    _scenePath: Assets/Scenes/scene6(old).unity
+    _sceneName: scene6(old)
+    scene: 
+    parent: {fileID: 11400000}
+    order: 50
+    name: Tutorial_Scene (4)
+    type: 1
+    arguments: 
+    groupId: 0
+    extensionGUID: 
+    lockedByDefault: 0
+  - _sceneObject: {fileID: 102900000, guid: f3ec87ce4b6385942933cd87a15d05fb, type: 3}
+    _scenePath: Assets/Scenes/scene6(old).unity
+    _sceneName: scene6(old)
+    scene: 
+    parent: {fileID: 11400000}
+    order: 60
+    name: Tutorial_Scene (5)
+    type: 1
+    arguments: 
+    groupId: 0
+    extensionGUID: 
+    lockedByDefault: 1
+  groups: []
+  extensions: []
+  version: 1
