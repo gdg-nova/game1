@@ -192,9 +192,9 @@ public class zombieAI : commonAI
 
 		float newSpeed = baseSpeed + (getNearbyZombieCount() * baseSpeed);
 
-		Debug.Log ("basespeed:  " + baseSpeed);
+//		Debug.Log ("basespeed:  " + baseSpeed);
 
-		Debug.Log ("updateSpeed: " + newSpeed);
+//		Debug.Log ("updateSpeed: " + newSpeed);
 
 		navAgent.speed = newSpeed;
 
