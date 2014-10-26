@@ -395,6 +395,7 @@ GameObject:
   - 82: {fileID: 8200000}
   - 82: {fileID: 8200002}
   - 82: {fileID: 8200004}
+  - 122: {fileID: 12200002}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Zombie
@@ -994,7 +995,6 @@ MonoBehaviour:
   runSpeed: 7
   runRandomPct: 85
   manaCost: 1
-  soundEffect: {fileID: 0}
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
@@ -1020,9 +1020,7 @@ MonoBehaviour:
   attackInterval: .5
   attackRadius: 2
   soundEffects: []
-  Knight_strike_one: {fileID: 0}
-  House_attack_short: {fileID: 0}
-  Zap: {fileID: 0}
+  Zombie_on_Peasant: {fileID: 0}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1047,6 +1045,17 @@ Halo:
     serializedVersion: 2
     rgba: 4279816727
   m_Size: 1.5
+--- !u!122 &12200002
+Halo:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100050}
+  m_Enabled: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4282828083
+  m_Size: 1
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

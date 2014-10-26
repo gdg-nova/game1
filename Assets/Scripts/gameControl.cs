@@ -50,21 +50,18 @@ public class gameControl : MonoBehaviour
 	void Update() 
 	{
 		if (elapsedTime >= timeLimit)
-        {
 			gameOver();
-		}
-		
+
         updateManaPoolDisplay ();
+
 		//check for mouse input
 		CheckForLeftClick();
 
 		CheckForRightMouse();
 
 		if (Input.GetKeyDown(KeyCode.Escape))
-		{
 			Application.Quit();
-		}
-		
+
 		elapsedTime += Time.deltaTime;
 		
 		checkForWin();
@@ -80,7 +77,8 @@ public class gameControl : MonoBehaviour
 	//Call this function from other scripts that want to add to the score
 	public void scorePoints()
 	{
-		if (scoreGT != null) {
+		if (scoreGT != null) 
+		{
 			//Convert text of score into an int
 			score = int.Parse (scoreGT.text);
 			//Add the value for converting a human to a zombie
@@ -90,106 +88,200 @@ public class gameControl : MonoBehaviour
 		}
 	}
 
-	void createZombieTargetFlag (Transform zRange)
-	{
-		// DVR, when using mouse click to expand a range to attract zombies,
-		// use the transform as basis of new central point location and also
-		// it's radius (x and z are same value) as range to include for zombies
-		// to be attracted
-		if (currentZombieTarget == null)
-			currentZombieTarget = (GameObject)Instantiate(zombieTargetPrefab, zRange.position, Quaternion.Euler(0,0,0));
-		else 
-			currentZombieTarget.transform.position = zRange.position;
-		
-		// get only zombies within a radius of this point, not ALL zombies...
-		// Since the scale is a diameter, we want radius which is 1/2, so divide by 2.
-		List<GameObject>zombies = gs.anyTagsInRange( zRange.position, zRange.localScale.x / 2.0f, eNavTargets.Zombie, true );
-
-		foreach( GameObject z in zombies)
-		{
-			//Debug.Log ("Zombie is:" + z);
-			zombieAI zAi = z.GetComponent<zombieAI>();
-
-			zAi.moveToSpecificGameObj( currentZombieTarget );
-		}
-	}
-
-	private bool expandingZombieRange;
 	private float expandingZombieTime;
 	public GameObject ZombieRangePrefab;
 	private GameObject zombieRange;
 
+	// The zombie range selection process will now be a two-part process.
+	// The FIRST cycle is selection via the circular expansion range is to
+	// GET the zombies the player wants to control.  Once that is done, the
+	// next single "touch"/mouse is the placement of the final target destination.
+	// Also, the target destination, a user might click on a knight and smartly
+	// target them even as a knight may move from original position.
+	// DEFAULT the set destination mode to false... first time is picking, second is target
+	private int zombieSelectionMode = 0;
+	private List<GameObject> haloZombies;
+
 	//mouse click handler
 	void CheckForLeftClick() 
 	{
-
-		// if we are already IN a left-click zombie range implementation,
-		// check for the mouse UP event...
-		if( expandingZombieRange )
+		// Check first for touch controller.. if so, just get out, it forces ignore of 
+		// any single key stroke / touch action.
+		if (touchController && touchController.hasDonePinchToZoom)
 		{
-			// If we detect 2 touches, then we're in a pinch to zoon scenario, cancel the expanding range
-			if (touchController && touchController.hasDonePinchToZoom)
-			{
-				expandingZombieRange = false;
-				DestroyImmediate( zombieRange );
-			}
-
-			expandingZombieTime += Time.deltaTime;
-
-			zombieRange.transform.localScale = new Vector3( expandingZombieTime * 75.0f, .2f, expandingZombieTime * 75.0f );
-			
-			if( Input.GetMouseButtonUp(0))
-			{
-				// turn off mouse-down mode when mouse comes up...
-				expandingZombieRange = false;
-				// now create the particle system in the center of where 
-				// the range object was created.
-				createZombieTargetFlag( zombieRange.transform );
-				// now, kill off the zombieRange item
-				DestroyImmediate( zombieRange );
-			}
+			// turn off selection zombie mode back to zero
+			zombieSelectionMode = 0;
+			return;
 		}
-		else
+
+		Debug.Log ( "Zombie Mode: " + zombieSelectionMode );
+
+		// each possible mode of selection is looking for either down or up
+		switch( zombieSelectionMode )
 		{
-			// no mouse down yet... check for it now.
-			// if no left-click, get out
-			if (! Input.GetMouseButton(0))
-				return;
+			// just starting, only engage IF the mouse is down..
+			case 0:
+				// if no mouse down, get out
+				startSelectionProcess();
+				break;
 
-			// Don't do anything for multi-touch scenario
-			if (touchController && touchController.hasDonePinchToZoom)
-				return;
-			
-			//send raycast to get hit
-			GameObject g;
-			Ray r = Camera.main.ScreenPointToRay (Input.mousePosition);
-			RaycastHit r_hit;
-			
-			if (Physics.Raycast (r, out r_hit, Mathf.Infinity)) 
-			{
-				g = r_hit.collider.gameObject;
-				
-				//Handle click based on clicked object tag:
-				//if (g.tag == "Human") 
-				//	g.SendMessage("die");
+			case 1:
+				// we already had down, now see if STILL down to expand range...
+				expandSelectionRange();
+				break;
 
-				// if graveyard, create new zombie directly there.
-				if (g.tag == "Graveyard")
-					g.SendMessage ("Click");
-				else
-				{
-					// we are trying to create a new target location for zombies.
-					// don't create the flag yet, but instead, turn on the expanding mode
-					// and create a zombieRange object (simple cylinder) that expands based
-					// on the duration of the mouse down until let up.
-					expandingZombieRange = true;
-					expandingZombieTime = 0.0f;
-					zombieRange = (GameObject)Instantiate( ZombieRangePrefab, r_hit.point, q );
-				}
-			}
+			case 2:
+				// expansion was finished via mouse-up button.
+				// The NEW mouse down is a possible target (Knight to attack)
+				// or new destination of specific point.
+				finalizeZombieTarget();
+				break;
 		}
 	}
-	
+
+	void startSelectionProcess()
+	{
+		// if no mouse down to start, just get out
+		if( !Input.GetMouseButton(0))
+			return;
+		
+		// starting mode for selection and mouse IS down...
+		// First, if there is a pending list of zombies selected,
+		// turn OFF their halo effects...
+		if( haloZombies != null )
+		{
+			foreach( GameObject z in haloZombies )
+			{
+				// try/catch in case killed by knight
+				try
+				{ 	
+					// turn OFF the halo as we are about to select new batch for control
+					((Behaviour)z.gameObject.GetComponent("Halo")).enabled = false;
+				}
+				catch
+				{}
+			}
+		}
+
+		// Now, what have we targeted from this click (if anything)
+		Ray r = Camera.main.ScreenPointToRay (Input.mousePosition);
+		RaycastHit r_hit;
+
+		// DID we point to anything from the touch?
+		if (Physics.Raycast (r, out r_hit, Mathf.Infinity)) 
+		{
+			// Yup, what object...
+			GameObject g = r_hit.collider.gameObject;
+			
+			// if graveyard, create new zombie directly there and get out.
+			if (g.tag == "Graveyard")
+			{
+				g.SendMessage ("Click");
+				return;
+			}
+		}
+
+		// we did not touch a graveyard, just use the mouse input position
+		// as basis to start the circular selection area...
+		// we are trying to create a new target location for zombies.
+		// don't create the flag yet, but instead, turn on the expanding mode
+		// and create a zombieRange object (simple cylinder) that expands based
+		// on the duration of the mouse down until let up.
+		expandingZombieTime = 0.0f;
+		zombieRange = (GameObject)Instantiate( ZombieRangePrefab, r_hit.point, q );
+
+		// set mode for next stage that allows EXPANDING the zombie range...
+		zombieSelectionMode = 1;
+	}
+
+	// in selection mode already, now we are expanding the radius
+	void expandSelectionRange()
+	{
+		// always calc time and expand the scale radius REGARDLESS of mouse button being up
+		expandingZombieTime += Time.deltaTime;
+		zombieRange.transform.localScale = new Vector3( expandingZombieTime * 75.0f, .2f, expandingZombieTime * 75.0f );
+
+		// if mouse button is now UP, we need to select the zombies and turn on all their halo's
+		if( Input.GetMouseButtonUp(0))
+		{
+			// now create the particle system in the center 
+			// of where the range object was created.
+			Transform t = zombieRange.transform;
+
+			// from the central point of the get only zombies within a radius of this point, not ALL zombies...
+			// Since the scale is a diameter, we want radius which is 1/2, so divide by 2.
+			haloZombies = new List<GameObject>();
+			List<GameObject> tmp = gs.anyTagsInRange( t.position, t.localScale.x / 2.0f, eNavTargets.Zombie, true );
+			foreach( GameObject z in tmp)
+				((Behaviour)z.gameObject.GetComponent("Halo")).enabled = true;
+
+			haloZombies.AddRange( tmp );
+
+			// now, kill off the zombieRange item
+			DestroyImmediate( zombieRange );
+
+			// and set flag to perform the set destination
+			zombieSelectionMode = 2;
+		}
+	}
+
+	// third part of zombie selection.  Range expansion is done
+	// and user clicking somewhere else for actual move zombies HERE...
+	void finalizeZombieTarget()
+	{
+		// if no mouse down to start, just get out
+		if( !Input.GetMouseButton(0))
+			return;
+
+		// Yes, we have a new mouse position... any possible taget?
+		Ray r = Camera.main.ScreenPointToRay (Input.mousePosition);
+		RaycastHit r_hit;
+		
+		// DID we point to anything from the touch?
+		if (Physics.Raycast (r, out r_hit, Mathf.Infinity)) 
+		{
+			// Yup, what object...
+			GameObject g = r_hit.collider.gameObject;
+			
+			// if graveyard, create new zombie directly there and get out.
+			if (g.tag == "Graveyard")
+			{
+				g.SendMessage ("Click");
+				// clear the zombie selection flag back to zero
+				zombieSelectionMode = 0;
+				return;
+			}
+
+			// did we hit a knight?? If so, the zombies will be
+			// targeting whereever the KNIGHT MOVES TO...  (pending)
+
+		}
+
+		// establish target to move them to...
+		if (currentZombieTarget == null)
+			currentZombieTarget = (GameObject)Instantiate(zombieTargetPrefab, r_hit.point, Quaternion.Euler(0,0,0));
+		else 
+			currentZombieTarget.transform.position = r_hit.point;
+
+
+		zombieAI zAi;
+		foreach( GameObject z in haloZombies )
+		{
+			// in case any are destroyed as a result of kill by a knight
+			try
+			{ 	
+				zAi = z.GetComponent<zombieAI>();
+				zAi.moveToSpecificGameObj( currentZombieTarget ); }
+			catch
+			{}
+		}
+
+		// set back to zero for next selection mode	
+		zombieSelectionMode = 0;
+	}
+
+
+
 	void CheckForRightMouse() 
 	{
 		if (! Input.GetMouseButton(1)) 
@@ -246,15 +338,15 @@ public class gameControl : MonoBehaviour
 		return false;
 	}
 
-	private void updateManaPoolDisplay() {
+	private void updateManaPoolDisplay() 
+	{
 		manaDisplayUI.GetComponent<Text>().text = manaPool.ToString();
-
-		}
+	}
 
 	//Create zombie at position
 	public void createZombie( Vector3 position) 
 	{
-				Instantiate (Zombie, position, q); 
+		Instantiate (Zombie, position, q); 
 	}
 
 

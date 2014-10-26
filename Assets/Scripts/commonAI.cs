@@ -261,11 +261,6 @@ public class commonAI : MonoBehaviour
 			navAgent.Stop();
 	}
 
-	public void Update() {
-		//checkAnimation ();
-
-	}
-	
 	// no "Update" for the base level... each instance will have 
 	// it's OWN "to do" for the update method
 	protected bool reachedTarget()
