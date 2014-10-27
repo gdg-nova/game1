@@ -103,6 +103,9 @@ public class attackAI : MonoBehaviour
 		if (timeSinceAttack < attackInterval)
 			return;
 
+		// see if we need to reroute to new target if another enemy is nearby
+		CheckForNearbyEnemy();
+
 		// reset timer to allow for next attack check
 		timeSinceAttack = 0;
 
@@ -164,9 +167,6 @@ public class attackAI : MonoBehaviour
 				if (OnWasAttacked != null)
 					OnWasAttacked(hit);
 
-
-				Debug.Log("common ai on hit: " + o);
-
 				if( o == null )
 				{
 					object o2 = hitObj.GetComponent<safeZoneAI>();
@@ -212,4 +212,38 @@ public class attackAI : MonoBehaviour
 				break;
 		}
 	}
+
+
+	// look for an enemy with three attack distance radius 
+	// of where we are moving...
+	public void CheckForNearbyEnemy()
+	{
+		// use sae attack interval on check, but don't decrease/reset it
+		if (timeSinceAttack < attackInterval)
+			return;
+		
+		// sphere cast around the attacking game object.
+		Collider[] colliders = Physics.OverlapSphere(associatedWith.transform.position, attackRadius * 3.0f);
+		bool anythingWasHit = false;
+		
+		// get pointer to this as an type-casted object of commonAI
+		commonAI thisAttacker = GetComponent<commonAI>();
+		
+		GameObject hitObj;
+		foreach (Collider hit in colliders)
+		{
+			hitObj = hit.collider.gameObject;
+			
+			// did we find an object we are allowed to attack
+			if( canAttack( hitObj.tag ))
+			{
+				commonAI o = hitObj.GetComponent<commonAI>();
+
+				// CHANGE It's target destination and get out
+				thisAttacker.moveToSpecificGameObj( o.gameObject );
+				return;
+			}
+		}
+	}
+
 }

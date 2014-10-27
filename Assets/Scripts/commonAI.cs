@@ -58,6 +58,11 @@ public class commonAI : MonoBehaviour
 
 	// Each object will by default need SOME nav taget to move towards.
 	protected List<eNavTargets> defaultNavTargets;
+	
+	// create instance of the ATTACK object which will have
+	// all the attack components...
+	public attackAI Attack;
+	
 
 	public bool isDestroying = false;
 	//{ get; protected set; }
@@ -290,8 +295,6 @@ public class commonAI : MonoBehaviour
 
 		// reset timer to allow for next attack check
 		timeSinceNavCheck = 0;
-
-		float remDist = Mathf.Abs( navAgent.remainingDistance );
 
 		// For SOME reason, the navAgent.remainingDistance is false on x/z basis.. may be ok with x/y though.
 		// since our game has x/z, we need to compute the x and z differential, then compute basis from that

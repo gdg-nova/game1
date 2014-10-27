@@ -142,23 +142,16 @@ public class gameControl : MonoBehaviour
 		// if no mouse down to start, just get out
 		if( !Input.GetMouseButton(0))
 			return;
-		
-		// starting mode for selection and mouse IS down...
-		// First, if there is a pending list of zombies selected,
-		// turn OFF their halo effects...
+
+		// if we HAVE zombies to clear, do so now...
 		if( haloZombies != null )
 		{
+			Component gcomp;
 			foreach( GameObject z in haloZombies )
-			{
-				// try/catch in case killed by knight
-				try
-				{ 	
-					// turn OFF the halo as we are about to select new batch for control
-					((Behaviour)z.gameObject.GetComponent("Halo")).enabled = false;
-				}
-				catch
-				{}
-			}
+				((Behaviour)z.GetComponent("Halo")).enabled = false;
+
+			// clear once released to prevent auto-turning all back on again
+			haloZombies = null;
 		}
 
 		// Now, what have we targeted from this click (if anything)
@@ -174,8 +167,13 @@ public class gameControl : MonoBehaviour
 			// if graveyard, create new zombie directly there and get out.
 			if (g.tag == "Graveyard")
 			{
-				g.SendMessage ("Click");
-				return;
+				// Should we do a graveyard click to create a zombie?
+				// ONLY if there is enough mana to generate another...
+				if( canIBuyAZombie() )
+				{
+					g.SendMessage ("Click");
+					return;
+				}
 			}
 
 			// test sending human to a safe-zone
@@ -185,7 +183,6 @@ public class gameControl : MonoBehaviour
 				if( cAI != null )
 					cAI.navStopDistance = 14f;
 
-				Debug.Log ( "Sending human to safe zone" );
 				g.SendMessage ( "moveToNewTarget" );
 			}
 		}
@@ -222,8 +219,9 @@ public class gameControl : MonoBehaviour
 			haloZombies = new List<GameObject>();
 			List<GameObject> tmp = gs.anyTagsInRange( t.position, t.localScale.x / 2.0f, eNavTargets.Zombie, true );
 			foreach( GameObject z in tmp)
-				((Behaviour)z.gameObject.GetComponent("Halo")).enabled = true;
+				((Behaviour)z.GetComponent("Halo")).enabled = true;
 
+			// Add zombies to list for turning OFF halo later...
 			haloZombies.AddRange( tmp );
 
 			// now, kill off the zombieRange item
@@ -251,15 +249,6 @@ public class gameControl : MonoBehaviour
 		{
 			// Yup, what object...
 			GameObject g = r_hit.collider.gameObject;
-			
-			// if graveyard, create new zombie directly there and get out.
-			if (g.tag == "Graveyard")
-			{
-				g.SendMessage ("Click");
-				// clear the zombie selection flag back to zero
-				zombieSelectionMode = 0;
-				return;
-			}
 
 			// did we hit a knight?? If so, the zombies will be
 			// targeting whereever the KNIGHT MOVES TO...  (pending)
@@ -267,11 +256,13 @@ public class gameControl : MonoBehaviour
 		}
 
 		// establish target to move them to...
-		if (currentZombieTarget == null)
-			currentZombieTarget = (GameObject)Instantiate(zombieTargetPrefab, r_hit.point, Quaternion.Euler(0,0,0));
-		else 
-			currentZombieTarget.transform.position = r_hit.point;
-
+//		if (currentZombieTarget == null)
+//			currentZombieTarget = (GameObject)Instantiate(zombieTargetPrefab, r_hit.point, Quaternion.Euler(0,0,0));
+//		else 
+//			currentZombieTarget.transform.position = r_hit.point;
+		// Disable showing the red particle emitter for the target...
+		// just set the target to the raycast hit object for target location
+		currentZombieTarget = r_hit.collider.gameObject;
 
 		zombieAI zAi;
 		foreach( GameObject z in haloZombies )
@@ -288,7 +279,6 @@ public class gameControl : MonoBehaviour
 		// set back to zero for next selection mode	
 		zombieSelectionMode = 0;
 	}
-
 
 
 	void CheckForRightMouse() 
@@ -336,9 +326,14 @@ public class gameControl : MonoBehaviour
 		return spawns [Random.Range (0, spawns.Length)];
 	}
 
-	public bool requestBuyNewZombie(Vector3 position) {
 
-		if (zombieCost <= manaPool) {
+	public bool canIBuyAZombie() 
+	{ return zombieCost <= manaPool; }
+
+	public bool requestBuyNewZombie(Vector3 position) 
+	{
+		if (zombieCost <= manaPool) 
+		{
 			createZombie(position);
 			manaPool -= zombieCost;
 			return true;

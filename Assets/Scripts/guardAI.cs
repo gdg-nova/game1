@@ -4,15 +4,10 @@ using System.Collections.Generic;
 
 public class guardAI : commonAI
 {
-	// create instance of the ATTACK object which will have
-	// all the attack components...
-	public attackAI Attack ;
-
 	// publicly expose some properties so we can pass them to the Attack object class
 	public float attackInterval;
 	public float attackRadius;
 	public float attackDamage;
-
 
 	// is the guard a stationary unit or roaming unit
 	public bool stationary;

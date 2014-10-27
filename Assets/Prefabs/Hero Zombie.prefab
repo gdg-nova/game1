@@ -9,7 +9,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 400046}
   - 137: {fileID: 13700000}
-  - 122: {fileID: 12200000}
   m_Layer: 0
   m_Name: LittleHero_mesh
   m_TagString: Untagged
@@ -762,7 +761,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100052}
   m_LocalRotation: {x: 0, y: .981123865, z: 0, w: .193380639}
-  m_LocalPosition: {x: 242.080002, y: 0, z: 351.320007}
+  m_LocalPosition: {x: 336.660004, y: .155090004, z: 355}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 400050}
@@ -1034,17 +1033,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fearInterval: 2000
   fearRadius: 9
---- !u!122 &12200000
-Halo:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_Color:
-    serializedVersion: 2
-    rgba: 4279816727
-  m_Size: 1.5
 --- !u!122 &12200002
 Halo:
   m_ObjectHideFlags: 1
@@ -1055,7 +1043,7 @@ Halo:
   m_Color:
     serializedVersion: 2
     rgba: 4282828083
-  m_Size: 1
+  m_Size: 1.5
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

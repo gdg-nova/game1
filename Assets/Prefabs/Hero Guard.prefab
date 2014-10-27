@@ -1067,7 +1067,6 @@ MonoBehaviour:
   runSpeed: 10
   runRandomPct: 85
   manaCost: 1
-  soundEffect: {fileID: 0}
   health: 100
   navCheckInterval: 3
   navStopDistance: 5
@@ -1075,7 +1074,7 @@ MonoBehaviour:
   moveAfterCombat: 1
   Attack: {fileID: 0}
   attackInterval: 1
-  attackRadius: 8
+  attackRadius: 4
   attackDamage: 100
   stationary: 1
 --- !u!122 &12200010
@@ -1084,7 +1083,7 @@ Halo:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100316}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Color:
     serializedVersion: 2
     rgba: 4278190320

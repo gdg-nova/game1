@@ -43,11 +43,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383019b12385f43b88eb73fa41e872a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minAngle: -30
   startAngle: 0
   maxAngle: 65
   speed: 65
   mainCamera: {fileID: 0}
   terrain: {fileID: 0}
+  panningAreaMinX: -50
+  panningAreaMaxX: 50
+  panningAreaMinZ: -25
+  panningAreaMaxZ: 50
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -61,6 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCameraController: {fileID: 0}
   enablePinchToZoom: 1
+  enableMultiTouchSwipe: 1
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -275,6 +281,7 @@ MonoBehaviour:
   Human: {fileID: 100052, guid: c6783f49378f645fa81340aa301236b5, type: 2}
   Zombie: {fileID: 100052, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
   Werewolf: {fileID: 100000, guid: 0d4cc565122604ee884b29865f618621, type: 2}
+  Guard: {fileID: 100006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
   zombieCost: 1
   humanCount: 20
   timeLimit: 120
@@ -283,7 +290,6 @@ MonoBehaviour:
   zombieTargetPrefab: {fileID: 100000, guid: 69a01d735064f4050b0c939ba3fbafb4, type: 2}
   manaPool: 3
   manaDisplayUI: {fileID: 0}
-  summonZombieEffect: {fileID: 0}
   touchController: {fileID: 0}
   gameEnded: 0
   scoreGT: {fileID: 0}

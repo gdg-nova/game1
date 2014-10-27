@@ -24,7 +24,6 @@ public class zombieAI : commonAI
 	// Zombies can attack...
 	// these scripts will also be added to the zombie at interface
 	// time and we can adjust attack and cast fear properties there.
-	private attackAI Attack;
 	private castFearAI CastFear;
 
 	public override void Start()
@@ -117,10 +116,8 @@ public class zombieAI : commonAI
 	}
 
 	// when a zombie kills a running human, it comes back as a FAST zombie
-	private bool isFastZombie = false;
 	public void MakeFastZombie()
 	{
-		isFastZombie = true;
 		Start ();
 		// set speed AFTER the default start is called.
 		//baseSpeed = fastZombieSpeed;

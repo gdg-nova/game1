@@ -15,8 +15,6 @@ public class safeZoneAI : MonoBehaviour
 	public GameObject humanCountText;	
 	
 	public float coolDownSec = 30;
-	private float timeSinceLastEntry = 0;
-
 	public Material targetMaterial ;
 	private Material defaultMaterial;
 	public GameObject spawnArea ;
@@ -73,8 +71,6 @@ public class safeZoneAI : MonoBehaviour
 	void addHuman() 
 	{
 		humanCount++;
-		timeSinceLastEntry = 0;
-
 		// Now, only if random.. do we want a human to return out, but only after
 		// some determined time, such as 2 seconds after entering building.
 		// assume only from 60% or more, make as a knight to depart building
