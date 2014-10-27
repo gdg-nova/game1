@@ -172,6 +172,10 @@ Prefab:
       propertyPath: m_ClearFlags
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: e8f5752a1fbee495db086bb3b6e11b09, type: 2}
+      propertyPath: near clip plane
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8200002, guid: e8f5752a1fbee495db086bb3b6e11b09, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: e8f5752a1fbee495db086bb3b6e11b09, type: 2}
@@ -482,7 +486,6 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
 --- !u!224 &70642614
@@ -4246,7 +4249,7 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Mat: {fileID: 0}
   m_Color: {r: .992647052, g: .978049278, b: .978049278, a: 1}
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
@@ -4268,7 +4271,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 2066282858}
   m_GameObject: {fileID: 386860218}
-  m_HideIfInvisible: 0
 --- !u!224 &386860221
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4602,7 +4604,6 @@ MonoBehaviour:
   runSpeed: 10
   runRandomPct: 85
   manaCost: 1
-  soundEffect: {fileID: 0}
   health: 100
   navCheckInterval: 3
   navStopDistance: 5
@@ -6306,7 +6307,7 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Mat: {fileID: 0}
   m_Color: {r: .992647052, g: .963451564, b: .963451564, a: 1}
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
@@ -6330,7 +6331,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 1085942232}
   m_GameObject: {fileID: 667280370}
-  m_HideIfInvisible: 0
 --- !u!1 &673410128
 GameObject:
   m_ObjectHideFlags: 0
@@ -9386,7 +9386,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: .300000012
+  near clip plane: 1
   far clip plane: 1000
   field of view: 64.8294754
   orthographic: 0
@@ -9839,7 +9839,6 @@ MonoBehaviour:
   runSpeed: 10
   runRandomPct: 75
   manaCost: 1
-  soundEffect: {fileID: 0}
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
@@ -10055,7 +10054,6 @@ Canvas:
   m_PlaneDistance: 10
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
 --- !u!1001 &875690785
@@ -11450,7 +11448,7 @@ MonoBehaviour:
   m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Mat: {fileID: 0}
   m_Color: {r: .992647052, g: .963451564, b: .963451564, a: 1}
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
@@ -11474,7 +11472,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 491105351}
   m_GameObject: {fileID: 1081339693}
-  m_HideIfInvisible: 0
 --- !u!1001 &1085942232
 Prefab:
   m_ObjectHideFlags: 0
@@ -16496,7 +16493,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
 --- !u!4 &1554492045
 Transform:
   m_ObjectHideFlags: 0
@@ -17428,7 +17424,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Mat: {fileID: 0}
   m_Color: {r: .117755197, g: .889705896, b: .282792896, a: 1}
   m_Sprite: {fileID: 0}
   m_Type: 0
@@ -17445,7 +17441,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 491105351}
   m_GameObject: {fileID: 1690997158}
-  m_HideIfInvisible: 0
 --- !u!1 &1691624381
 GameObject:
   m_ObjectHideFlags: 0
@@ -17619,7 +17614,6 @@ MonoBehaviour:
   runSpeed: 10
   runRandomPct: 85
   manaCost: 1
-  soundEffect: {fileID: 0}
   health: 100
   navCheckInterval: 3
   navStopDistance: 5
@@ -18132,7 +18126,6 @@ MonoBehaviour:
   m_LightmapIndex: 0
   m_LightmapSize: 1024
   m_DrawTreesAndFoliage: 1
-  m_CollectDetailPatches: 1
   m_MaterialTemplate: {fileID: 0}
 --- !u!4 &1738940737
 Transform:
@@ -18226,7 +18219,6 @@ MonoBehaviour:
   runSpeed: 10
   runRandomPct: 75
   manaCost: 1
-  soundEffect: {fileID: 0}
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
@@ -18520,7 +18512,6 @@ MonoBehaviour:
   runSpeed: 10
   runRandomPct: 75
   manaCost: 1
-  soundEffect: {fileID: 0}
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
@@ -19494,7 +19485,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Mat: {fileID: 0}
   m_Color: {r: .117755197, g: .889705896, b: .282792896, a: 1}
   m_Sprite: {fileID: 0}
   m_Type: 0
@@ -19510,7 +19501,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1900614592}
-  m_HideIfInvisible: 0
 --- !u!1001 &1903187493
 Prefab:
   m_ObjectHideFlags: 0
@@ -19680,7 +19670,6 @@ MonoBehaviour:
   runSpeed: 10
   runRandomPct: 75
   manaCost: 1
-  soundEffect: {fileID: 0}
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
@@ -19953,7 +19942,6 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
 --- !u!1 &1949801194
@@ -20353,7 +20341,6 @@ MonoBehaviour:
   runSpeed: 10
   runRandomPct: 75
   manaCost: 1
-  soundEffect: {fileID: 0}
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
@@ -20867,6 +20854,7 @@ GameObject:
   - 114: {fileID: 2035424318}
   - 114: {fileID: 2035424317}
   - 82: {fileID: 2035424325}
+  - 122: {fileID: 2035424324}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Zombie
@@ -20905,7 +20893,6 @@ MonoBehaviour:
   runSpeed: 7
   runRandomPct: 85
   manaCost: 1
-  soundEffect: {fileID: 0}
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
@@ -21021,6 +21008,18 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!122 &2035424324
+Halo:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 12200002, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 526677433}
+  m_GameObject: {fileID: 2035424315}
+  m_Enabled: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4282828083
+  m_Size: 1
 --- !u!82 &2035424325
 AudioSource:
   m_ObjectHideFlags: 0
