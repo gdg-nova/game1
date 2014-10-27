@@ -154,13 +154,12 @@ public class commonAI : MonoBehaviour
 		// animation modes are independent per specific clip.
 		// walk is ALWAYS a looping
 
-
-		foreach (string loopAnim in loopedAnimations) {
+		foreach (string loopAnim in loopedAnimations) 
+		{
 			AnimationClip ac = animComponent.GetClip(loopAnim);
 
 			if (ac != null)
-			ac.wrapMode = WrapMode.Loop;
-
+				ac.wrapMode = WrapMode.Loop;
 		}
 
 		//AnimationClip ac = animComponent.GetClip ("walk");
@@ -210,9 +209,9 @@ public class commonAI : MonoBehaviour
 
 		}
 
-		if (playingAnims.Count == 0 && !isDestroying) {
+		if (playingAnims.Count == 0 && !isDestroying && animComponent != null)
 			animComponent.Play (animStr);
-		}
+
 		//if (playingAnims.ToUpper().Contains(animStr.ToUpper)
 //		if (animStr != playingAnim && loopedAnimations.Contains (playingAnim)) {
 //			Debug.Log ("playing string: " + playingAnim + ", switching to anim: " + animStr);
@@ -234,7 +233,11 @@ public class commonAI : MonoBehaviour
 		//}
 	}
 
-	string getAnimNameforCurrentState() {
+	string getAnimNameforCurrentState() 
+	{
+		if( navAgent == null )
+			return "idle";
+
 		if (!navAgent.hasPath) {
 				return "idle";
 		} else {
@@ -289,7 +292,7 @@ public class commonAI : MonoBehaviour
 		timeSinceNavCheck = 0;
 
 		float remDist = Mathf.Abs( navAgent.remainingDistance );
-		
+
 		// For SOME reason, the navAgent.remainingDistance is false on x/z basis.. may be ok with x/y though.
 		// since our game has x/z, we need to compute the x and z differential, then compute basis from that
 		float deltaX = Mathf.Abs( navAgent.destination.x - gameObject.transform.position.x );
@@ -422,9 +425,12 @@ public class commonAI : MonoBehaviour
 		return curStates;
 	}
 
-	public ArrayList CurrentAnimationList() {
+	public ArrayList CurrentAnimationList() 
+	{
 		ArrayList results = new ArrayList ();
-
+		if( isDestroying || animComponent == null )
+			return results;
+			
 		foreach( AnimationState aState in animComponent )
 		{
 			if( animComponent.IsPlaying( aState.name ))
@@ -436,7 +442,7 @@ public class commonAI : MonoBehaviour
 	protected void moveToNewTarget()
 	{
 		if (gameObject.tag == "Zombie")
-						return;
+			return;
 		// based on the list of navTargets an entity has, 
 		currentTarget = gs.getRandomNavTarget(defaultNavTargets);
 		moveToSpecificGameObj( currentTarget );

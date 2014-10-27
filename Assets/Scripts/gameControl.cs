@@ -8,7 +8,7 @@ public class gameControl : MonoBehaviour
 	public GameObject Human;
 	public GameObject Zombie;
 	public GameObject Werewolf;
-
+	public GameObject Guard;
 
 	public float zombieCost = 1f;
 
@@ -114,8 +114,6 @@ public class gameControl : MonoBehaviour
 			return;
 		}
 
-		Debug.Log ( "Zombie Mode: " + zombieSelectionMode );
-
 		// each possible mode of selection is looking for either down or up
 		switch( zombieSelectionMode )
 		{
@@ -178,6 +176,17 @@ public class gameControl : MonoBehaviour
 			{
 				g.SendMessage ("Click");
 				return;
+			}
+
+			// test sending human to a safe-zone
+			if( g.tag == "Human" )
+			{
+				commonAI cAI = g.GetComponent<commonAI>();
+				if( cAI != null )
+					cAI.navStopDistance = 14f;
+
+				Debug.Log ( "Sending human to safe zone" );
+				g.SendMessage ( "moveToNewTarget" );
 			}
 		}
 
@@ -380,6 +389,14 @@ public class gameControl : MonoBehaviour
 		return baseCount;
 	}
 
+	//Create Knight, such as exiting a building
+	public guardAI createGuard( Vector3 position, Quaternion rot) 
+	{
+		GameObject gobj = (GameObject)Instantiate (Guard, position, rot); 
+		guardAI gAI = gobj.GetComponentInChildren<guardAI>();
+		return gAI;
+	}
+	
 	void checkForWin() 
 	{
 		if (getHumansAliveCount() == 0 ) 
