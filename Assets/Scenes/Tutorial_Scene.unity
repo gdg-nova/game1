@@ -2023,7 +2023,7 @@ Transform:
   m_PrefabInternal: {fileID: 491105351}
   m_GameObject: {fileID: 264270464}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -.669089973, y: 0, z: 3.0532999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1691624382}
@@ -3921,6 +3921,7 @@ MonoBehaviour:
   Human: {fileID: 100052, guid: c6783f49378f645fa81340aa301236b5, type: 2}
   Zombie: {fileID: 100052, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
   Werewolf: {fileID: 100000, guid: 0d4cc565122604ee884b29865f618621, type: 2}
+  Guard: {fileID: 100006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
   zombieCost: 1
   humanCount: 20
   timeLimit: 600
@@ -4577,7 +4578,6 @@ GameObject:
   - 136: {fileID: 430592604}
   - 114: {fileID: 430592603}
   - 82: {fileID: 430592611}
-  - 82: {fileID: 430592610}
   m_Layer: 0
   m_Name: LittleKnight2_solo
   m_TagString: Guard
@@ -4602,15 +4602,14 @@ MonoBehaviour:
   runSpeed: 10
   runRandomPct: 85
   manaCost: 1
-  soundEffect: {fileID: 0}
   health: 100
   navCheckInterval: 3
   navStopDistance: 5
+  Attack: {fileID: 0}
   isDestroying: 0
   moveAfterCombat: 1
-  Attack: {fileID: 0}
   attackInterval: 1
-  attackRadius: 8
+  attackRadius: 4
   attackDamage: 100
   stationary: 1
 --- !u!136 &430592604
@@ -4634,7 +4633,7 @@ Halo:
     type: 2}
   m_PrefabInternal: {fileID: 481415353}
   m_GameObject: {fileID: 430592602}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Color:
     serializedVersion: 2
     rgba: 4278190320
@@ -4712,65 +4711,6 @@ Transform:
   - {fileID: 831342154}
   m_Father: {fileID: 358227680}
   m_RootOrder: 0
---- !u!82 &430592610
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 8200002, guid: 11b0559d1053d47e9bcd3d4949434f48,
-    type: 2}
-  m_PrefabInternal: {fileID: 481415353}
-  m_GameObject: {fileID: 430592602}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 085a4682a0c8bcf42bdfa5519af0953f, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
 --- !u!82 &430592611
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4780,7 +4720,7 @@ AudioSource:
   m_GameObject: {fileID: 430592602}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 5c6fb6202ba006c4db431d831e846be1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 67185730ee6c05b458699dfd4c891caf, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -5252,7 +5192,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 18
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
   m_RootGameObject: {fileID: 358227679}
   m_IsPrefabParent: 0
@@ -5559,13 +5500,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 8200000, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+    - target: {fileID: 0}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8200000, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ed26f12cdc6483c41b3c4626f4e2c2ae, type: 3}
     m_RemovedComponents:
     - {fileID: 8200004, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
-    - {fileID: 8200002, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+    - {fileID: 0}
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
   m_RootGameObject: {fileID: 547968700}
   m_IsPrefabParent: 0
@@ -9839,10 +9785,10 @@ MonoBehaviour:
   runSpeed: 10
   runRandomPct: 75
   manaCost: 1
-  soundEffect: {fileID: 0}
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
+  Attack: {fileID: 0}
   isDestroying: 0
   moveAfterCombat: 1
   AfraidRadius: 3
@@ -11793,7 +11739,7 @@ Transform:
   m_PrefabInternal: {fileID: 491105351}
   m_GameObject: {fileID: 1111596293}
   m_LocalRotation: {x: -.70710665, y: 0, z: 0, w: .707106948}
-  m_LocalPosition: {x: .447538376, y: 2.41636539, z: -3.790905}
+  m_LocalPosition: {x: -.221550003, y: 2.41639996, z: -.737609982}
   m_LocalScale: {x: .747573555, y: .747573555, z: .747573555}
   m_Children: []
   m_Father: {fileID: 1912803693}
@@ -16919,7 +16865,8 @@ Prefab:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
   m_RootGameObject: {fileID: 1063009457}
   m_IsPrefabParent: 0
@@ -17581,7 +17528,6 @@ GameObject:
   - 136: {fileID: 1704035723}
   - 114: {fileID: 1704035722}
   - 82: {fileID: 1704035729}
-  - 82: {fileID: 1704035728}
   m_Layer: 0
   m_Name: LittleKnight2_solo
   m_TagString: Guard
@@ -17619,13 +17565,12 @@ MonoBehaviour:
   runSpeed: 10
   runRandomPct: 85
   manaCost: 1
-  soundEffect: {fileID: 0}
   health: 100
   navCheckInterval: 3
   navStopDistance: 5
+  Attack: {fileID: 0}
   isDestroying: 0
   moveAfterCombat: 1
-  Attack: {fileID: 0}
   attackInterval: 1
   attackRadius: 8
   attackDamage: 100
@@ -17651,7 +17596,7 @@ Halo:
     type: 2}
   m_PrefabInternal: {fileID: 1633977785}
   m_GameObject: {fileID: 1704035720}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Color:
     serializedVersion: 2
     rgba: 4278190320
@@ -17716,65 +17661,6 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!82 &1704035728
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 8200002, guid: 11b0559d1053d47e9bcd3d4949434f48,
-    type: 2}
-  m_PrefabInternal: {fileID: 1633977785}
-  m_GameObject: {fileID: 1704035720}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 085a4682a0c8bcf42bdfa5519af0953f, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
 --- !u!82 &1704035729
 AudioSource:
   m_ObjectHideFlags: 0
@@ -17784,7 +17670,7 @@ AudioSource:
   m_GameObject: {fileID: 1704035720}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 5c6fb6202ba006c4db431d831e846be1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 67185730ee6c05b458699dfd4c891caf, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -18226,10 +18112,10 @@ MonoBehaviour:
   runSpeed: 10
   runRandomPct: 75
   manaCost: 1
-  soundEffect: {fileID: 0}
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
+  Attack: {fileID: 0}
   isDestroying: 0
   moveAfterCombat: 1
   AfraidRadius: 3
@@ -18462,7 +18348,7 @@ Transform:
   m_PrefabInternal: {fileID: 491105351}
   m_GameObject: {fileID: 1754008021}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -.669089973, y: 0, z: 3.0532999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 646566754}
@@ -18520,10 +18406,10 @@ MonoBehaviour:
   runSpeed: 10
   runRandomPct: 75
   manaCost: 1
-  soundEffect: {fileID: 0}
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
+  Attack: {fileID: 0}
   isDestroying: 0
   moveAfterCombat: 1
   AfraidRadius: 3
@@ -19680,10 +19566,10 @@ MonoBehaviour:
   runSpeed: 10
   runRandomPct: 75
   manaCost: 1
-  soundEffect: {fileID: 0}
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
+  Attack: {fileID: 0}
   isDestroying: 0
   moveAfterCombat: 1
   AfraidRadius: 3
@@ -19781,7 +19667,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1914946965}
   - 137: {fileID: 1914946967}
-  - 122: {fileID: 1914946966}
   m_Layer: 0
   m_Name: LittleHero_mesh
   m_TagString: Untagged
@@ -19801,18 +19686,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2035424316}
   m_RootOrder: 1
---- !u!122 &1914946966
-Halo:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 12200000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
-    type: 2}
-  m_PrefabInternal: {fileID: 526677433}
-  m_GameObject: {fileID: 1914946964}
-  m_Enabled: 1
-  m_Color:
-    serializedVersion: 2
-    rgba: 4279816727
-  m_Size: 1.5
 --- !u!137 &1914946967
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -20353,10 +20226,10 @@ MonoBehaviour:
   runSpeed: 10
   runRandomPct: 75
   manaCost: 1
-  soundEffect: {fileID: 0}
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
+  Attack: {fileID: 0}
   isDestroying: 0
   moveAfterCombat: 1
   AfraidRadius: 3
@@ -20866,6 +20739,8 @@ GameObject:
   - 114: {fileID: 2035424319}
   - 114: {fileID: 2035424318}
   - 114: {fileID: 2035424317}
+  - 122: {fileID: 2035424324}
+  - 82: {fileID: 2035424326}
   - 82: {fileID: 2035424325}
   m_Layer: 0
   m_Name: LittleHero_solo
@@ -20905,10 +20780,10 @@ MonoBehaviour:
   runSpeed: 7
   runRandomPct: 85
   manaCost: 1
-  soundEffect: {fileID: 0}
   health: 1
   navCheckInterval: 3
   navStopDistance: 5
+  Attack: {fileID: 0}
   isDestroying: 0
   moveAfterCombat: 1
   lifeSpan: 1
@@ -20947,6 +20822,7 @@ MonoBehaviour:
   attackRadius: 2
   soundEffects: []
   Zombie_on_Peasant: {fileID: 0}
+  Zombie_on_Guard: {fileID: 0}
 --- !u!136 &2035424320
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -21021,14 +20897,84 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!122 &2035424324
+Halo:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 12200002, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 526677433}
+  m_GameObject: {fileID: 2035424315}
+  m_Enabled: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4282828083
+  m_Size: 1.5
 --- !u!82 &2035424325
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2035424315}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 9d4649ca93d173541b97dc6fbd4cb33c, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!82 &2035424326
 AudioSource:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 8200000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
     type: 2}
   m_PrefabInternal: {fileID: 526677433}
   m_GameObject: {fileID: 2035424315}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: ed26f12cdc6483c41b3c4626f4e2c2ae, type: 3}
   m_PlayOnAwake: 0
@@ -21892,7 +21838,7 @@ Transform:
   m_PrefabInternal: {fileID: 491105351}
   m_GameObject: {fileID: 2126536492}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -.669089973, y: 0, z: 3.0532999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 61237910}
