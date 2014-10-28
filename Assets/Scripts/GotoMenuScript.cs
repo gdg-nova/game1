@@ -3,7 +3,7 @@
 /// <summary>
 /// Title screen script
 /// </summary>
-public class RestartScript : MonoBehaviour
+public class GotoMenuScript : MonoBehaviour
 {
 	private GUISkin skin;
 	
@@ -29,13 +29,13 @@ public class RestartScript : MonoBehaviour
 			buttonWidth,
 			buttonHeight
 			),
-			"Level Select"
+			"Back"
 			)
 			)
 		{
 			// On Click, load the first level.
 			// "Stage1" is the name of the first scene we created.
-			Application.LoadLevel("level select scene");
+			Application.LoadLevel("menu_Scene");
 		}
 	}
 }
