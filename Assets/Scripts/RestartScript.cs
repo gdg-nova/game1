@@ -29,7 +29,7 @@ public class RestartScript : MonoBehaviour
 			buttonWidth,
 			buttonHeight
 			),
-			"Return to Map"
+			"Level Select"
 			)
 			)
 		{
