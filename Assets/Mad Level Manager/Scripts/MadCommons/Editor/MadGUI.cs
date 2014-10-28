@@ -3,14 +3,10 @@
 * http://www.madpixelmachine.com
 */
 
-using System;
-using System.Linq;
-using UnityEngine;
-using UnityEditor;
-using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using Object = UnityEngine.Object;
+using UnityEditor;
+using UnityEngine;
 
 namespace MadLevelManager {
 
@@ -530,6 +526,10 @@ public class MadGUI {
     public static void Disabled(RunnableVoid0 runnable) {
         ConditionallyEnabled(false, runnable);
     }
+
+    public static EnableC EnabledIf(bool condition) {
+        return new EnableC(condition);
+    }
     
     public static void ConditionallyEnabled(bool enabled, RunnableVoid0 runnable) {
         bool prevState = GUI.enabled;
@@ -757,6 +757,24 @@ public class MadGUI {
         return EditorGUILayout.Popup(label, selectedIndex, labels);
     }
 
+    public static int DynamicPopup(Rect rect, int selectedIndex, string label, int count, RunnableGeneric1<string, int> visitor) {
+
+        if (selectedIndex >= count) {
+            selectedIndex = 0;
+        } else if (selectedIndex < 0) {
+            selectedIndex = 0;
+        }
+
+        string[] labels = new string[count];
+
+        for (int i = 0; i < count; ++i) {
+            string l = visitor(i);
+            labels[i] = l;
+        }
+
+        return EditorGUI.Popup(rect, label, selectedIndex, labels);
+    }
+
     public static Object SceneField(Object obj, string label) {
         obj = EditorGUILayout.ObjectField(label, obj, typeof(UnityEngine.Object), false);
         if (!CheckAssetIsScene(obj)) {
@@ -943,6 +961,19 @@ public class MadGUI {
 
         public void Dispose() {
             EditorGUI.indentLevel -= strength;
+        }
+    }
+
+    public class EnableC : System.IDisposable {
+        private bool previousState;
+
+        public EnableC(bool condition) {
+            previousState = GUI.enabled;
+            GUI.enabled = condition;
+        }
+
+        public void Dispose() {
+            GUI.enabled = previousState;
         }
     }
 

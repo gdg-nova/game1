@@ -3,9 +3,8 @@
 * http://www.madpixelmachine.com
 */
 
-using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace MadLevelManager {
 
@@ -29,7 +28,7 @@ public class MadLevel  {
     private static string _currentLevelName = null;
 
     // set to true when extension is set for the first time
-    private static bool extensionDefined = false;
+    public static bool extensionDefined { get; private set; }
 
 
     public static string defaultGroupName {

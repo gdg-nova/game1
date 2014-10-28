@@ -285,7 +285,7 @@ public class MadLevelMenu : MonoBehaviour {
         }
 
         EditorUtility.DisplayDialog("Mad Level Manager",
-            "Copyright (c) Mad Pixel Machine\nVersion: 2.2.2a\n\nhttp://madlevelmanager.madpixelmachine.com/" + trialInfo,
+            "Copyright (c) Mad Pixel Machine\nVersion: 2.2.3a\n\nhttp://madlevelmanager.madpixelmachine.com/" + trialInfo,
             "OK");
     }
 
