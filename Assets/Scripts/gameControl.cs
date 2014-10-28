@@ -54,9 +54,6 @@ public class gameControl : MonoBehaviour
 
         updateManaPoolDisplay ();
 
-		//check for mouse input
-		CheckForLeftClick();
-
 		CheckForRightMouse();
 
 		if (Input.GetKeyDown(KeyCode.Escape))
@@ -67,6 +64,13 @@ public class gameControl : MonoBehaviour
 		checkForWin();
 
 	}
+
+	void OnGUI()
+	{
+		//check for mouse input
+		CheckForLeftClick();
+	}
+
 
 	void gameOver() 
 	{
@@ -139,8 +143,12 @@ public class gameControl : MonoBehaviour
 
 	void startSelectionProcess()
 	{
+		bool ClickByEvent = Event.current.type == EventType.MouseDown
+			&& Event.current.button == 0
+				&& GUIUtility.hotControl == 0;
+		
 		// if no mouse down to start, just get out
-		if( !Input.GetMouseButton(0))
+		if( !ClickByEvent )
 			return;
 
 		// if we HAVE zombies to clear, do so now...
@@ -148,7 +156,14 @@ public class gameControl : MonoBehaviour
 		{
 			Component gcomp;
 			foreach( GameObject z in haloZombies )
-				((Behaviour)z.GetComponent("Halo")).enabled = false;
+			{
+				try
+				{
+					((Behaviour)z.GetComponent("Halo")).enabled = false;
+				}
+				catch
+				{}
+			}
 
 			// clear once released to prevent auto-turning all back on again
 			haloZombies = null;
@@ -207,76 +222,88 @@ public class gameControl : MonoBehaviour
 		expandingZombieTime += Time.deltaTime;
 		zombieRange.transform.localScale = new Vector3( expandingZombieTime * 75.0f, .2f, expandingZombieTime * 75.0f );
 
+
+		
+		bool ClickByEvent = Event.current.type == EventType.MouseUp
+			&& Event.current.button == 0
+				&& GUIUtility.hotControl == 0;
+		
+		// if no mouse down to start, just get out
+		if( !ClickByEvent )
+			return;
+
 		// if mouse button is now UP, we need to select the zombies and turn on all their halo's
-		if( Input.GetMouseButtonUp(0))
-		{
-			// now create the particle system in the center 
-			// of where the range object was created.
-			Transform t = zombieRange.transform;
+		// now create the particle system in the center 
+		// of where the range object was created.
+		Transform t = zombieRange.transform;
 
-			// from the central point of the get only zombies within a radius of this point, not ALL zombies...
-			// Since the scale is a diameter, we want radius which is 1/2, so divide by 2.
-			haloZombies = new List<GameObject>();
-			List<GameObject> tmp = gs.anyTagsInRange( t.position, t.localScale.x / 2.0f, eNavTargets.Zombie, true );
-			foreach( GameObject z in tmp)
-				((Behaviour)z.GetComponent("Halo")).enabled = true;
+		// from the central point of the get only zombies within a radius of this point, not ALL zombies...
+		// Since the scale is a diameter, we want radius which is 1/2, so divide by 2.
+		haloZombies = new List<GameObject>();
+		List<GameObject> tmp = gs.anyTagsInRange( t.position, t.localScale.x / 2.0f, eNavTargets.Zombie, true );
+		foreach( GameObject z in tmp)
+			((Behaviour)z.GetComponent("Halo")).enabled = true;
 
-			// Add zombies to list for turning OFF halo later...
-			haloZombies.AddRange( tmp );
+		// Add zombies to list for turning OFF halo later...
+		haloZombies.AddRange( tmp );
 
-			// now, kill off the zombieRange item
-			DestroyImmediate( zombieRange );
+		// now, kill off the zombieRange item
+		DestroyImmediate( zombieRange );
 
-			// and set flag to perform the set destination
+		// and set flag to perform the set destination
+		if( haloZombies.Count == 0 )
+			zombieSelectionMode = 0;
+		else
 			zombieSelectionMode = 2;
-		}
 	}
 
 	// third part of zombie selection.  Range expansion is done
 	// and user clicking somewhere else for actual move zombies HERE...
 	void finalizeZombieTarget()
 	{
-		// if no mouse down to start, just get out
-		if( !Input.GetMouseButton(0))
-			return;
-
-		// Yes, we have a new mouse position... any possible taget?
-		Ray r = Camera.main.ScreenPointToRay (Input.mousePosition);
-		RaycastHit r_hit;
+		// Down click on second is actual selection...
+		bool ClickByEvent = Event.current.type == EventType.MouseDown
+			&& Event.current.button == 0
+				&& GUIUtility.hotControl == 0;
 		
-		// DID we point to anything from the touch?
-		if (Physics.Raycast (r, out r_hit, Mathf.Infinity)) 
+		// if no mouse down to start, just get out
+		if( !ClickByEvent)
+			return;
+		
+		// Yes, we have a new mouse position... any possible taget?
+		Vector3 targetPos = Input.mousePosition;
+		Ray r = Camera.main.ScreenPointToRay (targetPos);
+		RaycastHit r_hit;
+		currentZombieTarget = null;
+		
+		if (Physics.Raycast(r, out r_hit, Mathf.Infinity)) 
 		{
 			// Yup, what object...
 			GameObject g = r_hit.collider.gameObject;
-
+			
 			// did we hit a knight?? If so, the zombies will be
 			// targeting whereever the KNIGHT MOVES TO...  (pending)
-
+			currentZombieTarget = r_hit.collider.gameObject;
 		}
-
+		
 		// establish target to move them to...
-//		if (currentZombieTarget == null)
-//			currentZombieTarget = (GameObject)Instantiate(zombieTargetPrefab, r_hit.point, Quaternion.Euler(0,0,0));
-//		else 
-//			currentZombieTarget.transform.position = r_hit.point;
-		// Disable showing the red particle emitter for the target...
-		// just set the target to the raycast hit object for target location
-		currentZombieTarget = r_hit.collider.gameObject;
-
+		if (currentZombieTarget == null)
+			currentZombieTarget = (GameObject)Instantiate(zombieTargetPrefab, r_hit.point, Quaternion.Euler(0,0,0));
+		else 
+			currentZombieTarget.transform.position = r_hit.point;
+		
 		zombieAI zAi;
 		foreach( GameObject z in haloZombies )
 		{
 			// in case any are destroyed as a result of kill by a knight
-			try
-			{ 	
-				zAi = z.GetComponent<zombieAI>();
-				zAi.moveToSpecificGameObj( currentZombieTarget ); }
-			catch
-			{}
+			zAi = z.GetComponent<zombieAI>();
+			zAi.moveToSpecificGameObj( currentZombieTarget ); 
 		}
+		
+		// don't keep showing once the zombies have destination set.
+		Destroy( currentZombieTarget );
 
-		// set back to zero for next selection mode	
+		// set to zero for next selection mode	
 		zombieSelectionMode = 0;
 	}
 

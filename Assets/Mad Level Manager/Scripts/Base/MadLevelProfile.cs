@@ -3,13 +3,12 @@
 * http://www.madpixelmachine.com
 */
 
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
+using UnityEngine;
 
 namespace MadLevelManager {
 
@@ -124,7 +123,10 @@ public class MadLevelProfile {
         LoadProfileFromString(levelsStr);
 
         // apply profile to fix set locked info
-        MadLevel.activeConfiguration.ApplyProfile();
+        var activeConfiguration = MadLevel.activeConfiguration;
+        if (activeConfiguration != null) {
+            activeConfiguration.ApplyProfile();
+        }
     }
     
     public static string SaveProfileToString() {

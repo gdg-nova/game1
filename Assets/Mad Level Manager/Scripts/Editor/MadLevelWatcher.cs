@@ -3,18 +3,11 @@
 * http://www.madpixelmachine.com/
 */
 
-using System;
-using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-
 using UnityEngine;
-
+using MadLevelManager;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-
-using MadLevelManager;
 
 #if !UNITY_3_5
 namespace MadLevelManager {
@@ -27,6 +20,11 @@ public class MadLevelConfigurationWatcher {
 
     static MadLevelConfigurationWatcher() {
         EditorApplication.playmodeStateChanged += () => {
+            if (GameObject.Find("/_mlm_ignore") != null) {
+                return;
+            }
+
+
             MadLevelConfiguration configuration;
 
             var layout = GameObject.FindObjectOfType(typeof(MadLevelAbstractLayout)) as MadLevelAbstractLayout;
