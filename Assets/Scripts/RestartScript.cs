@@ -35,7 +35,7 @@ public class RestartScript : MonoBehaviour
 		{
 			// On Click, load the first level.
 			// "Stage1" is the name of the first scene we created.
-			Application.LoadLevel("map_Scene");
+			Application.LoadLevel("level select scene");
 		}
 	}
 }
