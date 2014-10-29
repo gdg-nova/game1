@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ca0aa9835c2f8f4a9b2b5ff51784391, type: 3}
+  m_Name: New Configuration
+  m_EditorClassIdentifier: 
+  creationDate: 1414604361
+  _active: 1
+  levels:
+  - _sceneObject: {fileID: 102900000, guid: 13fe2a13ec6faf84ea0afb9ca0cbc0b9, type: 3}
+    _scenePath: Assets/Scenes/LevelChooseScene.unity
+    _sceneName: LevelChooseScene
+    scene: 
+    parent: {fileID: 11400000}
+    order: 0
+    name: Level Choose
+    type: 0
+    arguments: 
+    groupId: 0
+    extensionGUID: 
+    lockedByDefault: 1
+  - _sceneObject: {fileID: 102900000, guid: 77c503282cd928a478edb17ff0d35b2a, type: 3}
+    _scenePath: Assets/Scenes/Stealth_Scene.unity
+    _sceneName: Stealth_Scene
+    scene: 
+    parent: {fileID: 11400000}
+    order: 10
+    name: Stealth Scene
+    type: 1
+    arguments: 
+    groupId: 0
+    extensionGUID: 
+    lockedByDefault: 0
+  - _sceneObject: {fileID: 102900000, guid: e41f570868e574899995da7ab536ee81, type: 3}
+    _scenePath: Assets/Scenes/Tutorial_Scene.unity
+    _sceneName: Tutorial_Scene
+    scene: 
+    parent: {fileID: 11400000}
+    order: 20
+    name: Tutorial
+    type: 1
+    arguments: 
+    groupId: 0
+    extensionGUID: 
+    lockedByDefault: 0
+  - _sceneObject: {fileID: 102900000, guid: d4d8a626fe260c34d8299814ed38ca10, type: 3}
+    _scenePath: Assets/Scenes/Flank_Scene.unity
+    _sceneName: Flank_Scene
+    scene: 
+    parent: {fileID: 11400000}
+    order: 30
+    name: Flank Scene
+    type: 1
+    arguments: 
+    groupId: 0
+    extensionGUID: 
+    lockedByDefault: 0
+  - _sceneObject: {fileID: 102900000, guid: 5f04ca3e85ba8dd4da9778522dd22097, type: 3}
+    _scenePath: Assets/Scenes/scene4.unity
+    _sceneName: scene4
+    scene: 
+    parent: {fileID: 11400000}
+    order: 40
+    name: Scene 4
+    type: 1
+    arguments: 
+    groupId: 0
+    extensionGUID: 
+    lockedByDefault: 0
+  - _sceneObject: {fileID: 102900000, guid: 395fc4bd564504ec3bec093c87dbfe99, type: 3}
+    _scenePath: Assets/Scenes/scene5.unity
+    _sceneName: scene5
+    scene: 
+    parent: {fileID: 11400000}
+    order: 50
+    name: Scene 5
+    type: 1
+    arguments: 
+    groupId: 0
+    extensionGUID: 
+    lockedByDefault: 0
+  - _sceneObject: {fileID: 102900000, guid: df95eecb041236042bc1257a7665c96d, type: 3}
+    _scenePath: Assets/Scenes/scene3.unity
+    _sceneName: scene3
+    scene: 
+    parent: {fileID: 11400000}
+    order: 60
+    name: Scene 3
+    type: 1
+    arguments: 
+    groupId: 0
+    extensionGUID: 
+    lockedByDefault: 0
+  - _sceneObject: {fileID: 102900000, guid: 595648c755a3883478cb1b87b28975c5, type: 3}
+    _scenePath: Assets/Scenes/scene2.unity
+    _sceneName: scene2
+    scene: 
+    parent: {fileID: 11400000}
+    order: 70
+    name: Scene 2
+    type: 1
+    arguments: 
+    groupId: 0
+    extensionGUID: 
+    lockedByDefault: 0
+  - _sceneObject: {fileID: 102900000, guid: dfb456d75ebe31c4b9caa6a4daa4fbd8, type: 3}
+    _scenePath: Assets/Scenes/scene1.unity
+    _sceneName: scene1
+    scene: 
+    parent: {fileID: 11400000}
+    order: 80
+    name: Scene 1
+    type: 1
+    arguments: 
+    groupId: 0
+    extensionGUID: 
+    lockedByDefault: 0
+  - _sceneObject: {fileID: 102900000, guid: a80c45c697c0c8743809b4d383abcac5, type: 3}
+    _scenePath: Assets/Scenes/Two_Graveyard_Scene.unity
+    _sceneName: Two_Graveyard_Scene
+    scene: 
+    parent: {fileID: 11400000}
+    order: 90
+    name: Two Graveyard Scene
+    type: 1
+    arguments: 
+    groupId: 0
+    extensionGUID: 
+    lockedByDefault: 0
+  - _sceneObject: {fileID: 102900000, guid: fc242d574d1e6494c8827f5354f40163, type: 3}
+    _scenePath: Assets/Scenes/Split_Scene.unity
+    _sceneName: Split_Scene
+    scene: 
+    parent: {fileID: 11400000}
+    order: 100
+    name: Split Scene
+    type: 1
+    arguments: 
+    groupId: 0
+    extensionGUID: 
+    lockedByDefault: 0
+  groups: []
+  extensions: []
+  version: 1
