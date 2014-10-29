@@ -146,7 +146,11 @@ public class safeZoneAI : MonoBehaviour
 	void breakOpen() 
 	{
 		float x, z;
-		
+
+		// PRESERVE the bounds of the house as the rendering appears to be
+		// delayed after Destroy of the house, and the random placement gets hosed...
+		Bounds houseBounds = spawnArea.renderer.bounds;
+
 		// get gamecontrol object from main camera
 		GameObject go = GameObject.FindWithTag("GameController"); 
 		gameControl gc = go.GetComponent<gameControl>();
@@ -154,15 +158,14 @@ public class safeZoneAI : MonoBehaviour
 		if( gc == null )
 			return;
 		
-		
 		// how many zombies should we create of the total human count...
 		// take the integer count... PERCENTS, so divide by 100.
 		int makeZombies = (int)(humanCount * BreakOutPctZombies / 100.0f );
 		
 		for (int i = 0; i < humanCount; i++) 
 		{
-			x = Random.Range(spawnArea.renderer.bounds.min.x, spawnArea.renderer.bounds.max.x);
-			z = Random.Range(spawnArea.renderer.bounds.min.z, spawnArea.renderer.bounds.max.z);
+			x = Random.Range(houseBounds.min.x, houseBounds.max.x);
+			z = Random.Range(houseBounds.min.z, houseBounds.max.z);
 			//Camera.main.SendMessage("createHuman", transform.position);
 			if( i < makeZombies )
 			{

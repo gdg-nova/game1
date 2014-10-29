@@ -43,10 +43,9 @@ public class gameControl : MonoBehaviour
 		//Get a reference to the GUIText of ScoreCounter
 		if (scoreGO != null)
 			scoreGT = scoreGO.GetComponent<GUIText> ();
-		else
-			scoreGT = new GUIText();
-		//Initiate the score to 0
-		scoreGT.text = "0";
+
+		if(scoreGT != null )
+			scoreGT.text = "0";
 	}
 
 	void Update() 
@@ -277,17 +276,13 @@ public class gameControl : MonoBehaviour
 		Vector3 targetPos = Input.mousePosition;
 		Ray r = Camera.main.ScreenPointToRay (targetPos);
 		RaycastHit r_hit;
-		Transform currentZombieTarget = null;
-		
+		Transform currentZombieTarget;
+
 		if (Physics.Raycast(r, out r_hit, Mathf.Infinity)) 
-		{
-			// Yup, what object...
-			
-			// TODO: did we hit a knight?? If so, the zombies will be
-			// targeting whereever the KNIGHT MOVES TO...  (pending)
 			currentZombieTarget = r_hit.transform;
-		}
-		
+
+		GameObject czt = (GameObject)Instantiate(zombieTargetPrefab, r_hit.point, Quaternion.Euler(0,0,0));
+
 		zombieAI zAi;
 		foreach( GameObject z in haloZombies )
 		{
@@ -295,12 +290,15 @@ public class gameControl : MonoBehaviour
 			try
 			{
 				zAi = z.GetComponent<zombieAI>();
-				zAi.moveToSpecificTransform( currentZombieTarget ); 
+				zAi.moveToSpecificTransform( czt.gameObject.transform );
 			}
 			catch(System.Exception)
 			{ }
 		}
-		
+
+		// clear the zombie target particle emitter delayed 1/2 second
+		Destroy ( czt, .5f );
+
 		// set to zero for next selection mode	
 		zombieSelectionMode = 0;
 	}
@@ -397,17 +395,14 @@ public class gameControl : MonoBehaviour
 		return hAI;
 	}
 	
-	public int getHumansAliveCount() 
+	public bool NoMoreZombiesOrMana() 
 	{
-		int baseCount = GameObject.FindGameObjectsWithTag ("Human").Length;
-		GameObject[] safeZone  = GameObject.FindGameObjectsWithTag("SafeZone");
-		foreach( GameObject zone in GameObject.FindGameObjectsWithTag("SafeZone") )
-		{
-			safeZoneAI safeAI = (safeZoneAI)zone.GetComponent ("safeZoneAI");
-			baseCount = baseCount + safeAI.humanCount;
-		}
-		return baseCount;
+		// Game should be over if we have no more zombies
+		// AND not enough mana to generate new ones
+		int baseCount = GameObject.FindGameObjectsWithTag ("Zombie").Length;
+		return ( baseCount == 0 && !canIBuyAZombie()) ;
 	}
+
 
 	//Create Knight, such as exiting a building
 	public guardAI createGuard( Vector3 position, Quaternion rot) 
@@ -419,7 +414,13 @@ public class gameControl : MonoBehaviour
 	
 	void checkForWin() 
 	{
-		if (getHumansAliveCount() == 0 ) 
+		// since zombies are our heros, the game is actually over
+		// when we have no more zombies to convert humans into
+		// AND there is no more mana to generate zombies.
+		if( NoMoreZombiesOrMana() )
+		{
+			Debug.Log ( "Game Over" );
 			gameOver();
+		}
 	}
 }

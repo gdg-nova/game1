@@ -446,6 +446,7 @@ public abstract class commonAI : MonoBehaviour
 	{
 		if (gameObject.tag == "Zombie")
 			return;
+
 		// based on the list of navTargets an entity has, 
 		GameObject go = gs.getRandomNavTarget(defaultNavTargets);
 		if (go != null)
@@ -457,14 +458,27 @@ public abstract class commonAI : MonoBehaviour
 	
 	public void moveToSpecificTransform( Transform newTarget )
 	{
+		moveToSpecificTV( newTarget );
+	}
+
+	public void moveToSpecificVector( Vector3 newTarget )
+	{
+		moveToSpecificTV( newTarget );
+	}
+
+	private void moveToSpecificTV( object newEndpoint )
+	{
 		if( isDestroying )
 			return;
 
 		Vector3 targetVector ;
-		if( newTarget != null )
+		if( newEndpoint is Vector3 )
+			targetVector = (Vector3)newEndpoint;
+
+		if( newEndpoint is Transform )
 		{
-			currentTarget = newTarget;
-			targetVector = newTarget.position;
+			currentTarget = (Transform)newEndpoint;
+			targetVector = currentTarget.position;
 		}
 		else
 		{
@@ -487,18 +501,7 @@ public abstract class commonAI : MonoBehaviour
 		// always start animation walking to target...
 		// if human and in "Afraid" mode, it will change the the sprint animation
 		if( navAgent != null )
-		{
-			if( !isAfraid )
-			{
-				//animComponent.Play("walk");
-
-				//Go to new target
-				// see notation during start to compute one-time randomly adjusted
-				// base speed for duration of the object instance.
-				//navAgent.speed = baseSpeed;
-			}
 			navAgent.SetDestination(targetVector);
-		}
 	}
 
 	public void takeDamage(float damageTaken)
