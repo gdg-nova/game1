@@ -93,4 +93,10 @@ public class scaryMonsterAI : commonAI
 		//if (hit.gameObject.tag.Equals("Human"))
 		//	Camera.main.SendMessage("createZombie", hit.transform.position);
 	}
+
+	public override void playSound (string action, string target)
+	{
+		// TODO: No sound
+		return;
+	}
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class commonAI : MonoBehaviour 
+public abstract class commonAI : MonoBehaviour 
 {
 	// each game object (human, zombie, guard, etc) will have some
 	// speed movement basis.  These will be configurable from within
@@ -37,7 +37,7 @@ public class commonAI : MonoBehaviour
 
 	// Each object, regardless of human, guard, zombie, whatever 
 	// needs a target to try and engage
-	protected GameObject currentTarget;
+	protected Transform currentTarget;
 
 	// each object may also have its own animation
 	// Animations for 
@@ -447,18 +447,25 @@ public class commonAI : MonoBehaviour
 		if (gameObject.tag == "Zombie")
 			return;
 		// based on the list of navTargets an entity has, 
-		currentTarget = gs.getRandomNavTarget(defaultNavTargets);
-		moveToSpecificGameObj( currentTarget );
+		GameObject go = gs.getRandomNavTarget(defaultNavTargets);
+		if (go != null)
+		{
+			currentTarget = go.transform;
+			moveToSpecificTransform( currentTarget );
+		}
 	}
 	
-	public void moveToSpecificGameObj( GameObject NewTarget )
+	public void moveToSpecificTransform( Transform newTarget )
 	{
 		if( isDestroying )
 			return;
 
 		Vector3 targetVector ;
-		if( NewTarget != null )
-			targetVector = NewTarget.transform.position;
+		if( newTarget != null )
+		{
+			currentTarget = newTarget;
+			targetVector = newTarget.position;
+		}
 		else
 		{
 			currentTarget = null;
@@ -506,5 +513,7 @@ public class commonAI : MonoBehaviour
 		else if( hasHurtAnimation )
 			animComponent.Play("hurt");
 	}
+
+	abstract public void playSound(string action, string target);
 }
 

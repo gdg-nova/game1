@@ -12,6 +12,10 @@ public class guardAI : commonAI
 	// is the guard a stationary unit or roaming unit
 	public bool stationary;
 
+	//Sound effect for guard on zombie
+	//private AudioSource Guard_on_Zombie;
+
+
 	public override void Start()
 	{
 		// do baseline start actions first...
@@ -24,7 +28,9 @@ public class guardAI : commonAI
 		Attack.attackInterval = attackInterval;
 		Attack.attackRadius = attackRadius;
 		Attack.damage = attackDamage;
-		
+
+		// Guard_on_Zombie = GetComponent<AudioSource>();
+
 		// At present, can only attack zombies and werewolves
 		Attack.AddAttackTarget(eNavTargets.Zombie);
 
@@ -110,5 +116,11 @@ public class guardAI : commonAI
 		// enemy was destroyed, we have something to again move towards
 		//if (!stationary)
 			//animComponent.Play ("walk");
+	}
+
+	public override void playSound (string action, string target)
+	{
+		// TODO: No sounds
+		return;
 	}
 }

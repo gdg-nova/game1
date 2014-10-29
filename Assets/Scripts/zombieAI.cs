@@ -20,6 +20,12 @@ public class zombieAI : commonAI
 	public float updateSpeedInterval = .5f;
 	private float timeSinceSpeedUpdate;
 
+	//Add sound effects to the attacks
+	private AudioSource[] soundEffects;
+	//Sound effect for zombie on peasant
+	private AudioSource Zombie_on_Peasant;
+	//Sound effect for zombie on knight
+	private AudioSource Zombie_on_Guard;
 
 	// Zombies can attack...
 	// these scripts will also be added to the zombie at interface
@@ -35,6 +41,13 @@ public class zombieAI : commonAI
 
 		//StartCoroutine ("updateSpeedbyNearbyZombies");
 
+		//Add all the sound effects to one object
+		soundEffects = GetComponents<AudioSource> ();
+		if (soundEffects.Length < 2)
+			Debug.Log ("Object name is: " + name );
+		Zombie_on_Peasant = soundEffects [0];
+		Zombie_on_Guard = soundEffects [1];
+		//Guard_on_Zombie = soundEffects [2];
 
 
 		lifeSpan = 5000f;
@@ -237,5 +250,31 @@ public class zombieAI : commonAI
 		// ONLY if the object is a human do we create a newly spawned zombie.
 		//Get points for every time you attack
 		gameController.scorePoints();
+	}
+
+	public override void playSound (string action, string target)
+	{
+		//Play the correct sound:
+		switch(target)
+		{
+			case "Human":
+			{
+				Zombie_on_Peasant.Play();
+				break;
+			}
+			case "Zombie":
+			{
+				//Debug.Log("Zombie attacked");
+				//Guard_on_Zombie.Play();
+				break;
+			}
+			case "Guard":
+			{
+				//	Debug.Log("Guard attacked");
+				Zombie_on_Guard.Play();
+				break;
+			}
+		}
+
 	}
 }

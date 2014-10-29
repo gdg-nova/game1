@@ -37,22 +37,8 @@ public class attackAI : MonoBehaviour
 	// set the swipe/attack direction.
 	private string attackAnimation;
 
-	//Add sound effects to the attacks
-	public AudioSource[] soundEffects;
-	//Sound effect for zombie on peasant
-	public AudioSource Zombie_on_Peasant;
-	//Sound effect for zombie on knight
-	public AudioSource Zombie_on_Guard;
-	//Sound effect for guard on zombie
-	//public AudioSource Guard_on_Zombie;
-
 	public void Start()
 	{
-		//Add all the sound effects to one object
-		soundEffects = GetComponents<AudioSource> ();
-		Zombie_on_Peasant = soundEffects [0];
-		Zombie_on_Guard = soundEffects [1];
-		//Guard_on_Zombie = soundEffects [2];
 
 	}
 
@@ -134,27 +120,8 @@ public class attackAI : MonoBehaviour
 			{
 				commonAI o = hitObj.GetComponent<commonAI>();
 
-				//Play the correct sound:
-				switch(hitObj.tag.ToString())
-				{
-				case "Human":
-				{
-					Zombie_on_Peasant.Play();
-					break;
-				}
-				case "Zombie":
-				{
-					//Debug.Log("Zombie attacked");
-					//Guard_on_Zombie.Play();
-					break;
-				}
-				case "Guard":
-				{
-				//	Debug.Log("Guard attacked");
-					Zombie_on_Guard.Play();
-					break;
-				}
-				}
+				if (o != null)
+					o.playSound( "attack", hitObj.tag.ToString() );
 			//	if (!o.isDestroying) {
 				//Debug.Log ("valid attack hit: " + hitObj);
 
@@ -244,10 +211,7 @@ public class attackAI : MonoBehaviour
 			// did we find an object we are allowed to attack
 			if( canAttack( hitObj.tag ))
 			{
-				commonAI o = hitObj.GetComponent<commonAI>();
-
-				// CHANGE It's target destination and get out
-				thisAttacker.moveToSpecificGameObj( o.gameObject );
+				thisAttacker.moveToSpecificTransform( hitObj.transform );
 				return;
 			}
 		}

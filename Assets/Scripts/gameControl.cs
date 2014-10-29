@@ -17,7 +17,6 @@ public class gameControl : MonoBehaviour
 	public float elapsedTime = 0; 
 
 	private Quaternion q = Quaternion.Euler (0,0,0);
-	public GameObject currentZombieTarget;
 	public GameObject zombieTargetPrefab;
 
 	public float manaPool = 3f;
@@ -42,7 +41,10 @@ public class gameControl : MonoBehaviour
 		//Get a reference to the ScoreCounter
 		GameObject scoreGO = GameObject.Find ("ScoreCounter");
 		//Get a reference to the GUIText of ScoreCounter
-		scoreGT = scoreGO.GetComponent<GUIText> ();
+		if (scoreGO != null)
+			scoreGT = scoreGO.GetComponent<GUIText> ();
+		else
+			scoreGT = new GUIText();
 		//Initiate the score to 0
 		scoreGT.text = "0";
 	}
@@ -191,15 +193,17 @@ public class gameControl : MonoBehaviour
 				}
 			}
 
+			// If we want to implement this then let's move it to the humanAI
+			// and not to the game control area which is mostly for user input stuff.
 			// test sending human to a safe-zone
-			if( g.tag == "Human" )
+			/*if( g.tag == "Human" )
 			{
 				commonAI cAI = g.GetComponent<commonAI>();
 				if( cAI != null )
 					cAI.navStopDistance = 14f;
 
 				g.SendMessage ( "moveToNewTarget" );
-			}
+			}*/
 		}
 
 		// we did not touch a graveyard, just use the mouse input position
@@ -220,9 +224,7 @@ public class gameControl : MonoBehaviour
 	{
 		// always calc time and expand the scale radius REGARDLESS of mouse button being up
 		expandingZombieTime += Time.deltaTime;
-		zombieRange.transform.localScale = new Vector3( expandingZombieTime * 75.0f, .2f, expandingZombieTime * 75.0f );
-
-
+		zombieRange.transform.localScale = new Vector3( expandingZombieTime * 100.0f, .2f, expandingZombieTime * 100.0f );
 		
 		bool ClickByEvent = Event.current.type == EventType.MouseUp
 			&& Event.current.button == 0
@@ -239,8 +241,9 @@ public class gameControl : MonoBehaviour
 
 		// from the central point of the get only zombies within a radius of this point, not ALL zombies...
 		// Since the scale is a diameter, we want radius which is 1/2, so divide by 2.
+		// Actually diving by 2.2 because the texture is smaller than the object, so it's more inline with texture which player can see.
 		haloZombies = new List<GameObject>();
-		List<GameObject> tmp = gs.anyTagsInRange( t.position, t.localScale.x / 2.0f, eNavTargets.Zombie, true );
+		List<GameObject> tmp = gs.anyTagsInRange( t.position, t.localScale.x / 2.2f, eNavTargets.Zombie, true );
 		foreach( GameObject z in tmp)
 			((Behaviour)z.GetComponent("Halo")).enabled = true;
 
@@ -274,35 +277,30 @@ public class gameControl : MonoBehaviour
 		Vector3 targetPos = Input.mousePosition;
 		Ray r = Camera.main.ScreenPointToRay (targetPos);
 		RaycastHit r_hit;
-		currentZombieTarget = null;
+		Transform currentZombieTarget = null;
 		
 		if (Physics.Raycast(r, out r_hit, Mathf.Infinity)) 
 		{
 			// Yup, what object...
-			GameObject g = r_hit.collider.gameObject;
 			
-			// did we hit a knight?? If so, the zombies will be
+			// TODO: did we hit a knight?? If so, the zombies will be
 			// targeting whereever the KNIGHT MOVES TO...  (pending)
-			currentZombieTarget = r_hit.collider.gameObject;
+			currentZombieTarget = r_hit.transform;
 		}
-		
-		// establish target to move them to...
-		if (currentZombieTarget == null)
-			currentZombieTarget = (GameObject)Instantiate(zombieTargetPrefab, r_hit.point, Quaternion.Euler(0,0,0));
-		else 
-			currentZombieTarget.transform.position = r_hit.point;
 		
 		zombieAI zAi;
 		foreach( GameObject z in haloZombies )
 		{
 			// in case any are destroyed as a result of kill by a knight
-			zAi = z.GetComponent<zombieAI>();
-			zAi.moveToSpecificGameObj( currentZombieTarget ); 
+			try
+			{
+				zAi = z.GetComponent<zombieAI>();
+				zAi.moveToSpecificTransform( currentZombieTarget ); 
+			}
+			catch(System.Exception)
+			{ }
 		}
 		
-		// don't keep showing once the zombies have destination set.
-		Destroy( currentZombieTarget );
-
 		// set to zero for next selection mode	
 		zombieSelectionMode = 0;
 	}

@@ -192,4 +192,10 @@ public class humanAI : commonAI, ICanBeScared
 		if( ! gs.anyTagsInRange( transform.position, AfraidRadius, eNavTargets.Zombie ))
 			makeAfraid(false);
 	}
+
+	public override void playSound (string action, string target)
+	{
+		// TODO: No sounds
+		return;
+	}
 }
