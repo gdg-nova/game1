@@ -194,6 +194,12 @@ public abstract class commonAI : MonoBehaviour
 
 		string animStr = getAnimNameforCurrentState ();
 
+
+		
+		if (gameObject.tag == "Guard") {
+			Debug.Log ("anim for curnet state:"  + animStr);
+
+		}
 		ArrayList playingAnims = CurrentAnimationList ();
 
 		//string playingAnim = animComponent.clip.ToString ();
@@ -215,7 +221,7 @@ public abstract class commonAI : MonoBehaviour
 
 		if (playingAnims.Count == 0 && !isDestroying && animComponent != null)
 			animComponent.Play (animStr);
-		Debug.Log ("playing anim: " + animStr);
+		//Debug.Log ("playing anim: " + animStr);
 
 		//if (playingAnims.ToUpper().Contains(animStr.ToUpper)
 //		if (animStr != playingAnim && loopedAnimations.Contains (playingAnim)) {
@@ -242,10 +248,6 @@ public abstract class commonAI : MonoBehaviour
 	{
 		if( navAgent == null)
 			return "idle";
-
-		if (!navAgent.hasPath) {
-			return "idle";
-				}
 
 		if (!navAgent.hasPath) {
 				return "idle";
@@ -307,7 +309,7 @@ public abstract class commonAI : MonoBehaviour
 
 		float remainingDistance = Vector3.Distance (transform.position, navAgent.destination);
 
-		if (gameObject.tag =="Zombie")  Debug.Log (gameObject.tag + "  distance to target: " + remainingDistance);
+		//if (gameObject.tag =="Zombie")  Debug.Log (gameObject.tag + "  distance to target: " + remainingDistance);
 		//return ( deltaX < navStopDistance  && deltaZ < navStopDistance );
 
 		return (remainingDistance <= navStopDistance);

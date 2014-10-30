@@ -116,6 +116,8 @@ public class guardAI : commonAI
 		// enemy was destroyed, we have something to again move towards
 		//if (!stationary)
 			//animComponent.Play ("walk");
+
+		checkAnimation ();
 	}
 
 	public override void playSound (string action, string target)
