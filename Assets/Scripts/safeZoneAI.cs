@@ -22,6 +22,7 @@ public class safeZoneAI : MonoBehaviour
 	public GameObject HealthTextUI;
 	public GameObject HealthBarUI;
 
+	public bool spawnGuards= false;
 
 	private float HealthBarFullWidth;
 
@@ -58,7 +59,7 @@ public class safeZoneAI : MonoBehaviour
 				             HealthBarUI.transform.localScale.y, 
 				             HealthBarUI.transform.localScale.z);
 	
-		exitAsGuard();
+		if (spawnGuards) exitAsGuard();
 	}
 
 	// DVR, new feature... when a human enters a building, typically just add to the

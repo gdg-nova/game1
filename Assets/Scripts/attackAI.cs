@@ -176,6 +176,9 @@ public class attackAI : MonoBehaviour
 					if( o2 is safeZoneAI )
 						// a safe-zone or finish never is of a commonAI and 
 						// never moves at the end of combat.
+						animComponent.wrapMode = WrapMode.Once;
+						animComponent.Play(attackAnimation);
+
 						((safeZoneAI)o2).takeDamage( damage );
 				}
 				anythingWasHit = true;
