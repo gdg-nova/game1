@@ -194,12 +194,6 @@ public abstract class commonAI : MonoBehaviour
 
 		string animStr = getAnimNameforCurrentState ();
 
-
-		
-		if (gameObject.tag == "Guard") {
-			Debug.Log ("anim for curnet state:"  + animStr);
-
-		}
 		ArrayList playingAnims = CurrentAnimationList ();
 
 		//string playingAnim = animComponent.clip.ToString ();

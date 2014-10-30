@@ -120,38 +120,30 @@ public class attackAI : MonoBehaviour
 			{
 				commonAI o = hitObj.GetComponent<commonAI>();
 
-				if (o != null)
+				if (o != null && !o.isDestroying) {
+					//Attacking a valid live target
+				
 					o.playSound( "attack", hitObj.tag.ToString() );
-			//	if (!o.isDestroying) {
-				//Debug.Log ("valid attack hit: " + hitObj);
+				
+					//Debug.Log ("valid attack hit: " + hitObj);
 
-				// mark this as being engaged in combat attack mode
-				thisAttacker.EngagedInCombat = true;
+					// mark this as being engaged in combat attack mode
+					thisAttacker.EngagedInCombat = true;
 
-				// turn our game object in the direction of what is being attacked
-				transform.LookAt(hitObj.transform);
+					// turn our game object in the direction of what is being attacked
+					transform.LookAt(hitObj.transform);
 
-				// based on the initial animation, what is their respective
-				// attack animation name string
-				animComponent.wrapMode = WrapMode.Once;
-				animComponent.Play(attackAnimation);
+					// based on the initial animation, what is their respective
+					// attack animation name string
+					animComponent.wrapMode = WrapMode.Once;
+					animComponent.Play(attackAnimation);
 
-				// if there was a subscription to this event, pass the
-				// game object hit to the calling source.
-				if (OnWasAttacked != null)
-					OnWasAttacked(hit);
+					// if there was a subscription to this event, pass the
+					// game object hit to the calling source.
+					if (OnWasAttacked != null)
+						OnWasAttacked(hit);
 
-				if( o == null )
-				{
-					object o2 = hitObj.GetComponent<safeZoneAI>();
-					if( o2 is safeZoneAI )
-						// a safe-zone or finish never is of a commonAI and 
-						// never moves at the end of combat.
-						((safeZoneAI)o2).takeDamage( damage );
-				}
-				else
-				{
-					// just to track engaged in attack/combat
+						// just to track engaged in attack/combat
 					o.EngagedInCombat = true;
 
 					// Then, put into queue to get back to walking mode
@@ -171,19 +163,29 @@ public class attackAI : MonoBehaviour
 					// (unless something else hits IT again)
 					if( o.isDestroying )
 						thisAttacker.EngagedInCombat = false;
-				}
 
-				// set flag we hit a valid expected object and exit the loop.
-				// we can't attack more than one thing
+
+					// set flag we hit a valid expected object and exit the loop.
+					// we can't attack more than one thing
+
+			//		break;
+					//}			
+				} else {
+					//attacking a house
+					object o2 = hitObj.GetComponent<safeZoneAI>();
+					if( o2 is safeZoneAI )
+						// a safe-zone or finish never is of a commonAI and 
+						// never moves at the end of combat.
+						((safeZoneAI)o2).takeDamage( damage );
+				}
 				anythingWasHit = true;
-				break;
-				//}
+				return;
 			}
 
 			// if anything was hit, get out of the for-each of colliders.
 			// do not allow hitting multiple objects during same round
-			if (anythingWasHit)
-				break;
+			//if (anythingWasHit)
+			//	break;
 		}
 	}
 
