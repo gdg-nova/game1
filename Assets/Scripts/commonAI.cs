@@ -198,7 +198,6 @@ public abstract class commonAI : MonoBehaviour
 
 		//string playingAnim = animComponent.clip.ToString ();
 
-		//Debug.Log ("playing anim: " + playingAnim);
 
 		if (!playingAnims.Contains (animStr)) {
 			bool changeAnimation = false;
@@ -216,6 +215,7 @@ public abstract class commonAI : MonoBehaviour
 
 		if (playingAnims.Count == 0 && !isDestroying && animComponent != null)
 			animComponent.Play (animStr);
+		Debug.Log ("playing anim: " + animStr);
 
 		//if (playingAnims.ToUpper().Contains(animStr.ToUpper)
 //		if (animStr != playingAnim && loopedAnimations.Contains (playingAnim)) {
@@ -240,8 +240,12 @@ public abstract class commonAI : MonoBehaviour
 
 	string getAnimNameforCurrentState() 
 	{
-		if( navAgent == null )
+		if( navAgent == null)
 			return "idle";
+
+		if (!navAgent.hasPath) {
+			return "idle";
+				}
 
 		if (!navAgent.hasPath) {
 				return "idle";
@@ -277,8 +281,8 @@ public abstract class commonAI : MonoBehaviour
 			return false;
 
 		// if no taget, alway false, let the character move to another target
-		if( currentTarget == null )
-			return false;
+		//if( navAgent.destination == null )
+		//	return false;
 
 //		if( navAgent.remainingDistance == Mathf.Infinity)
 //		{
@@ -298,9 +302,15 @@ public abstract class commonAI : MonoBehaviour
 
 		// For SOME reason, the navAgent.remainingDistance is false on x/z basis.. may be ok with x/y though.
 		// since our game has x/z, we need to compute the x and z differential, then compute basis from that
-		float deltaX = Mathf.Abs( navAgent.destination.x - gameObject.transform.position.x );
-		float deltaZ = Mathf.Abs( navAgent.destination.z - gameObject.transform.position.z );
-		return ( deltaX < navStopDistance  && deltaZ < navStopDistance );
+		//float deltaX = Mathf.Abs( navAgent.destination.x - gameObject.transform.position.x );
+		//float deltaZ = Mathf.Abs( navAgent.destination.z - gameObject.transform.position.z );
+
+		float remainingDistance = Vector3.Distance (transform.position, navAgent.destination);
+
+		if (gameObject.tag =="Zombie")  Debug.Log (gameObject.tag + "  distance to target: " + remainingDistance);
+		//return ( deltaX < navStopDistance  && deltaZ < navStopDistance );
+
+		return (remainingDistance <= navStopDistance);
 	}
 
 	protected void IsMovementStagnant()
