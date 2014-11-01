@@ -31,7 +31,8 @@ public class gameControl : MonoBehaviour
 
 	public int score;
 
-	public GameObject throwingAnchor;
+	public GameObject throwingAnchorPrefab;
+	private GameObject throwingAnchor;
 
 	private float timeSinceCheckMouseInput = 0;
 	public float  MouseCheckInputInterval = 1;
@@ -141,24 +142,40 @@ public class gameControl : MonoBehaviour
 //			throwingAnchor.transform.position = Camera.main.ScreenToWorldPoint(pos);
 //
 
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			RaycastHit hit;
+				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+				RaycastHit hit;
 
-			if (Physics.Raycast (ray, out hit, 1000)) {
-					if (hit.collider.gameObject.tag == "Zombie") {
+				if (Physics.Raycast (ray, out hit, 1000)) {
+				Debug.Log ("Hit:  " +hit.collider.gameObject.tag);
 
-				}
+						
+				if (hit.collider.gameObject.tag == "Zombie" && throwingAnchor == null) {
+					GameObject z = hit.collider.gameObject;
 
-					if (hit.collider.gameObject.tag != "ThrowingAnchor") {
+					throwingAnchor = (GameObject)Instantiate(throwingAnchorPrefab, z.transform.position + (Vector3.up * 2), Quaternion.Euler(0,0,0));
+
+					//throwingAnchor.transform.position = hit.collider.gameObject.transform.position + (Vector3.up * 2);							
+					throwingAnchor.GetComponent<SpringJoint> ().connectedBody = z.rigidbody;						
+
+					z.SendMessage("PickedUp");
+
+				} 
+					if (hit.collider.gameObject.tag != "ThrowingAnchor" && throwingAnchor != null) {
 							Vector3 newPos = hit.point;
 							newPos.y = 8;
 							throwingAnchor.transform.position = newPos;
 					}
+				}
+				
+		}else {
+				if(throwingAnchor != null) {
+					throwingAnchor.GetComponent<SpringJoint>().connectedBody.gameObject.SendMessage("Thrown");
+
+					throwingAnchor.GetComponent<SpringJoint>().connectedBody = null;
+				Destroy(throwingAnchor);	
 			}
 
-			} else {
-			//throwingAnchor.GetComponent<SpringJoint>().connectedBody = null;
-			}
+		}
 		
 		//throwingAnchor.transform.position = Input.mousePosition;
 
