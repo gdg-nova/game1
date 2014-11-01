@@ -5444,7 +5444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383019b12385f43b88eb73fa41e872a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minAngle: -30
+  minAngle: -60
   startAngle: 0
   maxAngle: 65
   speed: 65
@@ -6930,6 +6930,10 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100052, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8200004, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
     - {fileID: 8200002, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
@@ -7007,7 +7011,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &547968701
 Transform:
   m_ObjectHideFlags: 0
@@ -9768,6 +9772,10 @@ Prefab:
     - target: {fileID: 11400008, guid: 1b7b91676103b4460a7c365c551a8b73, type: 2}
       propertyPath: timeLimit
       value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 1b7b91676103b4460a7c365c551a8b73, type: 2}
+      propertyPath: minAngle
+      value: -60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1b7b91676103b4460a7c365c551a8b73, type: 2}
