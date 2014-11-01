@@ -26,37 +26,49 @@ MonoBehaviour:
     groupId: 0
     extensionGUID: 
     lockedByDefault: 1
-  - _sceneObject: {fileID: 102900000, guid: 77c503282cd928a478edb17ff0d35b2a, type: 3}
-    _scenePath: Assets/Scenes/Stealth_Scene.unity
-    _sceneName: Stealth_Scene
-    scene: 
-    parent: {fileID: 11400000}
-    order: 10
-    name: Stealth Scene
-    type: 1
-    arguments: 
-    groupId: 0
-    extensionGUID: 
-    lockedByDefault: 0
   - _sceneObject: {fileID: 102900000, guid: e41f570868e574899995da7ab536ee81, type: 3}
     _scenePath: Assets/Scenes/Tutorial_Scene.unity
     _sceneName: Tutorial_Scene
     scene: 
     parent: {fileID: 11400000}
-    order: 20
-    name: Tutorial
+    order: 10
+    name: Tutorial Scene
     type: 1
     arguments: 
     groupId: 0
     extensionGUID: 
     lockedByDefault: 0
-  - _sceneObject: {fileID: 102900000, guid: d4d8a626fe260c34d8299814ed38ca10, type: 3}
-    _scenePath: Assets/Scenes/Flank_Scene.unity
-    _sceneName: Flank_Scene
+  - _sceneObject: {fileID: 102900000, guid: dfb456d75ebe31c4b9caa6a4daa4fbd8, type: 3}
+    _scenePath: Assets/Scenes/scene1.unity
+    _sceneName: scene1
+    scene: 
+    parent: {fileID: 11400000}
+    order: 20
+    name: Scene 1
+    type: 1
+    arguments: 
+    groupId: 0
+    extensionGUID: 
+    lockedByDefault: 0
+  - _sceneObject: {fileID: 102900000, guid: 595648c755a3883478cb1b87b28975c5, type: 3}
+    _scenePath: Assets/Scenes/scene2.unity
+    _sceneName: scene2
     scene: 
     parent: {fileID: 11400000}
     order: 30
-    name: Flank Scene
+    name: Scene 2
+    type: 1
+    arguments: 
+    groupId: 0
+    extensionGUID: 
+    lockedByDefault: 0
+  - _sceneObject: {fileID: 102900000, guid: df95eecb041236042bc1257a7665c96d, type: 3}
+    _scenePath: Assets/Scenes/scene3.unity
+    _sceneName: scene3
+    scene: 
+    parent: {fileID: 11400000}
+    order: 40
+    name: Scene 3
     type: 1
     arguments: 
     groupId: 0
@@ -67,7 +79,7 @@ MonoBehaviour:
     _sceneName: scene4
     scene: 
     parent: {fileID: 11400000}
-    order: 40
+    order: 50
     name: Scene 4
     type: 1
     arguments: 
@@ -79,44 +91,32 @@ MonoBehaviour:
     _sceneName: scene5
     scene: 
     parent: {fileID: 11400000}
-    order: 50
+    order: 60
     name: Scene 5
     type: 1
     arguments: 
     groupId: 0
     extensionGUID: 
     lockedByDefault: 0
-  - _sceneObject: {fileID: 102900000, guid: df95eecb041236042bc1257a7665c96d, type: 3}
-    _scenePath: Assets/Scenes/scene3.unity
-    _sceneName: scene3
-    scene: 
-    parent: {fileID: 11400000}
-    order: 60
-    name: Scene 3
-    type: 1
-    arguments: 
-    groupId: 0
-    extensionGUID: 
-    lockedByDefault: 0
-  - _sceneObject: {fileID: 102900000, guid: 595648c755a3883478cb1b87b28975c5, type: 3}
-    _scenePath: Assets/Scenes/scene2.unity
-    _sceneName: scene2
+  - _sceneObject: {fileID: 102900000, guid: 77c503282cd928a478edb17ff0d35b2a, type: 3}
+    _scenePath: Assets/Scenes/Stealth_Scene.unity
+    _sceneName: Stealth_Scene
     scene: 
     parent: {fileID: 11400000}
     order: 70
-    name: Scene 2
+    name: Stealth Scene
     type: 1
     arguments: 
     groupId: 0
     extensionGUID: 
     lockedByDefault: 0
-  - _sceneObject: {fileID: 102900000, guid: dfb456d75ebe31c4b9caa6a4daa4fbd8, type: 3}
-    _scenePath: Assets/Scenes/scene1.unity
-    _sceneName: scene1
+  - _sceneObject: {fileID: 102900000, guid: d4d8a626fe260c34d8299814ed38ca10, type: 3}
+    _scenePath: Assets/Scenes/Flank_Scene.unity
+    _sceneName: Flank_Scene
     scene: 
     parent: {fileID: 11400000}
     order: 80
-    name: Scene 1
+    name: Flank Scene
     type: 1
     arguments: 
     groupId: 0
