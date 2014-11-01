@@ -75,7 +75,12 @@ public class gameControl : MonoBehaviour
 
 	void gameOver() 
 	{
-		Time.timeScale = 0;
+		// if NOT using the new camera stats, stop the game timeScale,
+		// otherwise it is self-wrapped-integrated and the camera Stats
+		// object will actually show the game over button THEN top the timer.
+		if( GameObject.FindObjectOfType<camStats>() == null )
+			Time.timeScale = 0;
+
 		gameEnded = true;
 	}
 	
