@@ -4147,7 +4147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383019b12385f43b88eb73fa41e872a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minAngle: -30
+  minAngle: -60
   startAngle: 0
   maxAngle: 65
   speed: 65
@@ -8614,6 +8614,10 @@ Prefab:
       propertyPath: Guard
       value: 
       objectReference: {fileID: 100006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
+    - target: {fileID: 11400000, guid: 1b7b91676103b4460a7c365c551a8b73, type: 2}
+      propertyPath: minAngle
+      value: -60
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1b7b91676103b4460a7c365c551a8b73, type: 2}
   m_RootGameObject: {fileID: 372054675}
