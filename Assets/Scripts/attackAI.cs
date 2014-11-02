@@ -104,7 +104,6 @@ public class attackAI : MonoBehaviour
 
 		// sphere cast around the attacking game object.
 		Collider[] colliders = Physics.OverlapSphere(associatedWith.transform.position, attackRadius);
-		bool anythingWasHit = false;
 
 		// get pointer to this as an type-casted object of commonAI
 		commonAI thisAttacker = GetComponent<commonAI>();
@@ -185,14 +184,8 @@ public class attackAI : MonoBehaviour
 						((safeZoneAI)o2).takeDamage( damage );
 					}
 				}
-				anythingWasHit = true;
 				return;
 			}
-
-			// if anything was hit, get out of the for-each of colliders.
-			// do not allow hitting multiple objects during same round
-			//if (anythingWasHit)
-			//	break;
 		}
 	}
 
@@ -207,8 +200,7 @@ public class attackAI : MonoBehaviour
 		
 		// sphere cast around the attacking game object.
 		Collider[] colliders = Physics.OverlapSphere(associatedWith.transform.position, attackRadius * 3.0f);
-		bool anythingWasHit = false;
-		
+
 		// get pointer to this as an type-casted object of commonAI
 		commonAI thisAttacker = GetComponent<commonAI>();
 		

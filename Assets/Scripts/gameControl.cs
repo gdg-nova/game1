@@ -13,21 +13,15 @@ public class gameControl : MonoBehaviour
 	public float zombieCost = 1f;
 
 	public int humanCount;
-	public float timeLimit = 40;
-	public float elapsedTime = 0; 
 
 	private Quaternion q = Quaternion.Euler (0,0,0);
 	public GameObject zombieTargetPrefab;
 
 	public float manaPool = 3f;
-	public GameObject manaDisplayUI;
-
 
 	public touchController touchController = null;
 
 	public bool gameEnded;
-
-	public GUIText scoreGT;
 
 	public int score;
 
@@ -37,33 +31,16 @@ public class gameControl : MonoBehaviour
 
 		if (touchController == null)
 			this.touchController = GetComponent<touchController>();
-
-		//Get a reference to the ScoreCounter
-		GameObject scoreGO = GameObject.Find ("ScoreCounter");
-		//Get a reference to the GUIText of ScoreCounter
-		if (scoreGO != null)
-			scoreGT = scoreGO.GetComponent<GUIText> ();
-
-		if(scoreGT != null )
-			scoreGT.text = "0";
 	}
 
 	void Update() 
 	{
-		if (elapsedTime >= timeLimit)
-			gameOver();
-
-        updateManaPoolDisplay ();
-
 		CheckForRightMouse();
 
 		if (Input.GetKeyDown(KeyCode.Escape))
 			Application.Quit();
 
-		elapsedTime += Time.deltaTime;
-		
 		checkForWin();
-
 	}
 
 	void OnGUI()
@@ -74,28 +51,13 @@ public class gameControl : MonoBehaviour
 
 
 	void gameOver() 
-	{
-		// if NOT using the new camera stats, stop the game timeScale,
-		// otherwise it is self-wrapped-integrated and the camera Stats
-		// object will actually show the game over button THEN top the timer.
-		if( GameObject.FindObjectOfType<camStats>() == null )
-			Time.timeScale = 0;
-
-		gameEnded = true;
-	}
+	{	gameEnded = true; }
 	
 	//Call this function from other scripts that want to add to the score
 	public void scorePoints()
 	{
-		if (scoreGT != null) 
-		{
-			//Convert text of score into an int
-			score = int.Parse (scoreGT.text);
-			//Add the value for converting a human to a zombie
-			score += 100;
-			//Convert back to string
-			scoreGT.text = score.ToString ();
-		}
+		//Add the value for converting a human to a zombie
+		score += 100;
 	}
 
 	private float expandingZombieTime;
@@ -160,7 +122,6 @@ public class gameControl : MonoBehaviour
 		// if we HAVE zombies to clear, do so now...
 		if( haloZombies != null )
 		{
-			Component gcomp;
 			foreach( GameObject z in haloZombies )
 			{
 				try
@@ -369,12 +330,7 @@ public class gameControl : MonoBehaviour
 
 		return false;
 	}
-
-	private void updateManaPoolDisplay() 
-	{
-		manaDisplayUI.GetComponent<Text>().text = manaPool.ToString();
-	}
-
+	
 	//Create zombie at position
 	public void createZombie( Vector3 position) 
 	{
@@ -423,9 +379,6 @@ public class gameControl : MonoBehaviour
 		// when we have no more zombies to convert humans into
 		// AND there is no more mana to generate zombies.
 		if( NoMoreZombiesOrMana() )
-		{
-			Debug.Log ( "Game Over" );
 			gameOver();
-		}
 	}
 }

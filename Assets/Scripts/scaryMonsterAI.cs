@@ -6,7 +6,6 @@ using System.Collections.Generic;
 // has both attack AND scare capacities
 public class scaryMonsterAI : commonAI
 {
-	private attackAI Attack;
 	private castFearAI CastFear;
 	
 	// publicly expose some properties so we can pass them to the Attack object class
