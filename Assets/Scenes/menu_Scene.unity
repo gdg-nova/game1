@@ -1892,6 +1892,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
   m_RootGameObject: {fileID: 273524467}
@@ -1911,7 +1915,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &20828225
 Transform:
   m_ObjectHideFlags: 0
@@ -3435,6 +3439,8 @@ GameObject:
   - 82: {fileID: 63628644}
   - 122: {fileID: 63628643}
   - 82: {fileID: 63628646}
+  - 54: {fileID: 63628647}
+  - 96: {fileID: 63628645}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Zombie
@@ -3484,6 +3490,7 @@ MonoBehaviour:
   nearbyZombieRange: 3
   zombieManaCost: 1
   updateSpeedInterval: .5
+  currentStatus: 0
 --- !u!114 &63628637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3520,7 +3527,7 @@ CapsuleCollider:
     type: 2}
   m_PrefabInternal: {fileID: 74807759}
   m_GameObject: {fileID: 63628634}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 67db31eead11e8d6d00011d98d76c639, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
@@ -3534,7 +3541,7 @@ NavMeshAgent:
     type: 2}
   m_PrefabInternal: {fileID: 74807759}
   m_GameObject: {fileID: 63628634}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .5
   m_Speed: 3.5
   m_Acceleration: 8
@@ -3658,6 +3665,48 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!96 &63628645
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 74807759}
+  m_GameObject: {fileID: 63628634}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 1b5b4d922324f44149bda8d9186765a3, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: 1
+  m_StartWidth: 1
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4280319015
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!82 &63628646
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3717,6 +3766,22 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!54 &63628647
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 74807759}
+  m_GameObject: {fileID: 63628634}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: .5
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &63951817
 GameObject:
   m_ObjectHideFlags: 0
@@ -4159,6 +4224,8 @@ GameObject:
   - 82: {fileID: 73749772}
   - 122: {fileID: 73749771}
   - 82: {fileID: 73749774}
+  - 54: {fileID: 73749775}
+  - 96: {fileID: 73749773}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Zombie
@@ -4208,6 +4275,7 @@ MonoBehaviour:
   nearbyZombieRange: 3
   zombieManaCost: 1
   updateSpeedInterval: .5
+  currentStatus: 0
 --- !u!114 &73749765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4244,7 +4312,7 @@ CapsuleCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1543773363}
   m_GameObject: {fileID: 73749762}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 67db31eead11e8d6d00011d98d76c639, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
@@ -4258,7 +4326,7 @@ NavMeshAgent:
     type: 2}
   m_PrefabInternal: {fileID: 1543773363}
   m_GameObject: {fileID: 73749762}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .5
   m_Speed: 3.5
   m_Acceleration: 8
@@ -4382,6 +4450,48 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!96 &73749773
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1543773363}
+  m_GameObject: {fileID: 73749762}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 1b5b4d922324f44149bda8d9186765a3, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: 1
+  m_StartWidth: 1
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4280319015
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!82 &73749774
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4441,6 +4551,22 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!54 &73749775
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1543773363}
+  m_GameObject: {fileID: 73749762}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: .5
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &74093723
 GameObject:
   m_ObjectHideFlags: 0
@@ -6556,7 +6682,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &140454285
 Transform:
   m_ObjectHideFlags: 0
@@ -8033,6 +8159,8 @@ GameObject:
   - 82: {fileID: 187262912}
   - 122: {fileID: 187262911}
   - 82: {fileID: 187262914}
+  - 54: {fileID: 187262915}
+  - 96: {fileID: 187262913}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Zombie
@@ -8082,6 +8210,7 @@ MonoBehaviour:
   nearbyZombieRange: 3
   zombieManaCost: 1
   updateSpeedInterval: .5
+  currentStatus: 0
 --- !u!114 &187262905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8118,7 +8247,7 @@ CapsuleCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1027592939}
   m_GameObject: {fileID: 187262902}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 67db31eead11e8d6d00011d98d76c639, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
@@ -8132,7 +8261,7 @@ NavMeshAgent:
     type: 2}
   m_PrefabInternal: {fileID: 1027592939}
   m_GameObject: {fileID: 187262902}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .5
   m_Speed: 3.5
   m_Acceleration: 8
@@ -8256,6 +8385,48 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!96 &187262913
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1027592939}
+  m_GameObject: {fileID: 187262902}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 1b5b4d922324f44149bda8d9186765a3, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: 1
+  m_StartWidth: 1
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4280319015
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!82 &187262914
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8315,6 +8486,22 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!54 &187262915
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1027592939}
+  m_GameObject: {fileID: 187262902}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: .5
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &190178745
 GameObject:
   m_ObjectHideFlags: 0
@@ -8702,6 +8889,8 @@ GameObject:
   - 82: {fileID: 197864313}
   - 122: {fileID: 197864312}
   - 82: {fileID: 197864315}
+  - 54: {fileID: 197864316}
+  - 96: {fileID: 197864314}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Zombie
@@ -8751,6 +8940,7 @@ MonoBehaviour:
   nearbyZombieRange: 3
   zombieManaCost: 1
   updateSpeedInterval: .5
+  currentStatus: 0
 --- !u!114 &197864306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8787,7 +8977,7 @@ CapsuleCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1241318113}
   m_GameObject: {fileID: 197864303}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 67db31eead11e8d6d00011d98d76c639, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
@@ -8801,7 +8991,7 @@ NavMeshAgent:
     type: 2}
   m_PrefabInternal: {fileID: 1241318113}
   m_GameObject: {fileID: 197864303}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .5
   m_Speed: 3.5
   m_Acceleration: 8
@@ -8925,6 +9115,48 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!96 &197864314
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1241318113}
+  m_GameObject: {fileID: 197864303}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 1b5b4d922324f44149bda8d9186765a3, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: 1
+  m_StartWidth: 1
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4280319015
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!82 &197864315
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8984,6 +9216,22 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!54 &197864316
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1241318113}
+  m_GameObject: {fileID: 197864303}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: .5
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &198048832
 GameObject:
   m_ObjectHideFlags: 0
@@ -11837,6 +12085,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 21
       objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
   m_RootGameObject: {fileID: 140454284}
@@ -11856,7 +12108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &273524468
 Transform:
   m_ObjectHideFlags: 0
@@ -12562,7 +12814,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &297714713
 Transform:
   m_ObjectHideFlags: 0
@@ -18163,6 +18415,8 @@ GameObject:
   - 82: {fileID: 407907319}
   - 122: {fileID: 407907318}
   - 82: {fileID: 407907321}
+  - 54: {fileID: 407907322}
+  - 96: {fileID: 407907320}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Zombie
@@ -18212,6 +18466,7 @@ MonoBehaviour:
   nearbyZombieRange: 3
   zombieManaCost: 1
   updateSpeedInterval: .5
+  currentStatus: 0
 --- !u!114 &407907312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18248,7 +18503,7 @@ CapsuleCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1424306778}
   m_GameObject: {fileID: 407907309}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 67db31eead11e8d6d00011d98d76c639, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
@@ -18262,7 +18517,7 @@ NavMeshAgent:
     type: 2}
   m_PrefabInternal: {fileID: 1424306778}
   m_GameObject: {fileID: 407907309}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .5
   m_Speed: 3.5
   m_Acceleration: 8
@@ -18386,6 +18641,48 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!96 &407907320
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1424306778}
+  m_GameObject: {fileID: 407907309}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 1b5b4d922324f44149bda8d9186765a3, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: 1
+  m_StartWidth: 1
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4280319015
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!82 &407907321
 AudioSource:
   m_ObjectHideFlags: 0
@@ -18445,6 +18742,22 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!54 &407907322
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1424306778}
+  m_GameObject: {fileID: 407907309}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: .5
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &408701841
 GameObject:
   m_ObjectHideFlags: 0
@@ -18736,6 +19049,10 @@ Prefab:
     - target: {fileID: 400006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
       propertyPath: m_RootOrder
       value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
@@ -22443,6 +22760,10 @@ Prefab:
     - target: {fileID: 400006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
       propertyPath: m_RootOrder
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
@@ -27261,7 +27582,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &606236869
 Transform:
   m_ObjectHideFlags: 0
@@ -28045,6 +28366,10 @@ Prefab:
     - target: {fileID: 400006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
       propertyPath: m_RootOrder
       value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
@@ -31341,6 +31666,10 @@ Prefab:
     - target: {fileID: 400006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
       propertyPath: m_RootOrder
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
@@ -35872,6 +36201,8 @@ GameObject:
   - 82: {fileID: 794241144}
   - 122: {fileID: 794241143}
   - 82: {fileID: 794241146}
+  - 54: {fileID: 794241147}
+  - 96: {fileID: 794241145}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Zombie
@@ -35921,6 +36252,7 @@ MonoBehaviour:
   nearbyZombieRange: 3
   zombieManaCost: 1
   updateSpeedInterval: .5
+  currentStatus: 0
 --- !u!114 &794241137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35957,7 +36289,7 @@ CapsuleCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1914132020}
   m_GameObject: {fileID: 794241134}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 67db31eead11e8d6d00011d98d76c639, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
@@ -35971,7 +36303,7 @@ NavMeshAgent:
     type: 2}
   m_PrefabInternal: {fileID: 1914132020}
   m_GameObject: {fileID: 794241134}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .5
   m_Speed: 3.5
   m_Acceleration: 8
@@ -36095,6 +36427,48 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!96 &794241145
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1914132020}
+  m_GameObject: {fileID: 794241134}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 1b5b4d922324f44149bda8d9186765a3, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: 1
+  m_StartWidth: 1
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4280319015
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!82 &794241146
 AudioSource:
   m_ObjectHideFlags: 0
@@ -36154,6 +36528,22 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!54 &794241147
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1914132020}
+  m_GameObject: {fileID: 794241134}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: .5
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &794435175
 GameObject:
   m_ObjectHideFlags: 0
@@ -42605,6 +42995,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
   m_RootGameObject: {fileID: 606236868}
@@ -43443,6 +43837,10 @@ Prefab:
     - target: {fileID: 400006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
       propertyPath: m_RootOrder
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
@@ -44802,6 +45200,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 19
       objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
   m_RootGameObject: {fileID: 1551829931}
@@ -45563,6 +45965,8 @@ GameObject:
   - 82: {fileID: 995209886}
   - 122: {fileID: 995209885}
   - 82: {fileID: 995209888}
+  - 54: {fileID: 995209889}
+  - 96: {fileID: 995209887}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Zombie
@@ -45612,6 +46016,7 @@ MonoBehaviour:
   nearbyZombieRange: 3
   zombieManaCost: 1
   updateSpeedInterval: .5
+  currentStatus: 0
 --- !u!114 &995209879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45648,7 +46053,7 @@ CapsuleCollider:
     type: 2}
   m_PrefabInternal: {fileID: 854742506}
   m_GameObject: {fileID: 995209876}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 67db31eead11e8d6d00011d98d76c639, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
@@ -45662,7 +46067,7 @@ NavMeshAgent:
     type: 2}
   m_PrefabInternal: {fileID: 854742506}
   m_GameObject: {fileID: 995209876}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .5
   m_Speed: 3.5
   m_Acceleration: 8
@@ -45786,6 +46191,48 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!96 &995209887
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 854742506}
+  m_GameObject: {fileID: 995209876}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 1b5b4d922324f44149bda8d9186765a3, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: 1
+  m_StartWidth: 1
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4280319015
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!82 &995209888
 AudioSource:
   m_ObjectHideFlags: 0
@@ -45845,6 +46292,22 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!54 &995209889
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 854742506}
+  m_GameObject: {fileID: 995209876}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: .5
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &995627561
 GameObject:
   m_ObjectHideFlags: 0
@@ -47230,6 +47693,8 @@ GameObject:
   - 82: {fileID: 1004476724}
   - 122: {fileID: 1004476723}
   - 82: {fileID: 1004476726}
+  - 54: {fileID: 1004476727}
+  - 96: {fileID: 1004476725}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Zombie
@@ -47279,6 +47744,7 @@ MonoBehaviour:
   nearbyZombieRange: 3
   zombieManaCost: 1
   updateSpeedInterval: .5
+  currentStatus: 0
 --- !u!114 &1004476717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47315,7 +47781,7 @@ CapsuleCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1038932136}
   m_GameObject: {fileID: 1004476714}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 67db31eead11e8d6d00011d98d76c639, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
@@ -47329,7 +47795,7 @@ NavMeshAgent:
     type: 2}
   m_PrefabInternal: {fileID: 1038932136}
   m_GameObject: {fileID: 1004476714}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .5
   m_Speed: 3.5
   m_Acceleration: 8
@@ -47453,6 +47919,48 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!96 &1004476725
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1038932136}
+  m_GameObject: {fileID: 1004476714}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 1b5b4d922324f44149bda8d9186765a3, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: 1
+  m_StartWidth: 1
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4280319015
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!82 &1004476726
 AudioSource:
   m_ObjectHideFlags: 0
@@ -47512,6 +48020,22 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!54 &1004476727
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1038932136}
+  m_GameObject: {fileID: 1004476714}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: .5
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1005449856
 GameObject:
   m_ObjectHideFlags: 0
@@ -48696,7 +49220,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1022638959
 Transform:
   m_ObjectHideFlags: 0
@@ -49152,7 +49676,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1036230955
 Transform:
   m_ObjectHideFlags: 0
@@ -50941,6 +51465,8 @@ GameObject:
   - 82: {fileID: 1086131439}
   - 122: {fileID: 1086131438}
   - 82: {fileID: 1086131441}
+  - 54: {fileID: 1086131442}
+  - 96: {fileID: 1086131440}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Zombie
@@ -50990,6 +51516,7 @@ MonoBehaviour:
   nearbyZombieRange: 3
   zombieManaCost: 1
   updateSpeedInterval: .5
+  currentStatus: 0
 --- !u!114 &1086131432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51026,7 +51553,7 @@ CapsuleCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1726592242}
   m_GameObject: {fileID: 1086131429}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 67db31eead11e8d6d00011d98d76c639, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
@@ -51040,7 +51567,7 @@ NavMeshAgent:
     type: 2}
   m_PrefabInternal: {fileID: 1726592242}
   m_GameObject: {fileID: 1086131429}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .5
   m_Speed: 3.5
   m_Acceleration: 8
@@ -51164,6 +51691,48 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!96 &1086131440
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1726592242}
+  m_GameObject: {fileID: 1086131429}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 1b5b4d922324f44149bda8d9186765a3, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: 1
+  m_StartWidth: 1
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4280319015
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!82 &1086131441
 AudioSource:
   m_ObjectHideFlags: 0
@@ -51223,6 +51792,22 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!54 &1086131442
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1726592242}
+  m_GameObject: {fileID: 1086131429}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: .5
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1087871273
 GameObject:
   m_ObjectHideFlags: 0
@@ -52298,6 +52883,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
   m_RootGameObject: {fileID: 20828224}
@@ -52809,7 +53398,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1123894298
 Transform:
   m_ObjectHideFlags: 0
@@ -55325,6 +55914,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 24
       objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
   m_RootGameObject: {fileID: 1297734675}
@@ -56902,6 +57495,10 @@ Prefab:
     - target: {fileID: 400006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
       propertyPath: m_RootOrder
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
@@ -59303,7 +59900,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1297734676
 Transform:
   m_ObjectHideFlags: 0
@@ -60741,6 +61338,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 17
       objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
   m_RootGameObject: {fileID: 297714712}
@@ -61318,7 +61919,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1364128333
 Transform:
   m_ObjectHideFlags: 0
@@ -65711,6 +66312,8 @@ GameObject:
   - 82: {fileID: 1497632978}
   - 122: {fileID: 1497632977}
   - 82: {fileID: 1497632980}
+  - 54: {fileID: 1497632981}
+  - 96: {fileID: 1497632979}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Zombie
@@ -65760,6 +66363,7 @@ MonoBehaviour:
   nearbyZombieRange: 3
   zombieManaCost: 1
   updateSpeedInterval: .5
+  currentStatus: 0
 --- !u!114 &1497632971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65796,7 +66400,7 @@ CapsuleCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1556086124}
   m_GameObject: {fileID: 1497632968}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 67db31eead11e8d6d00011d98d76c639, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
@@ -65810,7 +66414,7 @@ NavMeshAgent:
     type: 2}
   m_PrefabInternal: {fileID: 1556086124}
   m_GameObject: {fileID: 1497632968}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .5
   m_Speed: 3.5
   m_Acceleration: 8
@@ -65934,6 +66538,48 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!96 &1497632979
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1556086124}
+  m_GameObject: {fileID: 1497632968}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 1b5b4d922324f44149bda8d9186765a3, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: 1
+  m_StartWidth: 1
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4280319015
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!82 &1497632980
 AudioSource:
   m_ObjectHideFlags: 0
@@ -65993,6 +66639,22 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!54 &1497632981
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1556086124}
+  m_GameObject: {fileID: 1497632968}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: .5
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1499308820
 GameObject:
   m_ObjectHideFlags: 0
@@ -69368,7 +70030,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1551829932
 Transform:
   m_ObjectHideFlags: 0
@@ -70556,7 +71218,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1574233142
 Transform:
   m_ObjectHideFlags: 0
@@ -70608,6 +71270,10 @@ Prefab:
     - target: {fileID: 400006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
       propertyPath: m_RootOrder
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
@@ -72207,6 +72873,8 @@ GameObject:
   - 82: {fileID: 1630526923}
   - 122: {fileID: 1630526922}
   - 82: {fileID: 1630526925}
+  - 54: {fileID: 1630526926}
+  - 96: {fileID: 1630526924}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Zombie
@@ -72256,6 +72924,7 @@ MonoBehaviour:
   nearbyZombieRange: 3
   zombieManaCost: 1
   updateSpeedInterval: .5
+  currentStatus: 0
 --- !u!114 &1630526916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72292,7 +72961,7 @@ CapsuleCollider:
     type: 2}
   m_PrefabInternal: {fileID: 378119619}
   m_GameObject: {fileID: 1630526913}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 67db31eead11e8d6d00011d98d76c639, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
@@ -72306,7 +72975,7 @@ NavMeshAgent:
     type: 2}
   m_PrefabInternal: {fileID: 378119619}
   m_GameObject: {fileID: 1630526913}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .5
   m_Speed: 3.5
   m_Acceleration: 8
@@ -72430,6 +73099,48 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!96 &1630526924
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 378119619}
+  m_GameObject: {fileID: 1630526913}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 1b5b4d922324f44149bda8d9186765a3, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: 1
+  m_StartWidth: 1
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4280319015
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!82 &1630526925
 AudioSource:
   m_ObjectHideFlags: 0
@@ -72489,6 +73200,22 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!54 &1630526926
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 378119619}
+  m_GameObject: {fileID: 1630526913}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: .5
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1634367060
 GameObject:
   m_ObjectHideFlags: 0
@@ -75633,6 +76360,8 @@ GameObject:
   - 82: {fileID: 1710692376}
   - 122: {fileID: 1710692375}
   - 82: {fileID: 1710692378}
+  - 54: {fileID: 1710692379}
+  - 96: {fileID: 1710692377}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Zombie
@@ -75682,6 +76411,7 @@ MonoBehaviour:
   nearbyZombieRange: 3
   zombieManaCost: 1
   updateSpeedInterval: .5
+  currentStatus: 0
 --- !u!114 &1710692369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75718,7 +76448,7 @@ CapsuleCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1285237123}
   m_GameObject: {fileID: 1710692366}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 67db31eead11e8d6d00011d98d76c639, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
@@ -75732,7 +76462,7 @@ NavMeshAgent:
     type: 2}
   m_PrefabInternal: {fileID: 1285237123}
   m_GameObject: {fileID: 1710692366}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .5
   m_Speed: 3.5
   m_Acceleration: 8
@@ -75856,6 +76586,48 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!96 &1710692377
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1285237123}
+  m_GameObject: {fileID: 1710692366}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 1b5b4d922324f44149bda8d9186765a3, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: 1
+  m_StartWidth: 1
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4280319015
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!82 &1710692378
 AudioSource:
   m_ObjectHideFlags: 0
@@ -75915,6 +76687,22 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!54 &1710692379
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1285237123}
+  m_GameObject: {fileID: 1710692366}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: .5
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1711566900
 GameObject:
   m_ObjectHideFlags: 0
@@ -83159,7 +83947,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1870931680
 Transform:
   m_ObjectHideFlags: 0
@@ -83563,6 +84351,8 @@ GameObject:
   - 82: {fileID: 1879606390}
   - 122: {fileID: 1879606389}
   - 82: {fileID: 1879606392}
+  - 54: {fileID: 1879606393}
+  - 96: {fileID: 1879606391}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Zombie
@@ -83612,6 +84402,7 @@ MonoBehaviour:
   nearbyZombieRange: 3
   zombieManaCost: 1
   updateSpeedInterval: .5
+  currentStatus: 0
 --- !u!114 &1879606383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83648,7 +84439,7 @@ CapsuleCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1184163023}
   m_GameObject: {fileID: 1879606380}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 67db31eead11e8d6d00011d98d76c639, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
@@ -83662,7 +84453,7 @@ NavMeshAgent:
     type: 2}
   m_PrefabInternal: {fileID: 1184163023}
   m_GameObject: {fileID: 1879606380}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .5
   m_Speed: 3.5
   m_Acceleration: 8
@@ -83786,6 +84577,48 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!96 &1879606391
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1184163023}
+  m_GameObject: {fileID: 1879606380}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 1b5b4d922324f44149bda8d9186765a3, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: 1
+  m_StartWidth: 1
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4280319015
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!82 &1879606392
 AudioSource:
   m_ObjectHideFlags: 0
@@ -83845,6 +84678,22 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!54 &1879606393
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1184163023}
+  m_GameObject: {fileID: 1879606380}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: .5
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1881004964
 GameObject:
   m_ObjectHideFlags: 0
@@ -84476,6 +85325,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 22
       objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
   m_RootGameObject: {fileID: 1920440175}
@@ -84861,7 +85714,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1920440176
 Transform:
   m_ObjectHideFlags: 0
@@ -88534,7 +89387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2012609406
 Transform:
   m_ObjectHideFlags: 0
@@ -92883,6 +93736,8 @@ GameObject:
   - 82: {fileID: 2138596564}
   - 122: {fileID: 2138596563}
   - 82: {fileID: 2138596566}
+  - 54: {fileID: 2138596567}
+  - 96: {fileID: 2138596565}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Zombie
@@ -92932,6 +93787,7 @@ MonoBehaviour:
   nearbyZombieRange: 3
   zombieManaCost: 1
   updateSpeedInterval: .5
+  currentStatus: 0
 --- !u!114 &2138596557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92968,7 +93824,7 @@ CapsuleCollider:
     type: 2}
   m_PrefabInternal: {fileID: 1670197534}
   m_GameObject: {fileID: 2138596554}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 67db31eead11e8d6d00011d98d76c639, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
@@ -92982,7 +93838,7 @@ NavMeshAgent:
     type: 2}
   m_PrefabInternal: {fileID: 1670197534}
   m_GameObject: {fileID: 2138596554}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: .5
   m_Speed: 3.5
   m_Acceleration: 8
@@ -93106,6 +93962,48 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!96 &2138596565
+TrailRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9600000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1670197534}
+  m_GameObject: {fileID: 2138596554}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 1b5b4d922324f44149bda8d9186765a3, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: 1
+  m_StartWidth: 1
+  m_EndWidth: .100000001
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 4280319015
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: .100000001
+  m_Autodestruct: 0
 --- !u!82 &2138596566
 AudioSource:
   m_ObjectHideFlags: 0
@@ -93165,6 +94063,22 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!54 &2138596567
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5400000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1670197534}
+  m_GameObject: {fileID: 2138596554}
+  serializedVersion: 2
+  m_Mass: 5
+  m_Drag: .5
+  m_AngularDrag: .0500000007
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2140337988
 GameObject:
   m_ObjectHideFlags: 0
