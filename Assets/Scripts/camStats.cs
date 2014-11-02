@@ -15,6 +15,10 @@ public class camStats : MonoBehaviour
 	private GameObject showGameOver;
 	private GameObject showSelectLevel;
 
+	private GameObject btnSpawnZombie;
+	private GameObject btnSpawnWerewolf;
+	private GameObject btnSpawnMinotaur;
+
 	gameControl gc;
 
 	// Use this for initialization
@@ -49,8 +53,37 @@ public class camStats : MonoBehaviour
 					b = g.GetComponent<Button>();
 					if( b != null )
 						b.onClick.AddListener(selectLevel);
-				
+					
 					break;
+					
+				case "btnSpawnZombie":
+					btnSpawnZombie = g;
+					// Specifically add "Hook" to the button to restart game method
+					// which in-turn, call the reload level option.
+					b = g.GetComponent<Button>();
+					if( b != null )
+						b.onClick.AddListener(spawnZombie);
+					
+					break;
+
+				case "btnSpawnWerewolf":
+					btnSpawnWerewolf = g;
+					b = g.GetComponent<Button>();
+					if( b != null )
+						b.onClick.AddListener(spawnWerewolf);
+					
+					break;
+
+				case "btnSpawnMinotaur":
+					btnSpawnMinotaur = g;
+					// Specifically add "Hook" to the button to restart game method
+					// which in-turn, call the reload level option.
+					b = g.GetComponent<Button>();
+					if( b != null )
+						b.onClick.AddListener(spawnMinotaur);
+					
+					break;
+
 
 				case "txtUpperLeft":
 					showScore = (TextMesh)g.GetComponent<TextMesh>();
@@ -86,8 +119,6 @@ public class camStats : MonoBehaviour
 		// if on demo screen and no such level, just ignore it.
 		{}
 	}
-
-
 	// Update is called once per frame
 	float delayShow = 0.0f;
 	void Update () 
@@ -133,7 +164,7 @@ public class camStats : MonoBehaviour
 		if( showGameTime == null )
 			return;
 
-		showGameTime.text = "Game Time: " + gameTime;
+		showGameTime.text = "Game Time: " + gameTime.ToString("F2");
 	}
 
 	private void ShowGameOver()
@@ -146,6 +177,22 @@ public class camStats : MonoBehaviour
 		if( gc.gameEnded )
 			// NOW we can stop the game timer...
 			Time.timeScale = 0;
+	}
+
+	
+	private void spawnZombie()
+	{
+		Debug.Log ( "Hook for spawning zombie." );
+	}
+	
+	private void spawnWerewolf()
+	{
+		Debug.Log ( "Hook for spawning werewolf." );
+	}
+	
+	private void spawnMinotaur()
+	{
+		Debug.Log ( "Hook for spawning minotaur." );
 	}
 }
 
