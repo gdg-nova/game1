@@ -41,11 +41,6 @@ public class gameControl : MonoBehaviour
 
 	void Update() 
 	{
-<<<<<<< HEAD
-=======
-		if (elapsedTime >= timeLimit)
-			gameOver();
-
 		//timeSinceCheckMouseInput += Time.deltaTime;
 
 		//if (timeSinceCheckMouseInput >= MouseCheckInputInterval) {
@@ -53,9 +48,6 @@ public class gameControl : MonoBehaviour
 		//	timeSinceCheckMouseInput = 0;
 		//		}
 
-        updateManaPoolDisplay ();
-
->>>>>>> origin/Mike's-Changes-2
 		CheckForRightMouse();
 
 		if (Input.GetKeyDown(KeyCode.Escape))
@@ -63,15 +55,6 @@ public class gameControl : MonoBehaviour
 
 		checkForWin();
 	}
-
-	void OnGUI()
-	{
-		//check for mouse input
-		//CheckForLeftClick();
-
-
-	}
-
 
 	void gameOver() 
 	{	gameEnded = true; }
