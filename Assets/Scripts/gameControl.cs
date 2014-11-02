@@ -25,6 +25,12 @@ public class gameControl : MonoBehaviour
 
 	public int score;
 
+	public GameObject throwingAnchorPrefab;
+	private GameObject throwingAnchor;
+
+	private float timeSinceCheckMouseInput = 0;
+	public float  MouseCheckInputInterval = 1;
+
 	void Start() 
 	{
 		loadHumans();
@@ -35,6 +41,21 @@ public class gameControl : MonoBehaviour
 
 	void Update() 
 	{
+<<<<<<< HEAD
+=======
+		if (elapsedTime >= timeLimit)
+			gameOver();
+
+		//timeSinceCheckMouseInput += Time.deltaTime;
+
+		//if (timeSinceCheckMouseInput >= MouseCheckInputInterval) {
+			CheckForZombiePickup();
+		//	timeSinceCheckMouseInput = 0;
+		//		}
+
+        updateManaPoolDisplay ();
+
+>>>>>>> origin/Mike's-Changes-2
 		CheckForRightMouse();
 
 		if (Input.GetKeyDown(KeyCode.Escape))
@@ -46,7 +67,9 @@ public class gameControl : MonoBehaviour
 	void OnGUI()
 	{
 		//check for mouse input
-		CheckForLeftClick();
+		//CheckForLeftClick();
+
+
 	}
 
 
@@ -73,6 +96,75 @@ public class gameControl : MonoBehaviour
 	// DEFAULT the set destination mode to false... first time is picking, second is target
 	private int zombieSelectionMode = 0;
 	private List<GameObject> haloZombies;
+
+	void CheckForZombiePickup ()
+	{
+		//if (! Input.GetMouseButton(0)) 
+		//	return;
+
+		if (Input.GetMouseButton (0)) {
+//			Vector3 pos = Input.mousePosition;
+//
+//			//pos = Camera.main.ScreenToWorldPoint(pos);
+//			pos.z = throwingAnchor.transform.position.z- Camera.main.transform.position.z;
+//
+//			//pos.y = 10;
+//			throwingAnchor.transform.position = Camera.main.ScreenToWorldPoint(pos);
+//
+
+				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+				RaycastHit hit;
+
+				if (Physics.Raycast (ray, out hit, 1000)) {
+				Debug.Log ("Hit:  " +hit.collider.gameObject.tag);
+
+						
+				if (hit.collider.gameObject.tag == "Zombie" && throwingAnchor == null) {
+					GameObject z = hit.collider.gameObject;
+
+					throwingAnchor = (GameObject)Instantiate(throwingAnchorPrefab, z.transform.position + (Vector3.up * 2), Quaternion.Euler(0,0,0));
+
+					//throwingAnchor.transform.position = hit.collider.gameObject.transform.position + (Vector3.up * 2);							
+					throwingAnchor.GetComponent<SpringJoint> ().connectedBody = z.rigidbody;						
+
+					z.SendMessage("PickedUp");
+
+				} 
+					if (hit.collider.gameObject.tag != "ThrowingAnchor" && throwingAnchor != null) {
+							Vector3 newPos = hit.point;
+							newPos.y = 8;
+							throwingAnchor.transform.position = newPos;
+					}
+				}
+				
+		}else {
+				if(throwingAnchor != null) {
+					throwingAnchor.GetComponent<SpringJoint>().connectedBody.gameObject.SendMessage("Thrown");
+
+					throwingAnchor.GetComponent<SpringJoint>().connectedBody = null;
+				Destroy(throwingAnchor);	
+			}
+
+		}
+		
+		//throwingAnchor.transform.position = Input.mousePosition;
+
+		//send raycast to get hit
+		Ray r = Camera.main.ScreenPointToRay (Input.mousePosition);
+		RaycastHit r_hit;
+//		
+//		if (Physics.Raycast (r, out r_hit, Mathf.Infinity)) 
+//		{
+//			if (r_hit.collider.gameObject.tag == "Zombie") 
+//			{
+//				//Destroy human, create zombie
+//				//createZombie(r_hit.collider.gameObject.transform.position);
+//				//Destroy(r_hit.collider.gameObject);
+//				r_hit.collider.gameObject.SendMessage("PickedUp");
+//
+//			}
+//		}
+	}
 
 	//mouse click handler
 	void CheckForLeftClick() 
