@@ -27,10 +27,6 @@ public class zombieAI : commonAI
 	//Sound effect for zombie on knight
 	private AudioSource Zombie_on_Guard;
 
-	public enum status {Spawned, PickedUp, Thrown, InPlay};
-
-	public status currentStatus = status.Spawned;
-
 	// Zombies can attack...
 	// these scripts will also be added to the zombie at interface
 	// time and we can adjust attack and cast fear properties there.
@@ -131,13 +127,6 @@ public class zombieAI : commonAI
 
 
 	}
-	public void PickedUp () {
-		currentStatus = status.PickedUp;
-		}
-
-	public void Thrown () {
-		currentStatus = status.Thrown;
-	}
 
 	// when a zombie kills a running human, it comes back as a FAST zombie
 	public void MakeFastZombie()
@@ -209,11 +198,6 @@ public class zombieAI : commonAI
 		IsMovementStagnant();
 
 		checkAnimation ();
-
-		if (GetComponent<Rigidbody>().IsSleeping() && currentStatus == status.Thrown) {
-			currentStatus = status.InPlay;
-			navAgent.enabled = true;
-		}
 
 	}
 

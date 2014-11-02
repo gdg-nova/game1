@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383019b12385f43b88eb73fa41e872a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minAngle: -60
+  minAngle: -30
   startAngle: 0
   maxAngle: 65
   speed: 65
@@ -284,8 +284,9 @@ MonoBehaviour:
   Guard: {fileID: 100006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
   zombieCost: 1
   humanCount: 20
-  timeLimit: 600
+  timeLimit: 120
   elapsedTime: 0
+  currentZombieTarget: {fileID: 0}
   zombieTargetPrefab: {fileID: 100000, guid: 69a01d735064f4050b0c939ba3fbafb4, type: 2}
   manaPool: 3
   manaDisplayUI: {fileID: 0}
@@ -293,8 +294,6 @@ MonoBehaviour:
   gameEnded: 0
   scoreGT: {fileID: 0}
   score: 0
-  throwingAnchor: {fileID: 0}
-  MouseCheckInputInterval: 1
   ZombieRangePrefab: {fileID: 100000, guid: 52c5bd8c4fcfb2d4da718d96bcf331f5, type: 2}
 --- !u!1001 &100100000
 Prefab:

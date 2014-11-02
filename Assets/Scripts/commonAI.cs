@@ -506,7 +506,7 @@ public abstract class commonAI : MonoBehaviour
 
 		// always start animation walking to target...
 		// if human and in "Afraid" mode, it will change the the sprint animation
-		if( navAgent != null && navAgent.enabled )
+		if( navAgent != null )
 			navAgent.SetDestination(targetVector);
 	}
 
