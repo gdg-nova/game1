@@ -8,34 +8,37 @@ public class camStats : MonoBehaviour
 	private int score = 0;
 	private float gameTime = 0.0f;
 
-	private TextMesh showScore;
-	private TextMesh showMana;
-	private TextMesh showGameTime;
+	private Text txtScore;
+	private Text txtZombieMana;
 
-	private GameObject showGameOver;
-	private GameObject showSelectLevel;
-
+	private GameObject btnGameOver;
+	private GameObject btnSelectLevel;
 	private GameObject btnSpawnZombie;
 	private GameObject btnSpawnWerewolf;
 	private GameObject btnSpawnMinotaur;
 
-	gameControl gc;
+	private gameControl gc;
 
 	// Use this for initialization
 	void Start () 
 	{
 		GameObject go = GameObject.FindWithTag ("GameController");
 		Button b;
+
 		if( go != null )
 			gc = go.GetComponent<gameControl>();
 
-		// See IF there is a "GameController" object
-		foreach(GameObject g in GameObject.FindObjectsOfType<GameObject>())
+
+		GameObject g;
+		// Only look for other OBJECTS in this prefab.
+		// I don't care about any controls OUTSIDE this prefab...
+		foreach( Transform t1 in this.GetComponentInChildren<Transform>())
 		{
+			g = t1.gameObject;
 			switch(g.name)
 			{
 				case "btnGameOver":
-					showGameOver = g;
+					btnGameOver = g;
 					// Specifically add "Hook" to the button to restart game method
 					// which in-turn, call the reload level option.
 					b = g.GetComponent<Button>();
@@ -47,7 +50,7 @@ public class camStats : MonoBehaviour
 					break;
 
 				case "btnSelectLevel":
-					showSelectLevel = g;
+					btnSelectLevel = g;
 					// Specifically add "Hook" to the button to restart game method
 					// which in-turn, call the reload level option.
 					b = g.GetComponent<Button>();
@@ -85,20 +88,16 @@ public class camStats : MonoBehaviour
 					break;
 
 
-				case "txtUpperLeft":
-					showScore = (TextMesh)g.GetComponent<TextMesh>();
+				case "txtScore":
+					txtScore = (Text)g.GetComponent<Text>();
+					txtScore.text = "";
 					break;
 
-				case "txtUpperRight":
-					showMana = (TextMesh)g.GetComponent<TextMesh>();
-					break;
-
-				case "txtLowerRight":
-					showGameTime = (TextMesh)g.GetComponent<TextMesh>();
+				case "txtZombieMana":
+					txtZombieMana = (Text)g.GetComponent<Text>();
+					txtZombieMana.text = "";
 					break;
 			}
-
-
 		}
 	}
 	
@@ -119,60 +118,52 @@ public class camStats : MonoBehaviour
 		// if on demo screen and no such level, just ignore it.
 		{}
 	}
+
 	// Update is called once per frame
 	float delayShow = 0.0f;
-	void Update () 
+
+	void Update() 
 	{
+		if( gc == null )
+			return;
+		
 		delayShow -= Time.deltaTime;
 		if( delayShow > 0 )
 			return;
 
 		delayShow = .5f;
 
-		if( gc == null )
-			return;
-
 		score = gc.score;
 		mana = gc.manaPool;
 
 		ShowMana();
 		ShowScore ();
-		ShowGameTime ();
 		ShowGameOver ();
 	}
 
 	private void ShowMana()
 	{
-		if( showMana == null )
+		if( txtZombieMana == null )
 			return;
 
 		// Show mana as integer, no floating precision value
-		showMana.text = mana.ToString("0");
+		txtZombieMana.text = mana.ToString("0");
 	}
 
 	private void ShowScore()
 	{
-		if( showScore == null )
+		if( txtScore == null )
 			return;
 
-		showScore.text = "Score: " + score.ToString("D5");
-	}
-
-	private void ShowGameTime()
-	{
-		gameTime += Time.deltaTime;
-		if( showGameTime == null )
-			return;
-
-		showGameTime.text = "Game Time: " + gameTime.ToString("F2");
+		txtScore.text = "Score: " + score.ToString("D5");
 	}
 
 	private void ShowGameOver()
 	{
-		if( showGameOver.gameObject == null )
+		if( btnGameOver.gameObject == null )
 			return;
 
-		showGameOver.gameObject.SetActive( gc.gameEnded );
+		btnGameOver.gameObject.SetActive( gc.gameEnded );
 
 		if( gc.gameEnded )
 			// NOW we can stop the game timer...
