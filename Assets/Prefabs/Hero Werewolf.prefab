@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   m_Layer: 0
   m_Name: Hero Werewolf
-  m_TagString: Werewolf
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -285,7 +285,7 @@ GameObject:
   - 114: {fileID: 11400000}
   m_Layer: 0
   m_Name: LittleWerewolf_solo
-  m_TagString: Untagged
+  m_TagString: Werewolf
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -842,7 +842,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100050}
-  m_LocalRotation: {x: -.676473498, y: -.000270359451, z: .736467004, w: -.000292283657}
+  m_LocalRotation: {x: -.676473439, y: -.000270359422, z: .736466944, w: -.000292283628}
   m_LocalPosition: {x: -.400724322, y: .0824848339, z: .205812156}
   m_LocalScale: {x: .99999994, y: 1.00000012, z: 1.00000012}
   m_Children:
@@ -965,7 +965,15 @@ Animation:
   m_Enabled: 1
   serializedVersion: 3
   m_Animation: {fileID: 0}
-  m_Animations: []
+  m_Animations:
+  - {fileID: 7400004, guid: ba6377cfe14bce547a498941af1da4f9, type: 3}
+  - {fileID: 7400000, guid: ba6377cfe14bce547a498941af1da4f9, type: 3}
+  - {fileID: 7400000, guid: 665b784eb1f3c094c82ba0b8225974bd, type: 3}
+  - {fileID: 7400006, guid: 665b784eb1f3c094c82ba0b8225974bd, type: 3}
+  - {fileID: 7400002, guid: 62d910e97009b9b43933e7675d5c751f, type: 3}
+  - {fileID: 7400004, guid: 1aef4e2d585e10842ac1d926b63b5927, type: 3}
+  - {fileID: 7400002, guid: 1aef4e2d585e10842ac1d926b63b5927, type: 3}
+  - {fileID: 7400000, guid: 1aef4e2d585e10842ac1d926b63b5927, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -985,8 +993,8 @@ MonoBehaviour:
   baseRandomPct: 50
   runSpeed: 2.5
   runRandomPct: 85
-  manaCost: 1
-  health: 1
+  manaCost: 10
+  health: 100
   navCheckInterval: 3
   navStopDistance: 5
   Attack: {fileID: 0}
@@ -1076,7 +1084,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 100036}
   m_Enabled: 1
   m_Radius: .5
-  m_Speed: 3.5
+  m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
