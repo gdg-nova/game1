@@ -6,7 +6,6 @@ public class camStats : MonoBehaviour
 {
 	private float mana = 0;
 	private int score = 0;
-	private float gameTime = 0.0f;
 
 	private Text txtScore;
 	private Text txtZombieMana;
@@ -73,8 +72,11 @@ public class camStats : MonoBehaviour
 					btnSpawnWerewolf = g;
 					b = g.GetComponent<Button>();
 					if( b != null )
+					{
 						b.onClick.AddListener(spawnWerewolf);
-					
+						// Disable for now until we ge werewolves
+						b.gameObject.SetActive( false );
+					}
 					break;
 
 				case "btnSpawnMinotaur":
@@ -83,8 +85,11 @@ public class camStats : MonoBehaviour
 					// which in-turn, call the reload level option.
 					b = g.GetComponent<Button>();
 					if( b != null )
+					{
 						b.onClick.AddListener(spawnMinotaur);
-					
+						// Disable for now until we ge werewolves
+						b.gameObject.SetActive( false );
+					}
 					break;
 
 
@@ -173,7 +178,9 @@ public class camStats : MonoBehaviour
 	
 	private void spawnZombie()
 	{
-		Debug.Log ( "Hook for spawning zombie." );
+		graveYardAI gyAI = (graveYardAI)GameObject.FindObjectOfType<graveYardAI>();
+		if( gyAI != null )
+			gyAI.CreateZombie();
 	}
 	
 	private void spawnWerewolf()

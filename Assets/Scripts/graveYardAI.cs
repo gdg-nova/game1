@@ -40,7 +40,7 @@ public class graveYardAI : MonoBehaviour
 	}
 
 	// this is public so can be invoked by click on the graveyard
-	void CreateZombie() 
+	public void CreateZombie() 
 	{
 		// if not enough time passed, don't generate a new one
 		if (timeSinceLastSpawn < zombieSpawnInterval )
