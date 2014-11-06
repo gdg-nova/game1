@@ -238,7 +238,7 @@ public abstract class commonAI : MonoBehaviour
 		//}
 	}
 
-	string getAnimNameforCurrentState() 
+	public virtual string getAnimNameforCurrentState() 
 	{
 		if( navAgent == null)
 			return "idle";

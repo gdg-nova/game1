@@ -112,8 +112,6 @@ public class attackAI : MonoBehaviour
 		foreach (Collider hit in colliders)
 		{
 			hitObj = hit.collider.gameObject;
-
-
 			// did we find an object we are allowed to attack
 			if( canAttack( hitObj.tag ))
 			{
