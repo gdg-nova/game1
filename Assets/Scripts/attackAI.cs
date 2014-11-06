@@ -146,7 +146,8 @@ public class attackAI : MonoBehaviour
 					// Then, put into queue to get back to walking mode
 					// put this to the tail-end of the animation cycle
 					if( o.moveAfterCombat )
-						animComponent.PlayQueued("walk", QueueMode.CompleteOthers);
+						PlayWalkAnimation();
+						
 					
 					// stop the game object from moving as we have just engaged attack
 					// dont keep walking if it was attacked
@@ -187,6 +188,15 @@ public class attackAI : MonoBehaviour
 		}
 	}
 
+	public void PlayWalkAnimation() {
+		if (animComponent.GetClip ("walk") != null) {
+				animComponent.PlayQueued ("walk", QueueMode.CompleteOthers);
+			} else {
+				if (animComponent.GetClip("LM_walk") != null) {
+				animComponent.PlayQueued ("LM_walk", QueueMode.CompleteOthers);			
+			}
+		}
+	}
 
 	// look for an enemy with three attack distance radius 
 	// of where we are moving...

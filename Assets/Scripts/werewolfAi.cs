@@ -143,4 +143,6 @@ public class werewolfAi : commonAI
 		
 		return "LM_idle";
 	}
+
+
 }
