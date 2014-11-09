@@ -161,8 +161,9 @@ public class humanAI : commonAI, ICanBeScared
 		// Yup, infection time was reached, create a new werewolf and kill self.
 		GameObject go = GameObject.FindWithTag ("GameController");
 		gameControl gc = go.GetComponent<gameControl> ();
-		gc.createWerewolf( gameObject.transform.position, gameObject.transform.rotation );
-
+		werewolfAi wAI = gc.createWerewolf( gameObject.transform.position, gameObject.transform.rotation );
+		if( wAI != null )
+			wAI.InfectedHumanWerewolf = true;
 
 		// set flag and self-destroy after the werewolf is created...
 		isDestroying = true;
@@ -171,9 +172,6 @@ public class humanAI : commonAI, ICanBeScared
 		return true;
 	}
 	
-	
-
-
 
 	// Sprint to "safe" location (0,0,0 is test)
 	public void Afraid() 

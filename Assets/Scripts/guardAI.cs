@@ -49,6 +49,7 @@ public class guardAI : commonAI
 		// however, start by looking for zombies, then move to safe/finish zones
 		defaultNavTargets.Clear ();
 		defaultNavTargets.Add(eNavTargets.Zombie);
+		defaultNavTargets.Add(eNavTargets.Werewolf);
 		defaultNavTargets.Add(eNavTargets.SafeZone);
 		defaultNavTargets.Add(eNavTargets.Finish);
 		// if all else fails, find SOME place in the playable area of the board

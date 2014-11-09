@@ -526,7 +526,7 @@ public abstract class commonAI : MonoBehaviour
 			navAgent.SetDestination(targetVector);
 	}
 
-	public bool IsInfected { get; protected set; }
+	public bool IsInfected { get; set; }
 	protected bool attackedByWerewolf;
 
 	public void takeDamage(float damageTaken, commonAI attackedBy)

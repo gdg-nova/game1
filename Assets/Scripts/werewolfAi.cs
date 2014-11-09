@@ -14,7 +14,14 @@ public class werewolfAi : commonAI
 	
 	//Sound effect for guard on zombie
 	//private AudioSource Guard_on_Zombie;
-	
+	private bool infectedHumanWerewolf;
+	private float turnBackIntoHuman = 0.0f;
+	public bool InfectedHumanWerewolf
+	{	get { return infectedHumanWerewolf; }
+		set { infectedHumanWerewolf = value;
+			turnBackIntoHuman = 5.0f;
+		}
+	}
 	
 	public override void Start()
 	{
@@ -107,6 +114,8 @@ public class werewolfAi : commonAI
 		Attack.CheckAttack();
 		
 		checkAnimation ();
+
+		changeBackIntoHuman();
 	}
 	
 	public override void playSound (string action, string target)
@@ -137,5 +146,36 @@ public class werewolfAi : commonAI
 
 		// all else, return idle
 		return "LM_idle";
+	}
+
+	// if not infected werewolf swapping back and forth, 
+	// don't need to do anything...
+	private void changeBackIntoHuman()
+	{
+		if( ! infectedHumanWerewolf )
+			return;
+
+		// subtract from time remaining and get out if not there yet...
+		turnBackIntoHuman -= Time.deltaTime;
+		if( turnBackIntoHuman > 0f)
+			return;
+
+		// Time Hit...  Now, create a human and keep it marked as infected
+		// so any other werewolf won't attack it... like they can smell
+		// already infected werewolf humans and leave them alone.
+		GameObject go = GameObject.FindWithTag ("GameController");
+		gameControl gc = go.GetComponent<gameControl> ();
+		humanAI hAI = gc.createHuman( gameObject.transform.position );
+		if( hAI != null )
+		{
+			hAI.transform.rotation = gameObject.transform.rotation;
+			hAI.IsInfected = true;
+		}
+		
+		// set flag and self-destroy after the werewolf is created...
+		isDestroying = true;
+		// Destroy the game object of the human now that werewolf is created above
+		Destroy ( this.gameObject );
+		return;
 	}
 }

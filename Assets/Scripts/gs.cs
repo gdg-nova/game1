@@ -120,7 +120,8 @@ public enum eNavTargets
 	Guard,
 	Human,
 	SafeZone,
-	Zombie 
+	Zombie,
+	Werewolf
 
 	// Untagged
 	// Respawn
