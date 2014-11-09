@@ -346,9 +346,16 @@ public class gameControl : MonoBehaviour
 		return zAI;
 	}
 
-	void createWerewolf( Vector3 position) 
-	{ Instantiate (Werewolf, position, q); }
-	
+	public werewolfAi createWerewolf( Vector3 position, Quaternion rot) 
+	{
+		GameObject gobj = (GameObject)Instantiate (Werewolf, position, rot); 
+		werewolfAi wAI = gobj.GetComponentInChildren<werewolfAi>();
+		return wAI;
+	}
+
+
+
+
 	public humanAI createHuman( Vector3 position) 
 	{
 		GameObject gobj = (GameObject)Instantiate (Human, position, q); 

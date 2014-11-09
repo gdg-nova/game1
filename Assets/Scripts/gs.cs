@@ -20,6 +20,15 @@ public static class gs
 		if (targets.Length == 0)
 			return (GameObject)null;
 
+		// if we DO have targets, see if any are commonAI and are "infected".
+		// if so, don't consider them from either side attraction/attack.
+		for( int i=targets.Length -1; i > 0; i--)
+		{
+			commonAI o = targets[i].GetComponent<commonAI>();
+			if( o != null && o.IsInfected )
+				targets[i] = (GameObject)null;
+		}
+
 		// Yup, we have something, get a random instance from one available
 		return targets [ Random.Range (0, targets.Length) ];
 	}

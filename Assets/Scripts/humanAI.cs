@@ -65,6 +65,11 @@ public class humanAI : commonAI, ICanBeScared
 		if( currentTarget == null )
 			return;
 
+		// if was an infected human and we just create a new instance
+		// of the infection (ie: Werewolf now), get out, all done
+		if( IsInfectedHuman() )
+			return;
+
 		// check if human MAY still be afraid or not.
 		checkIfStillAfraid();
 
@@ -127,6 +132,48 @@ public class humanAI : commonAI, ICanBeScared
 
 		checkAnimation ();
 	}
+
+	private bool infectionDelaySet;	
+	private float infectionDelay;
+
+	private bool IsInfectedHuman()
+	{
+		if( !IsInfected )
+			return false;
+
+		// set our own timer
+		if( !infectionDelaySet )
+		{
+			infectionDelay = 5.0f;
+			infectionDelaySet = true;
+			return false;
+		}
+
+		// subtract time... if not there yet, just get out
+		// turn off flag so not recursive every cycle
+		infectionDelay -= Time.deltaTime;
+		if( infectionDelay > 0 )
+			return false;
+
+		// clear infection flag for false cycle until human actually destroyed...
+		IsInfected = false;
+
+		// Yup, infection time was reached, create a new werewolf and kill self.
+		GameObject go = GameObject.FindWithTag ("GameController");
+		gameControl gc = go.GetComponent<gameControl> ();
+		gc.createWerewolf( gameObject.transform.position, gameObject.transform.rotation );
+
+
+		// set flag and self-destroy after the werewolf is created...
+		isDestroying = true;
+		// Destroy the game object of the human now that werewolf is created above
+		Destroy ( this.gameObject );
+		return true;
+	}
+	
+	
+
+
 
 	// Sprint to "safe" location (0,0,0 is test)
 	public void Afraid() 

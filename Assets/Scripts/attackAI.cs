@@ -116,8 +116,14 @@ public class attackAI : MonoBehaviour
 			if( canAttack( hitObj.tag ))
 			{
 				commonAI o = hitObj.GetComponent<commonAI>();
+				// if the object is already infected, such as
+				// a zombie or werewolf attempting to attack
+				// a human infected, don't attack it again...
+				if( o != null && o.IsInfected )
+					continue;
 
-				if (o != null && !o.isDestroying) {
+				if (o != null && !o.isDestroying) 
+				{
 					//Attacking a valid live target
 				
 					o.playSound( "attack", hitObj.tag.ToString() );
@@ -154,7 +160,17 @@ public class attackAI : MonoBehaviour
 					o.stop();
 
 					// Now, apply damage to other
-					o.takeDamage(damage);
+					o.takeDamage(damage, thisAttacker);
+
+					// if we just finished infecting the enemy, 
+					// take ourselves out of combat and go to another target
+					if( o.IsInfected )
+					{
+						thisAttacker.moveAfterCombat = true;
+						thisAttacker.EngagedInCombat = false;
+						return;
+					}
+
 
 					// if we just killed the target,
 					// we need to take ourselves OUT of combat mode
@@ -216,7 +232,13 @@ public class attackAI : MonoBehaviour
 		foreach (Collider hit in colliders)
 		{
 			hitObj = hit.collider.gameObject;
-			
+
+			commonAI o = hitObj.GetComponent<commonAI>();
+			// if already infected, don't falsely keep an attacker
+			// such as werewolf to keep tracking it...
+			if( o != null && o.IsInfected )
+				continue;
+
 			// did we find an object we are allowed to attack
 			if( canAttack( hitObj.tag ))
 			{

@@ -300,6 +300,15 @@ public abstract class commonAI : MonoBehaviour
 		// since our game has x/z, we need to compute the x and z differential, then compute basis from that
 		//float deltaX = Mathf.Abs( navAgent.destination.x - gameObject.transform.position.x );
 		//float deltaZ = Mathf.Abs( navAgent.destination.z - gameObject.transform.position.z );
+		if( lastPosition == null )
+			lastPosition = transform.position;
+		else if( lastPosition == transform.position )
+		{
+			if( this.gameObject is werewolfAi )
+				Debug.Log ( "exact same position:" );
+		}
+
+
 
 		float remainingDistance = Vector3.Distance (transform.position, navAgent.destination);
 
@@ -308,6 +317,9 @@ public abstract class commonAI : MonoBehaviour
 
 		return (remainingDistance <= navStopDistance);
 	}
+	private Vector3 lastPosition;
+
+
 
 	protected void IsMovementStagnant()
 	{
@@ -378,10 +390,14 @@ public abstract class commonAI : MonoBehaviour
 				// Detect if the human was running or not... if running, then
 				// make a FAST zombie, not a slow one...
 				humanAI hAI = gameObject.GetComponent<humanAI>();
-				if( hAI.isAfraid )
-					Invoke ("requestZombieCreationFast", animation["walk"].length * 2 );
-				else
-					Invoke ("requestZombieCreation", animation["walk"].length * 2 );
+				// ONLY create a zombie if it was not killed by a werewolf.
+				if( ! hAI.attackedByWerewolf )
+				{
+					if( hAI.isAfraid )
+						Invoke ("requestZombieCreationFast", animation["walk"].length * 2 );
+					else
+						Invoke ("requestZombieCreation", animation["walk"].length * 2 );
+				}
 			
 			}
 
@@ -394,7 +410,7 @@ public abstract class commonAI : MonoBehaviour
 		}
 	}
 	
-	protected void requestZombieCreation() 
+	protected void requestZombieCreation()
 	{
 		GameObject go = GameObject.FindWithTag ("GameController");
 		gameControl gc = go.GetComponent<gameControl> ();
@@ -510,19 +526,37 @@ public abstract class commonAI : MonoBehaviour
 			navAgent.SetDestination(targetVector);
 	}
 
-	public void takeDamage(float damageTaken)
+	public bool IsInfected { get; protected set; }
+	protected bool attackedByWerewolf;
+
+	public void takeDamage(float damageTaken, commonAI attackedBy)
 	{
 		if( isDestroying )
 			return;
 
+		// if already infected, just get out.
+		if( IsInfected )
+			return;
+
+		if( attackedBy is werewolfAi )
+		{
+			attackedByWerewolf = true;
+
+			// Allow only a 20% chance of being infected vs outright kill.
+			if( Random.Range(0,100) > 80 )
+			{
+				IsInfected = true;
+				return;
+			}
+		}
+
 		health -= damageTaken;
 		if (health < 0.0f)
 			die();
-
 		else if( hasHurtAnimation )
 			animComponent.Play("hurt");
 	}
-
+	
 	abstract public void playSound(string action, string target);
 }
 

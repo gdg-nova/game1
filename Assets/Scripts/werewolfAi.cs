@@ -51,6 +51,8 @@ public class werewolfAi : commonAI
 		// however, start by looking for zombies, then move to safe/finish zones
 		defaultNavTargets.Clear ();
 		//defaultNavTargets.Add(eNavTargets.Zombie);
+		defaultNavTargets.Add(eNavTargets.Human);
+		defaultNavTargets.Add(eNavTargets.Guard);
 		defaultNavTargets.Add(eNavTargets.SafeZone);
 		defaultNavTargets.Add(eNavTargets.Finish);
 		// if all else fails, find SOME place in the playable area of the board
@@ -93,31 +95,16 @@ public class werewolfAi : commonAI
 		// if being destroyed, don't do anything else
 		if (isDestroying)
 			return;
-		
-		// check to see if not stationary, and reached its target,
-		// to check/move to another target
-		if (stationary)
-		{
-			//		if( animComponent["walk"].enabled )
-			//			animComponent.Play ( "idle" );
-		}
-		else
-		{
-			// if not stationary, the default animation is always walk,
-			// no need to reset it from walk back to walk again...
-			reachedTarget();
+
+		// if not stationary, the default animation is always walk,
+		// no need to reset it from walk back to walk again...
+		reachedTarget();
 			
-			// in addition, check for being stagnant (clarification in commonAI.cs)
-			IsMovementStagnant();
-		}
-		
+		// in addition, check for being stagnant (clarification in commonAI.cs)
+		IsMovementStagnant();
+
 		// go to the Attack object to check for itself
 		Attack.CheckAttack();
-		
-		// try to begin walking again after any attack in case the
-		// enemy was destroyed, we have something to again move towards
-		//if (!stationary)
-		//animComponent.Play ("walk");
 		
 		checkAnimation ();
 	}
@@ -133,16 +120,22 @@ public class werewolfAi : commonAI
 		if( navAgent == null)
 			return "LM_idle";
 		
-		if (!navAgent.hasPath) {
+		if (!navAgent.hasPath) 
+		{
+			// if no navigation path target, get a new one now.
+			// dont know why it was going into idle mode.
+			moveToNewTarget();
 			return "LM_idle";
-		} else {
-			if (navAgent.speed > 0 && navAgent.speed <= 5) return "LM_walk";
-			else if (navAgent.speed > 5 && navAgent.speed <= 12) return "LM_run";
-			else if (navAgent.speed > 12) return "LM_sprint";
 		}
-		
+
+		if (navAgent.speed > 0 && navAgent.speed <= 5) 
+			return "LM_walk";
+		else if (navAgent.speed > 5 && navAgent.speed <= 12) 
+			return "LM_run";
+		else if (navAgent.speed > 12) 
+			return "LM_sprint";
+
+		// all else, return idle
 		return "LM_idle";
 	}
-
-
 }
