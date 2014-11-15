@@ -1,0 +1,110 @@
+*** Easy Save 2 Changelog ***
+
+v2.51
+
+- The method ES2.LoadAll is now included to load an entire file.
+- Playmaker action now has Load All and Save All actions to make saving/loading simpler.
+- Support for saving and loading Sprite has now been added.
+
+v2.49 & v2.50
+
+- Fixed bug where ES2Auto may fail under certain circumstances.
+- Updated examples.
+
+v2.48
+
+- Playmaker action has been modified so that filename (path) can include parameters.
+- A new method, ES2.LoadAll(string path) has been added to load all data from a file as System.Objects.
+- Small bug fixes.
+
+v2.47
+
+- Added a Delete(tag) method to ES2Writer.
+- Fixed a bug where encryption would cause an exception on Unity Web Player.
+- More performance enhancements.
+
+v2.46
+
+- Re-enabled defaultPCDataPath.
+- More performance tweaks to get even more efficiency out of ES2.
+
+v2.44 & v2.45
+
+- Small bug fixes.
+
+v2.43
+
+- Performance updates and restructuring in anticipation for XML support.
+- Reintroduced defaultPCPath and defaultMacPath.
+- Added DownloadFilenames and GetFilenames methods to ES2Web.
+  (Note that you will need to use the latest ES2.php file supplied with this version)
+- Added SaveRaw(string) and UploadRaw(byte[]) methods.
+- Update to Playmaker action.
+
+v2.41
+
+- Changed how WP8 and Metro check if a file exists so it’s more efficient.
+- Fixed bug where it would not be possible to save a byte array.
+
+v2.40
+
+- Added ability to rename Tags using ES2.Rename.
+- More performance enhancements.
+- Fixed bug where ES2.SaveRaw would return blank array on Web Player.
+
+v2.38 & v2.39
+
+- Major performance updates.
+- Added Playmaker actions to get dataPath, persistentDataPath and streamingAssetsPath.
+- Windows Phone 8, Windows Store and Playmaker functionality is now manually enabled from the ‘Assets/Easy Save 2’ menu.
+- Various small bug fixes.
+
+v2.37
+
+- Fixed issue where sometimes Unity wouldn't be able to parse the version number.
+- Fixed missing references in some examples.
+
+v2.35 & v2.36
+
+- Worked around a bug in Unity where compilation would fail when using iOS stripping and Dictionaries.
+- Fixed an issue where sometimes Unity would hang on import.
+
+v2.34
+
+- Easy Save now automatically disables Metro and WP8 files in Unity 3.5.
+- PlayMaker action is automatically enabled or disabled depending on whether PlayMaker is detected.
+- Fixed an issue where ES2Web would not work on WP8 and Metro.
+- Support for TreeInstance and Sprite has been temporarily disabled (support coming in a future update.
+
+v2.33
+
+- Updated the Easy Save Editor integration ('Assets/Easy Save 2' menu):
+	- Ability to Install, Update and Remove PlayMaker actions from 'Assets/Easy Save 2'.
+	- You can now clear the Default Save Folder from 'Assets/Easy Save 2'.
+	- Uninstall and Clean Up Easy Save 2 from 'Assets/Easy Save 2'.
+	- Menu items are now neatly organised.
+
+v2.32
+
+- Support added for Rect, Bounds, TreeInstance and Sprite classes.
+- ES2Web now allows you to choose whether to hash passwords using the hashType property.
+- ES2.php has been modified to allow easier integration with login systems.
+
+v2.31
+
+- Minor fixes for ES2Reader.
+- Error messages are more informative.
+
+v2.30
+
+- Added ES2Writer and ES2Reader for high performance saving and loading.
+- Major performance updates.
+
+v2.29
+
+- Support added for Windows Store (Metro).
+- Bugfixes for Windows Phone 8 support.
+- Added GetFiles(string path, string extension) method which allows you to get a list of files with a given extension.
+- Changelog is now included with Easy Save 2.
+- ES2 now uses two DLLs instead of many DLLs: ES2.dll and MoodkieSecurity.dll.
+- DLLs have been moved from /Plugins/Easy Save 2/Libraries/ to /Plugins/
