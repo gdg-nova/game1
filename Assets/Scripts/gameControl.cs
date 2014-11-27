@@ -109,15 +109,50 @@ public class gameControl : MonoBehaviour
 		}
 	}
 
+
+	// As a left-click could be by accident, or as a re-position target for any
+	// selected zombies, lets have a minimum threshold before starting the expansion
+	// of zombie range.  If a click is started and released within before the threshold
+	// time, then just retarget any currently selected zombies to new destination.
+	float leftClickThreshold = .5f;
+	float startLeftClick = 0.0f;
+
 	void startSelectionProcess()
 	{
 		bool ClickByEvent = Event.current.type == EventType.MouseDown
 			&& Event.current.button == 0
-				&& GUIUtility.hotControl == 0;
-		
+			&& GUIUtility.hotControl == 0;
+
+		if (!ClickByEvent && Input.GetMouseButton(0) && startLeftClick > 0.0f )
+			ClickByEvent = true;
+
 		// if no mouse down to start, just get out
 		if( !ClickByEvent )
+		{
+			// if no more mouse click, but there WAS a started attempt then
+			// check if we had any halo zombies.. if so, force a new target
+			if( startLeftClick > 0.0f )
+			{
+				// if zombies are selected, set them to new target
+				if( haloZombies != null )
+					forceMoveToZombieTarget();
+			
+				// always clear the left-click threshold back to zero for next cycle
+				startLeftClick = 0.0f;
+			}
 			return;
+		}
+
+
+		// Now, start new secondary movement
+		startLeftClick += Time.deltaTime;
+		if( startLeftClick < leftClickThreshold )
+			// still not at threshold, get out
+			return ;
+
+		// exceeded threshold difference, allow this to be a new
+		// and allow to clear halo's and advance into the next step
+		startLeftClick = 0.0f;
 
 		// if we HAVE zombies to clear, do so now...
 		if( haloZombies != null )
@@ -189,6 +224,7 @@ public class gameControl : MonoBehaviour
 	{
 		// always calc time and expand the scale radius REGARDLESS of mouse button being up
 		expandingZombieTime += Time.deltaTime;
+
 		zombieRange.transform.localScale = new Vector3( expandingZombieTime * 100.0f, .2f, expandingZombieTime * 100.0f );
 		
 		bool ClickByEvent = Event.current.type == EventType.MouseUp
@@ -237,7 +273,15 @@ public class gameControl : MonoBehaviour
 		// if no mouse down to start, just get out
 		if( !ClickByEvent)
 			return;
-		
+
+		// moved to extra function to allow for the short threshold
+		// of left-click to keep repositioning zombies until actual
+		// new selection is done.
+		forceMoveToZombieTarget();
+	}
+
+	void forceMoveToZombieTarget()
+	{
 		// Yes, we have a new mouse position... any possible taget?
 		Vector3 targetPos = Input.mousePosition;
 		Ray r = Camera.main.ScreenPointToRay (targetPos);
