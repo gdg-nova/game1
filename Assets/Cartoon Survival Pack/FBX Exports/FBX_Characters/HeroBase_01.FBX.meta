@@ -1,0 +1,436 @@
+fileFormatVersion: 2
+guid: cc8c2065c17ce304f8e520454148d9bb
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Base
+    100004: Base Footsteps
+    100006: Base Head
+    100008: Base HeadNub
+    100010: Base L Calf
+    100012: Base L Clavicle
+    100014: Base L Foot
+    100016: Base L Forearm
+    100018: Base L Hand
+    100020: Base L Thigh
+    100022: Base L Toe0
+    100024: Base L Toe0Nub
+    100026: Base L UpperArm
+    100028: Base Neck
+    100030: Base Pelvis
+    100032: Base R Calf
+    100034: Base R Clavicle
+    100036: Base R Foot
+    100038: Base R Forearm
+    100040: Base R Hand
+    100042: Base R Thigh
+    100044: Base R Toe0
+    100046: Base R Toe0Nub
+    100048: Base R UpperArm
+    100050: Base Spine
+    100052: Base Spine1
+    100054: LK floor
+    100056: ManBase_mesh
+    100058: HeroSuit_mesh
+    100060: HeroBase_mesh
+    400000: //RootNode
+    400002: Base
+    400004: Base Footsteps
+    400006: Base Head
+    400008: Base HeadNub
+    400010: Base L Calf
+    400012: Base L Clavicle
+    400014: Base L Foot
+    400016: Base L Forearm
+    400018: Base L Hand
+    400020: Base L Thigh
+    400022: Base L Toe0
+    400024: Base L Toe0Nub
+    400026: Base L UpperArm
+    400028: Base Neck
+    400030: Base Pelvis
+    400032: Base R Calf
+    400034: Base R Clavicle
+    400036: Base R Foot
+    400038: Base R Forearm
+    400040: Base R Hand
+    400042: Base R Thigh
+    400044: Base R Toe0
+    400046: Base R Toe0Nub
+    400048: Base R UpperArm
+    400050: Base Spine
+    400052: Base Spine1
+    400054: LK floor
+    400056: ManBase_mesh
+    400058: HeroSuit_mesh
+    400060: HeroBase_mesh
+    2300000: //RootNode
+    2300002: ManBase_mesh
+    3300000: //RootNode
+    3300002: ManBase_mesh
+    4300000: ManBase_mesh
+    4300002: HeroSuit_mesh
+    4300004: HeroBase_mesh
+    9500000: //RootNode
+    13700000: ManBase_mesh
+    13700002: HeroSuit_mesh
+    13700004: HeroBase_mesh
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human:
+    - boneName: Base Pelvis
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Base L Thigh
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Base R Thigh
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Base L Calf
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Base R Calf
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Base L Foot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Base R Foot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Base Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Base Spine1
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Base Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Base L Clavicle
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Base R Clavicle
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Base L UpperArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Base R UpperArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Base L Forearm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Base R Forearm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Base L Hand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Base R Hand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Base L Toe0
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Base R Toe0
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Base Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: ZombieHero_BaseAVATAR_all(Clone)
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Base
+      position: {x: 0, y: .545202434, z: -.00694218464}
+      rotation: {x: -.5, y: .5, z: .5, w: .5}
+      scale: {x: .99999994, y: .99999994, z: 1}
+      transformModified: 1
+    - name: Base Pelvis
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -.499999642, y: .500000358, z: .499999642, w: .500000358}
+      scale: {x: 1, y: .99999994, z: .99999994}
+      transformModified: 1
+    - name: Base L Thigh
+      position: {x: 1.90734852e-07, y: 2.0325183e-07, z: .129362375}
+      rotation: {x: -.0418493785, y: .999123931, z: -6.57865485e-07, w: -7.9818534e-07}
+      scale: {x: .99999994, y: 1, z: .99999994}
+      transformModified: 1
+    - name: Base L Calf
+      position: {x: -.229965627, y: 0, z: 0}
+      rotation: {x: -8.58431368e-14, y: -1.43935767e-14, z: .165364563, w: .986232519}
+      scale: {x: 1.00000012, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: Base L Foot
+      position: {x: -.201837569, y: 0, z: 0}
+      rotation: {x: -.0605777986, y: .00756667554, z: -.123715289, w: .990438104}
+      scale: {x: 1, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: Base L Toe0
+      position: {x: -.116539285, y: .14677678, z: -9.53674295e-09}
+      rotation: {x: -1.54543116e-08, y: 1.54543134e-08, z: -.707106829, w: .707106829}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Base L Toe0Nub
+      position: {x: -.116427742, y: 0, z: -9.53674295e-09}
+      rotation: {x: -8.32661233e-16, y: 5.09857979e-32, z: 1, w: 6.12323426e-17}
+      scale: {x: -1, y: -1, z: -1}
+      transformModified: 1
+    - name: Base R Thigh
+      position: {x: -1.90734852e-07, y: -1.55568117e-07, z: -.129362375}
+      rotation: {x: -.0418493785, y: .999123931, z: -6.66024391e-07, w: -7.3278261e-07}
+      scale: {x: .99999994, y: 1, z: .99999994}
+      transformModified: 1
+    - name: Base R Calf
+      position: {x: -.229965612, y: 0, z: 9.53674295e-09}
+      rotation: {x: -7.52701937e-14, y: -9.13278971e-16, z: .165364563, w: .986232519}
+      scale: {x: 1.00000012, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: Base R Foot
+      position: {x: -.201837569, y: -9.53674295e-09, z: -9.53674295e-09}
+      rotation: {x: .0605777837, y: -.00756676169, z: -.123715281, w: .990438104}
+      scale: {x: 1, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: Base R Toe0
+      position: {x: -.116539285, y: .14677681, z: 0}
+      rotation: {x: 1.54543134e-08, y: -1.54543134e-08, z: -.707106829, w: .707106829}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Base R Toe0Nub
+      position: {x: -.116427734, y: 0, z: 0}
+      rotation: {x: 0, y: 8.32664092e-16, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Base Spine
+      position: {x: -.0498402789, y: -.000181187381, z: 6.93697757e-08}
+      rotation: {x: -2.08047595e-06, y: 6.93675986e-07, z: -.000398158998, w: .99999994}
+      scale: {x: 1, y: .99999994, z: .99999994}
+      transformModified: 1
+    - name: Base Spine1
+      position: {x: -.227579728, y: -.000181216586, z: -5.02620889e-10}
+      rotation: {x: -3.01176727e-14, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Base L Clavicle
+      position: {x: -.127228841, y: -.0535098724, z: .0684826896}
+      rotation: {x: .707106769, y: .000281540968, z: -.707106769, w: .000281540968}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Base L UpperArm
+      position: {x: -.149230719, y: 0, z: 0}
+      rotation: {x: .00773035176, y: -.0293146502, z: -.0216321833, w: .999306262}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Base L Forearm
+      position: {x: -.257248819, y: 0, z: 0}
+      rotation: {x: -.00368486997, y: .0221362114, z: .0570371076, w: .998119891}
+      scale: {x: .999999881, y: 1, z: 1}
+      transformModified: 1
+    - name: Base L Hand
+      position: {x: -.182208732, y: -2.86102289e-08, z: 0}
+      rotation: {x: -.714530408, y: -.0437573902, z: -.0435899384, w: .696872652}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Base Neck
+      position: {x: -.227585748, y: -7.87156823e-05, z: -2.18327606e-10}
+      rotation: {x: 3.45644648e-15, y: 1.06964229e-07, z: -.0385651253, w: .999256074}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Base Head
+      position: {x: -.0991474167, y: 0, z: 0}
+      rotation: {x: -1.10462983e-13, y: -1.08067674e-07, z: .0389636494, w: .999240637}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Base HeadNub
+      position: {x: -.771383047, y: 0, z: 0}
+      rotation: {x: -4.11746566e-20, y: -3.38813179e-21, z: -1.39504867e-40, w: 1}
+      scale: {x: 1, y: .99999994, z: .99999994}
+      transformModified: 1
+    - name: Base R Clavicle
+      position: {x: -.127228841, y: -.0535094924, z: -.068482928}
+      rotation: {x: .707106769, y: .000281540968, z: .707106769, w: -.000281540968}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Base R UpperArm
+      position: {x: -.149230748, y: 0, z: 0}
+      rotation: {x: -.00773012312, y: .0293157417, z: -.0216309186, w: .999306202}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: Base R Forearm
+      position: {x: -.257248729, y: 0, z: 0}
+      rotation: {x: .00368480571, y: -.0221356265, z: .0570377819, w: .998119771}
+      scale: {x: .999999762, y: .999999821, z: .99999994}
+      transformModified: 1
+    - name: Base R Hand
+      position: {x: -.182208762, y: 0, z: -7.62939436e-08}
+      rotation: {x: .714530408, y: .0437573865, z: -.0435899384, w: .696872652}
+      scale: {x: 1.00000012, y: 1, z: 1}
+      transformModified: 1
+    - name: ZombieSuit_mesh
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: ea9ef13171f84e1468ff6d737cc6b734,
+    type: 3}
+  animationType: 3
+  additionalBone: 0
+  userData: 
