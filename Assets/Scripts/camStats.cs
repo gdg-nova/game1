@@ -13,8 +13,8 @@ public class camStats : MonoBehaviour
 	private GameObject btnGameOver;
 	private GameObject btnSelectLevel;
 	private GameObject btnSpawnZombie;
-	private GameObject btnSpawnWerewolf;
-	private GameObject btnSpawnMinotaur;
+	private GameObject btnSpawnFastZombie;
+	private GameObject btnSpawnTankZombie;
 
 	private gameControl gc;
 
@@ -68,28 +68,20 @@ public class camStats : MonoBehaviour
 					
 					break;
 
-				case "btnSpawnWerewolf":
-					btnSpawnWerewolf = g;
+				case "btnSpawnFastZombie":
+					btnSpawnFastZombie = g;
 					b = g.GetComponent<Button>();
 					if( b != null )
-					{
-						b.onClick.AddListener(spawnWerewolf);
-						// Disable for now until we ge werewolves
-						b.gameObject.SetActive( false );
-					}
+						b.onClick.AddListener(spawnFastZombie);
 					break;
 
-				case "btnSpawnMinotaur":
-					btnSpawnMinotaur = g;
+				case "btnSpawnTankZombie":
+					btnSpawnTankZombie = g;
 					// Specifically add "Hook" to the button to restart game method
 					// which in-turn, call the reload level option.
 					b = g.GetComponent<Button>();
 					if( b != null )
-					{
-						b.onClick.AddListener(spawnMinotaur);
-						// Disable for now until we ge werewolves
-						b.gameObject.SetActive( false );
-					}
+						b.onClick.AddListener(spawnTankZombie);
 					break;
 
 
@@ -183,14 +175,14 @@ public class camStats : MonoBehaviour
 			gyAI.CreateZombie();
 	}
 	
-	private void spawnWerewolf()
+	private void spawnFastZombie()
 	{
-		Debug.Log ( "Hook for spawning werewolf." );
+		gc.createFastZombie();
 	}
 	
-	private void spawnMinotaur()
+	private void spawnTankZombie()
 	{
-		Debug.Log ( "Hook for spawning minotaur." );
+		gc.createTankZombie();
 	}
 }
 
