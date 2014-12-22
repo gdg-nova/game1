@@ -7,6 +7,7 @@ public class gameControl : MonoBehaviour
 {
 	public GameObject Human;
 	public GameObject Zombie;
+	public GameObject ZombieTank;
 	public GameObject Werewolf;
 	public GameObject Guard;
 
@@ -376,19 +377,51 @@ public class gameControl : MonoBehaviour
 	}
 	
 	//Create zombie at position
-	public void createZombie( Vector3 position) 
+	// changed to return zombieAI object by overloading
+	// and calling the create zombie with both parameters
+	public zombieAI createZombie( Vector3 position) 
 	{
-		Instantiate (Zombie, position, q); 
+		return createZombie(position, q); 
 	}
 
+	public zombieAI createFastZombie()
+	{
+		GameObject spawn = getRandomSpawn();
+
+		// if no such object found randomly, get out of loop
+		if( spawn == null )
+			return null;
+
+		zombieAI fz = createZombie( gs.RandomVectorInBounds( spawn ), q); 
+		fz.MakeFastZombie();
+		return fz;
+	}
+
+	public zombieAI createTankZombie() 
+	{	
+		GameObject spawn = getRandomSpawn();
+		
+		// if no such object found randomly, get out of loop
+		if( spawn == null )
+			return null;
+		
+		return createTypeOfZombie( ZombieTank, gs.RandomVectorInBounds( spawn ), q); 
+	}
 
 	//Create zombie at position & rotation
 	public zombieAI createZombie( Vector3 position, Quaternion rot) 
+	{	return createTypeOfZombie( Zombie, position, rot); }
+
+
+	//Create zombie at position & rotation
+	private zombieAI createTypeOfZombie( GameObject thisZombie, Vector3 position, Quaternion rot) 
 	{
-		GameObject gobj = (GameObject)Instantiate (Zombie, position, rot); 
+		GameObject gobj = (GameObject)Instantiate (thisZombie, position, rot); 
 		zombieAI zAI = gobj.GetComponentInChildren<zombieAI>();
 		return zAI;
 	}
+
+
 
 	public werewolfAi createWerewolf( Vector3 position, Quaternion rot) 
 	{

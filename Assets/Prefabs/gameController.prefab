@@ -92,12 +92,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Human: {fileID: 100052, guid: c6783f49378f645fa81340aa301236b5, type: 2}
   Zombie: {fileID: 100052, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  ZombieTank: {fileID: 100066, guid: 3b48013d346a1ad448a6847ae047bfaa, type: 2}
   Werewolf: {fileID: 100000, guid: 4382eb94ed42b4602a07ec4a3e241a08, type: 2}
   Guard: {fileID: 100006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
   zombieCost: 1
   humanCount: 20
   zombieTargetPrefab: {fileID: 100000, guid: 69a01d735064f4050b0c939ba3fbafb4, type: 2}
-  manaPool: 1
+  manaPool: 2
   touchController: {fileID: 0}
   gameEnded: 0
   score: 0
