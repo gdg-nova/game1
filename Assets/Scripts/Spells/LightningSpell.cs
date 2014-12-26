@@ -14,11 +14,6 @@ public class LightningSpell : SpellBase {
 		}
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 	public override void EndTouch (SceneControl.TouchEvent args)
 	{
 		// Now, what have we targeted from this click (if anything)

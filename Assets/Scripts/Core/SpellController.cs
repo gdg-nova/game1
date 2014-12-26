@@ -16,6 +16,15 @@ public class SpellController : MonoBehaviour {
 			playerSettings = go.GetComponent<PlayerSettings>();
 		}
 
+		if (playerSettings != null)
+		{
+			foreach(SpellBase spell in playerSettings.AvailableSpells)
+			{
+				spell.SpellActivated -= HandleSpellActivated;
+				spell.SpellActivated += HandleSpellActivated;
+			}
+		}
+
 		GameObject[] objects = GameObject.FindGameObjectsWithTag("SpellRenderer");
 		ToggleGroup toggleGroup = GetComponent<ToggleGroup>();
 		foreach(GameObject go in objects)
@@ -30,5 +39,10 @@ public class SpellController : MonoBehaviour {
 			}
 		}
 	}
-	
+
+	void HandleSpellActivated (SpellBase spell, SpellBase.SpellActivatedEventArgs e)
+	{
+		// Update the player settings
+		playerSettings.ActiveSpell = spell;
+	}
 }

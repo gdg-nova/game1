@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: LightningSpell
+  m_Name: CreateZombieBasicSpell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23,7 +23,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.50504112, y: -.123707771, z: .223468781}
+  m_LocalPosition: {x: -6.71451855, y: .535042524, z: 3.23239899}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -36,12 +36,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c51e226226a484b66a2727b318a3c12a, type: 3}
+  m_Script: {fileID: 11500000, guid: da2758037038c40179c6dc13d349e5c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guiToggleButtonPrefab: {fileID: 11400004, guid: 3ccffd29417a8410087bc833fd315c7c,
+  guiToggleButtonPrefab: {fileID: 11400004, guid: f16f1bc45216946a6a541824f4ea312c,
     type: 2}
-  lightningPrefab: {fileID: 100008, guid: cef71c8e075484a3a921f39978ebe930, type: 2}
+  zombieAppearanceEffect: {fileID: 100000, guid: afca5ecd56ff14eac9de746523677b43,
+    type: 2}
+  zombiePrefab: {fileID: 100052, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

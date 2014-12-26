@@ -104,6 +104,9 @@ public class RenderSpells : MonoBehaviour {
 			grphRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, buttonSize-3);
 			grphRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, buttonSize-3);
 
+			// Set the callback to the SpellBase handler so that any external listeners get the message
+			toggle.onValueChanged.RemoveAllListeners();
+			toggle.onValueChanged.AddListener(spell.SetToggleState);
 		}
 		// Now adjust the panel because it may have recalculated the size
 		if (gridLayoutGroup.startCorner == GridLayoutGroup.Corner.LowerLeft)
