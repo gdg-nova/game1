@@ -28,7 +28,9 @@ public class LightningSpell : SpellBase {
 		// DID we point to anything from the touch?
 		if (Physics.Raycast (r, out r_hit, Mathf.Infinity)) 
 		{
-			Instantiate( lightningPrefab, r_hit.point, Quaternion.Euler(-90.0f, 0.0f, 0.0f) );
+			GameObject go = Instantiate( lightningPrefab, r_hit.point, Quaternion.Euler(-90.0f, 0.0f, 0.0f) ) as GameObject;
+			Destroy(go, go.particleSystem.duration);
+
 		}
 	}
 }

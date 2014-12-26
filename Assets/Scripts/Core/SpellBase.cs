@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEngine.UI;
+using UnityEngine;
 using System.Collections;
 
 public class SpellBase : MonoBehaviour {
@@ -8,6 +9,10 @@ public class SpellBase : MonoBehaviour {
 		kCreateMonster = 0,
 		kMagic = 1,
 	};
+
+	// This prefab is instantiated when the spell is available. It should be a "Toggle" button
+	// to allow the spell controller to specify the appropriate details.
+	public Toggle guiToggleButtonPrefab = null;
 
 	// Returns the type of the spell which can determine how the GUI is rendered
 	// or other game logic.
