@@ -41,14 +41,15 @@ public class attackAI : MonoBehaviour
 	public AudioSource[] soundEffects;
 	//Sound effect for zombie on peasant
 	public AudioSource Zombie_on_Peasant;
-
-
+	//Sound effect for zombie on guard
+	public AudioSource Zombie_on_Guard;
 
 	public void Start()
 	{
 		// Add all the sound effects to one object
 		soundEffects = GetComponents<AudioSource> ();
 		Zombie_on_Peasant = soundEffects [0];
+		Zombie_on_Guard = soundEffects [1];
 	}
 
 	// expose an event for a successful attack in case any custom
@@ -148,13 +149,13 @@ public class attackAI : MonoBehaviour
 					case "Zombie":
 					{
 						Debug.Log("Zombie attacked");
-						//Play knight on zombie sound
+						//Play guard on zombie sound
 						break;
 					}
 					case "Guard":
 					{
 						Debug.Log("Guard attacked");
-						//Play zombie on guard sound
+						Zombie_on_Guard.Play();
 						break;
 					}
 					}
