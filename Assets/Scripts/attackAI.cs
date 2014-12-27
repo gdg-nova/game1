@@ -139,7 +139,9 @@ public class attackAI : MonoBehaviour
 					o.playSound( "attack", hitObj.tag.ToString() );
 
 					//Play the correct sound:
-					switch(hitObj.tag.ToString())
+	/*The following is currently commented out due to conflict with the troll AI
+	 * 
+	 * switch(hitObj.tag.ToString())
 					{
 					case "Human":
 					{
@@ -160,7 +162,7 @@ public class attackAI : MonoBehaviour
 					}
 					}
 
-
+*/
 				
 					//Debug.Log ("valid attack hit: " + hitObj);
 
