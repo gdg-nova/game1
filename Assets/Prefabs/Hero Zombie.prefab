@@ -760,7 +760,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100052}
   m_LocalRotation: {x: 0, y: .981123865, z: 0, w: .193380639}
-  m_LocalPosition: {x: 336.660004, y: .155090004, z: 355}
+  m_LocalPosition: {x: 243.559998, y: .618510008, z: 351.390015}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 400050}
@@ -962,7 +962,7 @@ MonoBehaviour:
   attackRadius: 2
   soundEffects: []
   Zombie_on_Peasant: {fileID: 0}
-  Zombie_on_Knight: {fileID: 0}
+  Zombie_on_Guard: {fileID: 0}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -974,7 +974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d4ca1757558c241a50fabe397c23aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fearInterval: 2000
+  fearInterval: 6
   fearRadius: 9
 --- !u!122 &12200002
 Halo:
