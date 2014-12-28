@@ -35,17 +35,30 @@ public class RenderSpells : MonoBehaviour {
 		}
 	}
 
-	public void SetSpells(SpellBase[] updatedSpells)
+	public bool SetSpells(SpellBase[] updatedSpells, bool setFirstItemAsActive)
 	{
 		if (updatedSpells != null)
 		{
 			spells = updatedSpells;
 			RenderInternal();
+			if (setFirstItemAsActive && transform.childCount > 0)
+			{
+				// Make the first child the active one
+				Transform firstChild = transform.GetChild(0);
+				Toggle toggle = firstChild.GetComponent<Toggle>();
+				toggle.isOn = true;
+			}
+			else
+			{
+				return setFirstItemAsActive;
+			}
+			return false; // Child was set
 		}
 		else
 		{
 			Debug.LogError ("Invalid set of spells");
 		}
+		return setFirstItemAsActive; // To give the next panel the option to set the gui.
 	}
 
 	void RenderInternal()

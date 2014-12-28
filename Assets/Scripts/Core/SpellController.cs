@@ -27,6 +27,7 @@ public class SpellController : MonoBehaviour {
 
 		GameObject[] objects = GameObject.FindGameObjectsWithTag("SpellRenderer");
 		ToggleGroup toggleGroup = GetComponent<ToggleGroup>();
+		bool firstGroup = true;
 		foreach(GameObject go in objects)
 		{
 			// Set up each renderer
@@ -35,7 +36,7 @@ public class SpellController : MonoBehaviour {
 			{
 				Debug.Log ("Setting spells on " + go.name);
 				rs.toggleGroupToUse = toggleGroup;
-				rs.SetSpells(playerSettings.AvailableSpells);
+				firstGroup = rs.SetSpells(playerSettings.AvailableSpells, firstGroup);
 			}
 		}
 	}
