@@ -22,6 +22,9 @@ public class humanAI : commonAI, ICanBeScared
 
 		// human navigation targets... look for safe-zones first, then finish zones
 		defaultNavTargets.Clear();
+		// make human gathering spots a basis for default movement instead of
+		// always going and hiding in a "SafeZone"
+		defaultNavTargets.Add(eNavTargets.HumanGathering );
 		defaultNavTargets.Add(eNavTargets.SafeZone);
 		defaultNavTargets.Add(eNavTargets.Finish);
 		// if all else fails, find SOME place in the playable area of the board
@@ -51,7 +54,7 @@ public class humanAI : commonAI, ICanBeScared
 
 		animComponent.Play ();
 	}
-
+	
 	// Update is called once per frame
 	void Update () 
 	{
@@ -132,6 +135,74 @@ public class humanAI : commonAI, ICanBeScared
 
 		checkAnimation ();
 	}
+
+	// new delay for humans when moving to randomized "human gathering" locations
+	// such as light posts, barrels, etc... set some random delay, much like letting
+	// them sit and chat with others that may be near same gathering spot...
+	float gatheringSpotDelay = 0.0f;
+	// Called from the update method...
+	private bool GatheringSpotHandled()
+	{
+		// if current target is not a human gathering spot, 
+		// get out.  Nothing handled assocated with gathering spot.
+		if( currentTarget.tag != eNavTargets.HumanGathering.ToString())
+			return false;
+
+		// if previously established and target reached, 
+		// have we met our time-delay before going to next target?
+		if( gatheringSpotDelay > 0f )
+		{
+			// reduce delay time, if delay completed, get out and return
+			// FALSE... we are not doing anything specific to gathering spot
+			gatheringSpotDelay -= Time.deltaTime;
+			if( gatheringSpotDelay < 0f )
+				return false;
+
+			// we are still in the delay timeout of gathering.
+			// take a look at other human/guard game objects in the vicinity
+			// as we are so we can "LOOK" at them as if to be engaging in
+			// converstation.  Similar approach to that of COMBAT where the
+			// enemies are forced to look at each other when being attacked.
+			Collider[] colliders = Physics.OverlapSphere(gameObject.transform.position, 1);
+			GameObject hitObj;
+			foreach (Collider hit in colliders)
+			{
+				hitObj = hit.collider.gameObject;
+				// did we find an object we are allowed to attack
+				if( hitObj.tag.Equals ( "Human" )
+				   || hitObj.tag.Equals( "Guard" ))
+				{
+					commonAI o = hitObj.GetComponent<commonAI>();
+					// turn our game object in the direction of what is being attacked
+					transform.LookAt(hitObj.transform);
+
+					// stop our game object from walking / moving around
+					animComponent.Play("idle");
+
+					// break out of loop of possible humans to look at.
+					break;
+				}
+			}
+	
+			// yes, we handled something (even if ATTEMPTING to look at other humans)
+			return true;
+		}
+
+		// Not already within a timing-out delay at gathering point.
+		// We may still be walking towards our gathering spot... did we get there yet?
+		if( reachedTarget())
+		{
+			// Yup, we DID hit our gathering spot... set delay and get out
+			// random timeout is 5 seconds minimum PLUS another 1 to 5 seconds
+			gatheringSpotDelay = 5f + Random.Range( 1f, 5f );
+			return true;
+		}
+
+		// nope, nothing handled... user still walking...
+		return false;
+	}
+
+
 
 	private bool infectionDelaySet;	
 	private float infectionDelay;

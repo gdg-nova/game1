@@ -121,7 +121,8 @@ public enum eNavTargets
 	Human,
 	SafeZone,
 	Zombie,
-	Werewolf
+	Werewolf,
+	HumanGathering
 
 	// Untagged
 	// Respawn
