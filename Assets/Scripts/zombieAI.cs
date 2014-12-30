@@ -35,7 +35,7 @@ public class zombieAI : commonAI
 	public override void Start()
 	{
 		GameObject go = GameObject.FindWithTag("GameController");
-		gameController = go.GetComponent<gameControl>();
+		if (go != null) gameController = go.GetComponent<gameControl>();
 
 		manaCost = zombieManaCost;
 
@@ -253,7 +253,7 @@ public class zombieAI : commonAI
 	{
 		// ONLY if the object is a human do we create a newly spawned zombie.
 		//Get points for every time you attack
-		gameController.scorePoints();
+		if (gameController != null) gameController.scorePoints();
 	}
 
 	public override void playSound (string action, string target)

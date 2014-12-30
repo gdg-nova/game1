@@ -23,7 +23,10 @@ public class graveYardAI : MonoBehaviour
 	void Start()
 	{
 		GameObject controller = GameObject.FindWithTag("GameController");
-		gameController = controller.GetComponent<gameControl>();
+		if (controller != null)
+		{
+			gameController = controller.GetComponent<gameControl>();
+		}
 	}
 
 	void Update() 

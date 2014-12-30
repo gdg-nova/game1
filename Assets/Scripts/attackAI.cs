@@ -49,7 +49,8 @@ public class attackAI : MonoBehaviour
 		// Add all the sound effects to one object
 		soundEffects = GetComponents<AudioSource> ();
 		Zombie_on_Peasant = soundEffects [0];
-		Zombie_on_Guard = soundEffects [1];
+		if (soundEffects.Length > 1)
+			Zombie_on_Guard = soundEffects [1];
 	}
 
 	// expose an event for a successful attack in case any custom
