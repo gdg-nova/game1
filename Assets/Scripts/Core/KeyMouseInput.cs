@@ -5,7 +5,8 @@ using System.Collections.Generic;
 
 public class KeyMouseInput : MonoBehaviour {
 
-	public float speed = 65.0f;
+	public float groundSpeed = 120.0f;
+	public float zoomSpeed = 120.0f;
 	public SceneControl sceneControl = null;
 
 	// Use this for initialization
@@ -35,19 +36,19 @@ public class KeyMouseInput : MonoBehaviour {
 		float zoom = Input.GetAxis("Zoom");
 		if (zoom != 0.0f)
 		{
-			sceneControl.ZoomIn(zoom * speed * Time.deltaTime);
+			sceneControl.ZoomIn(zoom * zoomSpeed * Time.deltaTime);
 		}
 		
 		float horizontal = Input.GetAxis ("Horizontal");
 		if (horizontal != 0.0f)
 		{
-			sceneControl.PanRight(horizontal * Time.deltaTime);
+			sceneControl.PanRight(horizontal * groundSpeed * Time.deltaTime);
 		}
 
 		float vertical = Input.GetAxis ("Vertical");
 		if (vertical != 0.0f)
 		{
-			sceneControl.PanForward(vertical * Time.deltaTime);
+			sceneControl.PanForward(vertical * groundSpeed * Time.deltaTime);
 		}
 
 		// Now check for mouse movement

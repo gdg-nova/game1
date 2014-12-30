@@ -6,7 +6,6 @@ public class CameraControl : MonoBehaviour {
 	public float minAngle = -30.0f;
 	public float startAngle = 0.0f;
 	public float maxAngle = 65.0f;
-	public float speed = 65.0f;
 	public Transform mainCamera = null;
 	public TerrainCollider terrain = null;
 	
@@ -110,18 +109,18 @@ public class CameraControl : MonoBehaviour {
 	
 	public void ZoomOut(float angle)
 	{
-		UpdateCameraPosition( currentAngle + 0.05f * angle * speed );
+		UpdateCameraPosition( currentAngle + angle );
 	}
 	
 	public void ZoomIn(float angle)
 	{
-		UpdateCameraPosition( currentAngle - 0.05f * angle * speed );
+		UpdateCameraPosition( currentAngle - angle );
 	}
 	
 	public void PanLeft(float distance)
 	{
 		//Debug.Log(string.Format("Panning left: {0}", distance));
-		float newDistance = -distance * speed * 0.5f;
+		float newDistance = -distance;
 		
 		float newPos = currentXPointInPanningArea + newDistance;
 		if (newPos < panningAreaMinX) newDistance -= newPos-panningAreaMinX; 
@@ -135,7 +134,7 @@ public class CameraControl : MonoBehaviour {
 	public void PanForward(float distance)
 	{
 		//Debug.Log(string.Format("Panning forward: {0}", distance));
-		float newDistance = -distance * speed * 0.5f;
+		float newDistance = -distance;
 		
 		float newPos = currentZPointInPanningArea + newDistance;
 		if (newPos < panningAreaMinZ) newDistance -= newPos-panningAreaMinZ; 

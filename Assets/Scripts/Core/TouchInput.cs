@@ -7,6 +7,7 @@ public class TouchInput : MonoBehaviour {
 	public KeyMouseInput keyMouseInput = null;
 	public bool enablePinchToZoom = true;
 	public bool enableMultiTouchSwipe = true;
+	public float sensitivity = 0.25f;
 	
 	void Start () {
 		if (sceneControl == null && enablePinchToZoom)
@@ -89,32 +90,20 @@ public class TouchInput : MonoBehaviour {
 						veriticalSwipe = (touches[0].deltaPosition.y + touches[1].deltaPosition.y)/2;
 					}
 				}
-				// Rule is: If the horizontal or veritical swipe speed exceeds the rate at which the
-				// fingers come together, then it's a swipe otherwise it's a pinch to zoom
-				//Debug.Log (string.Format("H: {0}, V: {1}, Dis: {2}", horizontalSwipe, veriticalSwipe, deltaDistance));
-				if (Mathf.Abs(horizontalSwipe) > absDeltaDistance * 1.5 || 
-				    Mathf.Abs(veriticalSwipe) > absDeltaDistance * 1.5)
-				{
-					deltaDistance = 0.0f;
-				}
-				else
-				{
-					horizontalSwipe = 0.0f;
-					veriticalSwipe = 0.0f;
-				}
-				
+
 				if (deltaDistance != 0.0f)
 				{
-					sceneControl.ZoomIn( deltaDistance*touches[0].deltaTime );
+					sceneControl.ZoomIn( deltaDistance*sensitivity );
 					originalPinchDistance = currentDistance;
 				}
 				if (horizontalSwipe != 0.0f)
 				{
-					sceneControl.PanRight( -horizontalSwipe*touches[0].deltaTime );
+					sceneControl.PanRight( -horizontalSwipe*sensitivity );
 				}
 				if (veriticalSwipe != 0.0f)
 				{
-					sceneControl.PanForward( veriticalSwipe*touches[0].deltaTime );
+					//Debug.Log ("Vertical: " + veriticalSwipe.ToString() + " Delta:" + touches[0].deltaTime.ToString());
+					sceneControl.PanForward( -veriticalSwipe*sensitivity );
 				}
 			}
 		} 
