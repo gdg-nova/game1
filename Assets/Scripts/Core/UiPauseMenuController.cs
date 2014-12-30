@@ -61,9 +61,18 @@ public class UiPauseMenuController : MonoBehaviour {
 
 	private void SetPositionAndSizeOfRectTransform(RectTransform rect, float xpos, float ypos, float width, float height)
 	{
+		float currentHeight = Mathf.Abs( rect.rect.yMax - rect.rect.yMin );
+		float ratio = height / currentHeight;
+
 		rect.anchoredPosition = new Vector2(xpos, ypos);
 		rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
 		rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height);
+
+		Text[] allText = rect.GetComponentsInChildren<Text>(true);
+		foreach(Text text in allText)
+		{
+			text.fontSize = (int)(text.fontSize * ratio);
+		}
 	}
 
 	public void OnShowMenu()
