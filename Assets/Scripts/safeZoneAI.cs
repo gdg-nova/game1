@@ -111,6 +111,7 @@ public class safeZoneAI : MonoBehaviour
 		
 		// get gamecontrol object from main camera
 		GameObject go = GameObject.FindWithTag("GameController"); 
+		if (go == null) return;
 		gameControl gc = go.GetComponent<gameControl>();
 		// if not actually found, get out
 		if( gc == null )
@@ -152,6 +153,7 @@ public class safeZoneAI : MonoBehaviour
 
 		// get gamecontrol object from main camera
 		GameObject go = GameObject.FindWithTag("GameController"); 
+		if (go == null) return;
 		gameControl gc = go.GetComponent<gameControl>();
 		// if not actually found, get out
 		if( gc == null )

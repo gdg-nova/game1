@@ -34,7 +34,7 @@ public class CreateZombieBasic : SpellBase {
 
 			GameObject zo = Instantiate( zombiePrefab, r_hit.point, new Quaternion() ) as GameObject;
 			zombieAI zai = zo.GetComponent<zombieAI>() as zombieAI;
-			zai.Start ();
+			if (zai != null) zai.Start ();
 		}
 	}
 
