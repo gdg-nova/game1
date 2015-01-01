@@ -38,11 +38,6 @@ public class scaryMonsterAI : commonAI
 		Attack.AddAttackTarget(eNavTargets.Guard);
 		Attack.AddAttackTarget(eNavTargets.SafeZone);
 		
-		// When an attack is successful, we need to do something
-		// very specific if attacking a human (change them into a zombie)
-		// attach to the public exposed event handler created
-		Attack.OnWasAttacked += HandleSpecificHitTarget;
-		
 		// via the "Hero Zombie" prefab, it has a child element
 		// of "LittleHero_solo" which has animations of
 		// L2R_swipe, walk, die, idle_lookaround, hurt
@@ -83,14 +78,6 @@ public class scaryMonsterAI : commonAI
 
 		// in addition, check for being stagnant (clarification in commonAI.cs)
 		IsMovementStagnant();
-	}
-
-	// When anything is attacked by a zombie, this method will be called.
-	private void HandleSpecificHitTarget(Collider hit)
-	{
-		// ONLY if the object is a human do we create a newly spawned zombie.
-		//if (hit.gameObject.tag.Equals("Human"))
-		//	Camera.main.SendMessage("createZombie", hit.transform.position);
 	}
 
 	public override void playSound (string action, string target)

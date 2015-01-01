@@ -15,8 +15,6 @@ public class zombieAI : commonAI
 	public float zombieManaCost = 1f;
 	//public float manaGenerated
 
-	gameControl gameController = null;
-
 	public float updateSpeedInterval = .5f;
 	private float timeSinceSpeedUpdate;
 
@@ -34,9 +32,6 @@ public class zombieAI : commonAI
 
 	public override void Start()
 	{
-		GameObject go = GameObject.FindWithTag("GameController");
-		if (go != null) gameController = go.GetComponent<gameControl>();
-
 		manaCost = zombieManaCost;
 
 		//StartCoroutine ("updateSpeedbyNearbyZombies");
@@ -76,11 +71,9 @@ public class zombieAI : commonAI
 		Attack.AddAttackTarget(eNavTargets.Guard);
 		Attack.AddAttackTarget(eNavTargets.SafeZone);
 
-
-		// When an attack is successful, we need to do something
-		// very specific if attacking a human (change them into a zombie)
-		// attach to the public exposed event handler created
-		Attack.OnWasAttacked += HandleSpecificHitTarget;
+		// Attack successful handler, called when we hit another object.
+		// We delegate this directly to the global handler.
+		Attack.SuccessfulAttack += (object sender, attackAI.SuccessfulAttackEventArgs e) => globalEvents.OnEnemyElementsHit(sender, e.objectHit);
 
 		// via the "Hero Zombie" prefab, it has a child element
 		// of "LittleHero_solo" which has animations of
@@ -248,14 +241,6 @@ public class zombieAI : commonAI
 		return isDestroying;
 	}
 	
-	// When anything is attacked by a zombie, this method will be called.
-	private void HandleSpecificHitTarget(Collider hit)
-	{
-		// ONLY if the object is a human do we create a newly spawned zombie.
-		//Get points for every time you attack
-		if (gameController != null) gameController.scorePoints();
-	}
-
 	public override void playSound (string action, string target)
 	{
 		//Play the correct sound:

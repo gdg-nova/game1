@@ -53,13 +53,29 @@ public class attackAI : MonoBehaviour
 			Zombie_on_Guard = soundEffects [1];
 	}
 
+	public class SuccessfulAttackEventArgs : EventArgs 
+	{
+		public SuccessfulAttackEventArgs(GameObject objectHit)
+		{
+			this.objectHit = objectHit;
+		}
+
+		public GameObject objectHit { get; set; }
+	}
+
 	// expose an event for a successful attack in case any custom
-	// needs to act upon... Ex: a zombie or werewolf attacks a human,
-	// we want to spawn a new zombie or werewolf at the human position
-	// and then kill the human instance.
-	// Create a new delegate so the parameter must be that of a "GameObject"
-	public delegate void WasAttackedDelegate(Collider hit);
-	public event WasAttackedDelegate OnWasAttacked;
+	// needs to act upon. Typically the gameobject that includes the
+	// this script will hook to this and do object specific behavior.
+	public delegate void SuccessfulAttackHandler(object sender, SuccessfulAttackEventArgs e);
+	public event SuccessfulAttackHandler SuccessfulAttack;
+
+	protected void OnSuccessfulAttack(GameObject objectHit)
+	{
+		if (SuccessfulAttack != null)
+		{
+			SuccessfulAttack(gameObject, new SuccessfulAttackEventArgs(objectHit));
+		}
+	}
 
 	public attackAI()
 	{
@@ -178,10 +194,8 @@ public class attackAI : MonoBehaviour
 					animComponent.wrapMode = WrapMode.Once;
 					animComponent.Play(attackAnimation);
 
-					// if there was a subscription to this event, pass the
-					// game object hit to the calling source.
-					if (OnWasAttacked != null)
-						OnWasAttacked(hit);
+					// Allow hit handlers to process
+					OnSuccessfulAttack(hitObj);
 
 						// just to track engaged in attack/combat
 					o.EngagedInCombat = true;

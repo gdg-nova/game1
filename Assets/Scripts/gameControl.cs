@@ -26,6 +26,17 @@ public class gameControl : MonoBehaviour
 
 	public int score;
 
+	void Awake()
+	{
+		// Called before Start()
+
+		// When enemy is hit, score points
+		globalEvents.EnemyElementHit += (object sender, globalEvents.GameObjectHitEventArgs e) => this.scorePoints();
+
+		// When player is hit, do something?
+		//globalEvents.PlayerObjectHit += (object sender, globalEvents.GameObjectHitEventArgs e) => this.doPlayerHit();
+	}
+
 	void Start() 
 	{
 		loadHumans();
