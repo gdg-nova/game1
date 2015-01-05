@@ -82,6 +82,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraControl: {fileID: 0}
   playerSettings: {fileID: 0}
+  zombiePrefab: {fileID: 100052, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  humanPrefab: {fileID: 100052, guid: c6783f49378f645fa81340aa301236b5, type: 2}
+  werewolfPrefab: {fileID: 100000, guid: 4382eb94ed42b4602a07ec4a3e241a08, type: 2}
+  guardPrefab: {fileID: 100006, guid: 11b0559d1053d47e9bcd3d4949434f48, type: 2}
+  zombieCostInMana: 1
 --- !u!224 &22400000
 RectTransform:
   m_ObjectHideFlags: 1

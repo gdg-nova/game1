@@ -230,9 +230,7 @@ public class humanAI : commonAI, ICanBeScared
 		IsInfected = false;
 
 		// Yup, infection time was reached, create a new werewolf and kill self.
-		GameObject go = GameObject.FindWithTag ("GameController");
-		gameControl gc = go.GetComponent<gameControl> ();
-		werewolfAi wAI = gc.createWerewolf( gameObject.transform.position, gameObject.transform.rotation );
+		werewolfAi wAI = globalEvents.characterCreator.createWerewolf( gameObject.transform.position, gameObject.transform.rotation );
 		if( wAI != null )
 			wAI.InfectedHumanWerewolf = true;
 
@@ -309,6 +307,32 @@ public class humanAI : commonAI, ICanBeScared
 			makeAfraid(false);
 	}
 
+	protected override void OnDie ()
+	{
+		// ONLY create a zombie if it was not killed by a werewolf.
+		if( ! attackedByWerewolf )
+		{
+			if( isAfraid )
+				Invoke ("requestZombieCreationFast", animation["walk"].length * 2 );
+			else
+				Invoke ("requestZombieCreation", animation["walk"].length * 2 );
+
+			// Mana should be incremented when the human dies in this way
+			globalEvents.manaControllerService.ChangeMana(+1);
+		}
+	}
+	
+	protected void requestZombieCreation()
+	{
+		globalEvents.characterCreator.createZombie(gameObject.transform.position, Quaternion.Euler (0,0,0));
+	}
+	
+	protected void requestZombieCreationFast() 
+	{
+		zombieAI zAI = globalEvents.characterCreator.createFastZombie(gameObject.transform.position, Quaternion.Euler (0,0,0));
+		zAI.MakeFastZombie();
+	}
+	
 	public override void playSound (string action, string target)
 	{
 		// TODO: No sounds

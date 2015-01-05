@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class gameControl : MonoBehaviour 
+public class gameControl : MonoBehaviour, globalEvents.ICharacterCreationService, globalEvents.IManaController
 {
 	public GameObject Human;
 	public GameObject Zombie;
@@ -35,6 +35,10 @@ public class gameControl : MonoBehaviour
 
 		// When player is hit, do something?
 		//globalEvents.PlayerObjectHit += (object sender, globalEvents.GameObjectHitEventArgs e) => this.doPlayerHit();
+
+		// Setup the character creation and mana service
+		globalEvents.characterCreator = this;
+		globalEvents.manaControllerService = this;
 	}
 
 	void Start() 
@@ -198,7 +202,7 @@ public class gameControl : MonoBehaviour
 			{
 				// Should we do a graveyard click to create a zombie?
 				// ONLY if there is enough mana to generate another...
-				if( canIBuyAZombie() )
+				if( CanIBuyAZombie() )
 				{
 					g.SendMessage ("Click");
 					return;
@@ -372,21 +376,6 @@ public class gameControl : MonoBehaviour
 	}
 
 
-	public bool canIBuyAZombie() 
-	{ return zombieCost <= manaPool; }
-
-	public bool requestBuyNewZombie(Vector3 position) 
-	{
-		if (zombieCost <= manaPool) 
-		{
-			createZombie(position);
-			manaPool -= zombieCost;
-			return true;
-		}
-
-		return false;
-	}
-	
 	//Create zombie at position
 	// changed to return zombieAI object by overloading
 	// and calling the create zombie with both parameters
@@ -420,28 +409,12 @@ public class gameControl : MonoBehaviour
 	}
 
 	//Create zombie at position & rotation
-	public zombieAI createZombie( Vector3 position, Quaternion rot) 
-	{	return createTypeOfZombie( Zombie, position, rot); }
-
-
-	//Create zombie at position & rotation
 	private zombieAI createTypeOfZombie( GameObject thisZombie, Vector3 position, Quaternion rot) 
 	{
 		GameObject gobj = (GameObject)Instantiate (thisZombie, position, rot); 
 		zombieAI zAI = gobj.GetComponentInChildren<zombieAI>();
 		return zAI;
 	}
-
-
-
-	public werewolfAi createWerewolf( Vector3 position, Quaternion rot) 
-	{
-		GameObject gobj = (GameObject)Instantiate (Werewolf, position, rot); 
-		werewolfAi wAI = gobj.GetComponentInChildren<werewolfAi>();
-		return wAI;
-	}
-
-
 
 
 	public humanAI createHuman( Vector3 position) 
@@ -456,18 +429,10 @@ public class gameControl : MonoBehaviour
 		// Game should be over if we have no more zombies
 		// AND not enough mana to generate new ones
 		int baseCount = GameObject.FindGameObjectsWithTag ("Zombie").Length;
-		return ( baseCount == 0 && !canIBuyAZombie()) ;
+		return ( baseCount == 0 && !CanIBuyAZombie()) ;
 	}
 
 
-	//Create Knight, such as exiting a building
-	public guardAI createGuard( Vector3 position, Quaternion rot) 
-	{
-		GameObject gobj = (GameObject)Instantiate (Guard, position, rot); 
-		guardAI gAI = gobj.GetComponentInChildren<guardAI>();
-		return gAI;
-	}
-	
 	void checkForWin() 
 	{
 		// since zombies are our heros, the game is actually over
@@ -476,4 +441,70 @@ public class gameControl : MonoBehaviour
 		if( NoMoreZombiesOrMana() )
 			gameOver();
 	}
+
+	#region ICharacterCreationService
+
+	//Create zombie at position & rotation
+	public zombieAI createZombie( Vector3 position, Quaternion rotation) 
+	{
+		return createTypeOfZombie( Zombie, position, rotation); 
+	}
+
+	public zombieAI createFastZombie( Vector3 position, Quaternion rotation)
+	{
+		zombieAI zombie = createZombie(position, rotation);
+		zombie.MakeFastZombie();
+		return zombie;
+	}
+
+	public werewolfAi createWerewolf( Vector3 position, Quaternion rot) 
+	{
+		GameObject gobj = (GameObject)Instantiate (Werewolf, position, rot); 
+		werewolfAi wAI = gobj.GetComponentInChildren<werewolfAi>();
+		return wAI;
+	}
+	
+	public humanAI createHuman(Vector3 referencePoint, Quaternion rotation)
+	{
+		GameObject gobj = (GameObject)Instantiate (Human, referencePoint, rotation); 
+		humanAI hAI = gobj.GetComponentInChildren<humanAI>();
+		return hAI;
+	}
+
+	//Create Knight, such as exiting a building
+	public guardAI createGuard( Vector3 referencePoint, Quaternion rotation) 
+	{
+		GameObject gobj = (GameObject)Instantiate (Guard, referencePoint, rotation); 
+		guardAI gAI = gobj.GetComponentInChildren<guardAI>();
+		return gAI;
+	}
+	
+	#endregion ICharacterCreationService
+
+	#region IManaControllerService
+	
+	public void ChangeMana (float manaDelta)
+	{
+		manaPool += manaDelta;
+	}
+
+	public bool CanIBuyAZombie() 
+	{ 
+		return zombieCost <= manaPool; 
+	}
+
+	public zombieAI RequestBuyZombie(Vector3 position, Quaternion rotation) 
+	{
+		if (zombieCost <= manaPool) 
+		{
+			zombieAI zombie = createZombie(position, rotation);
+			manaPool -= zombieCost;
+			return zombie;
+		}
+		
+		return null;
+	}
+
+	#endregion IManaControllerService
+	
 }

@@ -26,15 +26,17 @@ public class CreateZombieBasic : SpellBase {
 		// DID we point to anything from the touch?
 		if (Physics.Raycast (r, out r_hit, Mathf.Infinity)) 
 		{
-			if (zombieAppearanceEffect != null)
+			zombieAI zai = globalEvents.manaControllerService.RequestBuyZombie(r_hit.point, new Quaternion());
+			if (zai != null)
 			{
-				GameObject go = Instantiate( zombieAppearanceEffect, r_hit.point, Quaternion.Euler(-90.0f, 0.0f, 0.0f) ) as GameObject;
-				Destroy(go, go.particleSystem.duration);
-			}
+				zai.Start ();
 
-			GameObject zo = Instantiate( zombiePrefab, r_hit.point, new Quaternion() ) as GameObject;
-			zombieAI zai = zo.GetComponent<zombieAI>() as zombieAI;
-			if (zai != null) zai.Start ();
+				if (zombieAppearanceEffect != null)
+				{
+					GameObject go = Instantiate( zombieAppearanceEffect, r_hit.point, Quaternion.Euler(-90.0f, 0.0f, 0.0f) ) as GameObject;
+					Destroy(go, go.particleSystem.duration);
+				}
+			}
 		}
 	}
 
