@@ -163,9 +163,7 @@ public class werewolfAi : commonAI
 		// Time Hit...  Now, create a human and keep it marked as infected
 		// so any other werewolf won't attack it... like they can smell
 		// already infected werewolf humans and leave them alone.
-		GameObject go = GameObject.FindWithTag ("GameController");
-		gameControl gc = go.GetComponent<gameControl> ();
-		humanAI hAI = gc.createHuman( gameObject.transform.position );
+		humanAI hAI = globalEvents.characterCreator.createHuman( gameObject.transform.position, Quaternion.Euler (0,0,0) );
 		if( hAI != null )
 		{
 			hAI.transform.rotation = gameObject.transform.rotation;
