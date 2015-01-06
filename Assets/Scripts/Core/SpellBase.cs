@@ -35,7 +35,7 @@ public class SpellBase : MonoBehaviour {
 
 	public void SetToggleState(bool toggleState)
 	{
-		Debug.Log ("State is " + toggleState);
+		//Debug.Log ("State is " + toggleState);
 		if (toggleState)
 		{
 			OnSpellActivated(new SpellActivatedEventArgs());

@@ -77,7 +77,7 @@ public class RenderSpells : MonoBehaviour {
 		int buttonSize = (int)(lowest * sizeOfButtonsRelativeToScreen);
 		int panelHeight = buttonSize + gapBetweenButtonsInPixels;
 
-		Debug.Log ("Buttonsize=" + buttonSize + " PanelHeight=" + panelHeight);
+		//Debug.Log ("Buttonsize=" + buttonSize + " PanelHeight=" + panelHeight);
 
 		List<SpellBase> filteredSpells = FilterSpells();
 		int panelWidth = panelHeight * filteredSpells.Count;

@@ -3,8 +3,6 @@ using System.Collections;
 
 public class trollAI : commonAI
 {
-	gameControl gameController = null;
-	
 	public float updateSpeedInterval = .5f;
 	private float timeSinceSpeedUpdate;
 	
@@ -13,9 +11,6 @@ public class trollAI : commonAI
 
 	public override void Start()
 	{
-		GameObject go = GameObject.FindWithTag("GameController");
-		gameController = go.GetComponent<gameControl>();
-		
 		//Add all the sound effects to one object
 		soundEffects = GetComponents<AudioSource> ();
 
@@ -33,10 +28,9 @@ public class trollAI : commonAI
 		Attack.AddAttackTarget(eNavTargets.Guard);
 		Attack.AddAttackTarget(eNavTargets.SafeZone);
 
-		// When an attack is successful, we need to do something
-		// very specific if attacking a human (change them into a zombie)
-		// attach to the public exposed event handler created
-		Attack.OnWasAttacked += HandleSpecificHitTarget;
+		// When an attack is successful, we call the global event which just scores some points
+		// for now, we can do something more specific later on.
+		Attack.SuccessfulAttack += (object sender, attackAI.SuccessfulAttackEventArgs e) => globalEvents.OnEnemyElementsHit(gameObject, e.objectHit);
 		
 		// via the "Hero Zombie" prefab, it has a child element
 		// of "LittleHero_solo" which has animations of
@@ -129,14 +123,6 @@ public class trollAI : commonAI
 			return true;
 		
 		return isDestroying;
-	}
-	
-	// When anything is attacked by a zombie, this method will be called.
-	private void HandleSpecificHitTarget(Collider hit)
-	{
-		// ONLY if the object is a human do we create a newly spawned zombie.
-		//Get points for every time you attack
-		gameController.scorePoints();
 	}
 	
 	public override void playSound (string action, string target)

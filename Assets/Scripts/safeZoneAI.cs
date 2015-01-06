@@ -109,21 +109,13 @@ public class safeZoneAI : MonoBehaviour
 		// as the human count is a basis of other points and such within.
 		float x, z;
 		
-		// get gamecontrol object from main camera
-		GameObject go = GameObject.FindWithTag("GameController"); 
-		if (go == null) return;
-		gameControl gc = go.GetComponent<gameControl>();
-		// if not actually found, get out
-		if( gc == null )
-			return;
-
 		// Since the building is NOT destroyed, we want our spawning OUTSIDE the
 		// building and NOT within it...  Just go min values respectively since no
 		// spwan, go based on the house's position less the 1/2 of x or z dimensions
 		Transform t = gameObject.transform;
 		x = t.position.x - ( t.localScale.x / 2.0f ) -1.0f;
 		z = t.position.z + ( t.localScale.z / 2.0f ) +1.0f;
-		guardAI gAI = gc.createGuard(new Vector3(x, 1, z), new Quaternion(0f, 0f, 0f, 0f));
+		guardAI gAI = globalEvents.characterCreator.createGuard(new Vector3(x, 1, z), new Quaternion(0f, 0f, 0f, 0f));
 		gAI.stationary = false;
 		gAI.moveAfterCombat = true;
 		((commonAI)gAI).animation.Play("walk");
@@ -151,14 +143,6 @@ public class safeZoneAI : MonoBehaviour
 		// delayed after Destroy of the house, and the random placement gets hosed...
 		Bounds houseBounds = spawnArea.renderer.bounds;
 
-		// get gamecontrol object from main camera
-		GameObject go = GameObject.FindWithTag("GameController"); 
-		if (go == null) return;
-		gameControl gc = go.GetComponent<gameControl>();
-		// if not actually found, get out
-		if( gc == null )
-			return;
-		
 		// how many zombies should we create of the total human count...
 		// take the integer count... PERCENTS, so divide by 100.
 		int makeZombies = (int)(humanCount * BreakOutPctZombies / 100.0f );
@@ -170,11 +154,11 @@ public class safeZoneAI : MonoBehaviour
 			//Camera.main.SendMessage("createHuman", transform.position);
 			if( i < makeZombies )
 			{
-				gc.createZombie( new Vector3(x, 1, z));
+				globalEvents.characterCreator.createZombie( new Vector3(x, 1, z), Quaternion.Euler(0,0,0));
 			}
 			else
 			{
-				humanAI hAI = gc.createHuman( new Vector3(x, 1, z));
+				humanAI hAI = globalEvents.characterCreator.createHuman( new Vector3(x, 1, z), Quaternion.Euler(0,0,0));
 				if( hAI != null )
 					hAI.Afraid();
 			}

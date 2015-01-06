@@ -1,10 +1,27 @@
 using UnityEngine;
 using System.Collections;
 
-public class SceneControl : MonoBehaviour {
+public class SceneControl : MonoBehaviour, globalEvents.ICharacterCreationService, globalEvents.IManaController {
 
 	public CameraControl cameraControl = null;
 	public PlayerSettings playerSettings = null;
+
+	public GameObject	zombiePrefab = null;
+	public GameObject	humanPrefab = null;
+	public GameObject	werewolfPrefab = null;
+	public GameObject	guardPrefab = null;
+
+	public float		zombieCostInMana = 1f;
+
+	void Awake()
+	{
+		// Called before Start is called on any object
+		globalEvents.characterCreator = this;
+		globalEvents.manaControllerService = this;
+
+		globalEvents.EnemyElementHit += HandleEnemyElementHit;
+		globalEvents.shouldZombiesMoveOnTheirOwn = true;
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -22,11 +39,6 @@ public class SceneControl : MonoBehaviour {
 			GameObject go = GameObject.FindGameObjectWithTag("PlayerSettings");
 			playerSettings = go.GetComponent<PlayerSettings>();
 		}
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 
 	public void ZoomIn(float speed)
@@ -82,5 +94,76 @@ public class SceneControl : MonoBehaviour {
 		{
 			playerSettings.ActiveSpell.CancelTouch(args);			
 		}
+	}
+
+	#region ICharacterCreationService
+	
+	//Create zombie at position & rotation
+	public zombieAI createZombie( Vector3 position, Quaternion rotation) 
+	{
+		GameObject gobj = (GameObject)Instantiate (zombiePrefab, position, rotation); 
+		return gobj.GetComponentInChildren<zombieAI>();
+	}
+	
+	public zombieAI createFastZombie( Vector3 position, Quaternion rotation)
+	{
+		zombieAI zombie = createZombie(position, rotation);
+		zombie.MakeFastZombie();
+		return zombie;
+	}
+	
+	public werewolfAi createWerewolf( Vector3 position, Quaternion rot) 
+	{
+		GameObject gobj = (GameObject)Instantiate (werewolfPrefab, position, rot); 
+		werewolfAi wAI = gobj.GetComponentInChildren<werewolfAi>();
+		return wAI;
+	}
+	
+	public humanAI createHuman(Vector3 referencePoint, Quaternion rotation)
+	{
+		GameObject gobj = (GameObject)Instantiate (humanPrefab, referencePoint, rotation); 
+		humanAI hAI = gobj.GetComponentInChildren<humanAI>();
+		return hAI;
+	}
+	
+	//Create Knight, such as exiting a building
+	public guardAI createGuard( Vector3 referencePoint, Quaternion rotation) 
+	{
+		GameObject gobj = (GameObject)Instantiate (guardPrefab, referencePoint, rotation); 
+		guardAI gAI = gobj.GetComponentInChildren<guardAI>();
+		return gAI;
+	}
+	
+	#endregion ICharacterCreationService
+	
+	#region IManaControllerService
+	
+	public void ChangeMana (float manaDelta)
+	{
+		playerSettings.PlayerMana += manaDelta;
+	}
+	
+	public bool CanIBuyAZombie() 
+	{ 
+		return zombieCostInMana <= playerSettings.PlayerMana; 
+	}
+	
+	public zombieAI RequestBuyZombie(Vector3 position, Quaternion rotation) 
+	{
+		if (zombieCostInMana <= playerSettings.PlayerMana) 
+		{
+			zombieAI zombie = createZombie(position, rotation);
+			playerSettings.PlayerMana -= zombieCostInMana;
+			return zombie;
+		}
+		
+		return null;
+	}
+	
+	#endregion IManaControllerService
+
+	void HandleEnemyElementHit (object sender, globalEvents.GameObjectHitEventArgs e)
+	{
+		playerSettings.PlayerScore = playerSettings.PlayerScore + 100;
 	}
 }

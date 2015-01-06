@@ -375,6 +375,8 @@ public abstract class commonAI : MonoBehaviour
 		if( navAgent != null )
 			navAgent.Stop();
 
+		OnDie();
+
 		if( animComponent != null )
 		{
 			// if this is NOT a human (ie: Guard, Zombie) then we CAN play
@@ -383,22 +385,6 @@ public abstract class commonAI : MonoBehaviour
 			{
 				animComponent.wrapMode = WrapMode.Once;
 				animComponent.Play("die");
-			}
-
-			if (gameObject.tag == "Human")
-			{
-				// Detect if the human was running or not... if running, then
-				// make a FAST zombie, not a slow one...
-				humanAI hAI = gameObject.GetComponent<humanAI>();
-				// ONLY create a zombie if it was not killed by a werewolf.
-				if( ! hAI.attackedByWerewolf )
-				{
-					if( hAI.isAfraid )
-						Invoke ("requestZombieCreationFast", animation["walk"].length * 2 );
-					else
-						Invoke ("requestZombieCreation", animation["walk"].length * 2 );
-				}
-			
 			}
 
 			if( animComponent["die"] != null )
@@ -410,23 +396,6 @@ public abstract class commonAI : MonoBehaviour
 		}
 	}
 	
-	protected void requestZombieCreation()
-	{
-		GameObject go = GameObject.FindWithTag ("GameController");
-		gameControl gc = go.GetComponent<gameControl> ();
-		gc.createZombie(gameObject.transform.position, gameObject.transform.rotation);
-		gc.manaPool += 1;
-	}
-
-	protected void requestZombieCreationFast() 
-	{
-		GameObject go = GameObject.FindWithTag ("GameController");
-		gameControl gc = go.GetComponent<gameControl> ();
-		zombieAI zAI = gc.createZombie(gameObject.transform.position, gameObject.transform.rotation);
-		zAI.MakeFastZombie();
-		gc.manaPool += 1;
-	}
-
 	protected IEnumerator PauseGame(float duration)
 	{
 		yield return new WaitForSeconds( duration );
@@ -466,7 +435,7 @@ public abstract class commonAI : MonoBehaviour
 
 	protected void moveToNewTarget()
 	{
-		if (gameObject.tag == "Zombie")
+		if (!globalEvents.shouldZombiesMoveOnTheirOwn && gameObject.tag == "Zombie")
 			return;
 
 		// based on the list of navTargets an entity has, 
@@ -555,6 +524,13 @@ public abstract class commonAI : MonoBehaviour
 			die();
 		else if( hasHurtAnimation )
 			animComponent.Play("hurt");
+	}
+
+	// Called when the object is about to be destroyed because it has died.
+	// Use this to process special behavior upon dying (e.g. a human can
+	// choose to convert to a zombie).
+	virtual protected void OnDie()
+	{
 	}
 	
 	abstract public void playSound(string action, string target);
