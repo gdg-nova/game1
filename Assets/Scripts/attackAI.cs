@@ -246,7 +246,6 @@ public class attackAI : MonoBehaviour
 						// never moves at the end of combat.
 						animComponent.wrapMode = WrapMode.Once;
 						animComponent.Play(attackAnimation);
-
 						((safeZoneAI)o2).takeDamage( damage );
 					}
 				}
