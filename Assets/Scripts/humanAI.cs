@@ -14,8 +14,7 @@ public class humanAI : commonAI, ICanBeScared, ICanBeStruckDown, ICanBeConverted
 	// Use this for initialization
 	public override void Start () 
 	{
-		// do baseline start actions first...
-		base.Start();
+
 
 		// set Random rotation for visual interest
 		// use global static object to utilize smaller memory
@@ -31,6 +30,10 @@ public class humanAI : commonAI, ICanBeScared, ICanBeStruckDown, ICanBeConverted
 		defaultNavTargets.Add(eNavTargets.Finish);
 		// if all else fails, find SOME place in the playable area of the board
 		defaultNavTargets.Add(eNavTargets.Playable);
+
+		// do baseline start actions first...
+		base.Start();
+
 
 		// humans also have SPRINT mode animation which is always loop mode
 		AnimationClip ac = animComponent.GetClip ("sprint");

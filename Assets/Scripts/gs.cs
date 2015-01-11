@@ -15,18 +15,19 @@ public static class gs
 	public static GameObject getRandomNavTarget(eNavTargets tagName) 
 	{
 		GameObject[] targets = GameObject.FindGameObjectsWithTag (tagName.ToString());
-
 		// if there was not anything, can't return an indexed object of something doesn't exist
 		if (targets.Length == 0)
 			return (GameObject)null;
 
 		// if we DO have targets, see if any are commonAI and are "infected".
 		// if so, don't consider them from either side attraction/attack.
-		for( int i=targets.Length -1; i > 0; i--)
+		for( int i=targets.Length -1; i >= 0; i--)
 		{
 			commonAI o = targets[i].GetComponent<commonAI>();
 			if( o != null && o.IsInfected )
+			{
 				targets[i] = (GameObject)null;
+			}
 		}
 
 		// Yup, we have something, get a random instance from one available
@@ -42,16 +43,17 @@ public static class gs
 		// and tags no longer available...
 		if( tags == null || tags.Count == 0 )
 			return null;
-
 		GameObject gObj = null;
+
 		foreach( eNavTargets oneTag in tags )
 		{
 			// look for a target based on first in the list available.
 			gObj = getRandomNavTarget(oneTag);
-
 			// if we got one, exit the loop, we are done
 			if (gObj != null)
+			{
 				break;
+			}
 		}
 
 		// return what, if any, was found
@@ -115,14 +117,16 @@ public static class gs
 // the commented ones are the ones not explicitly needed (yet)
 public enum eNavTargets
 {
+	HumanGathering,
 	Playable,
+	SafeZone,
 	Finish,
 	Guard,
 	Human,
-	SafeZone,
 	Zombie,
 	Werewolf,
-	HumanGathering
+
+
 
 	// Untagged
 	// Respawn

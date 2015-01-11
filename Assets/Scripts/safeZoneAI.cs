@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class safeZoneAI : MonoBehaviour 
 {
-	public float Health = 100f;
+	public float Health = 10f;
 
 	private float initialHealth;
 
@@ -127,7 +127,6 @@ public class safeZoneAI : MonoBehaviour
 	public void takeDamage( float damage) 
 	{
 		Health -= damage;
-		
 		if (Health <= 0 ) 
 		{
 			breakOpen();
