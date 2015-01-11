@@ -57,7 +57,7 @@ public abstract class commonAI : MonoBehaviour
 	protected bool isAfraid = false;
 
 	// Each object will by default need SOME nav taget to move towards.
-	protected List<eNavTargets> defaultNavTargets;
+	protected List<eNavTargets> defaultNavTargets = new List<eNavTargets> ();
 	
 	// create instance of the ATTACK object which will have
 	// all the attack components...
@@ -138,8 +138,8 @@ public abstract class commonAI : MonoBehaviour
 		// Ensure nav targets list object is instantiated
 		// and available for all subclassed from it.
 		// always default the list to "Finish"
-		defaultNavTargets = new List<eNavTargets>();
-		defaultNavTargets.Add(eNavTargets.Finish);
+		//defaultNavTargets = new List<eNavTargets>();
+		//defaultNavTargets.Add(eNavTargets.Finish);
 
 		// load NavAgent for each 
 		navAgent = (NavMeshAgent)GetComponent("NavMeshAgent");

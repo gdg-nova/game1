@@ -18,9 +18,7 @@ public class guardAI : commonAI
 
 	public override void Start()
 	{
-		// do baseline start actions first...
-		// also grabs default animation component too.
-		base.Start();
+
 
 		// upon first creation, create the common "attackAI" instance
 		Attack = this.gameObject.AddComponent<attackAI>();
@@ -50,10 +48,14 @@ public class guardAI : commonAI
 		defaultNavTargets.Clear ();
 		defaultNavTargets.Add(eNavTargets.Zombie);
 		defaultNavTargets.Add(eNavTargets.Werewolf);
-		defaultNavTargets.Add(eNavTargets.SafeZone);
-		defaultNavTargets.Add(eNavTargets.Finish);
+		//defaultNavTargets.Add(eNavTargets.SafeZone);
+		//defaultNavTargets.Add(eNavTargets.Finish);
 		// if all else fails, find SOME place in the playable area of the board
-		defaultNavTargets.Add(eNavTargets.Playable);
+		//defaultNavTargets.Add(eNavTargets.Playable);
+
+		// do baseline start actions first...
+		// also grabs default animation component too.
+		base.Start();
 
 		// special animation flags uses in commonAI when attacked and dying
 		// so as to not duplicate code at this or zombie levels.
