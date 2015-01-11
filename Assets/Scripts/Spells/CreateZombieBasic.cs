@@ -20,7 +20,7 @@ public class CreateZombieBasic : SpellBase {
 	public override void StartTouch (SceneControl.TouchEvent args)
 	{
 		// Now, what have we targeted from this click (if anything)
-		Ray r = Camera.main.ScreenPointToRay (Input.mousePosition);
+		Ray r = Camera.main.ScreenPointToRay (args.currentPosition);
 		RaycastHit r_hit;
 		
 		// DID we point to anything from the touch?

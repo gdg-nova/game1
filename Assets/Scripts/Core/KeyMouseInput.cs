@@ -84,6 +84,7 @@ public class KeyMouseInput : MonoBehaviour {
 				mouseLastRecordedPoint = mouseTouchDownPoint;
 				touchState = 1;
 
+				touchArgs.currentPosition = mouseTouchDownPoint;
 				touchArgs.initialPoint = mouseTouchDownPoint;
 				touchArgs.distanceSinceStart = new Vector3();
 				touchArgs.deltaDistance = touchArgs.distanceSinceStart;
@@ -92,8 +93,9 @@ public class KeyMouseInput : MonoBehaviour {
 			// Mouse was already pressed
 			else if (touchState == 1)
 			{
-				touchArgs.distanceSinceStart = Input.mousePosition - mouseTouchDownPoint;
-				touchArgs.deltaDistance = Input.mousePosition - mouseLastRecordedPoint;
+				touchArgs.currentPosition = Input.mousePosition;
+				touchArgs.distanceSinceStart = touchArgs.currentPosition - mouseTouchDownPoint;
+				touchArgs.deltaDistance = touchArgs.currentPosition - mouseLastRecordedPoint;
 				mouseLastRecordedPoint = Input.mousePosition;
 				sceneControl.MoveTouch(touchArgs);
 			}
@@ -101,8 +103,9 @@ public class KeyMouseInput : MonoBehaviour {
 		else if (touchState == 1)
 		{
 			// Lifted up the mouse
-			touchArgs.distanceSinceStart = Input.mousePosition - mouseTouchDownPoint;
-			touchArgs.deltaDistance = Input.mousePosition - mouseLastRecordedPoint;
+			touchArgs.currentPosition = Input.mousePosition;
+			touchArgs.distanceSinceStart = touchArgs.currentPosition - mouseTouchDownPoint;
+			touchArgs.deltaDistance = touchArgs.currentPosition - mouseLastRecordedPoint;
 			sceneControl.EndTouch(touchArgs);
 			touchState = 0;
 			timeOfFirstPress = 0.0f;

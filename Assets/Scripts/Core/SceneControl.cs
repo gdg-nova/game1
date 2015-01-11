@@ -58,6 +58,7 @@ public class SceneControl : MonoBehaviour, globalEvents.ICharacterCreationServic
 
 	public class TouchEvent
 	{
+		public Vector3 currentPosition;
 		public Vector3 initialPoint;
 		public Vector3 distanceSinceStart;
 		public Vector3 deltaDistance;

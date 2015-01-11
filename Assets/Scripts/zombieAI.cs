@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class zombieAI : commonAI
+public class zombieAI : commonAI, ICanBeInfluenced
 {
 	// default life-span time for a zombie.
 	// self-die after given amount of time.
@@ -29,6 +29,8 @@ public class zombieAI : commonAI
 	// these scripts will also be added to the zombie at interface
 	// time and we can adjust attack and cast fear properties there.
 	private castFearAI CastFear;
+
+	private bool readyToBeInfluenced = false;
 
 	public override void Start()
 	{
@@ -154,7 +156,7 @@ public class zombieAI : commonAI
 		//animComponent.wrapMode = WrapMode.Loop;
 
 
-
+		readyToBeInfluenced = true;
 		// pick a new target from either safe vs finish possibilities
 		moveToNewTarget();
 	}
@@ -240,6 +242,16 @@ public class zombieAI : commonAI
 		
 		return isDestroying;
 	}
+
+	#region ICanBeInfluenced
+
+	public void BeInfluenced (Vector3 directionOfInfluence)
+	{
+		if (!readyToBeInfluenced || isDestroying) return;
+
+	}
+
+	#endregion ICanBeInfluenced
 	
 	public override void playSound (string action, string target)
 	{

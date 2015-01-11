@@ -10,8 +10,8 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: DefaultPlayerSettings
-  m_TagString: PlayerSettings
+  m_Name: InfluenceDirectionSpell
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,13 +36,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff91561d8bb144722bbe8e32f95a398a, type: 3}
+  m_Script: {fileID: 11500000, guid: 878a8e05176b54cb8a86fcbe727a5c2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AvailableSpells:
-  - {fileID: 11400000, guid: b927ed56a1a99479890023198db6417f, type: 2}
-  - {fileID: 11400000, guid: 038a69b3c81de407eb8c43f4d986437e, type: 2}
-  - {fileID: 11400000, guid: 5205fb4187a7e4e5f9bbee7042662fdf, type: 2}
+  guiToggleButtonPrefab: {fileID: 11400004, guid: 8b3974c151bcc46df9d152e3f2fc020e,
+    type: 2}
+  magicalLightPrefab: {fileID: 100002, guid: c495963a62c21493f8a741792656fe0a, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

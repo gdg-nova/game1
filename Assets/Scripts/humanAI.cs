@@ -1,13 +1,15 @@
 using UnityEngine;
 using System.Collections;
 
-public class humanAI : commonAI, ICanBeScared
+public class humanAI : commonAI, ICanBeScared, ICanBeStruckDown, ICanBeConvertedToMonster
 {
 	// few more publics specific to humans...
 	public float AfraidRadius = 2.5f;
 
 	public bool stationary;
 
+	// 0 = not-knocked down, 1 = falling down, 2 = getting back up
+	public int knockedDownState { get; protected set; }
 
 	// Use this for initialization
 	public override void Start () 
@@ -58,6 +60,9 @@ public class humanAI : commonAI, ICanBeScared
 	// Update is called once per frame
 	void Update () 
 	{
+		if (knockedDownState > 0)
+			return;
+
 		// if no target, get one now regardless of requiring 
 		// "SafeZone" vs "Finish"
 		if( currentTarget == null && !stationary)
@@ -332,6 +337,77 @@ public class humanAI : commonAI, ICanBeScared
 		zombieAI zAI = globalEvents.characterCreator.createFastZombie(gameObject.transform.position, Quaternion.Euler (0,0,0));
 		zAI.MakeFastZombie();
 	}
+
+	#region ICanBeStruckDown
+
+	public void StrikeDown ()
+	{
+		if (knockedDownState > 0)
+			return; // Do nothing
+
+		// No matter the current state, set in motion the strike down behavior
+		AnimationState dieAnim;
+		knockedDownState = 1;
+		if (animComponent != null && (dieAnim = animComponent["die"]) != null)
+		{
+			navAgent.Stop ();
+			dieAnim.speed = 1.0f;
+			dieAnim.wrapMode = WrapMode.Once;
+			animComponent.Play("die");
+
+			Invoke ("WaitSomeTimeKnockedDown", dieAnim.length);
+		}
+		else
+		{
+			Invoke ("StartMovingAgain", Random.value*2.0f);
+		}
+	}
+
+	private void WaitSomeTimeKnockedDown()
+	{
+		Invoke ("GetBackUpAfterKnockDown", Random.value*1.0f );
+	}
+
+	private void GetBackUpAfterKnockDown()
+	{
+		// This method is called when getting back up.
+		AnimationState dieAnim;
+		knockedDownState = 2;
+		if (animComponent != null && (dieAnim = animComponent["die"]) != null)
+		{
+			dieAnim.time = dieAnim.length;
+			dieAnim.speed = -1.0f;
+			animComponent.Play("die");
+			
+			Invoke ("StartMovingAgain", dieAnim.length);
+		}
+		else
+		{
+			StartMovingAgain();
+		}
+	}
+
+	private void StartMovingAgain()
+	{
+		// After getting up we should be afraid because something just happened.
+		knockedDownState = 0;
+		Afraid();
+	}
+
+	#endregion ICanBeStruckDown
+
+	#region ICanBeConvertedToMonster
+
+	public void ConvertToMonster ()
+	{
+		if (globalEvents.manaControllerService.CanIBuyAZombie())
+		{
+			die ();
+			globalEvents.manaControllerService.ChangeMana(-2); // -1 for the Zombie, -1 to reverse effect OnDie() has
+		}
+	}
+
+	#endregion ICanBeConvertedToMonster
 	
 	public override void playSound (string action, string target)
 	{
