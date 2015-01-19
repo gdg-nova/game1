@@ -37,20 +37,8 @@ public class attackAI : MonoBehaviour
 	// set the swipe/attack direction.
 	private string attackAnimation;
 
-	//Add sound effect to the attacks
-	public AudioSource[] soundEffects;
-	//Sound effect for zombie on peasant
-	public AudioSource Zombie_on_Peasant;
-	//Sound effect for zombie on guard
-	public AudioSource Zombie_on_Guard;
-
 	public void Start()
 	{
-		// Add all the sound effects to one object
-		soundEffects = GetComponents<AudioSource> ();
-		Zombie_on_Peasant = soundEffects [0];
-		if (soundEffects.Length > 1)
-			Zombie_on_Guard = soundEffects [1];
 	}
 
 	public class SuccessfulAttackEventArgs : EventArgs 
@@ -154,32 +142,6 @@ public class attackAI : MonoBehaviour
 					//Attacking a valid live target
 				
 					o.playSound( "attack", hitObj.tag.ToString() );
-
-					//Play the correct sound:
-	/*The following is currently commented out due to conflict with the troll AI
-	 * 
-	 * switch(hitObj.tag.ToString())
-					{
-					case "Human":
-					{
-						Zombie_on_Peasant.Play();
-						break;
-					}
-					case "Zombie":
-					{
-						Debug.Log("Zombie attacked");
-						//Play guard on zombie sound
-						break;
-					}
-					case "Guard":
-					{
-						Debug.Log("Guard attacked");
-						Zombie_on_Guard.Play();
-						break;
-					}
-					}
-
-*/
 				
 					//Debug.Log ("valid attack hit: " + hitObj);
 

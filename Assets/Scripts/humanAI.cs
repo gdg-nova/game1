@@ -414,7 +414,6 @@ public class humanAI : commonAI, ICanBeScared, ICanBeStruckDown, ICanBeConverted
 	
 	public override void playSound (string action, string target)
 	{
-		// TODO: No sounds
-		return;
+		audio.Play ();
 	}
 }
