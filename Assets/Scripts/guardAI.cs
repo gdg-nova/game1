@@ -125,6 +125,7 @@ public class guardAI : commonAI
 
 	public override void playSound (string action, string target)
 	{
+		Debug.Log ("guardAI playSound but no sound is attached");
 		// TODO: No sounds
 		return;
 	}

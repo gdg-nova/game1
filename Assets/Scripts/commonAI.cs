@@ -534,5 +534,6 @@ public abstract class commonAI : MonoBehaviour
 	}
 	
 	abstract public void playSound(string action, string target);
+	//Debug.Log("aySound", GameObject);
 }
 

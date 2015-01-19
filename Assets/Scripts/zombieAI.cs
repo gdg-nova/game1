@@ -23,7 +23,7 @@ public class zombieAI : commonAI, ICanBeInfluenced
 	//Sound effect for zombie on peasant
 	private AudioSource Zombie_on_Peasant;
 	//Sound effect for zombie on knight
-	private AudioSource Zombie_on_Guard;
+	private AudioSource Zaps;
 
 	// Zombies can attack...
 	// these scripts will also be added to the zombie at interface
@@ -43,7 +43,7 @@ public class zombieAI : commonAI, ICanBeInfluenced
 		if (soundEffects.Length < 2)
 			Debug.Log ("Object name is: " + name );
 		Zombie_on_Peasant = soundEffects [0];
-		Zombie_on_Guard = soundEffects [1];
+		Zaps = soundEffects [1];
 		//Guard_on_Zombie = soundEffects [2];
 
 
@@ -256,26 +256,27 @@ public class zombieAI : commonAI, ICanBeInfluenced
 	public override void playSound (string action, string target)
 	{
 		//Play the correct sound:
-		switch(target)
-		{
-			case "Human":
+//		switch(target)
+//		{
+	/*		case "Human":
 			{
+			Debug.Log("zombieAI case Human");
 				Zombie_on_Peasant.Play();
 				break;
 			}
-			case "Zombie":
+//		*///	case "Zombie":
+		//	{
+				Debug.Log("zombieAI case Zombie");
+				Zaps.Play();
+//				break;
+		//	}
+	/*/		case "Guard":
 			{
-				//Debug.Log("Zombie attacked");
-				//Guard_on_Zombie.Play();
+					Debug.Log("zombieAI case Guard");
+				Zap.Play();
 				break;
-			}
-			case "Guard":
-			{
-				//	Debug.Log("Guard attacked");
-				Zombie_on_Guard.Play();
-				break;
-			}
-		}
+			}*/
+	//	}
 
 	}
 }

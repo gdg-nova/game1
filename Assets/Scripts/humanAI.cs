@@ -15,7 +15,6 @@ public class humanAI : commonAI, ICanBeScared, ICanBeStruckDown, ICanBeConverted
 	public override void Start () 
 	{
 
-
 		// set Random rotation for visual interest
 		// use global static object to utilize smaller memory
 		// footprint vs per instance of class
@@ -414,7 +413,7 @@ public class humanAI : commonAI, ICanBeScared, ICanBeStruckDown, ICanBeConverted
 	
 	public override void playSound (string action, string target)
 	{
-		// TODO: No sounds
-		return;
+		Debug.Log("humanAI, playSound plays audio attached to prefab");
+			audio.Play();
 	}
 }
