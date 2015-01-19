@@ -413,7 +413,6 @@ public class humanAI : commonAI, ICanBeScared, ICanBeStruckDown, ICanBeConverted
 	
 	public override void playSound (string action, string target)
 	{
-		Debug.Log("humanAI, playSound plays audio attached to prefab");
 			audio.Play();
 	}
 }

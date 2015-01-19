@@ -12,13 +12,8 @@ public class guardAI : commonAI
 	// is the guard a stationary unit or roaming unit
 	public bool stationary;
 
-	//Sound effect for guard on zombie
-	//private AudioSource Guard_on_Zombie;
-
-
 	public override void Start()
 	{
-
 
 		// upon first creation, create the common "attackAI" instance
 		Attack = this.gameObject.AddComponent<attackAI>();
@@ -125,8 +120,6 @@ public class guardAI : commonAI
 
 	public override void playSound (string action, string target)
 	{
-		Debug.Log ("guardAI playSound but no sound is attached");
-		// TODO: No sounds
-		return;
+		audio.Play ();
 	}
 }

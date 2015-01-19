@@ -18,13 +18,6 @@ public class zombieAI : commonAI, ICanBeInfluenced
 	public float updateSpeedInterval = .5f;
 	private float timeSinceSpeedUpdate;
 
-	//Add sound effects to the attacks
-	private AudioSource[] soundEffects;
-	//Sound effect for zombie on peasant
-	private AudioSource Zombie_on_Peasant;
-	//Sound effect for zombie on knight
-	private AudioSource Zaps;
-
 	// Zombies can attack...
 	// these scripts will also be added to the zombie at interface
 	// time and we can adjust attack and cast fear properties there.
@@ -37,15 +30,6 @@ public class zombieAI : commonAI, ICanBeInfluenced
 		manaCost = zombieManaCost;
 
 		//StartCoroutine ("updateSpeedbyNearbyZombies");
-
-		//Add all the sound effects to one object
-		soundEffects = GetComponents<AudioSource> ();
-		if (soundEffects.Length < 2)
-			Debug.Log ("Object name is: " + name );
-		Zombie_on_Peasant = soundEffects [0];
-		Zaps = soundEffects [1];
-		//Guard_on_Zombie = soundEffects [2];
-
 
 		lifeSpan = 5000f;
 		// do baseline start actions first...
@@ -255,28 +239,7 @@ public class zombieAI : commonAI, ICanBeInfluenced
 	
 	public override void playSound (string action, string target)
 	{
-		//Play the correct sound:
-//		switch(target)
-//		{
-	/*		case "Human":
-			{
-			Debug.Log("zombieAI case Human");
-				Zombie_on_Peasant.Play();
-				break;
-			}
-//		*///	case "Zombie":
-		//	{
-				Debug.Log("zombieAI case Zombie");
-				Zaps.Play();
-//				break;
-		//	}
-	/*/		case "Guard":
-			{
-					Debug.Log("zombieAI case Guard");
-				Zap.Play();
-				break;
-			}*/
-	//	}
-
+		audio.Play();
 	}
 }
+//

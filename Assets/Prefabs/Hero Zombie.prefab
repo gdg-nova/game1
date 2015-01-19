@@ -391,8 +391,8 @@ GameObject:
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400000}
-  - 82: {fileID: 8200004}
   - 122: {fileID: 12200002}
+  - 82: {fileID: 8200000}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Zombie
@@ -765,7 +765,7 @@ Transform:
   - {fileID: 400050}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!82 &8200004
+--- !u!82 &8200000
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -773,7 +773,7 @@ AudioSource:
   m_GameObject: {fileID: 100050}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: ed26f12cdc6483c41b3c4626f4e2c2ae, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5c6fb6202ba006c4db431d831e846be1, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -901,9 +901,6 @@ MonoBehaviour:
   damage: 1
   attackInterval: .5
   attackRadius: 2
-  soundEffects: []
-  Zombie_on_Peasant: {fileID: 0}
-  Zombie_on_Guard: {fileID: 0}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
