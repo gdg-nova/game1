@@ -77,6 +77,34 @@ NavMeshSettings:
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
   m_NavMesh: {fileID: 19400000, guid: 6a16a8380bbb5fc45824f30615685d0c, type: 2}
+--- !u!1 &6447281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100004, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 6447282}
+  m_Layer: 8
+  m_Name: LH R Hand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6447282
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400002, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 6447281}
+  m_LocalRotation: {x: .704971611, y: .0250665508, z: -.167699486, w: .688668013}
+  m_LocalPosition: {x: -.193225861, y: 9.53674295e-09, z: 0}
+  m_LocalScale: {x: 1.00000012, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1093472884}
+  m_Father: {fileID: 1593253618}
+  m_RootOrder: 0
 --- !u!1 &16753183
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +176,7 @@ AudioSource:
   m_GameObject: {fileID: 19638328}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 67185730ee6c05b458699dfd4c891caf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9d4649ca93d173541b97dc6fbd4cb33c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1407,6 +1435,34 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
+--- !u!1 &133209175
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100032, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 133209176}
+  m_Layer: 8
+  m_Name: LH R Foot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &133209176
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400028, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 133209175}
+  m_LocalRotation: {x: -.0101766028, y: -.00170177175, z: -.0738250166, w: .997217834}
+  m_LocalPosition: {x: -.243505999, y: -1.43051144e-08, z: 9.53674295e-09}
+  m_LocalScale: {x: 1, y: 1.00000012, z: 1}
+  m_Children:
+  - {fileID: 687465785}
+  m_Father: {fileID: 1354998555}
+  m_RootOrder: 0
 --- !u!1 &134659511
 GameObject:
   m_ObjectHideFlags: 0
@@ -1883,7 +1939,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 162984405}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH Spine1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2109,6 +2165,33 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &201231571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100012, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 201231572}
+  m_Layer: 8
+  m_Name: LH Head
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &201231572
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400008, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 201231571}
+  m_LocalRotation: {x: 1.71333669e-09, y: -4.92698632e-07, z: -.00263070501, w: .999996543}
+  m_LocalPosition: {x: -.0643234998, y: -.0339095853, z: -3.64497836e-08}
+  m_LocalScale: {x: .99999994, y: .99999994, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1465428523}
+  m_RootOrder: 0
 --- !u!1 &201727959
 GameObject:
   m_ObjectHideFlags: 0
@@ -2778,7 +2861,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 239612246}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH R Calf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6803,7 +6886,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 369079767}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH R Thigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6831,7 +6914,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 370467610}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7312,7 +7395,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 395794175}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH L Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7368,7 +7451,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400703435}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7800,7 +7883,7 @@ AudioSource:
   m_GameObject: {fileID: 430592602}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 67185730ee6c05b458699dfd4c891caf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9d4649ca93d173541b97dc6fbd4cb33c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -7922,7 +8005,7 @@ AudioSource:
   m_GameObject: {fileID: 434425035}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 67185730ee6c05b458699dfd4c891caf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9d4649ca93d173541b97dc6fbd4cb33c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -8085,6 +8168,34 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!1 &441321640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100008, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 441321641}
+  m_Layer: 8
+  m_Name: LH R UpperArm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &441321641
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400006, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 441321640}
+  m_LocalRotation: {x: -.0919850543, y: .106369443, z: -.0315968357, w: .989558458}
+  m_LocalPosition: {x: -.115917116, y: 0, z: 0}
+  m_LocalScale: {x: .99999994, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1593253618}
+  m_Father: {fileID: 1807881738}
+  m_RootOrder: 0
 --- !u!1 &442147953
 GameObject:
   m_ObjectHideFlags: 0
@@ -8305,7 +8416,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 449766562}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH R Toe0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8491,6 +8602,34 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 752041071}
   m_GameObject: {fileID: 461278369}
+--- !u!1 &462862052
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100036, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 462862053}
+  m_Layer: 8
+  m_Name: LH R Thigh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &462862053
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400040, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 462862052}
+  m_LocalRotation: {x: .0455658287, y: .998519778, z: -.0296795275, w: -.0010982703}
+  m_LocalPosition: {x: -1.52587887e-07, y: -1.1086464e-07, z: -.0999670774}
+  m_LocalScale: {x: 1, y: 1.00000012, z: 1.00000012}
+  m_Children:
+  - {fileID: 1354998555}
+  m_Father: {fileID: 2016320341}
+  m_RootOrder: 1
 --- !u!1 &465262182
 GameObject:
   m_ObjectHideFlags: 0
@@ -8847,7 +8986,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 514800877}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH L UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9011,9 +9150,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 547968701}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hero Zombie
-  m_TagString: Untagged
+  m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9029,6 +9168,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 2035424316}
+  - {fileID: 1297680489}
   m_Father: {fileID: 0}
   m_RootOrder: 8
 --- !u!1 &553658218
@@ -9086,6 +9226,70 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1005586434}
   m_RootOrder: 0
+--- !u!1 &563923596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 107564, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 563923597}
+  - 108: {fileID: 563923598}
+  m_Layer: 8
+  m_Name: Directional light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &563923597
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 407564, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 563923596}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
+  m_LocalPosition: {x: .287, y: 1.73000002, z: .699000001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1812833083}
+  m_RootOrder: 1
+--- !u!108 &563923598
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 10807564, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 563923596}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Type: 2
+  m_Color: {r: 0, g: .65882355, b: .172549024, a: 1}
+  m_Intensity: 1.24000001
+  m_Range: 10
+  m_SpotAngle: 70.4000015
+  m_CookieSize: 6
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_Softness: 4
+    m_SoftnessFade: 1
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_ActuallyLightmapped: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967240
+  m_Lightmapping: 1
+  m_ShadowSamples: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_IndirectIntensity: 1
+  m_AreaSize: {x: 1, y: 1}
 --- !u!1 &564403735
 GameObject:
   m_ObjectHideFlags: 0
@@ -9199,6 +9403,34 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 730907834}
   m_GameObject: {fileID: 564403735}
+--- !u!1 &570784930
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100028, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 570784931}
+  m_Layer: 8
+  m_Name: LH Spine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &570784931
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400038, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 570784930}
+  m_LocalRotation: {x: .00915380381, y: -.00036116931, z: .039487008, w: .999178112}
+  m_LocalPosition: {x: -.0813838169, y: -.000137996671, z: -2.4162232e-06}
+  m_LocalScale: {x: 1, y: 1.00000012, z: 1}
+  m_Children:
+  - {fileID: 1422493377}
+  m_Father: {fileID: 2016320341}
+  m_RootOrder: 2
 --- !u!1 &571171022
 GameObject:
   m_ObjectHideFlags: 0
@@ -10310,6 +10542,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1497981678}
   m_RootOrder: 2
+--- !u!1 &687465784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100030, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 687465785}
+  m_Layer: 8
+  m_Name: LH R Toe0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &687465785
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400026, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 687465784}
+  m_LocalRotation: {x: -1.3170891e-09, y: -1.3170891e-09, z: -.707106829, w: .707106829}
+  m_LocalPosition: {x: -.0919437036, y: .11367932, z: 0}
+  m_LocalScale: {x: 1, y: .99999994, z: 1}
+  m_Children: []
+  m_Father: {fileID: 133209176}
+  m_RootOrder: 0
 --- !u!1 &696724373
 GameObject:
   m_ObjectHideFlags: 0
@@ -10394,6 +10653,34 @@ Transform:
   - {fileID: 1536540430}
   m_Father: {fileID: 874762687}
   m_RootOrder: 2
+--- !u!1 &725588840
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100018, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 725588841}
+  m_Layer: 8
+  m_Name: LH L Hand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &725588841
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400012, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 725588840}
+  m_LocalRotation: {x: -.704971671, y: -.0250665769, z: -.167699531, w: .688668013}
+  m_LocalPosition: {x: -.193225816, y: 9.53674295e-09, z: -7.62939436e-08}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1432152867}
+  m_Father: {fileID: 1823536345}
+  m_RootOrder: 0
 --- !u!1 &727723434
 GameObject:
   m_ObjectHideFlags: 0
@@ -12325,6 +12612,246 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
+--- !u!1 &802412291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100050, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 802412292}
+  - 95: {fileID: 802412301}
+  - 111: {fileID: 802412300}
+  - 195: {fileID: 802412299}
+  - 136: {fileID: 802412298}
+  - 114: {fileID: 802412297}
+  - 114: {fileID: 802412296}
+  - 114: {fileID: 802412295}
+  - 82: {fileID: 802412294}
+  - 122: {fileID: 802412293}
+  m_Layer: 8
+  m_Name: LittleHero_solo
+  m_TagString: Zombie
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &802412292
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400050, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 802412291}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1222916867}
+  - {fileID: 1623730095}
+  m_Father: {fileID: 1812833083}
+  m_RootOrder: 0
+--- !u!122 &802412293
+Halo:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 12200002, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 802412291}
+  m_Enabled: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4282828083
+  m_Size: 1.5
+--- !u!82 &802412294
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200004, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 802412291}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 5c6fb6202ba006c4db431d831e846be1, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!114 &802412295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 802412291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ca2da6211000034a952ac78a97acc00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseSpeed: 3
+  baseRandomPct: 40
+  runSpeed: 7
+  runRandomPct: 85
+  manaCost: 1
+  health: 1
+  navCheckInterval: 3
+  navStopDistance: 5
+  Attack: {fileID: 0}
+  isDestroying: 0
+  moveAfterCombat: 1
+  lifeSpan: 1
+  fastZombieSpeed: 7
+  nearbyZombieRange: 3
+  zombieManaCost: 1
+  updateSpeedInterval: .5
+--- !u!114 &802412296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400004, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 802412291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34d4ca1757558c241a50fabe397c23aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fearInterval: 6
+  fearRadius: 9
+--- !u!114 &802412297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 802412291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136d37ad842a22e4b88d049fd274b5f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  attackInterval: .5
+  attackRadius: 2
+--- !u!136 &802412298
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 13600000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 802412291}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: .5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!195 &802412299
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 19500000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 802412291}
+  m_Enabled: 1
+  m_Radius: .5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 1
+--- !u!111 &802412300
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11100000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 802412291}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400006, guid: 9fed2f9dd2b98d24ca06ed78ccc11aca, type: 3}
+  m_Animations:
+  - {fileID: 7400000, guid: 001a715514d25254d9b40074ebbde0ce, type: 3}
+  - {fileID: 7400000, guid: fb6a918feb0cc834eb8a9717f477f409, type: 3}
+  - {fileID: 7400000, guid: 69b16e49a643f24488b3e464d46cef79, type: 3}
+  - {fileID: 7400002, guid: 69b16e49a643f24488b3e464d46cef79, type: 3}
+  - {fileID: 7400006, guid: 9fed2f9dd2b98d24ca06ed78ccc11aca, type: 3}
+  - {fileID: 7400002, guid: 001a715514d25254d9b40074ebbde0ce, type: 3}
+  - {fileID: 7400004, guid: 001a715514d25254d9b40074ebbde0ce, type: 3}
+  - {fileID: 7400000, guid: 9fed2f9dd2b98d24ca06ed78ccc11aca, type: 3}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!95 &802412301
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 9500000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 802412291}
+  m_Enabled: 0
+  m_Avatar: {fileID: 9000000, guid: 3821c02bb3838254fa3538d7535d2b53, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &803490864
 GameObject:
   m_ObjectHideFlags: 0
@@ -12504,6 +13031,34 @@ Prefab:
   m_RootGameObject: {fileID: 368247059}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &815700321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100040, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 815700322}
+  m_Layer: 8
+  m_Name: LH L Foot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &815700322
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400034, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 815700321}
+  m_LocalRotation: {x: .0101766037, y: .00170168444, z: -.0738250166, w: .997217834}
+  m_LocalPosition: {x: -.243505985, y: -4.76837148e-09, z: -9.53674295e-09}
+  m_LocalScale: {x: .99999994, y: 1.00000012, z: 1}
+  m_Children:
+  - {fileID: 975452513}
+  m_Father: {fileID: 1647024064}
+  m_RootOrder: 0
 --- !u!1 &824281981
 GameObject:
   m_ObjectHideFlags: 0
@@ -14250,6 +14805,7 @@ GameObject:
   - 122: {fileID: 848250119}
   - 136: {fileID: 848250118}
   - 114: {fileID: 848250117}
+  - 82: {fileID: 848250123}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Human
@@ -14380,6 +14936,65 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!82 &848250123
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200000, guid: c6783f49378f645fa81340aa301236b5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1903187493}
+  m_GameObject: {fileID: 848250115}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: ed26f12cdc6483c41b3c4626f4e2c2ae, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &857375275
 GameObject:
   m_ObjectHideFlags: 0
@@ -15447,7 +16062,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 947391989}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH R Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15850,6 +16465,33 @@ Transform:
   m_Children:
   - {fileID: 628697752}
   m_Father: {fileID: 1772341084}
+  m_RootOrder: 0
+--- !u!1 &975452512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100038, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 975452513}
+  m_Layer: 8
+  m_Name: LH L Toe0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &975452513
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400032, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 975452512}
+  m_LocalRotation: {x: 5.15384724e-18, y: 5.15384724e-18, z: -.707106829, w: .707106829}
+  m_LocalPosition: {x: -.091943711, y: .113679327, z: 0}
+  m_LocalScale: {x: 1.00000012, y: 1, z: 1.00000012}
+  m_Children: []
+  m_Father: {fileID: 815700322}
   m_RootOrder: 0
 --- !u!1 &986538517
 GameObject:
@@ -17238,6 +17880,7 @@ MonoBehaviour:
   Health: 10
   Capacity: 50
   humanCount: 2
+  guardCount: 0
   humanCountText: {fileID: 0}
   coolDownSec: 30
   targetMaterial: {fileID: 0}
@@ -18106,6 +18749,33 @@ Prefab:
   m_RootGameObject: {fileID: 1519817949}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1093472883
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100002, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1093472884}
+  m_Layer: 8
+  m_Name: LH R Finger0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1093472884
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 1093472883}
+  m_LocalRotation: {x: .000398160948, y: -2.78210144e-09, z: 2.98034308e-08, w: .99999994}
+  m_LocalPosition: {x: -.137394935, y: -1.52587887e-07, z: 0}
+  m_LocalScale: {x: 1, y: .99999994, z: .999999881}
+  m_Children: []
+  m_Father: {fileID: 6447282}
+  m_RootOrder: 0
 --- !u!1 &1101491115
 GameObject:
   m_ObjectHideFlags: 0
@@ -19567,7 +20237,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1128056908}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH L Thigh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20485,7 +21155,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1215246853}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH L Toe0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20584,6 +21254,34 @@ Transform:
   - {fileID: 848250116}
   m_Father: {fileID: 904337504}
   m_RootOrder: 4
+--- !u!1 &1222916866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100048, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1222916867}
+  m_Layer: 8
+  m_Name: LH
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1222916867
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400048, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 1222916866}
+  m_LocalRotation: {x: -.5, y: .5, z: .5, w: .5}
+  m_LocalPosition: {x: 0, y: .649395049, z: .0180279501}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2016320341}
+  m_Father: {fileID: 802412292}
+  m_RootOrder: 0
 --- !u!1 &1225813589
 GameObject:
   m_ObjectHideFlags: 0
@@ -20740,7 +21438,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1249637685}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH R Finger0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22325,6 +23023,70 @@ Prefab:
   m_RootGameObject: {fileID: 170124867}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1297680488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 107564, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 526677433}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1297680489}
+  - 108: {fileID: 1297680490}
+  m_Layer: 8
+  m_Name: Directional light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1297680489
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 407564, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 526677433}
+  m_GameObject: {fileID: 1297680488}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
+  m_LocalPosition: {x: .287, y: 1.528, z: .699000001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 547968701}
+  m_RootOrder: 1
+--- !u!108 &1297680490
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 10807564, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 526677433}
+  m_GameObject: {fileID: 1297680488}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Type: 1
+  m_Color: {r: 0, g: 1, b: .172413826, a: 1}
+  m_Intensity: 2.05999994
+  m_Range: 10
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_Strength: 1
+    m_Bias: .0500000007
+    m_Softness: 4
+    m_SoftnessFade: 1
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_ActuallyLightmapped: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967240
+  m_Lightmapping: 1
+  m_ShadowSamples: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+  m_IndirectIntensity: 1
+  m_AreaSize: {x: 1, y: 1}
 --- !u!1001 &1302099826
 Prefab:
   m_ObjectHideFlags: 0
@@ -23085,6 +23847,34 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
+--- !u!1 &1354998554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100034, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1354998555}
+  m_Layer: 8
+  m_Name: LH R Calf
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1354998555
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400030, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 1354998554}
+  m_LocalRotation: {x: -1.35143485e-09, y: 4.27535285e-10, z: .0283385757, w: .999598384}
+  m_LocalPosition: {x: -.31407097, y: 7.15255721e-09, z: 0}
+  m_LocalScale: {x: .99999994, y: .999999881, z: 1.00000012}
+  m_Children:
+  - {fileID: 133209176}
+  m_Father: {fileID: 462862053}
+  m_RootOrder: 0
 --- !u!1 &1355902158
 GameObject:
   m_ObjectHideFlags: 0
@@ -23196,7 +23986,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1361210629}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH R Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23224,7 +24014,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1365395514}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH L Clavicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23830,6 +24620,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 835877557}
   m_RootOrder: 0
+--- !u!1 &1422493376
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100026, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1422493377}
+  m_Layer: 8
+  m_Name: LH Spine1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1422493377
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400024, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 1422493376}
+  m_LocalRotation: {x: 2.1919768e-13, y: -5.41178231e-08, z: .0195117537, w: .999809623}
+  m_LocalPosition: {x: -.173910752, y: -.000208940502, z: -5.79511827e-10}
+  m_LocalScale: {x: 1.00000012, y: 1.00000012, z: 1}
+  m_Children:
+  - {fileID: 2139480967}
+  - {fileID: 1465428523}
+  - {fileID: 1807881738}
+  m_Father: {fileID: 570784931}
+  m_RootOrder: 0
 --- !u!1 &1422780212
 GameObject:
   m_ObjectHideFlags: 0
@@ -23886,6 +24706,33 @@ Transform:
   - {fileID: 1419676201}
   m_Father: {fileID: 2117586337}
   m_RootOrder: 2
+--- !u!1 &1432152866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100016, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1432152867}
+  m_Layer: 8
+  m_Name: LH L Finger0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1432152867
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400010, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 1432152866}
+  m_LocalRotation: {x: -.000398159085, y: 5.93303271e-12, z: -1.49011603e-08, w: .99999994}
+  m_LocalPosition: {x: -.137394935, y: 7.62939436e-08, z: -4.76837148e-09}
+  m_LocalScale: {x: 1, y: .99999994, z: .99999994}
+  m_Children: []
+  m_Father: {fileID: 725588841}
+  m_RootOrder: 0
 --- !u!1001 &1432234449
 Prefab:
   m_ObjectHideFlags: 0
@@ -24146,7 +24993,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1459308366}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH R Clavicle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24227,6 +25074,34 @@ Transform:
   - {fileID: 1809792151}
   m_Father: {fileID: 1707862379}
   m_RootOrder: 3
+--- !u!1 &1465428522
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100014, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1465428523}
+  m_Layer: 8
+  m_Name: LH Neck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1465428523
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400020, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 1465428522}
+  m_LocalRotation: {x: 8.83606361e-08, y: 9.84458097e-07, z: -.177504852, w: .984119952}
+  m_LocalPosition: {x: -.280870497, y: .00656207092, z: 6.3847434e-09}
+  m_LocalScale: {x: .999999881, y: .999999881, z: 1}
+  m_Children:
+  - {fileID: 201231572}
+  m_Father: {fileID: 1422493377}
+  m_RootOrder: 1
 --- !u!1001 &1472217795
 Prefab:
   m_ObjectHideFlags: 0
@@ -24475,7 +25350,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1489430769}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH Pelvis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24916,6 +25791,7 @@ MonoBehaviour:
   Health: 10
   Capacity: 50
   humanCount: 3
+  guardCount: 0
   humanCountText: {fileID: 0}
   coolDownSec: 30
   targetMaterial: {fileID: 0}
@@ -24953,6 +25829,78 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!1001 &1522558328
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400052, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 243.559998
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: .618510008
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 351.390015
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: .981123865
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: .193380639
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 10807564, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+      propertyPath: m_Color.g
+      value: .65882355
+      objectReference: {fileID: 0}
+    - target: {fileID: 10807564, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+      propertyPath: m_Color.b
+      value: .172549024
+      objectReference: {fileID: 0}
+    - target: {fileID: 10807564, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+      propertyPath: m_Intensity
+      value: 1.24000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 10807564, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+      propertyPath: m_CookieSize
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 10807564, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+      propertyPath: m_Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10807564, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+      propertyPath: m_SpotAngle
+      value: 70.4000015
+      objectReference: {fileID: 0}
+    - target: {fileID: 407564, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.73000002
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_RootGameObject: {fileID: 1812833082}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1001 &1523477261
 Prefab:
   m_ObjectHideFlags: 0
@@ -25544,7 +26492,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1563409528}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25691,6 +26639,34 @@ Transform:
   - {fileID: 2037234407}
   m_Father: {fileID: 1275280156}
   m_RootOrder: 0
+--- !u!1 &1593253617
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100006, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1593253618}
+  m_Layer: 8
+  m_Name: LH R Forearm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1593253618
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400004, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 1593253617}
+  m_LocalRotation: {x: -5.07262055e-09, y: -1.58689701e-08, z: .153645188, w: .988126099}
+  m_LocalPosition: {x: -.303506285, y: 0, z: 7.62939436e-08}
+  m_LocalScale: {x: 1.00000012, y: 1.00000012, z: 1}
+  m_Children:
+  - {fileID: 6447282}
+  m_Father: {fileID: 441321641}
+  m_RootOrder: 0
 --- !u!1 &1602182737
 GameObject:
   m_ObjectHideFlags: 0
@@ -25747,6 +26723,34 @@ Transform:
   - {fileID: 1896500099}
   m_Father: {fileID: 2142374333}
   m_RootOrder: 0
+--- !u!1 &1604072354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100022, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1604072355}
+  m_Layer: 8
+  m_Name: LH L UpperArm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1604072355
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400016, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 1604072354}
+  m_LocalRotation: {x: .0919850469, y: -.106369436, z: -.0315968283, w: .989558458}
+  m_LocalPosition: {x: -.115917124, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1823536345}
+  m_Father: {fileID: 2139480967}
+  m_RootOrder: 0
 --- !u!1 &1607800587
 GameObject:
   m_ObjectHideFlags: 0
@@ -25755,7 +26759,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1607800588}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH Spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26062,6 +27066,89 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 730907834}
   m_GameObject: {fileID: 1622587627}
+--- !u!1 &1623730094
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1623730095}
+  - 137: {fileID: 1623730096}
+  m_Layer: 8
+  m_Name: LittleHero_mesh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1623730095
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400046, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 1623730094}
+  m_LocalRotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 802412292}
+  m_RootOrder: 1
+--- !u!137 &1623730096
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 13700000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
+    type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 1623730094}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 97e8200a56209bd4ba7b38d6c7059675, type: 2}
+  - {fileID: 2100000, guid: c37dde2c95126d6408a8c3b05d4f7fd4, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_Mesh: {fileID: 4300000, guid: 07816f34b1ad2e445872cbf79a936cb7, type: 3}
+  m_Bones:
+  - {fileID: 201231572}
+  - {fileID: 2016320341}
+  - {fileID: 570784931}
+  - {fileID: 1422493377}
+  - {fileID: 1604072355}
+  - {fileID: 2139480967}
+  - {fileID: 2133853339}
+  - {fileID: 1465428523}
+  - {fileID: 1222916867}
+  - {fileID: 462862053}
+  - {fileID: 441321641}
+  - {fileID: 1807881738}
+  - {fileID: 815700322}
+  - {fileID: 975452513}
+  - {fileID: 1647024064}
+  - {fileID: 133209176}
+  - {fileID: 687465785}
+  - {fileID: 1354998555}
+  - {fileID: 1823536345}
+  - {fileID: 725588841}
+  - {fileID: 1593253618}
+  - {fileID: 6447282}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 1222916867}
+  m_AABB:
+    m_Center: {x: -.0354859531, y: 2.68220901e-07, z: .301411062}
+    m_Extent: {x: .348609477, y: .780467629, z: .944966674}
+  m_DirtyAABB: 0
 --- !u!1 &1624899685
 GameObject:
   m_ObjectHideFlags: 0
@@ -26253,6 +27340,34 @@ Transform:
   m_Children:
   - {fileID: 1385634217}
   m_Father: {fileID: 368390896}
+  m_RootOrder: 0
+--- !u!1 &1647024063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100042, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1647024064}
+  m_Layer: 8
+  m_Name: LH L Calf
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1647024064
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400036, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 1647024063}
+  m_LocalRotation: {x: -3.9697281e-09, y: 3.53306828e-10, z: .0283385701, w: .999598384}
+  m_LocalPosition: {x: -.314071, y: 7.15255721e-09, z: 9.53674295e-09}
+  m_LocalScale: {x: .999999881, y: .999999821, z: 1}
+  m_Children:
+  - {fileID: 815700322}
+  m_Father: {fileID: 2133853339}
   m_RootOrder: 0
 --- !u!1 &1647266042
 GameObject:
@@ -27149,7 +28264,7 @@ AudioSource:
   m_GameObject: {fileID: 1704035720}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 67185730ee6c05b458699dfd4c891caf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 9d4649ca93d173541b97dc6fbd4cb33c, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -27262,6 +28377,7 @@ MonoBehaviour:
   Health: 100
   Capacity: 50
   humanCount: 2
+  guardCount: 0
   humanCountText: {fileID: 0}
   coolDownSec: 30
   targetMaterial: {fileID: 0}
@@ -27717,7 +28833,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1744207763}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH R UpperArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27751,6 +28867,7 @@ GameObject:
   - 122: {fileID: 1745601581}
   - 136: {fileID: 1745601580}
   - 114: {fileID: 1745601579}
+  - 82: {fileID: 1745601585}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Human
@@ -27881,6 +28998,65 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!82 &1745601585
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200000, guid: c6783f49378f645fa81340aa301236b5,
+    type: 2}
+  m_PrefabInternal: {fileID: 259608604}
+  m_GameObject: {fileID: 1745601577}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: ed26f12cdc6483c41b3c4626f4e2c2ae, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1747164156
 GameObject:
   m_ObjectHideFlags: 0
@@ -28045,6 +29221,7 @@ GameObject:
   - 122: {fileID: 1762057246}
   - 136: {fileID: 1762057245}
   - 114: {fileID: 1762057244}
+  - 82: {fileID: 1762057250}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Human
@@ -28175,6 +29352,65 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!82 &1762057250
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200000, guid: c6783f49378f645fa81340aa301236b5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1214648739}
+  m_GameObject: {fileID: 1762057242}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: ed26f12cdc6483c41b3c4626f4e2c2ae, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1762102804
 GameObject:
   m_ObjectHideFlags: 0
@@ -28420,6 +29656,7 @@ MonoBehaviour:
   AvailableSpells:
   - {fileID: 11400000, guid: b927ed56a1a99479890023198db6417f, type: 2}
   - {fileID: 11400000, guid: 038a69b3c81de407eb8c43f4d986437e, type: 2}
+  - {fileID: 11400000, guid: 5205fb4187a7e4e5f9bbee7042662fdf, type: 2}
 --- !u!4 &1767752866
 Transform:
   m_ObjectHideFlags: 0
@@ -28817,6 +30054,34 @@ Transform:
   - {fileID: 1228446330}
   m_Father: {fileID: 1113913867}
   m_RootOrder: 0
+--- !u!1 &1807881737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100010, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1807881738}
+  m_Layer: 8
+  m_Name: LH R Clavicle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1807881738
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400018, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 1807881737}
+  m_LocalRotation: {x: .676473498, y: .000268328615, z: .736466944, w: -.000294172787}
+  m_LocalPosition: {x: -.178823084, y: .00970217679, z: -.0334671251}
+  m_LocalScale: {x: 1, y: .999999881, z: .99999994}
+  m_Children:
+  - {fileID: 441321641}
+  m_Father: {fileID: 1422493377}
+  m_RootOrder: 2
 --- !u!1 &1809792150
 GameObject:
   m_ObjectHideFlags: 0
@@ -28881,6 +30146,35 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
+--- !u!1 &1812833082
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100052, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1812833083}
+  m_Layer: 8
+  m_Name: Hero Zombie
+  m_TagString: Zombie
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1812833083
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400052, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 1812833082}
+  m_LocalRotation: {x: 0, y: .981123865, z: 0, w: .193380639}
+  m_LocalPosition: {x: 243.559998, y: .618510008, z: 351.390015}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children:
+  - {fileID: 802412292}
+  - {fileID: 563923597}
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
 --- !u!1 &1819961364
 GameObject:
   m_ObjectHideFlags: 0
@@ -28938,6 +30232,34 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 630434037}
+  m_RootOrder: 0
+--- !u!1 &1823536344
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100020, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1823536345}
+  m_Layer: 8
+  m_Name: LH L Forearm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1823536345
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400014, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 1823536344}
+  m_LocalRotation: {x: 1.41390233e-09, y: 4.546051e-08, z: .153645173, w: .988126099}
+  m_LocalPosition: {x: -.303506315, y: 0, z: -7.62939436e-08}
+  m_LocalScale: {x: 1.00000012, y: 1.00000012, z: 1}
+  m_Children:
+  - {fileID: 725588841}
+  m_Father: {fileID: 1604072355}
   m_RootOrder: 0
 --- !u!1 &1823649354
 GameObject:
@@ -29902,6 +31224,7 @@ MonoBehaviour:
   Health: 10
   Capacity: 50
   humanCount: 3
+  guardCount: 0
   humanCountText: {fileID: 0}
   coolDownSec: 30
   targetMaterial: {fileID: 0}
@@ -29937,6 +31260,7 @@ GameObject:
   - 122: {fileID: 1914029123}
   - 136: {fileID: 1914029122}
   - 114: {fileID: 1914029121}
+  - 82: {fileID: 1914029127}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Human
@@ -30067,6 +31391,65 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!82 &1914029127
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200000, guid: c6783f49378f645fa81340aa301236b5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1389192931}
+  m_GameObject: {fileID: 1914029119}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: ed26f12cdc6483c41b3c4626f4e2c2ae, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1914946964
 GameObject:
   m_ObjectHideFlags: 0
@@ -30076,7 +31459,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1914946965}
   - 137: {fileID: 1914946967}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LittleHero_mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30371,7 +31754,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1958324342}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH L Finger0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30658,7 +32041,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1992177905}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH L Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30692,6 +32075,7 @@ GameObject:
   - 122: {fileID: 1992528989}
   - 136: {fileID: 1992528988}
   - 114: {fileID: 1992528987}
+  - 82: {fileID: 1992528993}
   m_Layer: 0
   m_Name: LittleHero_solo
   m_TagString: Human
@@ -30822,6 +32206,65 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!82 &1992528993
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 8200000, guid: c6783f49378f645fa81340aa301236b5,
+    type: 2}
+  m_PrefabInternal: {fileID: 409351494}
+  m_GameObject: {fileID: 1992528985}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: ed26f12cdc6483c41b3c4626f4e2c2ae, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &1994848566
 GameObject:
   m_ObjectHideFlags: 0
@@ -31219,6 +32662,36 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 730907834}
   m_GameObject: {fileID: 2009848486}
+--- !u!1 &2016320340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100046, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2016320341}
+  m_Layer: 8
+  m_Name: LH Pelvis
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2016320341
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400044, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 2016320340}
+  m_LocalRotation: {x: .504560173, y: -.495397866, z: -.504560173, w: -.495397866}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2133853339}
+  - {fileID: 462862053}
+  - {fileID: 570784931}
+  m_Father: {fileID: 1222916867}
+  m_RootOrder: 0
 --- !u!1 &2020868696
 GameObject:
   m_ObjectHideFlags: 0
@@ -31302,7 +32775,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2021244309}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH R Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31367,8 +32840,7 @@ GameObject:
   - 114: {fileID: 2035424317}
   - 82: {fileID: 2035424326}
   - 122: {fileID: 2035424324}
-  - 82: {fileID: 2035424325}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LittleHero_solo
   m_TagString: Zombie
   m_Icon: {fileID: 0}
@@ -31446,9 +32918,6 @@ MonoBehaviour:
   damage: 1
   attackInterval: .5
   attackRadius: 2
-  soundEffects: []
-  Zombie_on_Peasant: {fileID: 0}
-  Zombie_on_Guard: {fileID: 0}
 --- !u!136 &2035424320
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -31535,65 +33004,6 @@ Halo:
     serializedVersion: 2
     rgba: 4282828083
   m_Size: 1.5
---- !u!82 &2035424325
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 8200000, guid: 2380c33698c8e4d39ac3bf947fbf4803,
-    type: 2}
-  m_PrefabInternal: {fileID: 526677433}
-  m_GameObject: {fileID: 2035424315}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 9d4649ca93d173541b97dc6fbd4cb33c, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
 --- !u!82 &2035424326
 AudioSource:
   m_ObjectHideFlags: 0
@@ -31603,7 +33013,7 @@ AudioSource:
   m_GameObject: {fileID: 2035424315}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: ed26f12cdc6483c41b3c4626f4e2c2ae, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5c6fb6202ba006c4db431d831e846be1, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -32383,7 +33793,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2111959881}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH L Forearm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32674,6 +34084,34 @@ Prefab:
   m_RootGameObject: {fileID: 1659444679}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &2133853338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100044, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2133853339}
+  m_Layer: 8
+  m_Name: LH L Thigh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2133853339
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400042, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 2133853338}
+  m_LocalRotation: {x: .0455783457, y: .997808278, z: .0479712002, w: .000261672918}
+  m_LocalPosition: {x: 1.52587887e-07, y: 1.66893003e-07, z: .0999670699}
+  m_LocalScale: {x: 1, y: 1.00000012, z: 1}
+  m_Children:
+  - {fileID: 1647024064}
+  m_Father: {fileID: 2016320341}
+  m_RootOrder: 0
 --- !u!1 &2134249864
 GameObject:
   m_ObjectHideFlags: 0
@@ -33742,7 +35180,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 2136696051}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LH L Calf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33761,6 +35199,34 @@ Transform:
   m_Children:
   - {fileID: 395794175}
   m_Father: {fileID: 1128056908}
+  m_RootOrder: 0
+--- !u!1 &2139480966
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100024, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2139480967}
+  m_Layer: 8
+  m_Name: LH L Clavicle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2139480967
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400022, guid: 2380c33698c8e4d39ac3bf947fbf4803, type: 2}
+  m_PrefabInternal: {fileID: 1522558328}
+  m_GameObject: {fileID: 2139480966}
+  m_LocalRotation: {x: -.676473498, y: -.000270366902, z: .736466944, w: -.000292291777}
+  m_LocalPosition: {x: -.178823084, y: .00970199518, z: .0334671773}
+  m_LocalScale: {x: 1, y: .999999881, z: .99999994}
+  m_Children:
+  - {fileID: 1604072355}
+  m_Father: {fileID: 1422493377}
   m_RootOrder: 0
 --- !u!1 &2142374332
 GameObject:
