@@ -55,7 +55,7 @@ public class graveYardAI : MonoBehaviour
 
 			Vector3 spawnLocation = new Vector3 (x, transform.position.y, z);
 			Quaternion r = Quaternion.Euler(0,0,0);
-			zombieAI zombie = globalEvents.manaControllerService.RequestBuyZombie (spawnLocation, r);
+			zombieAI zombie = globalEvents.manaControllerService.RequestBuyZombie (spawnLocation, r).GetComponent<zombieAI>();
 			if (zombie != null) {
 				GameObject lightning = (GameObject)GameObject.Instantiate (summonZombieEffect, spawnLocation, lightningAngle);
 

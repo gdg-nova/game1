@@ -131,6 +131,53 @@ public class attackAI : MonoBehaviour
 			if( canAttack( hitObj.tag ))
 			{
 				commonAI o = hitObj.GetComponent<commonAI>();
+				if (o == null)
+				{
+					StateMachineDriver stateMachine = hitObj.GetComponent<StateMachineDriver>();
+					if (stateMachine != null)
+					{
+						// and back to find another target?
+						// if we just killed the target,
+						// we need to take ourselves OUT of combat mode
+						// (unless something else hits IT again)
+						if (stateMachine.isDead)
+						{
+							thisAttacker.EngagedInCombat = false;
+							continue;
+						}
+						// Send a "hit" message
+						stateMachine.AddAction("hit", damage, thisAttacker.transform);
+
+						// mark this as being engaged in combat attack mode
+						thisAttacker.EngagedInCombat = true;
+						
+						// turn our game object in the direction of what is being attacked
+						transform.LookAt(hitObj.transform);
+						
+						// based on the initial animation, what is their respective
+						// attack animation name string
+						animComponent.wrapMode = WrapMode.Once;
+						animComponent.Play(attackAnimation);
+						
+						// Allow hit handlers to process
+						OnSuccessfulAttack(hitObj);
+
+						if (thisAttacker.moveAfterCombat)
+							PlayWalkAnimation();
+						
+						// TODO: How will we get this info from the state machine?
+						// if we just finished infecting the enemy, 
+						// take ourselves out of combat and go to another target
+						//if( o.IsInfected )
+						//{
+						//	thisAttacker.moveAfterCombat = true;
+						//	thisAttacker.EngagedInCombat = false;
+						//	return;
+						//}
+						
+					}
+				}
+
 				// if the object is already infected, such as
 				// a zombie or werewolf attempting to attack
 				// a human infected, don't attack it again...

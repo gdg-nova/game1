@@ -337,8 +337,10 @@ public class humanAI : commonAI, ICanBeScared, ICanBeStruckDown, ICanBeConverted
 	
 	protected void requestZombieCreationFast() 
 	{
-		zombieAI zAI = globalEvents.characterCreator.createFastZombie(gameObject.transform.position, Quaternion.Euler (0,0,0));
-		zAI.MakeFastZombie();
+		GameObject gObj = globalEvents.characterCreator.createFastZombie(gameObject.transform.position, Quaternion.Euler (0,0,0));
+		zombieAI zAI = gObj.GetComponent<zombieAI>();
+		if (zAI != null)
+			zAI.MakeFastZombie();
 	}
 
 	#region ICanBeStruckDown

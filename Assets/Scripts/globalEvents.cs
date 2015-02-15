@@ -84,9 +84,9 @@ public class globalEvents : MonoBehaviour
 	// high level functions that also decrement from the mana.
 	public interface ICharacterCreationService
 	{
-		zombieAI createZombie(Vector3 referencePoint, Quaternion rotation);
+		GameObject createZombie(Vector3 referencePoint, Quaternion rotation);
 
-		zombieAI createFastZombie(Vector3 referencePoint, Quaternion rotation);
+		GameObject createFastZombie(Vector3 referencePoint, Quaternion rotation);
 
 		werewolfAi createWerewolf(Vector3 referencePoint, Quaternion rotation);
 
@@ -110,7 +110,7 @@ public class globalEvents : MonoBehaviour
 
 		bool CanIBuyAZombie();
 
-		zombieAI RequestBuyZombie(Vector3 position, Quaternion rotation);
+		GameObject RequestBuyZombie(Vector3 position, Quaternion rotation);
 	}
 
 	static public IManaController manaControllerService { get; set; }

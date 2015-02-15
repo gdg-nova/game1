@@ -381,7 +381,7 @@ public class gameControl : MonoBehaviour, globalEvents.ICharacterCreationService
 	// and calling the create zombie with both parameters
 	public zombieAI createZombie( Vector3 position) 
 	{
-		return createZombie(position, q); 
+		return createZombie(position, q).GetComponent<zombieAI>(); 
 	}
 
 	public zombieAI createFastZombie()
@@ -392,7 +392,7 @@ public class gameControl : MonoBehaviour, globalEvents.ICharacterCreationService
 		if( spawn == null )
 			return null;
 
-		zombieAI fz = createZombie( gs.RandomVectorInBounds( spawn ), q); 
+		zombieAI fz = createZombie( gs.RandomVectorInBounds( spawn ), q).GetComponent<zombieAI>(); 
 		fz.MakeFastZombie();
 		return fz;
 	}
@@ -405,15 +405,14 @@ public class gameControl : MonoBehaviour, globalEvents.ICharacterCreationService
 		if( spawn == null )
 			return null;
 		
-		return createTypeOfZombie( ZombieTank, gs.RandomVectorInBounds( spawn ), q); 
+		return createTypeOfZombie( ZombieTank, gs.RandomVectorInBounds( spawn ), q).GetComponent<zombieAI>(); 
 	}
 
 	//Create zombie at position & rotation
-	private zombieAI createTypeOfZombie( GameObject thisZombie, Vector3 position, Quaternion rot) 
+	private GameObject createTypeOfZombie( GameObject thisZombie, Vector3 position, Quaternion rot) 
 	{
 		GameObject gobj = (GameObject)Instantiate (thisZombie, position, rot); 
-		zombieAI zAI = gobj.GetComponentInChildren<zombieAI>();
-		return zAI;
+		return gobj;
 	}
 
 
@@ -445,16 +444,18 @@ public class gameControl : MonoBehaviour, globalEvents.ICharacterCreationService
 	#region ICharacterCreationService
 
 	//Create zombie at position & rotation
-	public zombieAI createZombie( Vector3 position, Quaternion rotation) 
+	public GameObject createZombie( Vector3 position, Quaternion rotation) 
 	{
 		return createTypeOfZombie( Zombie, position, rotation); 
 	}
 
-	public zombieAI createFastZombie( Vector3 position, Quaternion rotation)
+	public GameObject createFastZombie( Vector3 position, Quaternion rotation)
 	{
-		zombieAI zombie = createZombie(position, rotation);
-		zombie.MakeFastZombie();
-		return zombie;
+		GameObject gObj = createZombie(position, rotation);
+		zombieAI zombie = gObj.GetComponent<zombieAI>();
+		if (zombie != null)
+			zombie.MakeFastZombie();
+		return gObj;
 	}
 
 	public werewolfAi createWerewolf( Vector3 position, Quaternion rot) 
@@ -493,11 +494,11 @@ public class gameControl : MonoBehaviour, globalEvents.ICharacterCreationService
 		return zombieCost <= manaPool; 
 	}
 
-	public zombieAI RequestBuyZombie(Vector3 position, Quaternion rotation) 
+	public GameObject RequestBuyZombie(Vector3 position, Quaternion rotation) 
 	{
 		if (zombieCost <= manaPool) 
 		{
-			zombieAI zombie = createZombie(position, rotation);
+			GameObject zombie = createZombie(position, rotation);
 			manaPool -= zombieCost;
 			return zombie;
 		}

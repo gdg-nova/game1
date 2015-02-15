@@ -105,7 +105,7 @@ public class RenderSpells : MonoBehaviour {
 		{
 			//Debug.Log ("Rendering: " + spell.name);
 			Toggle toggle = Instantiate(spell.guiToggleButtonPrefab) as Toggle;
-			toggle.transform.parent = this.transform;
+			toggle.transform.SetParent(this.transform);
 			// Reset the localscale because for some reason it gets reset even though the parent is set to vector3.one
 			toggle.transform.localScale = Vector3.one;
 			toggle.name = "Btn " + spell.name;
