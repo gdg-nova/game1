@@ -11,6 +11,7 @@ public class safeZoneAI : MonoBehaviour
 
 	public int Capacity  = 50;
 	public int humanCount = 0;
+	public int guardCount = 0;
 	
 	public GameObject humanCountText;	
 	
@@ -163,6 +164,14 @@ public class safeZoneAI : MonoBehaviour
 			}
 			
 		}
+		for (int i = 0; i < guardCount; i++) 
+		{
+			x = Random.Range(houseBounds.min.x, houseBounds.max.x);
+			z = Random.Range(houseBounds.min.z, houseBounds.max.z);
+			//Camera.main.SendMessage("createHuman", transform.position);
+			globalEvents.characterCreator.createGuard( new Vector3(x, 1, z), Quaternion.Euler(0,0,0));
+		}
+		guardCount = 0;
 		humanCount = 0;
 	}
 

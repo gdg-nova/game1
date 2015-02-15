@@ -16,6 +16,7 @@ public class InfluenceDirectionSpell : SpellBase {
 
 	bool cancelled = false;
 	bool firstMovementComplete = false;
+	Vector3 firstTouchPosition = new Vector3();
 	Vector3 lastTouchPosition = new Vector3();
 	Vector3 firstDirection = new Vector3();
 
@@ -34,6 +35,7 @@ public class InfluenceDirectionSpell : SpellBase {
 			// Only concerned with terrains for the touch down
 			if (r_hit.collider is TerrainCollider || r_hit.collider.name == "Playable Area")
 			{
+				firstTouchPosition = r_hit.point;
 				lastTouchPosition = r_hit.point;
 			}
 			else
@@ -57,8 +59,12 @@ public class InfluenceDirectionSpell : SpellBase {
 			Vector3 groundPoint = new Vector3(r_hit.point.x, lastTouchPosition.y, r_hit.point.z);
 			if (!firstMovementComplete)
 			{
-				firstDirection = (groundPoint - lastTouchPosition).normalized;
-				firstMovementComplete = true;
+				Vector3 direction = (groundPoint - lastTouchPosition);
+				if (direction.magnitude > 7.0f)
+				{
+					firstDirection = (groundPoint - lastTouchPosition).normalized;
+					firstMovementComplete = true;
+				}
 			}
 			if ((groundPoint - lastTouchPosition).magnitude > 7.0f)
 			{
@@ -75,18 +81,25 @@ public class InfluenceDirectionSpell : SpellBase {
 	{
 		if (cancelled || !firstMovementComplete) return;
 		// End of the touch. Perform the influence now.
-		Collider[] objs = Physics.OverlapSphere( args.initialPoint, 7.0f );
+		Collider[] objs = Physics.OverlapSphere( firstTouchPosition, 12.0f );
 		foreach( Collider obj in objs)
 		{
 			commonAI gameObj = obj.GetComponent<commonAI>();
-			if (gameObj != null)
+			if (gameObj != null && gameObj.enabled)
 			{
 				ICanBeInfluenced inf = gameObj as ICanBeInfluenced;
 				if (inf != null)
 				{
 					//Debug.Log ("Found object: " + obj.name);
 					inf.BeInfluenced(firstDirection);
+					continue;
 				}
+			}
+			StateMachineDriver statemachine = obj.GetComponent<StateMachineDriver>();
+			if (statemachine != null && statemachine.enabled)
+			{
+				statemachine.AddAction("influence", firstDirection);
+				continue;
 			}
 		}
 		

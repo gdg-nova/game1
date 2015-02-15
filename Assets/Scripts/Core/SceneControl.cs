@@ -100,17 +100,19 @@ public class SceneControl : MonoBehaviour, globalEvents.ICharacterCreationServic
 	#region ICharacterCreationService
 	
 	//Create zombie at position & rotation
-	public zombieAI createZombie( Vector3 position, Quaternion rotation) 
+	public GameObject createZombie( Vector3 position, Quaternion rotation) 
 	{
 		GameObject gobj = (GameObject)Instantiate (zombiePrefab, position, rotation); 
-		return gobj.GetComponentInChildren<zombieAI>();
+		return gobj;
 	}
 	
-	public zombieAI createFastZombie( Vector3 position, Quaternion rotation)
+	public GameObject createFastZombie( Vector3 position, Quaternion rotation)
 	{
-		zombieAI zombie = createZombie(position, rotation);
-		zombie.MakeFastZombie();
-		return zombie;
+		GameObject gObj = createZombie(position, rotation);
+		zombieAI zombie = gObj.GetComponent<zombieAI>();
+		if (zombie != null)
+			zombie.MakeFastZombie();
+		return gObj;
 	}
 	
 	public werewolfAi createWerewolf( Vector3 position, Quaternion rot) 
@@ -149,11 +151,11 @@ public class SceneControl : MonoBehaviour, globalEvents.ICharacterCreationServic
 		return zombieCostInMana <= playerSettings.PlayerMana; 
 	}
 	
-	public zombieAI RequestBuyZombie(Vector3 position, Quaternion rotation) 
+	public GameObject RequestBuyZombie(Vector3 position, Quaternion rotation) 
 	{
 		if (zombieCostInMana <= playerSettings.PlayerMana) 
 		{
-			zombieAI zombie = createZombie(position, rotation);
+			GameObject zombie = createZombie(position, rotation);
 			playerSettings.PlayerMana -= zombieCostInMana;
 			return zombie;
 		}

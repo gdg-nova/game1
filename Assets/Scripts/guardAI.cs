@@ -26,15 +26,6 @@ public class guardAI : commonAI
 		// At present, can only attack zombies and werewolves
 		Attack.AddAttackTarget(eNavTargets.Zombie);
 
-		// pass pointer to the one animation object so this and 
-		// the attack object are working with the same animator and
-		// not thinking of them as two separate instances of an animator
-
-		// via the "Hero Guard" prefab, it has a child element
-		// of "LittleKnight2_solo" which has animations of 
-		// R2L_swipe, walk, die, idle_lookaround, idle, hurt
-		Attack.AssignAnimation(gameObject, animComponent, "R2L_swipe");
-
 		// if ever moving, look for Zombies or Werewolves.
 		// Originally, the java script code was looking for safe-zones and
 		// finish entities.  By default, normal targets are safe-zone and finish.
@@ -51,6 +42,15 @@ public class guardAI : commonAI
 		// also grabs default animation component too.
 		base.Start();
 
+		// pass pointer to the one animation object so this and 
+		// the attack object are working with the same animator and
+		// not thinking of them as two separate instances of an animator
+		
+		// via the "Hero Guard" prefab, it has a child element
+		// of "LittleKnight2_solo" which has animations of 
+		// R2L_swipe, walk, die, idle_lookaround, idle, hurt
+		Attack.AssignAnimation(gameObject, animComponent, "R2L_swipe");
+		
 		// special animation flags uses in commonAI when attacked and dying
 		// so as to not duplicate code at this or zombie levels.
 		hasHurtAnimation = true;

@@ -1,0 +1,49 @@
+<statemachine initialstate="start_lying_down">
+
+<state id="start_lying_down">
+  <transition action="got_up" nextstate="choose_random_target"/>
+  <transition action="hit" nextstate="hit"/>
+  <transition action="die" nextstate="die"/>
+</state>
+
+<state id="choose_random_target">
+  <transition action="influence" nextstate="set_influenced_target"/>
+  <transition action="new_target" nextstate="move_to_target"/>
+</state>
+
+<state id="set_influenced_target">
+  <transition action="new_target" nextstate="move_to_target"/>
+</state>
+
+<state id="move_to_target">
+  <transition action="influence" nextstate="set_influenced_target"/>
+  <transition action="reached_target" nextstate="choose_random_target"/>
+  <transition action="new_target_object" nextstate="move_to_target"/>
+  <transition action="strike" nextstate="striking"/>
+  <transition action="hit" nextstate="hit"/>
+  <transition action="die" nextstate="die"/>
+</state>
+
+<state id="striking">
+  <transition action="influence" nextstate="set_influenced_target"/>
+  <transition action="hit" nextstate="hit"/>
+  <transition action="go_to_target" nextstate="choose_random_target"/>
+  <transition action="die" nextstate="die"/>
+</state>
+
+<state id="hit">
+  <transition action="influence" nextstate="set_influenced_target"/>
+  <transition action="strike" nextstate="striking"/>
+  <transition action="hit" nextstate="hit"/>
+  <transition action="go_to_target" nextstate="choose_random_target"/>
+  <transition action="die" nextstate="die"/>
+</state>
+
+<state id="die">
+  <transition action="death_complete" nextstate="end"/>
+</state>
+
+<state id="end">
+</state>
+
+</statemachine>

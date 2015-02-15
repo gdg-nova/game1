@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-public interface IStateImplementation<Ty>
+public interface IStateImplementation
 {
-	void OnStateEntry(Ty userObj, string entryAction, object[] parameters);
+	void OnStateEntry(string entryAction, object[] parameters);
 
-	void Tick(Ty userObj);
+	void Tick();
 
-	void OnStateExit(Ty userObj, string exitAction, object[] parameters);
+	void OnStateExit(string exitAction, object[] parameters);
 }
