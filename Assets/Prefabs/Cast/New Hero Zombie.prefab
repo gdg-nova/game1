@@ -898,10 +898,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b50381561d0c54b439039ad017514dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateMachineDriver: {fileID: 0}
+  stateMachineDriver: {fileID: 11445632}
   intervalBetweenStrikes: .5
   strikeRange: 2
-  tagsToAttack: []
+  tagsToAttack:
+  - Human
+  - Guard
+  - SafeZone
   damage: 1
   health: 1
   nameOfAttackAnimation: L2R_swipe
