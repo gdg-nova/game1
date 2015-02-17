@@ -9,6 +9,20 @@ public class ZombieMovement : MonoBehaviour {
 	public float navCheckInterval = 3.0f;
 	public float navStopDistance = 5.0f;
 
+	// This is the speed of the object 
+	public float baseSpeed = 1.0f;
+	public float baseRandomPct = 50.0f;
+
+	public float speedUpdateInterval = 0.5f;
+
+	public float nearbyZombieRange = 3.0f;
+
+	private float originalBaseSpeed = 0.0f; // Required because 
+
+	// TODO: support "run" like the old objects did
+	//public float runSpeed = 2.5f;
+	//public float runRandomPct = 85.0f;
+
 	private Animation animationComp;
 	private NavMeshAgent navAgentComp;
 
@@ -142,6 +156,7 @@ public class ZombieMovement : MonoBehaviour {
 		public void Tick ()
 		{
 			m_userObj.UpdateAnimation();
+			m_userObj.UpdateSpeed ();
 
 			m_timeSinceCheck += Time.deltaTime;
 			if (m_timeSinceCheck < m_userObj.navCheckInterval)
@@ -287,7 +302,35 @@ public class ZombieMovement : MonoBehaviour {
 			m_currentAnimation = animation;
 		}
 	}
+
+	float timeSinceLastSpeedUpdate = 0.0f;
+	void UpdateSpeed()
+	{
+		timeSinceLastSpeedUpdate += Time.deltaTime;
+		if (timeSinceLastSpeedUpdate < speedUpdateInterval)
+			return;
+
+		timeSinceLastSpeedUpdate = 0.0f;
+		float newSpeed = baseSpeed + 0.5f * getNearbyZombieCount() * baseSpeed;
+		navAgentComp.speed = newSpeed;
+	}
 	
+	private float getNearbyZombieCount() 
+	{
+		float nearbyZombieCount = 0f;
+		
+		Collider[] colliders = Physics.OverlapSphere(transform.position, nearbyZombieRange);
+		//bool anythingWasHit = false;
+		
+		//GameObject hitObj;
+		foreach (Collider hit in colliders) {
+			if (hit.gameObject.tag == "Zombie") {
+				nearbyZombieCount += 1;
+			}
+		}
+		
+		return nearbyZombieCount;
+	}
 	void MakeAnimationLooped(string animationName)
 	{
 		AnimationClip ac = animationComp.GetClip(animationName);
@@ -332,5 +375,11 @@ public class ZombieMovement : MonoBehaviour {
 		MakeAnimationSingle ("die");
 		MakeAnimationSingle ("hurt");
 
+		originalBaseSpeed = baseSpeed;
+		baseSpeed = Random.Range(originalBaseSpeed * baseRandomPct / 100.0f, originalBaseSpeed); 	// sample, 60% to 100% speed
+		if( baseSpeed < .5f)
+		{
+			baseSpeed = .5f;
+		}
 	}
 }
