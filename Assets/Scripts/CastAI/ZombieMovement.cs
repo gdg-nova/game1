@@ -134,11 +134,10 @@ public class ZombieMovement : MonoBehaviour {
 			}
 			// Make our way to the destination
 			m_userObj.navAgentComp.SetDestination(m_userObj.m_currentTargetPosition);
-			m_currentAnimation = null;
+			m_userObj.m_currentAnimation = null;
 			m_timeSinceCheck = 0.0f;
 		}
 		private float m_timeSinceCheck;
-		private string m_currentAnimation;
 		
 		public void Tick ()
 		{
@@ -171,6 +170,7 @@ public class ZombieMovement : MonoBehaviour {
 
 		public void OnStateExit (string exitAction, object[] parameters)
 		{
+			m_userObj.m_currentAnimation = null;
 			if (exitAction == "strike")
 			{
 				m_userObj.navAgentComp.Stop ();
@@ -268,8 +268,11 @@ public class ZombieMovement : MonoBehaviour {
 			else if (navAgentComp.speed > 6 && navAgentComp.speed <= 12) animation = "run";
 			else if (navAgentComp.speed > 12) animation = "sprint";
 		}
-		if (m_currentAnimation != animation)
+		// TODO: Why doesn't this work?
+		if (true)// (m_currentAnimation != animation)
 		{
+			if (animationComp.IsPlaying(animation))
+				return;
 			AnimationState animState = animationComp[animation];
 			if (animState == null)
 			{
@@ -278,9 +281,9 @@ public class ZombieMovement : MonoBehaviour {
 			}
 			animState.speed = 1.0f;
 			animState.time = 0.0f;
-			Debug.Log ("playing " + animation + " for obj: " + this.GetHashCode());
+			//Debug.Log ("playing " + animation + " for obj: " + this.GetHashCode());
 			animationComp.Stop ();
-			animationComp.Play( animation, PlayMode.StopAll );
+			animationComp.Play( animation /*, PlayMode.StopAll*/ );
 			m_currentAnimation = animation;
 		}
 	}
