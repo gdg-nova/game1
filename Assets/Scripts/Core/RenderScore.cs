@@ -11,6 +11,8 @@ public class RenderScore : MonoBehaviour {
 	public PlayerSettings playerSettings = null;
 
 	private Vector2 lastScreenSize;
+	private Vector2 originalPanelSize;
+	private int originalFontSize;
 
 	// Use this for initialization
 	void Start () {
@@ -34,6 +36,10 @@ public class RenderScore : MonoBehaviour {
 			}
 		}
 
+		RectTransform rect = this.transform as RectTransform;
+		originalPanelSize.x = Mathf.Abs( rect.rect.xMax - rect.rect.xMin );
+		originalPanelSize.y = Mathf.Abs( rect.rect.yMax - rect.rect.yMin );
+		originalFontSize = textToUpdateWithScore.fontSize;
 		RenderInternal();
 	}
 
@@ -53,18 +59,21 @@ public class RenderScore : MonoBehaviour {
 
 	private void ScaleSizeGivenExpectedWidth(RectTransform rect, int width)
 	{
-		float currentWidth = Mathf.Abs( rect.rect.xMax - rect.rect.xMin );
-		float currentHeight = Mathf.Abs( rect.rect.yMax - rect.rect.yMin );
-		float scaleBy = width / currentWidth;
-		
-		rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
-		rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, (int)(currentHeight*scaleBy));
+		float originalWidth = originalPanelSize.x;
+		float originalHeight = originalPanelSize.y;
+		float scaleBy = width / originalWidth;
 		
 		Text[] allText = rect.GetComponentsInChildren<Text>(true);
 		foreach(Text text in allText)
 		{
-			text.fontSize = (int)(text.fontSize * scaleBy);
+			//Debug.Log ("Original font size: " + text.fontSize + " Font size: " + (int)(originalFontSize * scaleBy));
+			text.fontSize = (int)(originalFontSize * scaleBy);
 		}
+
+		//Debug.Log ("Original width: " + originalWidth + " width: " + width);
+		//Debug.Log ("Original height: " + originalHeight + " height: " + (int)(originalHeight*scaleBy));
+		rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
+		rect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, (int)(originalHeight*scaleBy)+2);
 	}
 	
 	// Update is called once per frame
