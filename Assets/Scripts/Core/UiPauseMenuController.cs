@@ -71,7 +71,7 @@ public class UiPauseMenuController : MonoBehaviour {
 		Text[] allText = rect.GetComponentsInChildren<Text>(true);
 		foreach(Text text in allText)
 		{
-			text.fontSize = (int)(text.fontSize * ratio);
+			text.fontSize = (int)(text.fontSize * ratio)-1	;
 		}
 	}
 

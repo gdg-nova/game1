@@ -198,7 +198,7 @@ public class AttackBehavior : MonoBehaviour {
 					
 					o.playSound( "attack", hitObj.tag.ToString() );
 
-					Debug.Log ("Striking: " + hitObj.name);
+					//Debug.Log ("Striking: " + hitObj.name);
 					stateMachineDriver.AddPriorityAction("strike", hitObj.transform);
 
 					//Debug.Log ("valid attack hit: " + hitObj);
@@ -257,8 +257,16 @@ public class AttackBehavior : MonoBehaviour {
 			// did we find an object we are allowed to attack
 			if( CanAttack( hitObj.tag ))
 			{
+				commonAI ai = hitObj.GetComponent<commonAI>();
+				if (ai != null && ai.isDestroying)
+					continue;
+
+				StateMachineDriver sm = hitObj.GetComponent<StateMachineDriver>();
+				if (sm != null && sm.isDead)
+					continue;
+
 				// Try to reroute to that location
-				Debug.Log ("Attacking: " + hitObj.name);
+				//Debug.Log ("Attacking: " + hitObj.name);
 				stateMachineDriver.AddAction("new_target_object", hitObj.transform );
 				return;
 			}
