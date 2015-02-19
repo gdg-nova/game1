@@ -113,7 +113,7 @@ public class AttackBehavior : MonoBehaviour {
 				// as the message was sent. In that case we still apply the damage.
 			}
 			m_userObj.health -= damageTaken;
-			Debug.Log ("Health is: " + m_userObj.health);
+			//Debug.Log ("Health is: " + m_userObj.health);
 			globalEvents.OnPlayerObjectHit(hitterObj, m_userObj.gameObject);
 			if (m_userObj.health < 0.0f)
 			{
