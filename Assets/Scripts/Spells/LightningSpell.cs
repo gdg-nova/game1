@@ -4,6 +4,7 @@ using System.Collections;
 public class LightningSpell : SpellBase {
 
 	public GameObject lightningPrefab;
+	public float lightningRange = 3.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -25,7 +26,7 @@ public class LightningSpell : SpellBase {
 		{
 			GameObject go = Instantiate( lightningPrefab, r_hit.point, Quaternion.Euler(-90.0f, 0.0f, 0.0f) ) as GameObject;
 
-			Collider[] objs = Physics.OverlapSphere( r_hit.point, 3.0f );
+			Collider[] objs = Physics.OverlapSphere( r_hit.point, lightningRange );
 			foreach( Collider obj in objs)
 			{
 				commonAI gameObj = obj.GetComponent<commonAI>();

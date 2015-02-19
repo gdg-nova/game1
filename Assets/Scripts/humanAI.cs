@@ -277,16 +277,17 @@ public class humanAI : commonAI, ICanBeScared, ICanBeStruckDown, ICanBeConverted
 		if( animComponent != null )
 		{
 			animComponent.Stop();
-			if( isAfraid )
-			{
-				navAgent.speed = runSpeed;
-				//animComponent.Play("sprint");
-			}
-			else
-			{
-				navAgent.speed = baseSpeed;
-				//animComponent.Play("walk");
-			}
+		}
+		NavMeshAgent navAgent = this.GetComponent<NavMeshAgent>();
+		if( isAfraid )
+		{
+			navAgent.speed = runSpeed;
+			//animComponent.Play("sprint");
+		}
+		else
+		{
+			navAgent.speed = baseSpeed;
+			//animComponent.Play("walk");
 		}
 	}
 
@@ -303,7 +304,7 @@ public class humanAI : commonAI, ICanBeScared, ICanBeStruckDown, ICanBeConverted
 
 		lastAfraidCheck += Time.deltaTime;
 		// if not 3 seconds since last check, don't bother and over cycle objects checking
-		if( lastAfraidCheck < 1.5f )
+		if( lastAfraidCheck < 2.0f )
 			return;
 
 		// we are within the time interval, reset counter for next time around

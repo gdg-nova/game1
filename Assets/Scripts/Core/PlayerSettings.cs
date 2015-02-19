@@ -5,6 +5,12 @@ using System.Collections;
 public class PlayerSettings : MonoBehaviour {
 	
 	public SpellBase[] AvailableSpells;
+	public float	   defaultMana = 3.0f;
+
+	public PlayerSettings()
+	{
+		playerMana = defaultMana;
+	}
 
 	public SpellBase ActiveSpell { get; set; }
 
