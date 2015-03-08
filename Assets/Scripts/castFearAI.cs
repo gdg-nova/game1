@@ -37,7 +37,7 @@ public class castFearAI : MonoBehaviour
 		GameObject scareObj;
 		foreach (Collider hit in colliders)
 		{
-			scareObj = hit.collider.gameObject;
+			scareObj = hit.GetComponent<Collider>().gameObject;
 
 			commonAI o = scareObj.GetComponent<commonAI>();
 			if( o != null && o is ICanBeScared )

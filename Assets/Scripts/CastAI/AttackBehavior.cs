@@ -179,7 +179,7 @@ public class AttackBehavior : MonoBehaviour {
 		GameObject hitObj;
 		foreach (Collider hit in colliders)
 		{
-			hitObj = hit.collider.gameObject;
+			hitObj = hit.GetComponent<Collider>().gameObject;
 			// did we find an object we are allowed to attack
 			if( CanAttack( hitObj.tag ))
 			{
@@ -252,7 +252,7 @@ public class AttackBehavior : MonoBehaviour {
 		GameObject hitObj;
 		foreach (Collider hit in colliders)
 		{
-			hitObj = hit.collider.gameObject;
+			hitObj = hit.GetComponent<Collider>().gameObject;
 			
 			// did we find an object we are allowed to attack
 			if( CanAttack( hitObj.tag ))

@@ -388,7 +388,7 @@ public abstract class commonAI : MonoBehaviour
 			}
 
 			if( animComponent["die"] != null )
-				Destroy(gameObject,animation["die"].length * 2 );
+				Destroy(gameObject,GetComponent<Animation>()["die"].length * 2 );
 
 			// original human has no die animation, kill object right-away
 			if( animComponent["die"] == null )

@@ -18,10 +18,10 @@ public class BillboardLaub: MonoBehaviour {
 			Vector3 v = mainCamTransform.position - cachedTransform.position;
 			v.x=v.z=0;
 			cachedTransform.LookAt( mainCamTransform.position-v);
-			renderer.enabled = true;
+			GetComponent<Renderer>().enabled = true;
 		}
 		else{
-			renderer.enabled = false;	
+			GetComponent<Renderer>().enabled = false;	
 		}
 
 	}

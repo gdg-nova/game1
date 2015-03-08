@@ -119,6 +119,6 @@ public class guardAI : commonAI
 
 	public override void playSound (string action, string target)
 	{
-		audio.Play ();
+		GetComponent<AudioSource>().Play ();
 	}
 }
