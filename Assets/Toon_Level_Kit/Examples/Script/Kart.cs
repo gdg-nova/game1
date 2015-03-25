@@ -39,9 +39,9 @@ public class Kart : MonoBehaviour {
 	void  Update(){
 
 		if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Escape)){
-			rigidbody.freezeRotation = true;
-			rigidbody.transform.eulerAngles = Vector3.zero;
-			rigidbody.freezeRotation = false;
+			GetComponent<Rigidbody>().freezeRotation = true;
+			GetComponent<Rigidbody>().transform.eulerAngles = Vector3.zero;
+			GetComponent<Rigidbody>().freezeRotation = false;
 
 			if (Input.GetKey(KeyCode.Escape)){
 				transform.position = startPosition;
@@ -51,7 +51,7 @@ public class Kart : MonoBehaviour {
 	}
 
 	void OnCollisionEnter(){
-		audio.pitch = 0.5f;
+		GetComponent<AudioSource>().pitch = 0.5f;
 	}
 
 	// Update is called once per frame
@@ -60,7 +60,7 @@ public class Kart : MonoBehaviour {
 
 
 		speed = ((Fleft.rpm /60f) * 2 * Mathf.PI) * 0.45f * 3.6f;
-		audio.pitch = 0.5f + speed/200f;
+		GetComponent<AudioSource>().pitch = 0.5f + speed/200f;
 
 		float throttle = Input.GetAxis("Vertical");
 		float steer = Input.GetAxis("Horizontal");
@@ -95,13 +95,13 @@ public class Kart : MonoBehaviour {
 			Fright.steerAngle =steer*steerPower ;
 		}
 		
-		rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity,70);
+		GetComponent<Rigidbody>().velocity = Vector3.ClampMagnitude(GetComponent<Rigidbody>().velocity,70);
 
 		if (steer!=0){
-			rigidbody.AddForceAtPosition(Fleft.transform.up * -AntiRoll , Fleft.transform.position);
-			rigidbody.AddForceAtPosition(Fright.transform.up * -AntiRoll, Fright.transform.position);
-			rigidbody.AddForceAtPosition(Rleft.transform.up * -AntiRoll, Rleft.transform.position);
-			rigidbody.AddForceAtPosition(Rright.transform.up * -AntiRoll, Rright.transform.position);
+			GetComponent<Rigidbody>().AddForceAtPosition(Fleft.transform.up * -AntiRoll , Fleft.transform.position);
+			GetComponent<Rigidbody>().AddForceAtPosition(Fright.transform.up * -AntiRoll, Fright.transform.position);
+			GetComponent<Rigidbody>().AddForceAtPosition(Rleft.transform.up * -AntiRoll, Rleft.transform.position);
+			GetComponent<Rigidbody>().AddForceAtPosition(Rright.transform.up * -AntiRoll, Rright.transform.position);
 		}
 
 		fLeftModel.transform.Rotate( Vector3.right * Fleft.rpm * Time.deltaTime);
@@ -109,7 +109,7 @@ public class Kart : MonoBehaviour {
 		rLeftModel.transform.Rotate( Vector3.right * Rleft.rpm * Time.deltaTime);
 		rRightModel.transform.Rotate( Vector3.right * Rright.rpm * Time.deltaTime);
 
-		rigidbody.centerOfMass= new Vector3(0,-2f * throttle);
+		GetComponent<Rigidbody>().centerOfMass= new Vector3(0,-2f * throttle);
 		//rigidbody.centerOfMass = new Vector3(0,0,-2f);
 		volant.transform.Rotate( Vector3.up * steer , Space.Self);
 

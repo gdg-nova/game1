@@ -93,11 +93,11 @@ public class zombieAI : commonAI, ICanBeInfluenced
 
 		float animSpeed = -.5f;
 
-		animComponent.animation ["die"].speed = animSpeed;
+		animComponent.GetComponent<Animation>() ["die"].speed = animSpeed;
 
-		float animTime = Mathf.Abs ( animComponent.animation ["die"].length * (1 / animSpeed));
+		float animTime = Mathf.Abs ( animComponent.GetComponent<Animation>() ["die"].length * (1 / animSpeed));
 
-		animComponent.animation ["die"].time = animComponent.animation ["die"].length;
+		animComponent.GetComponent<Animation>() ["die"].time = animComponent.GetComponent<Animation>() ["die"].length;
 		animComponent.Play ("die");
 
 
@@ -131,8 +131,8 @@ public class zombieAI : commonAI, ICanBeInfluenced
 
 	public void completeInit() 
 	{
-		animComponent.animation ["die"].speed = 1f;
-		animComponent.animation ["die"].time = 0f;
+		animComponent.GetComponent<Animation>() ["die"].speed = 1f;
+		animComponent.GetComponent<Animation>() ["die"].time = 0f;
 
 		animComponent.Play ();
 
@@ -239,6 +239,6 @@ public class zombieAI : commonAI, ICanBeInfluenced
 	
 	public override void playSound (string action, string target)
 	{
-				audio.Play();
+				GetComponent<AudioSource>().Play();
 	}
 }

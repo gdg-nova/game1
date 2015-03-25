@@ -126,7 +126,7 @@ public class attackAI : MonoBehaviour
 		GameObject hitObj;
 		foreach (Collider hit in colliders)
 		{
-			hitObj = hit.collider.gameObject;
+			hitObj = hit.GetComponent<Collider>().gameObject;
 			// did we find an object we are allowed to attack
 			if( canAttack( hitObj.tag ))
 			{
@@ -290,7 +290,7 @@ public class attackAI : MonoBehaviour
 		GameObject hitObj;
 		foreach (Collider hit in colliders)
 		{
-			hitObj = hit.collider.gameObject;
+			hitObj = hit.GetComponent<Collider>().gameObject;
 
 			commonAI o = hitObj.GetComponent<commonAI>();
 			// if already infected, don't falsely keep an attacker

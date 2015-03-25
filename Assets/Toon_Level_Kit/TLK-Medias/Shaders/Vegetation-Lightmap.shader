@@ -1,3 +1,7 @@
+// Upgrade NOTE: commented out 'float4 unity_LightmapST', a built-in variable
+// Upgrade NOTE: commented out 'sampler2D unity_Lightmap', a built-in variable
+// Upgrade NOTE: replaced tex2D unity_Lightmap with UNITY_SAMPLE_TEX2D
+
 Shader "Hedgehog Team/Vegetation-lightmap" {
 Properties {
 	_MainTex ("Base (RGB) Alpha (A)", 2D) = "white" {}
@@ -20,8 +24,8 @@ SubShader {
 	fixed _Cutoff;
 	
 	#ifndef LIGHTMAP_OFF
-	float4 unity_LightmapST;
-	sampler2D unity_Lightmap;
+	// float4 unity_LightmapST;
+	// sampler2D unity_Lightmap;
 	#endif
 	
 	float _SecondaryFactor;
@@ -106,7 +110,7 @@ inline float4 AnimateVertex2(float4 pos, float3 normal, float4 animParams, float
 			c.a = tex.a;
 			
 			#ifndef LIGHTMAP_OFF
-			fixed3 lm = DecodeLightmap (tex2D(unity_Lightmap, i.lmap));
+			fixed3 lm = DecodeLightmap (UNITY_SAMPLE_TEX2D(unity_Lightmap, i.lmap));
 			c.rgb *= lm;
 			#endif
 			

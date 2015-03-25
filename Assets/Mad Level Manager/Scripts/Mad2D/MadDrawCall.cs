@@ -62,10 +62,10 @@ public class MadDrawCall : MonoBehaviour {
     }
 
     public void SetMaterials(Material[] materials) {
-        var shared = renderer.sharedMaterials;
+        var shared = GetComponent<Renderer>().sharedMaterials;
 
         if (shared.Length != materials.Length) {
-            renderer.sharedMaterials = materials;
+            GetComponent<Renderer>().sharedMaterials = materials;
             return;
         }
 
@@ -74,7 +74,7 @@ public class MadDrawCall : MonoBehaviour {
             var m = materials[i];
 
             if (s != m) {
-                renderer.sharedMaterials = materials;
+                GetComponent<Renderer>().sharedMaterials = materials;
                 return;
             }
         }

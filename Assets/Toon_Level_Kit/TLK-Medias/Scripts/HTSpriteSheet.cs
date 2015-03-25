@@ -218,12 +218,12 @@ public class HTSpriteSheet : MonoBehaviour {
 		
 		// Add light
 		if (addLightEffect){
-			gameObject.AddComponent("Light");
-			gameObject.light.color = lightColor;
-			gameObject.light.range = lightRange;
+			gameObject.AddComponent<Light>();
+			gameObject.GetComponent<Light>().color = lightColor;
+			gameObject.GetComponent<Light>().range = lightRange;
 		}
 		
-		renderer.enabled = false;
+		GetComponent<Renderer>().enabled = false;
 		
 
 	}
@@ -286,14 +286,14 @@ public class HTSpriteSheet : MonoBehaviour {
 		    // build offset
 		    Vector2 offset = new Vector2 (uIndex * size.x , 1.0f - size.y - vIndex * size.y);
 			
-		   	renderer.material.SetTextureOffset ("_MainTex", offset);
-		   	renderer.material.SetTextureScale ("_MainTex", size);
+		   	GetComponent<Renderer>().material.SetTextureOffset ("_MainTex", offset);
+		   	GetComponent<Renderer>().material.SetTextureScale ("_MainTex", size);
 		    
-			 renderer.enabled = true;
+			 GetComponent<Renderer>().enabled = true;
 		}			
 		else{
 	 		effectEnd = true;
-			renderer.enabled = false;
+			GetComponent<Renderer>().enabled = false;
 			end = true;		
 
 			if (soundEffect){
@@ -303,7 +303,7 @@ public class HTSpriteSheet : MonoBehaviour {
 			}
 		
 			if (addLightEffect && end){
-				if (gameObject.light.intensity>0){
+				if (gameObject.GetComponent<Light>().intensity>0){
 					end = false;
 				}
 			}
@@ -321,7 +321,7 @@ public class HTSpriteSheet : MonoBehaviour {
 		
 		// Light effect
 	 	if (addLightEffect && lightFadeSpeed!=0){
-			gameObject.light.intensity -= lightFadeSpeed*Time.deltaTime;
+			gameObject.GetComponent<Light>().intensity -= lightFadeSpeed*Time.deltaTime;
 		}
 		
 		// Color Effect
@@ -351,7 +351,7 @@ public class HTSpriteSheet : MonoBehaviour {
 		meshRender.receiveShadows = false;
 		mesh.RecalculateNormals();		
 		
-		renderer.material= spriteSheetMaterial;
+		GetComponent<Renderer>().material= spriteSheetMaterial;
 	}
 	
 	/// <summary>

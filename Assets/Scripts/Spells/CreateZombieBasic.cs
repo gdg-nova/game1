@@ -38,7 +38,7 @@ public class CreateZombieBasic : SpellBase {
 				if (zombieAppearanceEffect != null)
 				{
 					GameObject go = Instantiate( zombieAppearanceEffect, r_hit.point, Quaternion.Euler(-90.0f, 0.0f, 0.0f) ) as GameObject;
-					Destroy(go, go.particleSystem.duration);
+					Destroy(go, go.GetComponent<ParticleSystem>().duration);
 				}
 			}
 		}

@@ -175,7 +175,7 @@ public class humanAI : commonAI, ICanBeScared, ICanBeStruckDown, ICanBeConverted
 			GameObject hitObj;
 			foreach (Collider hit in colliders)
 			{
-				hitObj = hit.collider.gameObject;
+				hitObj = hit.GetComponent<Collider>().gameObject;
 				// did we find an object we are allowed to attack
 				if( hitObj.tag.Equals ( "Human" )
 				   || hitObj.tag.Equals( "Guard" ))
@@ -322,9 +322,9 @@ public class humanAI : commonAI, ICanBeScared, ICanBeStruckDown, ICanBeConverted
 		if( ! attackedByWerewolf )
 		{
 			if( isAfraid )
-				Invoke ("requestZombieCreationFast", animation["walk"].length * 2 );
+				Invoke ("requestZombieCreationFast", GetComponent<Animation>()["walk"].length * 2 );
 			else
-				Invoke ("requestZombieCreation", animation["walk"].length * 2 );
+				Invoke ("requestZombieCreation", GetComponent<Animation>()["walk"].length * 2 );
 
 			// Mana should be incremented when the human dies in this way
 			globalEvents.manaControllerService.ChangeMana(+1);
@@ -417,6 +417,6 @@ public class humanAI : commonAI, ICanBeScared, ICanBeStruckDown, ICanBeConverted
 	
 	public override void playSound (string action, string target)
 	{
-		audio.Play ();
+		GetComponent<AudioSource>().Play ();
 	}
 }

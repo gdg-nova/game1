@@ -39,9 +39,14 @@ public class LightningSpell : SpellBase {
 						strike.StrikeDown();
 					}
 				}
+				Rigidbody rb = obj.GetComponent<Rigidbody>();
+				if (rb != null)
+				{
+					rb.AddForce(5.0f*(rb.transform.position-r_hit.point).normalized, ForceMode.Impulse);
+				}
 			}
 
-			Destroy(go, go.particleSystem.duration);
+			Destroy(go, go.GetComponent<ParticleSystem>().duration);
 
 		}
 	}

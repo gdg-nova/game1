@@ -79,8 +79,8 @@ public class trollAI : commonAI
 	
 	public void completeInit() 
 	{
-		animComponent.animation ["die"].speed = 1f;
-		animComponent.animation ["die"].time = 0f;
+		animComponent.GetComponent<Animation>() ["die"].speed = 1f;
+		animComponent.GetComponent<Animation>() ["die"].time = 0f;
 		
 		animComponent.Play ();
 

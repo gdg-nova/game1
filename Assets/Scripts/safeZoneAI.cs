@@ -119,7 +119,7 @@ public class safeZoneAI : MonoBehaviour
 		guardAI gAI = globalEvents.characterCreator.createGuard(new Vector3(x, 1, z), new Quaternion(0f, 0f, 0f, 0f));
 		gAI.stationary = false;
 		gAI.moveAfterCombat = true;
-		((commonAI)gAI).animation.Play("walk");
+		((commonAI)gAI).GetComponent<Animation>().Play("walk");
 		((commonAI)gAI).baseSpeed = 4.5f;
 		((commonAI)gAI).runSpeed = 7.0f;
 	}
@@ -141,7 +141,7 @@ public class safeZoneAI : MonoBehaviour
 
 		// PRESERVE the bounds of the house as the rendering appears to be
 		// delayed after Destroy of the house, and the random placement gets hosed...
-		Bounds houseBounds = spawnArea.renderer.bounds;
+		Bounds houseBounds = spawnArea.GetComponent<Renderer>().bounds;
 
 		// how many zombies should we create of the total human count...
 		// take the integer count... PERCENTS, so divide by 100.

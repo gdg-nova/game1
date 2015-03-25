@@ -28,7 +28,7 @@ public class HTLiquidSpriteSheet : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
-		renderer.material.SetTextureScale( "_MainTex",new Vector2(1,1));
+		GetComponent<Renderer>().material.SetTextureScale( "_MainTex",new Vector2(1,1));
 		
 		float index = (Time.time-_startTime) * framesPerSecond;
 		index = index % (uvAnimationTileX * uvAnimationTileY);
@@ -38,21 +38,21 @@ public class HTLiquidSpriteSheet : MonoBehaviour {
 			index=0;
 		}
 		
-		renderer.material.SetTextureScale( "_MainTex",textureSize);
+		GetComponent<Renderer>().material.SetTextureScale( "_MainTex",textureSize);
 		
 		currentOffset += scrollSpeed * Time.deltaTime;
-		renderer.material.SetTextureOffset( "_MainTex", currentOffset);
-		renderer.material.SetTexture("_MainTex", _diffuseTexture[(int)index]);
+		GetComponent<Renderer>().material.SetTextureOffset( "_MainTex", currentOffset);
+		GetComponent<Renderer>().material.SetTexture("_MainTex", _diffuseTexture[(int)index]);
 		
 
 	}
 	
 	public void InitSpriteTexture(){
 		
-		Texture2D origine = (Texture2D) renderer.material.GetTexture("_MainTex");	
+		Texture2D origine = (Texture2D) GetComponent<Renderer>().material.GetTexture("_MainTex");	
 		
-		int xSpriteSize = renderer.material.mainTexture.width / uvAnimationTileX;
-		int ySpriteSize = renderer.material.mainTexture.height / uvAnimationTileY;
+		int xSpriteSize = GetComponent<Renderer>().material.mainTexture.width / uvAnimationTileX;
+		int ySpriteSize = GetComponent<Renderer>().material.mainTexture.height / uvAnimationTileY;
 		
 		int i=0,x=0,y=uvAnimationTileY-1;
 		while (y>=0 && i<spriteCount){

@@ -84,8 +84,8 @@ public static class gs
 
 	public static Vector3 RandomVectorInBounds(GameObject target) 
 	{
-		float x = Random.Range(target.renderer.bounds.min.x, target.renderer.bounds.max.x);
-		float z = Random.Range(target.renderer.bounds.min.z, target.renderer.bounds.max.z);
+		float x = Random.Range(target.GetComponent<Renderer>().bounds.min.x, target.GetComponent<Renderer>().bounds.max.x);
+		float z = Random.Range(target.GetComponent<Renderer>().bounds.min.z, target.GetComponent<Renderer>().bounds.max.z);
 		return new Vector3(x, target.transform.position.y, z);		
 	}
 

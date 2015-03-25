@@ -70,7 +70,7 @@ public class InfluenceDirectionSpell : SpellBase {
 			{
 				// Instantiate a magical light "spell"
 				GameObject go = Instantiate( magicalLightPrefab, lastTouchPosition, Quaternion.Euler(-90.0f, 0.0f, 0.0f) ) as GameObject;
-				Destroy(go, go.particleSystem.duration);
+				Destroy(go, go.GetComponent<ParticleSystem>().duration);
 
 				lastTouchPosition = groundPoint;
 			}
