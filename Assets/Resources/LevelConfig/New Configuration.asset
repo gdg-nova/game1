@@ -14,37 +14,73 @@ MonoBehaviour:
   creationDate: 1414604361
   _active: 1
   levels:
+  - _sceneObject: {fileID: 102900000, guid: d1c61f1d73721fa46912d6b2462fad3c, type: 3}
+    _scenePath: Assets/Scenes/menu_Scene.unity
+    _sceneName: menu_Scene
+    scene: 
+    parent: {fileID: 11400000}
+    order: 0
+    name: Splash_Screen_Title
+    type: 0
+    arguments: 
+    groupId: 0
+    extensionGUID: 
+    lockedByDefault: 1
   - _sceneObject: {fileID: 102900000, guid: 13fe2a13ec6faf84ea0afb9ca0cbc0b9, type: 3}
     _scenePath: Assets/Scenes/LevelChooseScene.unity
     _sceneName: LevelChooseScene
     scene: 
     parent: {fileID: 11400000}
-    order: 0
+    order: 10
     name: Level Choose
     type: 0
     arguments: 
     groupId: 0
     extensionGUID: 
     lockedByDefault: 1
-  - _sceneObject: {fileID: 102900000, guid: 15a42f75fc4ea467f98e46d0f91fd46a, type: 3}
-    _scenePath: Assets/Scenes/Alpha/1 - Tutorial.unity
-    _sceneName: 1 - Tutorial
+  - _sceneObject: {fileID: 102900000, guid: bfb2a7bca88d5c645b74c1d218b2daae, type: 3}
+    _scenePath: Assets/Scenes/Alpha/Scroll Scene.unity
+    _sceneName: Scroll Scene
     scene: 
     parent: {fileID: 11400000}
-    order: 10
-    name: Tutorial Scene
+    order: 20
+    name: Scroll_Instructions
     type: 1
     arguments: 
     groupId: 0
     extensionGUID: 
     lockedByDefault: 0
-  - _sceneObject: {fileID: 102900000, guid: 66b9a17a61477491a980466219173298, type: 3}
-    _scenePath: Assets/Scenes/Alpha/2 - NewZombies.unity
-    _sceneName: 2 - NewZombies
+  - _sceneObject: {fileID: 102900000, guid: 15a42f75fc4ea467f98e46d0f91fd46a, type: 3}
+    _scenePath: Assets/Scenes/Alpha/1 - Tutorial.unity
+    _sceneName: 1 - Tutorial
     scene: 
     parent: {fileID: 11400000}
-    order: 20
+    order: 30
     name: Scene 1
+    type: 1
+    arguments: 
+    groupId: 0
+    extensionGUID: 
+    lockedByDefault: 0
+  - _sceneObject: {fileID: 102900000, guid: 39e5fcf7961fb40ce9f21e4bcff6047f, type: 3}
+    _scenePath: Assets/Scenes/Alpha/3 - Human rigid bodies.unity
+    _sceneName: 3 - Human rigid bodies
+    scene: 
+    parent: {fileID: 11400000}
+    order: 40
+    name: Scene 2
+    type: 1
+    arguments: 
+    groupId: 0
+    extensionGUID: 
+    lockedByDefault: 0
+  - _sceneObject: {fileID: 102900000, guid: dfb456d75ebe31c4b9caa6a4daa4fbd8, type: 3}
+    _scenePath: Assets/Scenes/scene1.unity
+    _sceneName: scene1
+    scene: 
+    parent: {fileID: 11400000}
+    order: 50
+    name: Scene 3
     type: 1
     arguments: 
     groupId: 0
@@ -55,8 +91,8 @@ MonoBehaviour:
     _sceneName: scene2
     scene: 
     parent: {fileID: 11400000}
-    order: 30
-    name: Scene 2
+    order: 60
+    name: Scene 4
     type: 1
     arguments: 
     groupId: 0
@@ -67,8 +103,8 @@ MonoBehaviour:
     _sceneName: scene3
     scene: 
     parent: {fileID: 11400000}
-    order: 40
-    name: Scene 3
+    order: 70
+    name: Scene 5
     type: 1
     arguments: 
     groupId: 0
@@ -79,8 +115,8 @@ MonoBehaviour:
     _sceneName: scene4
     scene: 
     parent: {fileID: 11400000}
-    order: 50
-    name: Scene 4
+    order: 80
+    name: Scene 6
     type: 1
     arguments: 
     groupId: 0
@@ -91,20 +127,8 @@ MonoBehaviour:
     _sceneName: scene5
     scene: 
     parent: {fileID: 11400000}
-    order: 60
-    name: Scene 5
-    type: 1
-    arguments: 
-    groupId: 0
-    extensionGUID: 
-    lockedByDefault: 0
-  - _sceneObject: {fileID: 102900000, guid: 77c503282cd928a478edb17ff0d35b2a, type: 3}
-    _scenePath: Assets/Scenes/Stealth_Scene.unity
-    _sceneName: Stealth_Scene
-    scene: 
-    parent: {fileID: 11400000}
-    order: 70
-    name: Stealth Scene
+    order: 90
+    name: Scene 7
     type: 1
     arguments: 
     groupId: 0
@@ -115,32 +139,20 @@ MonoBehaviour:
     _sceneName: Flank_Scene
     scene: 
     parent: {fileID: 11400000}
-    order: 80
+    order: 100
     name: Flank Scene
     type: 1
     arguments: 
     groupId: 0
     extensionGUID: 
     lockedByDefault: 0
-  - _sceneObject: {fileID: 102900000, guid: a80c45c697c0c8743809b4d383abcac5, type: 3}
-    _scenePath: Assets/Scenes/Two_Graveyard_Scene.unity
-    _sceneName: Two_Graveyard_Scene
+  - _sceneObject: {fileID: 102900000, guid: 9df932a58e56aab42adfa0ab24472f1d, type: 3}
+    _scenePath: Assets/Scenes/credits_Scene_2.unity
+    _sceneName: credits_Scene_2
     scene: 
     parent: {fileID: 11400000}
-    order: 90
-    name: Two Graveyard Scene
-    type: 1
-    arguments: 
-    groupId: 0
-    extensionGUID: 
-    lockedByDefault: 0
-  - _sceneObject: {fileID: 102900000, guid: fc242d574d1e6494c8827f5354f40163, type: 3}
-    _scenePath: Assets/Scenes/Split_Scene.unity
-    _sceneName: Split_Scene
-    scene: 
-    parent: {fileID: 11400000}
-    order: 100
-    name: Split Scene
+    order: 110
+    name: Credits
     type: 1
     arguments: 
     groupId: 0
